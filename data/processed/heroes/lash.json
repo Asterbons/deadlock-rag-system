@@ -1,0 +1,463 @@
+{
+  "hero": "hero_lash",
+  "hero_id": 31,
+  "name": "Lash",
+  "hero_type": "Assassin",
+  "complexity": 3,
+  "tags": {
+    "flavor": [
+      "Arrogant",
+      "Initiator",
+      "High Flying"
+    ],
+    "playstyle": [
+      "assassin"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 2.1,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47,
+    "spirit_armor_damage_reduction": 10
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.341,
+    "health": 50,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "citadel_ability_lash_down_strike",
+      "slot": 1,
+      "name": "Ground Strike",
+      "description": "Stomp the ground beneath you, damaging enemies in front of you. If you perform Ground Strike while airborne, you quickly dive towards the ground. Damage grows slower after 25m.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 21,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_post_cast_duration": 0.4,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "10m",
+        "strike_velocity": "50m",
+        "stomp_damage": 60,
+        "stomp_damage_per_meter_primary": 5.5,
+        "stomp_damage_per_meter_secondary": 4.2,
+        "stomp_damage_primary_range": "25m",
+        "min_aim_angle": 60,
+        "stomp_vertical_threshold": 118
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.7905
+          },
+          "formula": "60 + (spirit__power * 0.7905)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 5.5,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.0372
+          },
+          "formula": "5.5 + (spirit_power * 0.0372)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 4.2,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.008137
+          },
+          "formula": "4.2 + (spirit_power * 0.008137)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_lash",
+      "slot": 2,
+      "name": "Grapple",
+      "description": "Pull yourself through the air toward a target. Using Grapple also resets your limit of air jumps and dashes.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 35,
+        "cast_range": "30m",
+        "ability_unit_target_limit": 1,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 2,
+        "channel_move_speed": -1,
+        "jump_velocity": "20m",
+        "lash_friendlies": 1,
+        "min_distance": "0m",
+        "jump_slow_resistance": 0.667
+      },
+      "effects": [
+        {
+          "type": "slow",
+          "base_value": 0.667,
+          "unit": "%"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_lash_flog",
+      "slot": 3,
+      "name": "Flog",
+      "description": "Strike enemies in front of you with your whip, healing for a portion of the damage dealt.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 26,
+        "cast_range": "20m",
+        "ability_unit_target_limit": 30,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "targeting_cone_angle": 30,
+        "heal_pct_vs_non_heroes": 16,
+        "heal_pct_vs_heroes": 50,
+        "damage": 65
+      },
+      "effects": [
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "heal",
+          "base_value": 16,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "16 + (heal__amp * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 50,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "50 + (heal__amp * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 65,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.85
+          },
+          "formula": "65 + (spirit__power * 0.85)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_lash_ultimate",
+      "slot": 4,
+      "name": "Death Slam",
+      "description": "Focus on enemies to connect whips to them. After channeling, connected enemies are lifted and stunned then slammed into the ground. Your victims and any enemies in the landing zone will be damaged and slowed. Pressto throw connected enemies early. Enemies that are not in line of sight or go out of range during the latch time will not be grabbed.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "time_to_gain_lockon_stack": 0.7,
+        "lockon_cone_angle": 40,
+        "time_to_lose_lockon_stack": 2,
+        "losing_lock_grace_time": 0.4,
+        "max_lockon_stacks": 1,
+        "cooldown": 150,
+        "cast_range": "20m",
+        "ability_unit_target_limit": 6,
+        "ability_cast_delay": 0.3,
+        "ability_channel_time": 2.3,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "impact_damage": 105,
+        "up_boost_speed": 400,
+        "lift_height": "6m",
+        "boost_time": 1,
+        "hang_time": 0.6,
+        "throw_distance": "12m",
+        "slam_speed": 1600,
+        "throw_straight_duration": 1.5,
+        "slow_duration": 4,
+        "slow_percent": 50,
+        "impact_radius": "6m",
+        "not_in_cone_loses_lock": 1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 105,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.974938
+          },
+          "formula": "105 + (spirit__power * 0.974938)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 4,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 50,
+          "unit": "%"
+        },
+        {
+          "type": "stun",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "seconds"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_lash_set",
+    "bullet_damage": 8.46,
+    "rounds_per_sec": 3.81,
+    "clip_size": 29,
+    "reload_time": 2.35,
+    "bullet_speed": 25000,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_refresher",
+      "name": "Refresher"
+    },
+    {
+      "id": "upgrade_arctic_blast",
+      "name": "Arctic Blast"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cold_front",
+      "name": "Cold Front"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_crackshot",
+      "name": "Mystic Shot"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_headhunter",
+      "name": "Headhunter"
+    },
+    {
+      "id": "upgrade_headshot_booster",
+      "name": "Headshot Booster"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rocket_booster",
+      "name": "Majestic Leap"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_trophy_collector",
+      "name": "Trophy Collector"
+    },
+    {
+      "id": "upgrade_unstoppable",
+      "name": "Unstoppable"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

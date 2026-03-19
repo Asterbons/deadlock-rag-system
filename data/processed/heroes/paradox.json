@@ -1,0 +1,527 @@
+{
+  "hero": "hero_chrono",
+  "hero_id": 10,
+  "name": "Paradox",
+  "hero_type": "Marksman",
+  "complexity": 3,
+  "tags": {
+    "flavor": [
+      "Disruptor",
+      "Calculated",
+      "Tactician"
+    ],
+    "playstyle": [
+      "marksman"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.7,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 700,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.62,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.43
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.242,
+    "health": 45,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "citadel_ability_chrono_pulse_grenade",
+      "slot": 1,
+      "name": "Pulse Grenade",
+      "description": "Throw a grenade that begins pulsing when it lands. Each pulse expands the radius and applies spirit damage, time slow, and stacking increased damage for X against the victim.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 32,
+        "duration": 3.2,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "5.5m",
+        "radius_increase_per_pulse": "1m",
+        "pulse_interval": 0.8,
+        "pulse_damage": 35,
+        "damage_amplification_per_stack": 4,
+        "debuff_duration": 8,
+        "slow_percent": 20,
+        "movement_slow_duration": 0.2
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 35,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.3
+          },
+          "formula": "35 + (spirit__power * 0.3)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 4,
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 20,
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 0.2,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0.2 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_chrono_time_wall",
+      "slot": 2,
+      "name": "Time Wall",
+      "description": "Create a time warping wall that stops time for all enemy projectiles and bullets that touch it and increases the speed and damage of friendly bullets. Enemies that touch the wall will be briefly slowed and silenced .",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 25,
+        "duration": 5.5,
+        "cast_range": 200,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "channel_move_speed": "1.3m",
+        "time_wall_width": "7.5m",
+        "time_wall_height": "3.5m",
+        "time_wall_depth": "0.5m",
+        "time_wall_depth_visual_scale": 0.16,
+        "time_wall_time_scale": 0.0001,
+        "time_scale_duration": 0.5,
+        "time_wall_time_scale_friendly": 2,
+        "friendly_bullet_damage_bonus": 30,
+        "movement_slow_pct": 80,
+        "aura_effect_duration": 2,
+        "time_wall_formation_time": 0.5
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 30,
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 80,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_chrono_kinetic_carbine",
+      "slot": 3,
+      "name": "Kinetic Carbine",
+      "description": "Charge up a powerful shot of time energy, dealing spirit damage and applying a Time-Stop to enemies hit. The damage dealt increases with weapon damage. Move speed is increased while charging. While in the air and charging, to timeslow your movement.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 30,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "speed_change": 25,
+        "speed_boost_duration": 3.5,
+        "min_bonus_bullet_damage": 5,
+        "max_bonus_bullet_damage": 5,
+        "headshot_bonus": 14,
+        "max_slow_duration": 0.4,
+        "bullet_time_scale": 0.01,
+        "projectile_time_scale": 0.01,
+        "time_warp_radius": "5m",
+        "bonus_bullet_speed": 100,
+        "shot_count": 1,
+        "max_charge_duration": 2.5,
+        "bullet_radius_override": 13.7,
+        "move_speed_while_shooting_penalty_reduction": 100,
+        "min_slow_duration": 0.25,
+        "time_scale_debuff": 90
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 5,
+          "scales_with": {
+            "stat": "weapon_power",
+            "ratio": 25
+          },
+          "formula": "5 + (weapon_power * 25)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 5,
+          "scales_with": {
+            "stat": "weapon_power",
+            "ratio": 125
+          },
+          "formula": "5 + (weapon_power * 125)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0.4,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0.4 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 0.25,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0.25 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_chrono_swap",
+      "slot": 4,
+      "name": "Paradoxical Swap",
+      "description": "Fire a projectile that swaps your position with the target enemy hero.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 95,
+        "cast_range": "25m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "initial_freeze_time": 0.25,
+        "min_swap_time": 0.6,
+        "swap_time": 1,
+        "distance_to_max_time": "30m",
+        "swap_damage": 125,
+        "initial_height": 350,
+        "tick_rate": 0.25,
+        "multi_swap": "0m"
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 125,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.1
+          },
+          "formula": "125 + (spirit__power * 1.1)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_chrono_set",
+    "bullet_damage": 6.42,
+    "rounds_per_sec": 3.4,
+    "clip_size": 40,
+    "reload_time": 2.585,
+    "bullet_speed": 20669.3,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.1,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_aoe_root",
+      "name": "Vortex Web"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_containment",
+      "name": "Slowing Hex"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_counterspell",
+      "name": "Counterspell"
+    },
+    {
+      "id": "upgrade_crackshot",
+      "name": "Mystic Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_express_shot",
+      "name": "Express Shot"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_glitch",
+      "name": "Cursed Relic"
+    },
+    {
+      "id": "upgrade_headhunter",
+      "name": "Headhunter"
+    },
+    {
+      "id": "upgrade_headshot_booster",
+      "name": "Headshot Booster"
+    },
+    {
+      "id": "upgrade_headshot_booster2",
+      "name": "Weakening Headshot "
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_high_velocity_mag",
+      "name": "High-Velocity Rounds"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_infuser",
+      "name": "Infuser"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_long_range",
+      "name": "Long Range"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_medic_bullets",
+      "name": "Restorative Shot"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_pristine_emblem",
+      "name": "Opening Rounds"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_sharpshooter",
+      "name": "Sharpshooter"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_thermal_detonator",
+      "name": "Alchemical Fire"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    },
+    {
+      "id": "upgrade_weapon_backstabber",
+      "name": "Stalker"
+    }
+  ]
+}

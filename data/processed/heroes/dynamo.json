@@ -1,0 +1,385 @@
+{
+  "hero": "hero_dynamo",
+  "hero_id": 11,
+  "name": "Dynamo",
+  "hero_type": "Mystic",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Teamplay",
+      "Clutch",
+      "Initiator"
+    ],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.7,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 850,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1.75,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.7,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.49
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.5,
+    "health": 59,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "bullet_armor_damage_resist": 0.625,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "citadel_ability_stomp",
+      "slot": 1,
+      "name": "Kinetic Pulse",
+      "description": "Release an energy pulse that travels along the ground, dealing spirit damage and applying knockup.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 26,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.42,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 5,
+        "channel_move_speed": "1.3m",
+        "cleave__duration": 0.2,
+        "damage": 115,
+        "climb_height": "1.0m",
+        "distance_above_ground": "1.0m",
+        "drop_down_rate": 20,
+        "toss_speed": 450,
+        "impact_interval": 0.1,
+        "stomp_range": "16m",
+        "stomp_width": "5.0m",
+        "toss_duration": 1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 115,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 2.1
+          },
+          "formula": "115 + (spirit__power * 2.1)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_void_sphere",
+      "slot": 2,
+      "name": "Quantum Entanglement",
+      "description": "Briefly become untargetable while teleporting to the target location. Restores stamina upon use. : Bring nearby allies with you.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 16,
+        "duration": 1.4,
+        "cast_range": "10m",
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "ally_distance": "13m",
+        "trail_interval": 0.01,
+        "stamina_restore": 1
+      },
+      "effects": [],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_nikuman",
+      "slot": 3,
+      "name": "Rejuvenating Aurora",
+      "description": "While channeling, restore health over time to you and any allies nearby.You can dash and melee without breaking the channel.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 48,
+        "ability_unit_target_limit": 1,
+        "ability_channel_time": 5,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "healing_per_second": 25,
+        "aura_linger_duration": 1,
+        "share_with_friends_radius": "8m",
+        "movement_speed_bonus": "0m"
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 25,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.4
+          },
+          "formula": "25 + (spirit__power * 0.4)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "0 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_self_vacuum",
+      "slot": 4,
+      "name": "Singularity",
+      "description": "Create a singularity in your hands, dealing pulling in nearby enemies.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 230,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_channel_time": 2.75,
+        "ability_cooldown_between_charge": -1,
+        "vacuum_radius": "7m",
+        "speed": 200,
+        "toss_speed": 350,
+        "toss_angle": 45,
+        "dps": 75,
+        "tick_rate": 0.25,
+        "camera_distance": 400
+      },
+      "effects": [],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_sumo_set",
+    "bullet_damage": 12.6,
+    "rounds_per_sec": 3.81,
+    "clip_size": 18,
+    "reload_time": 2.35,
+    "bullet_speed": 12600,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_refresher",
+      "name": "Refresher"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_arcane_surge",
+      "name": "Arcane Surge"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_diviners_kevlar",
+      "name": "Diviner's Kevlar"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_headhunter",
+      "name": "Headhunter"
+    },
+    {
+      "id": "upgrade_headshot_booster",
+      "name": "Headshot Booster"
+    },
+    {
+      "id": "upgrade_healbuff",
+      "name": "Healing Tempo"
+    },
+    {
+      "id": "upgrade_healing_booster",
+      "name": "Healing Booster"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rechargingbullets",
+      "name": "Recharging Rush"
+    },
+    {
+      "id": "upgrade_rescue_beam",
+      "name": "Rescue Beam"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_trophy_collector",
+      "name": "Trophy Collector"
+    },
+    {
+      "id": "upgrade_unstoppable",
+      "name": "Unstoppable"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "hero": "hero_orion",
+  "hero_id": 17,
+  "name": "Grey Talon",
+  "hero_type": "Marksman",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Precision",
+      "Hunter",
+      "Area Denial"
+    ],
+    "playstyle": [
+      "marksman"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.3,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 4,
+    "health_regen": 1.5,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.62,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.43
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 1.001,
+    "health": 38,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_charged_shot",
+      "slot": 1,
+      "name": "Charged Shot",
+      "description": "Charge up a powerful shot that pierces through enemies. Hold or to hold the shot.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 17,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.5,
+        "ability_channel_time": 9999,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 4,
+        "channel_move_speed": "1.3m",
+        "cleave__duration": 0.2,
+        "fall_speed_max": 60,
+        "air_speed_max": 161.417,
+        "damage": 80,
+        "camera_height_offset": 20,
+        "camera_horizontal_offset": 15
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 80,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1
+          },
+          "formula": "80 + (spirit__power * 1)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_power_jump",
+      "slot": 2,
+      "name": "Rain of Arrows",
+      "description": "Launches you high in the air, allowing you to glide slowly. While airborne, you gain Weapon Damage and multishot on your weapon. for reduced jump height. Pressto cancel the glide.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 30,
+        "duration": 7,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.5,
+        "ability_cooldown_between_charge": -1,
+        "jump_pitch": -60,
+        "jump_speed": "27.5m",
+        "alt_jump_speed": "12m",
+        "weapon_damage_bonus": 4,
+        "fall_speed_max": 15,
+        "air_speed_max": 161.417,
+        "bullet_split_shot": 5,
+        "fx_radius": "4m",
+        "air_move_increase_percent": -9
+      },
+      "effects": [
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 4,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_immobilize_trap",
+      "slot": 3,
+      "name": "Spirit Snare",
+      "description": "Throw out a trap that begins to arm itself. Once armed, the trap will trigger when an enemy enters its radius, applying Curse and Movement Slow that interrupts, Silences, Disarms, and prevents item usage.Hit the trap with a Charged Shot to detonate early with increased radius.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 34,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "tether_radius": "6m",
+        "radius": "6.5m",
+        "trap_height": "2m",
+        "lifetime": 22,
+        "damage": 25,
+        "tether_duration": 2.25,
+        "trip_time": 0.5,
+        "arm_time": 2,
+        "trip_up_speed": 250,
+        "trip_gravity": 0.4,
+        "skip_frames": 6,
+        "slow_percent": 30,
+        "charged_shot_hit_radius_scale": 30
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 25,
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 30,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_guided_arrow",
+      "slot": 4,
+      "name": "Guided Owl",
+      "description": "After Xs cast time, launch a spirit owl that you control and which explodes on impact, damaging and stunning enemies. Holdto accelerate the owl.Pressto release control. Gain permanent Spirit Power for each enemy hero killed with Guided Owl.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 110,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 1.5,
+        "ability_channel_time": 18,
+        "ability_cooldown_between_charge": -1,
+        "xplosion_radius": "12m",
+        "damage": 230,
+        "stun_duration": 0.75,
+        "bonus_spirit_power_per_kill": 10
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 230,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.93744
+          },
+          "formula": "230 + (spirit__power * 0.93744)",
+          "unit": "damage"
+        },
+        {
+          "type": "stun",
+          "base_value": 0.75,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0.75 + (ability__duration * 1)",
+          "unit": "seconds"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_archer_set",
+    "bullet_damage": 23.51,
+    "rounds_per_sec": 1.73,
+    "clip_size": 17,
+    "reload_time": 2.35,
+    "bullet_speed": 19500,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      708.661,
+      2125.98
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_crackshot",
+      "name": "Mystic Shot"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_long_range",
+      "name": "Long Range"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_rechargingbullets",
+      "name": "Recharging Rush"
+    },
+    {
+      "id": "upgrade_sharpshooter",
+      "name": "Sharpshooter"
+    },
+    {
+      "id": "upgrade_slowing_bullets",
+      "name": "Slowing Bullets"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_overflow",
+      "name": "Spiritual Overflow"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_trophy_collector",
+      "name": "Trophy Collector"
+    },
+    {
+      "id": "upgrade_ultimate_burst",
+      "name": "Lightning Scroll"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    }
+  ]
+}

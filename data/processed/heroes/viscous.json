@@ -1,0 +1,533 @@
+{
+  "hero": "hero_viscous",
+  "hero_id": 35,
+  "name": "Viscous",
+  "hero_type": "Mystic",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Disruptor",
+      "Gooey",
+      "Evasive"
+    ],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 63,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.36,
+    "base_bullet_damage_from_level_alt_fire": 1.6,
+    "health": 44,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.3
+  },
+  "abilities": [
+    {
+      "id": "viscous_goo_grenade",
+      "slot": 1,
+      "name": "Splatter",
+      "description": "Throw a ball of goo that deals damage and leaves puddles of goo behind that apply movement slow to enemies in the radius.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 26,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.001,
+        "ability_post_cast_duration": 0.2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "slow_percent": 35,
+        "max_bounces": 1,
+        "damage": 70,
+        "radius": "5m",
+        "puddle_duration": 10,
+        "detonate_cooldown": 0.15,
+        "second_hit_damage_percentage": 0.5,
+        "third_hit_damage_percentage": 0.38,
+        "fourth_hit_damage_percentage": 0.26,
+        "puddle_slide_buff": 60
+      },
+      "effects": [
+        {
+          "type": "slow",
+          "base_value": 35,
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 70,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.8
+          },
+          "formula": "70 + (spirit__power * 0.8)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0.5,
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0.38,
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0.26,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "viscous_restorative_goo",
+      "slot": 2,
+      "name": "The Cube",
+      "description": "Encase the target in a cube of restorative goo that protects from damage, and increases health regen. Target is unable to take any new actions while cubed. Can be used on self. Press to escape early.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 42,
+        "duration": 3,
+        "cast_range": "26m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "cube_scale": 1.5,
+        "friction": -80,
+        "bonus_health_regen": 40,
+        "push_back_radius": 50,
+        "push_back_force": 250,
+        "light_melee_force": 300,
+        "heavy_melee_force": 700,
+        "bullet_force": 600,
+        "slide_force": 70,
+        "breakout_time": 1,
+        "bonus_move_speed": "0m",
+        "post_cube_buff_duration": 8
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 40,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.3
+          },
+          "formula": "40 + (spirit__power * 0.3)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "0 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "viscous_telepunch",
+      "slot": 3,
+      "name": "Puddle Punch",
+      "description": "Materialize a fist in the world that punches everyone in the area, applying knockup. Punching an enemy deals melee damage and applies slow.You and your allies have increased Air Control.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 24,
+        "cast_range": "40m",
+        "ability_unit_target_limit": 1,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 1.7,
+        "channel_move_speed": -1,
+        "radius": "4m",
+        "punch_half_height": "5.5m",
+        "toss_speed": 625,
+        "toss_speed_wall": 750,
+        "toss_speed_up_wall": 500,
+        "toss_ground_side_ratio": 0.7,
+        "punch_roll_slow": -40,
+        "punch_roll_slow_duration": 1,
+        "slow_percent": 20,
+        "impact_duration": 4,
+        "friendly_impact_duration": 2,
+        "toss_duration": 0.8,
+        "punch_friendly_air_control": 30
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "light__melee",
+            "ratio": 1
+          },
+          "formula": "0 + (light__melee * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heavy__melee",
+            "ratio": 0
+          },
+          "formula": "0 + (heavy__melee * 0)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 1,
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 20,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "viscous_goo_bowling_ball",
+      "slot": 4,
+      "name": "Goo Ball",
+      "description": "Morph into a large goo ball that deals damage and stuns enemies on impact. The ball grants large amounts of Bullet and Spirit resist, bounces off walls and can double jump.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 130,
+        "duration": 10,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.55,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "7m",
+        "ball_radius": "1.4m",
+        "ball_hit_radius": "1.8m",
+        "damage": 110,
+        "ball_offset": 50,
+        "friction_percentage": -85,
+        "acceleration_percentage": -60,
+        "move_speed_max": "7m",
+        "breakable_prop_damage_radius": 75,
+        "jump_force": 500,
+        "particle_radius_multiplier": 1.2,
+        "tick_rate": 0.25,
+        "stun_duration": 0.7,
+        "knock_force": 400,
+        "spirit__resist": 35,
+        "bullet_resist": 35,
+        "air_jump_force": 500,
+        "cast_while_rolling": 1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 110,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1
+          },
+          "formula": "110 + (spirit__power * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 75,
+          "unit": "damage"
+        },
+        {
+          "type": "stun",
+          "base_value": 0.7,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0.7 + (ability__duration * 1)",
+          "unit": "seconds"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_viscous_set",
+    "bullet_damage": 10.34,
+    "rounds_per_sec": 4.76,
+    "clip_size": 20,
+    "reload_time": 2.5,
+    "bullet_speed": 10000,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0,
+    "spread": 0.2,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_absorbing_armor",
+      "name": "Witchmail"
+    },
+    {
+      "id": "upgrade_acolytes_glove",
+      "name": "Spirit Strike"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_boxing_glove",
+      "name": "Lifestrike"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_close_quarter_combat",
+      "name": "Point Blank"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_crushing_fists",
+      "name": "Crushing Fists"
+    },
+    {
+      "id": "upgrade_divine_barrier",
+      "name": "Divine Barrier"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_express_shot",
+      "name": "Express Shot"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_guardian_ward",
+      "name": "Guardian Ward"
+    },
+    {
+      "id": "upgrade_healing_booster",
+      "name": "Healing Booster"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_high_velocity_mag",
+      "name": "High-Velocity Rounds"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_lifestrike_gauntlets",
+      "name": "Melee Lifesteal"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_melee_charge",
+      "name": "Melee Charge"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_phantom_strike",
+      "name": "Phantom Strike"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rechargingbullets",
+      "name": "Recharging Rush"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_rescue_beam",
+      "name": "Rescue Beam"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_spirit_snatch",
+      "name": "Spirit Snatch"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_damage_pulse",
+      "name": "Torment Pulse"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_titan_round",
+      "name": "Titanic Magazine"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    }
+  ]
+}

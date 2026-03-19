@@ -1,0 +1,398 @@
+{
+  "hero": "hero_magician",
+  "hero_id": 60,
+  "name": "Sinclair",
+  "hero_type": "Mystic",
+  "complexity": 4,
+  "tags": {
+    "flavor": [
+      "Copycat",
+      "Trickster",
+      "Versatile"
+    ],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": []
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 700,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.55,
+    "health": 38,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.3
+  },
+  "abilities": [
+    {
+      "id": "ability_magician_magicbolt",
+      "slot": 1,
+      "name": "Vexing Bolt",
+      "description": "Fire a bolt of magic that deals Damage, increasing as it travels. If you have an Assistant, they also cast Vexing Bolt at reduced damage. Press to redirect the bolt towards your crosshairs.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 24,
+        "cast_range": "500m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_post_cast_duration": 0.3,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 3,
+        "channel_move_speed": -1,
+        "max_damage": 120,
+        "radius": "3.25m",
+        "redirect_velocity": 1500,
+        "projectile_lifetime": 4,
+        "initial_projectile_velocity": 800,
+        "projectile_redirect_count": 1,
+        "clone_damage_percentage": 50,
+        "min_damage": 60,
+        "max_damage_time": 2,
+        "clone_bolt_delay": 0.1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 120,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.86
+          },
+          "formula": "120 + (spirit_power * 1.86)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 50,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "50 + (spirit_power * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.93
+          },
+          "formula": "60 + (spirit_power * 0.93)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 2,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_magician_cloneturret",
+      "slot": 2,
+      "name": "Spectral Assistant",
+      "description": "Summon an Assistant at the targeted location. The Assistant attacks whenever you fire your weapon, dealing Damage. While the Assistant is out, you can press to swap positions with your Assistant. Casting Spectral Assistant also reloads your weapon.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 40,
+        "duration": 6,
+        "cast_range": "15m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 15,
+        "turret_bullet_vertical_offset": "2m",
+        "turret_bullet_target_angle": 20,
+        "turret_bullet_target_radius": "500m",
+        "total_swaps": 2,
+        "leash_radius": "20m"
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 15,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.36
+          },
+          "formula": "15 + (spirit_power * 0.36)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_magician_animalhexarea",
+      "slot": 3,
+      "name": "Rabbit Hex",
+      "description": "Hex a target area and transforming all enemies into a Rabbit for a limited duration. Rabbits are small and move faster, but take increased Damage and are unable to perform most actions.Hex does not interrupt abilities.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 26,
+        "cast_range": "24m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage_amp_percentage": 15,
+        "radius": "6.5m",
+        "self_bump_impulse": 500,
+        "air_damping_duration": 1,
+        "hex_move_speed_limit": "6m",
+        "move_speed_bonus_pct": 36,
+        "hex_duration": 2,
+        "detonation_delay": 0.9
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 15,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.0558
+          },
+          "formula": "15 + (spirit_power * 0.0558)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_magician_copyult",
+      "slot": 4,
+      "name": "Audience Participation",
+      "description": "Copy the Ultimate of an enemy hero for a limited time. Reactivating the ability will use the Copied Ultimate instead.Copies will inherit this ability's upgrade points.Audience Participation will also copy the cooldown.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 85,
+        "cast_range": "20m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "copied_ult_window": 12,
+        "copy_internal_cooldown": 0.5,
+        "copy_cooldown_percentage": 40
+      },
+      "effects": [],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_magician_set",
+    "bullet_damage": 17.76,
+    "rounds_per_sec": 1.9,
+    "clip_size": 16,
+    "reload_time": 2.5,
+    "bullet_speed": 11811,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0,
+    "spread": 0.4,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      1000,
+      2400
+    ],
+    "falloff_scale": [
+      1,
+      0.3
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_arcane_surge",
+      "name": "Arcane Surge"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_diviners_kevlar",
+      "name": "Diviner's Kevlar"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_guardian_ward",
+      "name": "Guardian Ward"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rocket_booster",
+      "name": "Majestic Leap"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_target_stun",
+      "name": "Knockdown"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_trophy_collector",
+      "name": "Trophy Collector"
+    },
+    {
+      "id": "upgrade_ultimate_burst",
+      "name": "Lightning Scroll"
+    },
+    {
+      "id": "upgrade_veil_walker",
+      "name": "Veil Walker"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

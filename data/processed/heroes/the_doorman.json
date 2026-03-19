@@ -1,0 +1,454 @@
+{
+  "hero": "hero_doorman",
+  "hero_id": 69,
+  "name": "The Doorman",
+  "hero_type": "Mystic",
+  "complexity": 1,
+  "tags": {
+    "flavor": [
+      "Mind Games",
+      "Map Control",
+      "Disorienting"
+    ],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.9,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 725,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "crit_damage_bonus_scale": 0.75,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.62,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.43
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 1.1,
+    "health": 42,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_doorman_bomb",
+      "slot": 1,
+      "name": "Call Bell",
+      "description": "Throw out a call bell that deals spirit damage on impact. After a short delay it explodes, dealing additional spirit damage and causing affected enemies to suffer reduced weapon accuracy and movement slow.Can be shot to detonate early.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 18,
+        "duration": 4,
+        "ability_unit_target_limit": 1,
+        "ability_post_cast_duration": 0.5,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 6,
+        "channel_move_speed": -1,
+        "radius": "5m",
+        "xplosion_damage": 85,
+        "projectile_fuse": 3,
+        "projectile_drag": 0.975,
+        "debuff_accuracy": -100,
+        "accuracy_debuff_falloff_bias": 0.3,
+        "slow_percent": 30
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 85,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.4
+          },
+          "formula": "85 + (spirit__power * 1.4)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0
+          },
+          "formula": "0 + (spirit__power * 0)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 30,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_doorman_doorway",
+      "slot": 2,
+      "name": "Doorway",
+      "description": "Place two connected doors in the world. Players and most projectiles entering one door will exit out through the other. The doors will close at the end of the duration, or if the ability is activated again.The two doors must be placed within the doorway distance of each other.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 40,
+        "duration": 20,
+        "cast_range": "50m",
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "doorway_distance": "60m"
+      },
+      "effects": [],
+      "upgrades": []
+    },
+    {
+      "id": "ability_doorman_luggage_cart",
+      "slot": 3,
+      "name": "Luggage Cart",
+      "description": "Send out a luggage Cart that deals spirit damage and pulls enemy heroes along its path. Can be alt cast with to target friendly heroes instead.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 30,
+        "duration": 6,
+        "cast_range": "25m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.25,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "cart_damage": 80
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 80,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.75
+          },
+          "formula": "80 + (spirit_power * 0.75)",
+          "unit": "damage"
+        },
+        {
+          "type": "stun",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "0 + (spirit_power * 1)",
+          "unit": "seconds"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0
+          },
+          "formula": "0 + (spirit_power * 0)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_doorman_hotel",
+      "slot": 4,
+      "name": "Hotel Guest",
+      "description": "Send the target's physical body to be a guest at the Baroness Hotel. The guest is to promptly make their way to the exit elevator, where they'll be sent back to their original position. A stay at the Baroness Hotel is paid for in spirit damage. Failure to check-out on time costs additional spirit damage.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 120,
+        "duration": 6.5,
+        "cast_range": "7m",
+        "ability_unit_target_limit": 1,
+        "ability_channel_time": 1,
+        "ability_post_cast_duration": 0.7,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 75,
+        "late_checkout_damage": 125,
+        "time_slow_duration": 1,
+        "time_slow_percentage": 100
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 75,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "75 + (spirit_power * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 125,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.5
+          },
+          "formula": "125 + (spirit_power * 1.5)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 1,
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 100,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_doorman_set",
+    "bullet_damage": 29.26,
+    "rounds_per_sec": 1.59,
+    "clip_size": 8,
+    "reload_time": 2.4,
+    "bullet_speed": 8000,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_aoe_root",
+      "name": "Vortex Web"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_containment",
+      "name": "Slowing Hex"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_divine_barrier",
+      "name": "Divine Barrier"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_express_shot",
+      "name": "Express Shot"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_glitch",
+      "name": "Cursed Relic"
+    },
+    {
+      "id": "upgrade_guardian_ward",
+      "name": "Guardian Ward"
+    },
+    {
+      "id": "upgrade_headhunter",
+      "name": "Headhunter"
+    },
+    {
+      "id": "upgrade_headshot_booster",
+      "name": "Headshot Booster"
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_high_velocity_mag",
+      "name": "High-Velocity Rounds"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_long_range",
+      "name": "Long Range"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_pristine_emblem",
+      "name": "Opening Rounds"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rechargingbullets",
+      "name": "Recharging Rush"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_resonant_healing",
+      "name": "Radiant Regeneration"
+    },
+    {
+      "id": "upgrade_sharpshooter",
+      "name": "Sharpshooter"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_target_stun",
+      "name": "Knockdown"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_thermal_detonator",
+      "name": "Alchemical Fire"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    }
+  ]
+}

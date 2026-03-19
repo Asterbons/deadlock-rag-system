@@ -1,0 +1,448 @@
+{
+  "hero": "hero_inferno",
+  "hero_id": 1,
+  "name": "Infernus",
+  "hero_type": "Marksman",
+  "complexity": 1,
+  "tags": {
+    "flavor": [
+      "Explosive",
+      "Burn Rubber",
+      "Arsonist"
+    ],
+    "playstyle": [
+      "marksman"
+    ],
+    "damage_type": [
+      "dot",
+      "spirit",
+      "bullet"
+    ],
+    "utility": [
+      "slow",
+      "stun"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.7,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 800,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.088,
+    "health": 39,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_incendiary_projectile",
+      "slot": 1,
+      "name": "Napalm",
+      "description": "Spew an incendiary mixture, dealing spirit damage, applying slow, and coating targets in napalm.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 25,
+        "cast_range": "20m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 6,
+        "channel_move_speed": "18m",
+        "tick_rate": 0.5,
+        "particle_radius_multiplier": 1.15,
+        "incoming_damage_percent_from_caster": 16,
+        "debuff_duration": 8,
+        "damage": 40,
+        "height_off_ground": 50,
+        "growth_per_meter": "0.5m",
+        "initial_width": "1m",
+        "slow_duration": 4,
+        "slow_percent": 35
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 16,
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 40,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.6
+          },
+          "formula": "40 + (spirit__power * 0.6)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 4,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 35,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_flame_dash",
+      "slot": 2,
+      "name": "Flame Dash",
+      "description": "Dash forward, gaining slow resistance while leaving a flaming trail that deals spirit damage over time. Holdwhile active to dash farther.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 38,
+        "duration": 3,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "channel_move_speed": "18m",
+        "dash_speed": "12m",
+        "dash_air_speed": "8m",
+        "flame_aura_radius": "4.5m",
+        "dps": 30,
+        "aura_linger_duration": 1,
+        "tick_rate": 0.5,
+        "ground_flame_duration": 4,
+        "ground_aura_spacing": "1m",
+        "speed_burst_speed": "20m",
+        "side_move_speed_reduction": -65,
+        "flame_dash_jump_bonus": 50,
+        "slow_resistance": 50
+      },
+      "effects": [
+        {
+          "type": "slow",
+          "base_value": 50,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_afterburn",
+      "slot": 3,
+      "name": "Afterburn",
+      "description": "Weapon hits build up a burning effect, dealing spirit damage over time. Abilities refresh the base burn duration.",
+      "cast_type": "passive",
+      "targeting": "instant",
+      "stats": {
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "build_up_duration": 17,
+        "build_up_bullet_percent_per_hit": 8.1,
+        "crit_buildup": 15.4,
+        "refill_duration": 0.5,
+        "refill_duration_crit": 1,
+        "tick_rate": 0.5,
+        "burn_duration_base": 3,
+        "burn_duration": 3,
+        "dps": 12
+      },
+      "effects": [
+        {
+          "type": "dot",
+          "base_value": 3,
+          "unit": "damage/sec"
+        },
+        {
+          "type": "dot",
+          "base_value": 3,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "3 + (ability__duration * 1)",
+          "unit": "damage/sec"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_fire_bomb",
+      "slot": 4,
+      "name": "Concussive Combustion",
+      "description": "Become a living bomb, dealing spirit damage and applying stun to all nearby enemies after a delay.Once cast, Concussive Combustion cannot be interrupted.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 165,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "xplode_delay": 3.25,
+        "stun_duration": 1.25,
+        "damage": 125,
+        "radius": "12m"
+      },
+      "effects": [
+        {
+          "type": "stun",
+          "base_value": 1.25,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "1.25 + (ability__duration * 1)",
+          "unit": "seconds"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 125,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.974938
+          },
+          "formula": "125 + (spirit_power * 0.974938)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_inferno_set",
+    "bullet_damage": 5.5,
+    "rounds_per_sec": 9.52,
+    "clip_size": 27,
+    "reload_time": 2.491,
+    "bullet_speed": 26000,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0.05,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      708.661,
+      2165.35
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_active_reload",
+      "name": "Active Reload"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_clip_size",
+      "name": "Extended Magazine"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_infuser",
+      "name": "Infuser"
+    },
+    {
+      "id": "upgrade_inhibitor",
+      "name": "Inhibitor"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_mystic_regeneration",
+      "name": "Mystic Regeneration"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_reinforcing_casings",
+      "name": "Escalating Resilience"
+    },
+    {
+      "id": "upgrade_ricochet",
+      "name": "Ricochet"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spellslinger_headshots",
+      "name": "Spirit Rend"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_defense_shredders",
+      "name": "Spirit Shredder Bullets"
+    },
+    {
+      "id": "upgrade_tech_overflow",
+      "name": "Spiritual Overflow"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_titan_round",
+      "name": "Titanic Magazine"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

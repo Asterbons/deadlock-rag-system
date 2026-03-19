@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+
+# Environment Variables
+.env
+
+# Project Specific Exclusions
+all_labels.txt
+mappings_output.txt
+tmp_extract_log.txt
+tmp_verify_all.py
+implementation_plan.md
+research_notes.md
+convert_hero.py
+extract_mappings.py
+test_kv3.py
+data/test/

@@ -1,0 +1,464 @@
+{
+  "hero": "hero_drifter",
+  "hero_id": 64,
+  "name": "Drifter",
+  "hero_type": "Assassin",
+  "complexity": 3,
+  "tags": {
+    "flavor": [
+      "Stalker",
+      "Cruel",
+      "Bloodthirsty"
+    ],
+    "playstyle": [
+      "assassin"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.9,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 51.5,
+    "heavy_melee_damage": 120,
+    "health": 725,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 3.5,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "crit_damage_bonus_scale": 0.55,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.616,
+    "health": 39,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "drifter_blood_blast",
+      "slot": 1,
+      "name": "Rend",
+      "description": "Swipe at enemies in a cone ahead of you, dealing spirit damage. If the enemy is in close range, deal bonus melee damage.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 16,
+        "cast_range": "16m",
+        "ability_unit_target_limit": 30,
+        "ability_cast_delay": 0.5,
+        "ability_post_cast_duration": 0.5,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "range_for_bonus_damage": "8m",
+        "targeting_cone_angle": 50,
+        "xtra_sweep_cone_angle": 60,
+        "xtra_sweep_range": "3m",
+        "xtra_sweep_offset_behind_caster": 80,
+        "bonus_damage": 40,
+        "fall_speed_max": 1,
+        "air_speed_max": 70
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": "8m",
+          "scales_with": {
+            "stat": "ability__range",
+            "ratio": 1
+          },
+          "formula": "8m + (ability__range * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "light__melee",
+            "ratio": 1.2
+          },
+          "formula": "0 + (light__melee * 1.2)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heavy__melee",
+            "ratio": 0
+          },
+          "formula": "0 + (heavy__melee * 0)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 40,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.8
+          },
+          "formula": "40 + (spirit__power * 1.8)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "drifter_shadow_mark",
+      "slot": 2,
+      "name": "Stalker's Mark",
+      "description": "Send out a mark that bleeds the first target it hits, dealing spirit damage over time.While the enemy is bleeding you can re-activate Stalker's Mark to instantly appear behind their back.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 20,
+        "duration": 5,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "dot_health_percent": 2,
+        "tick_rate": 0.5,
+        "teleport_back_offset_from_target": 135,
+        "fall_speed_max": "0.3m",
+        "air_drag": 3,
+        "vertical_drag": 1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 2,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.015
+          },
+          "formula": "2 + (spirit_power * 0.015)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.5
+          },
+          "formula": "0 + (spirit__power * 0.5)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_drifter_hunger",
+      "slot": 3,
+      "name": "Bloodscent",
+      "description": "",
+      "cast_type": "passive",
+      "targeting": "instant",
+      "stats": {
+        "cast_range": "80m",
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "isolation_range": "20m",
+        "amp_damage_percent": 15,
+        "low_health_threshold": 30,
+        "invis_fade_to_duration": 0.3,
+        "spotted_radius": "15m",
+        "reveal_on_spotted_duration": 1.5,
+        "reveal_on_damage_duration": 0.25,
+        "invis_move_speed_mod": "0m",
+        "delay_before_invis_starts": 0.6,
+        "trail_duration": 10,
+        "max_trail_targets": 2,
+        "target_linger_duration": 3,
+        "tick_rate": 1,
+        "kill_duration": 300,
+        "bonus_move_speed": "0m",
+        "weapon_dmg_per_isolation_kill": 3,
+        "isolation_assist_percent_value": 100
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 15,
+          "unit": "damage"
+        },
+        {
+          "type": "heal",
+          "base_value": 30,
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0
+          },
+          "formula": "0 + (spirit__power * 0)",
+          "unit": "hp"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0.25,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "drifter_darkness",
+      "slot": 4,
+      "name": "Eternal Night",
+      "description": "Surround nearby enemy heroes in darkness, severely limiting their vision of other units. Affected enemies are briefly revealed to you and are considered isolated for the duration.You gain bonus sprint speed.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 125,
+        "duration": 6.5,
+        "cast_range": "100m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "small_vision_distance": "15m",
+        "drifter_nearby_range_check": "40m",
+        "dark_factor": 1,
+        "post_process_fade_in_time": 0.2,
+        "post_process_fade_out_time": 1,
+        "min_projectile_speed": 3000,
+        "max_projectile_speed": 3000,
+        "distance_for_max_proj_speed": "200m",
+        "bonus_sprint_speed": "2m",
+        "bonus_sprint_acceleration": "12m",
+        "reveal_duration": 3,
+        "max_targets": 2,
+        "aura_linger_duration": 0.001
+      },
+      "effects": [],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_drifter_set",
+    "bullet_damage": 19.5,
+    "rounds_per_sec": 2.27,
+    "clip_size": 12,
+    "reload_time": 2.444,
+    "bullet_speed": 20000,
+    "bullets_per_shot": 3,
+    "bullet_gravity": 0,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      866,
+      1063
+    ],
+    "falloff_scale": [
+      1,
+      0.6
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_acolytes_glove",
+      "name": "Spirit Strike"
+    },
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boxing_glove",
+      "name": "Lifestrike"
+    },
+    {
+      "id": "upgrade_bullet_armor_reduction_aura",
+      "name": "Hunter's Aura"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_close_quarter_combat",
+      "name": "Point Blank"
+    },
+    {
+      "id": "upgrade_close_range",
+      "name": "Close Quarters"
+    },
+    {
+      "id": "upgrade_counterspell",
+      "name": "Counterspell"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_crushing_fists",
+      "name": "Crushing Fists"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_fervor",
+      "name": "Frenzy"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_inhibitor",
+      "name": "Inhibitor"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_lifestrike_gauntlets",
+      "name": "Melee Lifesteal"
+    },
+    {
+      "id": "upgrade_medic_bullets",
+      "name": "Restorative Shot"
+    },
+    {
+      "id": "upgrade_proc_silence",
+      "name": "Silencer"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_siphon_bullets",
+      "name": "Siphon Bullets"
+    },
+    {
+      "id": "upgrade_slowing_bullets",
+      "name": "Slowing Bullets"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_snatch",
+      "name": "Spirit Snatch"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    },
+    {
+      "id": "upgrade_weapon_backstabber",
+      "name": "Stalker"
+    }
+  ]
+}

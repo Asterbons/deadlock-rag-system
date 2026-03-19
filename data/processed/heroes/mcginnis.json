@@ -1,0 +1,562 @@
+{
+  "hero": "hero_forge",
+  "hero_id": 8,
+  "name": "McGinnis",
+  "hero_type": "Mystic",
+  "complexity": 1,
+  "tags": {
+    "flavor": [],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.7,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 2,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.15,
+    "health": 52,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__resist": 0.625,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "citadel_ability_shieldedsentry",
+      "slot": 1,
+      "name": "Mini Turret",
+      "description": "Deploy a turret that shoots enemies, dealing spirit damage over time. The turret expires after a limited lifetime.Turrets deal reduced damage to troopers and objectives.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 18,
+        "cast_range": "20m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 3,
+        "model_scale": 0.8,
+        "tick_rate": 0.5,
+        "tracking_speed": 430,
+        "attack_cone_angle": 10,
+        "turret_deploy_time": 0.25,
+        "turret_base_health": 90,
+        "turret_attack_range": "25m",
+        "turret_attack_falloff_start": "20m",
+        "turret_attack_falloff_end": "30m",
+        "turret_attack_delay": 0.2,
+        "turret_d_p_s": 30,
+        "turret_lifetime": 35,
+        "attack_speed_mult": 100,
+        "spirit__resist": 35,
+        "melee_resist": 35,
+        "non_hero_damage_percent_outgoing": 50,
+        "boss_damage_percent_outgoing": 30,
+        "boss_damage_percent_incoming": 50,
+        "decaying_resist": 80,
+        "decaying_resist_duration": 6
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 90,
+          "scales_with": {
+            "stat": "level__up__boons",
+            "ratio": 7.8
+          },
+          "formula": "90 + (level__up__boons * 7.8)",
+          "unit": "hp"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 50,
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 30,
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_mobile_resupply",
+      "slot": 2,
+      "name": "Medicinal Specter",
+      "description": "Deploy a spirit that provides healing to nearby allies.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 50,
+        "duration": 6,
+        "cast_range": "15m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "heal_radius": "5m",
+        "xternal_bonus_health_regen": 25,
+        "turret_heal_mult": 1,
+        "heal_interval": 0.1
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": "5m",
+          "scales_with": {
+            "stat": "radius",
+            "ratio": 1
+          },
+          "formula": "5m + (radius * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 25,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.3
+          },
+          "formula": "25 + (spirit__power * 0.3)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 1,
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "0 + (heal__amp * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0.1,
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_fissure_wall",
+      "slot": 3,
+      "name": "Spectral Wall",
+      "description": "Cast a wall that applies slow on enemies it passes through. Erupt the wall to divide the terrain in half and damage nearby enemies. After casting, pressorto erupt the wall early. Can be Destroyed with Melee Attacks",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 50,
+        "duration": 4.5,
+        "cast_range": "50m",
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "min_range": "5m",
+        "wall_impact_range": "5m",
+        "push_force": 175,
+        "damage": 60,
+        "num_wall_segments": 7,
+        "time_between_segments": 0.035,
+        "segment_emit_time": 0.1,
+        "time_to_max_distance": 1.8,
+        "slow_duration": 2.5,
+        "slow_percent": 20
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.731203
+          },
+          "formula": "60 + (spirit__power * 0.731203)",
+          "unit": "damage"
+        },
+        {
+          "type": "stun",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "seconds"
+        },
+        {
+          "type": "slow",
+          "base_value": 2.5,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "2.5 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 20,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_rocket_barrage",
+      "slot": 4,
+      "name": "Heavy Barrage",
+      "description": "Unleashes a volley of rockets that home in on a targeted location. X is slowed and is still able to use stamina.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 165,
+        "duration": 8,
+        "cast_range": "50m",
+        "ability_unit_target_limit": 100,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage_per_rocket": 22.5,
+        "grenades_per_second": 6,
+        "interval_ramp_up_time": 0.3,
+        "interval_ramp_up_start": 0.35,
+        "detonate_timer": 5,
+        "xplosion_falloff_disabled": 1,
+        "xplosion_radius": "5m",
+        "tracking_variance": "0m",
+        "track_speed_near": 150,
+        "track_speed_far": 100,
+        "tracking_time": 0.4,
+        "min_distance": "8.5m",
+        "max_spread": 5,
+        "projectile_ignore_collision_time": 0.2,
+        "ground_dash_reduction_percent": -35
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 22.5,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.2325
+          },
+          "formula": "22.5 + (spirit__power * 0.2325)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_engineer_set",
+    "bullet_damage": 6,
+    "rounds_per_sec": 4.76,
+    "clip_size": 66,
+    "reload_time": 3.29,
+    "bullet_speed": 25590.6,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0.45,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_active_reload",
+      "name": "Active Reload"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_arcane_surge",
+      "name": "Arcane Surge"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_capacitor",
+      "name": "Capacitor"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chain_lightning",
+      "name": "Tesla Bullets"
+    },
+    {
+      "id": "upgrade_clip_size",
+      "name": "Extended Magazine"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_dps_aura",
+      "name": "Heroic Aura"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_healbuff",
+      "name": "Healing Tempo"
+    },
+    {
+      "id": "upgrade_healing_booster",
+      "name": "Healing Booster"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_intensifying_clip",
+      "name": "Intensifying Magazine"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_slow",
+      "name": "Mystic Slow"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_rechargingbullets",
+      "name": "Recharging Rush"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_reinforcing_casings",
+      "name": "Escalating Resilience"
+    },
+    {
+      "id": "upgrade_ricochet",
+      "name": "Ricochet"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_suppressor",
+      "name": "Suppressor"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_titan_round",
+      "name": "Titanic Magazine"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_trophy_collector",
+      "name": "Trophy Collector"
+    },
+    {
+      "id": "upgrade_ultimate_burst",
+      "name": "Lightning Scroll"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    }
+  ]
+}

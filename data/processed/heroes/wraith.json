@@ -1,0 +1,458 @@
+{
+  "hero": "hero_wraith",
+  "hero_id": 7,
+  "name": "Wraith",
+  "hero_type": "Marksman",
+  "complexity": 1,
+  "tags": {
+    "flavor": [
+      "Duelist",
+      "Isolator",
+      "Telekinetic"
+    ],
+    "playstyle": [
+      "marksman"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 700,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.14,
+    "health": 35,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "citadel_ability_card_toss",
+      "slot": 1,
+      "name": "Card Trick",
+      "description": "Deal weapon damage to summon cards of a random suit. Each card can be thrown, dealing damage and applying a different effect depending of its suit. Cards thrown fly towards the enemy or point under your crosshair. Alt-cast to throw first card",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 0.5,
+        "cast_range": "500m",
+        "ability_unit_target_limit": 1,
+        "ability_post_cast_duration": 0.1,
+        "ability_charges": 2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 45,
+        "radius": "4m",
+        "ability_charges_conditionally": 1,
+        "resource_per_card": 100,
+        "bonus_ability_resource": 100,
+        "non_player_card_resource_scale": 0.35,
+        "card_resource_per_bullet_hit": 4,
+        "card_resource_per_bullet_crit": 6,
+        "card_resource_per_light_melee": 10,
+        "card_resource_per_heavy_melee": 25,
+        "card_resource_gen_pct_scale": 85,
+        "projectile_origin_height_offset": 50,
+        "club_slow_percent": -30,
+        "club_slow_duration": 3,
+        "joker_extra_cards": 1,
+        "diamond_resist_shred_duration": 5,
+        "diamond_resist_shred": -8,
+        "joker_extra_card_search_radius": "20m",
+        "cooldown_between_cards": 0.5,
+        "heart_heal": 75,
+        "heart_heal_non_hero_ratio": 0.5,
+        "spade_damage_bonus": 60
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 45,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.55
+          },
+          "formula": "45 + (spirit__power * 0.55)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 3,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "3 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "heal",
+          "base_value": 75,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1
+          },
+          "formula": "75 + (spirit__power * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0.5,
+          "unit": "hp"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 60,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_projectmind",
+      "slot": 2,
+      "name": "Project Mind",
+      "description": "Teleport to the targeted location.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 42,
+        "cast_range": "25m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.75,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "5.1m",
+        "camera_distance": 250,
+        "trail_interval": 0.1
+      },
+      "effects": [],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_wraith_rapidfire",
+      "slot": 3,
+      "name": "Full Auto",
+      "description": "Temporarily boosts your fire rate and deal bonus spirit damage",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 45,
+        "duration": 5,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "0m",
+        "bonus_fire_rate": 20,
+        "magic_damage_per_bullet": 2
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 2,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.03
+          },
+          "formula": "2 + (spirit_power * 0.03)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "citadel_ability_psychic_lift",
+      "slot": 4,
+      "name": "Telekinesis",
+      "description": "Lift an enemy hero into the air and then slam them towards the target location.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 120,
+        "duration": 2.75,
+        "cast_range": "14m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.3,
+        "ability_channel_time": 0.65,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damping_factor": 0.3,
+        "lift_height": 80,
+        "damage": 100,
+        "lift_chain_radius": "20m",
+        "lift_duration": 2,
+        "toss_distance": "14m",
+        "slow_percent": 40,
+        "toss_up_strength": 220
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 100,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1
+          },
+          "formula": "100 + (spirit__power * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 40,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_wraith_set",
+    "bullet_damage": 5.64,
+    "rounds_per_sec": 10.58,
+    "clip_size": 52,
+    "reload_time": 2.82,
+    "bullet_speed": 22500,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0,
+    "spread": 0.2,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      708.661,
+      2047.24
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_capacitor",
+      "name": "Capacitor"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chain_lightning",
+      "name": "Tesla Bullets"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_clip_size",
+      "name": "Extended Magazine"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_debuff_reducer",
+      "name": "Debuff Reducer"
+    },
+    {
+      "id": "upgrade_enchanted_holsters",
+      "name": "Enchanted Holsters"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_headshot_booster2",
+      "name": "Weakening Headshot "
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_inhibitor",
+      "name": "Inhibitor"
+    },
+    {
+      "id": "upgrade_intensifying_clip",
+      "name": "Intensifying Magazine"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_proc_silence",
+      "name": "Silencer"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_reduce_debuff_duration",
+      "name": "Dispel Magic"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_reinforcing_casings",
+      "name": "Escalating Resilience"
+    },
+    {
+      "id": "upgrade_ricochet",
+      "name": "Ricochet"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_bubble",
+      "name": "Spirit Bubble"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_overflow",
+      "name": "Spiritual Overflow"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_titan_round",
+      "name": "Titanic Magazine"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    }
+  ]
+}

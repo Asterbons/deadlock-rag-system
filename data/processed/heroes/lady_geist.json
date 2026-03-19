@@ -1,0 +1,461 @@
+{
+  "hero": "hero_ghost",
+  "hero_id": 4,
+  "name": "Lady Geist",
+  "hero_type": "Mystic",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Lifesteal",
+      "Fatale",
+      "Self Damage"
+    ],
+    "playstyle": [
+      "mystic"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "silence",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.3,
+    "sprint_speed": 2.4,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 850,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.7,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.49
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.946,
+    "health": 51,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_blood_bomb",
+      "slot": 1,
+      "name": "Essence Bomb",
+      "description": "Sacrifice some of your health to launch a bomb that deals damage after a brief arm time.Self damage type is Spirit and can be mitigated.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 14,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "self_damage_pct": 30,
+        "damage": 90,
+        "radius": "7m",
+        "arming_duration": 0.65,
+        "beep_sound_interval_bias": 0.55,
+        "beep_sound_max_frequency": 0.1,
+        "beep_sound_buildup_count": 4
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 30,
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 90,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.22
+          },
+          "formula": "90 + (spirit__power * 1.22)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_life_drain",
+      "slot": 2,
+      "name": "Life Drain",
+      "description": "Create a tether that drains enemy health over time and heals you. Target must be in line of sight and within max range to drain. You can shoot and use other abilities during the drain, but your move speed is reduced. to give health to friendly Heroes.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 34,
+        "duration": 2.5,
+        "cast_range": "18m",
+        "ability_unit_target_limit": 10,
+        "ability_cast_delay": 0.2,
+        "channel_move_speed": -1,
+        "max_range": "28m",
+        "move_speed_reduction": 40,
+        "life_drain_per_second": 32,
+        "tick_rate": 0.1,
+        "life_drain_health_mult": 80
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 80,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "80 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_blood_shards",
+      "slot": 3,
+      "name": "Malice",
+      "description": "Sacrifice some of your health to launch blood shards that apply a stack of Malice. Each stack slows the victim and increases the damage they take from you. The slow effect decreases over time.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 6,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.12,
+        "ability_post_cast_duration": 0.3,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "health_to_damage": 23,
+        "num_blood_shards": 3,
+        "spread_angle_degrees": 6,
+        "move_speed_penalty_per_stack": 15,
+        "vulnerability_per_stack": 8,
+        "debuff_duration": 9,
+        "slow_duration": 4,
+        "max_stacks": 5,
+        "self_damage_pct": 9
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 23,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.558
+          },
+          "formula": "23 + (spirit__power * 0.558)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 4,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 9,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_health_swap",
+      "slot": 4,
+      "name": "Soul Exchange",
+      "description": "Swaps health levels with an enemy target. There is a minimum health percentage that enemies can be brought down to and a minimum amount of health received based on victims current health.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 185,
+        "duration": 0.25,
+        "cast_range": "5.5m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "2m",
+        "post_cast_hold_time": 0.2,
+        "initial_up_speed": 150,
+        "nemy_min_health_pct": 30,
+        "min_health_taken_pct": 30,
+        "min_diff_to_cast": 0.1,
+        "nemy_slow_pct": 70,
+        "silence_radius": "0m"
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 30,
+          "unit": "hp"
+        },
+        {
+          "type": "slow",
+          "base_value": 70,
+          "unit": "%"
+        },
+        {
+          "type": "silence",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": ""
+        },
+        {
+          "type": "silence",
+          "base_value": "0m",
+          "scales_with": {
+            "stat": "ability__range",
+            "ratio": 1
+          },
+          "formula": "0m + (ability__range * 1)",
+          "unit": ""
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_ghost_set",
+    "bullet_damage": 21.94,
+    "rounds_per_sec": 2.12,
+    "clip_size": 9,
+    "reload_time": 2.585,
+    "bullet_speed": 32600,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.8,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787.402,
+      2047.24
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_power_shard",
+      "name": "Echo Shard"
+    },
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_berserker",
+      "name": "Berserker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_enchanted_holsters",
+      "name": "Enchanted Holsters"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_fervor",
+      "name": "Frenzy"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_healbuff",
+      "name": "Healing Tempo"
+    },
+    {
+      "id": "upgrade_healing_booster",
+      "name": "Healing Booster"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_improved_bullet_armor",
+      "name": "Bullet Resilience"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_mystic_regeneration",
+      "name": "Mystic Regeneration"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_resonant_healing",
+      "name": "Radiant Regeneration"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spellslinger_headshots",
+      "name": "Spirit Rend"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

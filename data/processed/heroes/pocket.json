@@ -1,0 +1,415 @@
+{
+  "hero": "hero_synth",
+  "hero_id": 50,
+  "name": "Pocket",
+  "hero_type": "Assassin",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Frogs",
+      "Burst Damage",
+      "Trickster"
+    ],
+    "playstyle": [
+      "assassin"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 60,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47,
+    "spirit_armor_damage_reduction": -15
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.22,
+    "health": 36,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "synth_barrage",
+      "slot": 1,
+      "name": "Barrage",
+      "description": "Channel to start launching projectiles that deal spirit damage and apply slow around their impact point. Projectiles that hit a hero grant X increased damage that stacks.Casting while airborne will cause X to float.Casting AirDash or Flying Cloaking will not cancel Barrage.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 32,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.3,
+        "ability_channel_time": 2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "damage_per_projectile": 32,
+        "projectile_amount": 4,
+        "fall_speed_max": 10,
+        "air_speed_max": 100,
+        "air_drag": 0.3,
+        "radius": "4.5m",
+        "move_slow_percent": 30,
+        "slow_duration": 1.5,
+        "amp_percent_per_stack": 6,
+        "amp_duration": 15
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 32,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.465
+          },
+          "formula": "32 + (spirit__power * 0.465)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 30,
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 1.5,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "1.5 + (ability__duration * 1)",
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "synth_plasma_flux",
+      "slot": 2,
+      "name": "Flying Cloak",
+      "description": "Launch a sentient cloak that travels forward and damages enemies. You can press to teleport to its location.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 26,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "5m",
+        "damage": 60,
+        "tick_rate": 0.1,
+        "max_lifetime": 3.8
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.3
+          },
+          "formula": "60 + (spirit__power * 1.3)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "0 + (ability__duration * 1)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "synth_pulse",
+      "slot": 3,
+      "name": "Enchanter's Satchel",
+      "description": "Escape into your suitcase. When the duration ends, deal spirit damage to nearby enemies. Duration can be ended early by performing any action.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 17,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_channel_time": 1.5,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "radius": "12m",
+        "damage": 65,
+        "fall_speed_max": 1
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 65,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.9
+          },
+          "formula": "65 + (spirit__power * 0.9)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "synth_affliction",
+      "slot": 4,
+      "name": "Affliction",
+      "description": "Applies damage over time to enemies nearby.Affliction's damage is non-lethal and does not apply item procs.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 150,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.6,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": "1.3m",
+        "radius": "9m",
+        "dps": 32,
+        "damage_interval": 0.5,
+        "debuff_duration": 12,
+        "can_be_purged": 1
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 0.5,
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0
+          },
+          "formula": "0 + (spirit__power * 0)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_synth_set",
+    "bullet_damage": 4.28,
+    "rounds_per_sec": 1.9,
+    "clip_size": 11,
+    "reload_time": 2.82,
+    "bullet_speed": 22000,
+    "bullets_per_shot": 7,
+    "bullet_gravity": 0.8,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      629.921,
+      1800
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_arctic_blast",
+      "name": "Arctic Blast"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_close_quarter_combat",
+      "name": "Point Blank"
+    },
+    {
+      "id": "upgrade_close_range",
+      "name": "Close Quarters"
+    },
+    {
+      "id": "upgrade_cold_front",
+      "name": "Cold Front"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_crackshot",
+      "name": "Mystic Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_diviners_kevlar",
+      "name": "Diviner's Kevlar"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_medic_bullets",
+      "name": "Restorative Shot"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rocket_booster",
+      "name": "Majestic Leap"
+    },
+    {
+      "id": "upgrade_self_bubble",
+      "name": "Ethereal Shift"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_damage_pulse",
+      "name": "Torment Pulse"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}

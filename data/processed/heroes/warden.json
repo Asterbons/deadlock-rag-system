@@ -1,0 +1,475 @@
+{
+  "hero": "hero_warden",
+  "hero_id": 25,
+  "name": "Warden",
+  "hero_type": "Brawler",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Initiator",
+      "Fearless",
+      "One Man Army"
+    ],
+    "playstyle": [
+      "brawler"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.3,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 775,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.68,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.47
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.38,
+    "health": 58,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_warden_crowd_control",
+      "slot": 1,
+      "name": "Alchemical Flask",
+      "description": "Throw a flask that damages and reduces the weapon damage and move speed of enemies it hits.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 12,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "5.5m",
+        "damage": 60,
+        "weapon_power_debuff": -25,
+        "slow_duration": 3,
+        "debuff_duration": 7,
+        "move_speed_slow_pct": 20,
+        "forward_velocity": 800,
+        "projectile_lifetime": 60
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.731203
+          },
+          "formula": "60 + (spirit__power * 0.731203)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 3,
+          "scales_with": {
+            "stat": "ability__duration",
+            "ratio": 1
+          },
+          "formula": "3 + (ability__duration * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 20,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_warden_high_alert",
+      "slot": 2,
+      "name": "Willpower",
+      "description": "Gain a Barrier and bonus move speed.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 40,
+        "duration": 5,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "move_speed_bonus_pct": 15,
+        "combat_barrier": 125
+      },
+      "effects": [],
+      "upgrades": []
+    },
+    {
+      "id": "ability_warden_lock_down",
+      "slot": 3,
+      "name": "Binding Word",
+      "description": "Curse an enemy hero. If they don't move away from their initial position within the escape time, they will be damaged and immobilized.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 34,
+        "cast_range": "15m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "channel_move_speed": -1,
+        "immobilize_duration": 1.75,
+        "damage": 110,
+        "scape_range": "20m",
+        "scape_time": 2.8,
+        "additional_target_radius": "20m"
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 110,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 2.437344
+          },
+          "formula": "110 + (spirit__power * 2.437344)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_warden_riot_protocol",
+      "slot": 4,
+      "name": "Last Stand",
+      "description": "After charging for Xs, release pulses that damage enemies and heal you based on the damage done. While channeling Last Stand you have greatly increased bullet and spirit resist.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 155,
+        "duration": 6,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 2,
+        "ability_cooldown_between_charge": -1,
+        "pulse_interval": 0.5,
+        "pulse_d_p_s": 70,
+        "radius": "12m",
+        "health_steal_pct_hero": 65,
+        "health_steal_pct": 10,
+        "cone_angle": 115,
+        "bonus_move_speed": "0m",
+        "bullet_resist": 60,
+        "spirit__resist": 60
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 65,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "65 + (heal__amp * 1)",
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 10,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "10 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_warden_set",
+    "bullet_damage": 17.34,
+    "rounds_per_sec": 3.81,
+    "clip_size": 17,
+    "reload_time": 2.914,
+    "bullet_speed": 11417.3,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.25,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_active_reload",
+      "name": "Active Reload"
+    },
+    {
+      "id": "upgrade_aprounds",
+      "name": "Armor Piercing Rounds"
+    },
+    {
+      "id": "upgrade_arcane_extension",
+      "name": "Duration Extender"
+    },
+    {
+      "id": "upgrade_arcane_surge",
+      "name": "Arcane Surge"
+    },
+    {
+      "id": "upgrade_banshee_slugs",
+      "name": "Crippling Headshot"
+    },
+    {
+      "id": "upgrade_blitz_bullets",
+      "name": "Swift Striker"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bullet_resist_shredder",
+      "name": "Bullet Resist Shredder"
+    },
+    {
+      "id": "upgrade_burst_fire",
+      "name": "Burst Fire"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_clip_size",
+      "name": "Extended Magazine"
+    },
+    {
+      "id": "upgrade_close_quarter_combat",
+      "name": "Point Blank"
+    },
+    {
+      "id": "upgrade_close_range",
+      "name": "Close Quarters"
+    },
+    {
+      "id": "upgrade_containment",
+      "name": "Slowing Hex"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_critshot",
+      "name": "Lucky Shot"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_enchanted_holsters",
+      "name": "Enchanted Holsters"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_fervor",
+      "name": "Frenzy"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_headhunter",
+      "name": "Headhunter"
+    },
+    {
+      "id": "upgrade_headshot_booster",
+      "name": "Headshot Booster"
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_high_velocity_mag",
+      "name": "High-Velocity Rounds"
+    },
+    {
+      "id": "upgrade_hollow_point_rounds",
+      "name": "Hollow Point"
+    },
+    {
+      "id": "upgrade_imbued_duration_extender",
+      "name": "Superior Duration"
+    },
+    {
+      "id": "upgrade_improved_bullet_armor",
+      "name": "Bullet Resilience"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_intensifying_clip",
+      "name": "Intensifying Magazine"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_slow",
+      "name": "Mystic Slow"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_rounds",
+      "name": "Rapid Rounds"
+    },
+    {
+      "id": "upgrade_regenerating_bullet_shield",
+      "name": "Battle Vest"
+    },
+    {
+      "id": "upgrade_slowing_bullets",
+      "name": "Slowing Bullets"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_surging_power",
+      "name": "Vampiric Burst"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_titan_round",
+      "name": "Titanic Magazine"
+    },
+    {
+      "id": "upgrade_toxic_bullets",
+      "name": "Toxic Bullets"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_ultimate_burst",
+      "name": "Lightning Scroll"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    }
+  ]
+}

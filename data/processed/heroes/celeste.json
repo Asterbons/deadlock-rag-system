@@ -1,0 +1,441 @@
+{
+  "hero": "hero_unicorn",
+  "hero_id": 81,
+  "name": "Celeste",
+  "hero_type": "Marksman",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Dazzling",
+      "Performer",
+      "Disruptive"
+    ],
+    "playstyle": [
+      "marksman"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 750,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 4,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "crit_damage_bonus_scale": 0.75,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.62,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.43,
+    "bullet_armor_damage_reduction": -6
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.6,
+    "health": 35,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_unicorn_radiantblast",
+      "slot": 1,
+      "name": "Light Eater",
+      "description": "Blast enemies in a cone in front of you with a flare of light. Blasted enemies take spirit damage when attacked by X and provides her spirit lifesteal.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 20,
+        "duration": 12,
+        "cast_range": "10m",
+        "ability_unit_target_limit": 100,
+        "ability_cast_delay": 0.3,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "flare_damage": 50,
+        "damage": 25,
+        "tick_rate": 0.5,
+        "targeting_cone_angle": 70,
+        "xtra_sweep_radius": "2m",
+        "ability_lifesteal_percent_hero": 20
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 50,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.35
+          },
+          "formula": "50 + (spirit_power * 0.35)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 25,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.23
+          },
+          "formula": "25 + (spirit_power * 0.23)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_unicorn_prismaticguard",
+      "slot": 2,
+      "name": "Dazzling Trick",
+      "description": "Surround yourself in a protective prism that provides bonus move speed. If the barrier is destroyed, it silences nearby enemies and deals a portion of the barrier as damage.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 35,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "max_lifetime": 4,
+        "buff_duration": 4,
+        "xplode_radius": "14m",
+        "debuff_duration": 1.75,
+        "bonus_move_speed": "1.0m",
+        "combat_barrier": 120,
+        "barrier_damage_percentage": 50
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 50,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_unicorn_luminousstrike",
+      "slot": 3,
+      "name": "Radiant Daggers",
+      "description": "Call down a beam of light from the sky. After a short duration, the beam will fully form, causing an explosion that deals spirit damage to all targets in the area. Celeste will receive a stacking buff that increases her spirit damage anytime this hits an enemy hero.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 33,
+        "cast_range": "30m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.2,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 2,
+        "channel_move_speed": -1,
+        "xplosion_interval": 0.7,
+        "pre_explosion_duration": 1.4,
+        "xplosion_radius": "8m",
+        "impact_damage": 55,
+        "climb_height": "50.0m",
+        "tick_rate": 0.5,
+        "buff_max_stacks": 6,
+        "buff_duration": 25,
+        "magic_increase_per_stack": 8,
+        "buff_delay": 0.75,
+        "post_explosion_duration": 0.8
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 55,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.42
+          },
+          "formula": "55 + (spirit_power * 0.42)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "0 + (spirit_power * 1)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_unicorn_dazzlingorb",
+      "slot": 4,
+      "name": "Shining Wonder",
+      "description": "Launch a deadly orb of light that deals spirit damage and applies slow and reduces Dash Distance on impact. The orb then bounces to the enemies within range. If no target is found, the orb will linger for a short duration while continuing to look for targets.Prioritizes enemy heroes when picking targets.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 140,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.75,
+        "ability_channel_time": 9999,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 105,
+        "slow_duration": 1.5,
+        "slow_percent": 40,
+        "ground_dash_reduction_percent": -25,
+        "max_bounces": 8,
+        "bounce_radius": "15m",
+        "priority_bounce_radius": "11m",
+        "bounce_grace": 3.25,
+        "next_target_duration": 4
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 105,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.63
+          },
+          "formula": "105 + (spirit_power * 0.63)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 1.5,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1.5 + (spirit_power * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 40,
+          "unit": "%"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_unicorn_set",
+    "bullet_damage": 18,
+    "rounds_per_sec": 1.67,
+    "clip_size": 8,
+    "reload_time": 2,
+    "bullet_speed": 1968.5,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0.2,
+    "spread": 0,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      5905,
+      7874
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_refresher",
+      "name": "Refresher"
+    },
+    {
+      "id": "upgrade_absorbing_armor",
+      "name": "Witchmail"
+    },
+    {
+      "id": "upgrade_arcane_surge",
+      "name": "Arcane Surge"
+    },
+    {
+      "id": "upgrade_arctic_blast",
+      "name": "Arctic Blast"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cold_front",
+      "name": "Cold Front"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_counterspell",
+      "name": "Counterspell"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_enchanted_holsters",
+      "name": "Enchanted Holsters"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_ethereal_bullets",
+      "name": "Mercurial Magnum"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_high_velocity_mag",
+      "name": "High-Velocity Rounds"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_improved_stamina",
+      "name": "Extra Stamina"
+    },
+    {
+      "id": "upgrade_infuser",
+      "name": "Infuser"
+    },
+    {
+      "id": "upgrade_kinetic_sash",
+      "name": "Kinetic Dash"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_slow",
+      "name": "Mystic Slow"
+    },
+    {
+      "id": "upgrade_magic_storm",
+      "name": "Surge of Power"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_mystic_regeneration",
+      "name": "Mystic Regeneration"
+    },
+    {
+      "id": "upgrade_quick_silver",
+      "name": "Quicksilver Reload"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_resonant_healing",
+      "name": "Radiant Regeneration"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_spirit_snatch",
+      "name": "Spirit Snatch"
+    },
+    {
+      "id": "upgrade_superior_stamina",
+      "name": "Stamina Mastery"
+    },
+    {
+      "id": "upgrade_tech_damage_pulse",
+      "name": "Torment Pulse"
+    },
+    {
+      "id": "upgrade_tech_defense_shredders",
+      "name": "Spirit Shredder Bullets"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_ultimate_burst",
+      "name": "Lightning Scroll"
+    }
+  ]
+}

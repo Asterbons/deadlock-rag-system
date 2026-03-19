@@ -1,0 +1,412 @@
+{
+  "hero": "hero_nano",
+  "hero_id": 16,
+  "name": "Calico",
+  "hero_type": "Assassin",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "Slippery",
+      "Burst Damage",
+      "Tricksy"
+    ],
+    "playstyle": [
+      "assassin"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 7.2,
+    "sprint_speed": 1.6,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 63,
+    "heavy_melee_damage": 116,
+    "health": 700,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 2,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.62,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.43
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.043,
+    "health": 37,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_nano_clustergrenade",
+      "slot": 1,
+      "name": "Gloom Bombs",
+      "description": "Throw a cluster of bombs that detonate after a delay, dealing spirit damage.Enemies hit by multiple bombs take X% damage.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 14,
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.15,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 45,
+        "radius": "3.0m",
+        "toss_speed": 400,
+        "grenade_count": 4,
+        "lifetime": 0.75,
+        "grenade_angle_variance": 0.08,
+        "time_between_grenades": 0.05,
+        "multi_hit_penalty_percentage": 65
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 45,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.644
+          },
+          "formula": "45 + (spirit__power * 0.644)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_nano_dash",
+      "slot": 2,
+      "name": "Leaping Slash",
+      "description": "Dash forward before slashing all enemies in a circle, dealing melee damage. If the ability hits at least one hero, heal a small amount of health.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 11,
+        "cast_range": "9m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "dash_angle_threshold": 89,
+        "dash_speed": 2400,
+        "dash_radius": "2.0m",
+        "move_speed_penalty_max_speed": 200,
+        "camera_distance": 550,
+        "side_move_speed_reduction": -90,
+        "slash_radius": "4m",
+        "slash_height": "2.5m",
+        "heal_amount": 40,
+        "post_dash_maintained_velocity_ratio": 0.15,
+        "slash_forward_offset": "1.5m"
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "light__melee",
+            "ratio": 1.5
+          },
+          "formula": "0 + (light__melee * 1.5)",
+          "unit": "damage"
+        },
+        {
+          "type": "heal",
+          "base_value": 40,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.4
+          },
+          "formula": "40 + (spirit__power * 1.4)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_nano_catform",
+      "slot": 3,
+      "name": "Ava",
+      "description": "Turn to shadows and possess Ava. You gain bonus move speed that increases over time, and become hidden on the minimap. Taking damage from an enemy hero resets your bonus move speed and puts Ava on a brief cooldown.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 30,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "buff_duration": 15,
+        "interrupt_cooldown": 6,
+        "speed_build_duration": 4,
+        "nemy_damage_speed_penalty": 65,
+        "cat_form_damage_dealt_reduction": -100,
+        "min_bonus_move_speed_percent": 30,
+        "max_bonus_move_speed_percent": 65
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 65,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_nano_shadow_pulse",
+      "slot": 4,
+      "name": "Return to Shadows",
+      "description": "Instantly turn to shadows, becoming untargetable, gaining bonus move speed, and dealing spirit damage. After a delay, return from the shadows, dealing spirit damage again.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 90,
+        "ability_unit_target_limit": 1,
+        "ability_channel_time": 3,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "7.5m",
+        "damage": 140,
+        "fall_speed_max": 10,
+        "bonus_move_speed_percent": 30,
+        "air_speed_max": 100,
+        "air_drag": 4,
+        "z_acceleration": 800
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 140,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 0.609336
+          },
+          "formula": "140 + (spirit__power * 0.609336)",
+          "unit": "damage"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "0 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_nano_set",
+    "bullet_damage": 1.84,
+    "rounds_per_sec": 4.76,
+    "clip_size": 12,
+    "reload_time": 2.6,
+    "bullet_speed": 12500,
+    "bullets_per_shot": 9,
+    "bullet_gravity": 0,
+    "spread": 0.5,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_acolytes_glove",
+      "name": "Spirit Strike"
+    },
+    {
+      "id": "upgrade_arctic_blast",
+      "name": "Arctic Blast"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_boxing_glove",
+      "name": "Lifestrike"
+    },
+    {
+      "id": "upgrade_bullet_armor_reduction_aura",
+      "name": "Hunter's Aura"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_chonky",
+      "name": "Fortitude"
+    },
+    {
+      "id": "upgrade_close_range",
+      "name": "Close Quarters"
+    },
+    {
+      "id": "upgrade_cold_front",
+      "name": "Cold Front"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_counterspell",
+      "name": "Counterspell"
+    },
+    {
+      "id": "upgrade_crushing_fists",
+      "name": "Crushing Fists"
+    },
+    {
+      "id": "upgrade_debuff_reducer",
+      "name": "Debuff Reducer"
+    },
+    {
+      "id": "upgrade_discord",
+      "name": "Scourge"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_focus_lens",
+      "name": "Focus Lens"
+    },
+    {
+      "id": "upgrade_glass_cannon",
+      "name": "Glass Cannon"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_health",
+      "name": "Extra Health"
+    },
+    {
+      "id": "upgrade_health_stimpak",
+      "name": "Healing Rite"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_lifestrike_gauntlets",
+      "name": "Melee Lifesteal"
+    },
+    {
+      "id": "upgrade_magic_burst",
+      "name": "Mystic Burst"
+    },
+    {
+      "id": "upgrade_magic_shield",
+      "name": "Enchanter's Emblem"
+    },
+    {
+      "id": "upgrade_magic_shock",
+      "name": "Tankbuster"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_melee_charge",
+      "name": "Melee Charge"
+    },
+    {
+      "id": "upgrade_reduce_debuff_duration",
+      "name": "Dispel Magic"
+    },
+    {
+      "id": "upgrade_self_bubble",
+      "name": "Ethereal Shift"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_spirit_burn",
+      "name": "Spirit Burn"
+    },
+    {
+      "id": "upgrade_spirit_snatch",
+      "name": "Spirit Snatch"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_damage_pulse",
+      "name": "Torment Pulse"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_veil_walker",
+      "name": "Veil Walker"
+    },
+    {
+      "id": "upgrade_vex_barrier",
+      "name": "Reactive Barrier"
+    },
+    {
+      "id": "upgrade_weapon_backstabber",
+      "name": "Stalker"
+    }
+  ]
+}

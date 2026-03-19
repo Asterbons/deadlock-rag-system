@@ -1,0 +1,49 @@
+# Scale Type Mapping (m_eSpecificStatScaleType)
+# Format: INTERNAL_KEY = your_clean_name
+ETechPower = Spirit Power
+ETechDuration = Ability Duration
+ETechRange = Ability Range
+ETechRadius = Radius
+ETechCooldown = Ability Cooldown
+EItemCooldown = Item Cooldown
+EHealingOutput = Heal Amp
+EChannelDuration = Channel Duration
+EBuildUpRate = Build Up Rate
+ELevelUpBoons = Level Up Boons
+EDamageScale = Spirit Damage
+ELightMeleeDamage = Light Melee
+EHeavyMeleeDamage = Heavy Melee
+EBulletDamage = Bullet Damage
+
+# Stat Key Mapping (m_mapAbilityProperties keys, base_stats, scaling)
+# Format: CamelCase_or_snake = your_clean_name
+TechPower = Spirit Power
+TechResist = Spirit Resist
+TechArmorDamageReduction = Spirit Resist
+TechArmorDamageResist = Spirit Resist
+TechArmorGain = Spirit Armor
+TechDuration = Ability Duration
+TechRange = Ability Range
+TechRadius = Radius
+TechCooldown = Ability Cooldown
+TechDamageScale = Spirit Damage
+TechDamagePercent = Spirit Damage
+TechPowerPercent = Spirit Power
+TechPowerGain = Spirit Power
+TechCleaveExpireTime = Cleave Duration
+
+# MODIFIER_VALUE_* Mapping (m_eProvidedPropertyType)
+# Format: MODIFIER_VALUE_* = your_clean_name
+MODIFIER_VALUE_TECH_POWER = Spirit Power
+MODIFIER_VALUE_TECH_ARMOR_DAMAGE_RESIST = Spirit Resist
+MODIFIER_VALUE_TECH_RANGE_PERCENT = Ability Range
+MODIFIER_VALUE_TECH_RADIUS_PERCENT = Radius
+MODIFIER_VALUE_TECH_LIFESTEAL = Spirit Lifesteal
+MODIFIER_VALUE_BONUS_ABILITY_DURATION_PERCENTAGE = Ability Duration
+MODIFIER_VALUE_TECH_COOLDOWN_REDUCTION_PERCENTAGE = Ability Cooldown Reduction
+
+# Slot Name Mapping
+# Format: internal_slot = your_clean_name
+EItemSlotType_Tech = Spirit
+EItemSlotType_WeaponMod = Weapon
+EItemSlotType_Armor = Vitality

@@ -1,0 +1,459 @@
+{
+  "hero": "hero_frank",
+  "hero_id": 66,
+  "name": "Victor",
+  "hero_type": "Brawler",
+  "complexity": 2,
+  "tags": {
+    "flavor": [
+      "You",
+      "Can't",
+      "Kill Me"
+    ],
+    "playstyle": [
+      "brawler"
+    ],
+    "damage_type": [
+      "bullet",
+      "spirit"
+    ],
+    "utility": [
+      "slow",
+      "stun",
+      "heal"
+    ]
+  },
+  "base_stats": {
+    "max_move_speed": 6.3,
+    "sprint_speed": 1.1,
+    "crouch_speed": 4.75,
+    "move_acceleration": 4,
+    "light_melee_damage": 50,
+    "heavy_melee_damage": 116,
+    "health": 770,
+    "weapon_power": 0,
+    "reload_speed": 1,
+    "stamina": 3,
+    "health_regen": 1.5,
+    "stamina_regen_per_second": 0.222222,
+    "spirit_duration": 1,
+    "spirit_range": 1,
+    "ground_dash_distance_in_meters": 10,
+    "ground_dash_duration": 0.7,
+    "air_dash_distance_in_meters": 8,
+    "air_dash_duration": 0.49,
+    "spirit_armor_damage_reduction": 0
+  },
+  "scaling_per_level": {
+    "base_bullet_damage_from_level": 0.33,
+    "health": 39,
+    "base_melee_damage_from_level": 1.58,
+    "boon_count": 1,
+    "spirit__power": 1.1
+  },
+  "abilities": [
+    {
+      "id": "ability_frank_shocktarget2",
+      "slot": 1,
+      "name": "Pain Battery",
+      "description": "Taking any damage passively charges up your Pain Battery. Once full, activating the ability fires multiple shocking bolts, dealing spirit damage once per target.",
+      "cast_type": "active",
+      "targeting": "target",
+      "stats": {
+        "cooldown": 2,
+        "cast_range": "28m",
+        "ability_unit_target_limit": 1,
+        "ability_cast_delay": 0.35,
+        "ability_post_cast_duration": 0.2,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 100,
+        "ability_charges_conditionally": 1,
+        "bonus_shocks_delay": 0.2,
+        "spread_angle": 40,
+        "bolt_count": 7,
+        "stored_damage_health_percent_required": 40,
+        "spread_randomness": 0.005,
+        "battery_generation_percent": 100
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 100,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.6
+          },
+          "formula": "100 + (spirit_power * 1.6)",
+          "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "0 + (spirit_power * 1)",
+          "unit": "%"
+        },
+        {
+          "type": "heal",
+          "base_value": 40,
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "heal__amp",
+            "ratio": 1
+          },
+          "formula": "0 + (heal__amp * 1)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_frank_selfzap",
+      "slot": 2,
+      "name": "Jumpstart",
+      "description": "Deal spirit damage to yourself. Then, gain bonus regeneration and bonus move speed, decaying over time.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 30,
+        "duration": 4.5,
+        "ability_unit_target_limit": 1,
+        "ability_channel_time": 0.35,
+        "ability_charges": 1,
+        "ability_cooldown_between_charge": 8,
+        "channel_move_speed": -1,
+        "bonus_move_speed": "3m",
+        "current_health_percent_damage": 15,
+        "total_health_regen": 100
+      },
+      "effects": [
+        {
+          "type": "heal",
+          "base_value": 15,
+          "unit": "hp"
+        },
+        {
+          "type": "heal",
+          "base_value": 100,
+          "scales_with": {
+            "stat": "spirit__power",
+            "ratio": 1.2
+          },
+          "formula": "100 + (spirit__power * 1.2)",
+          "unit": "hp"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_frank_painaura",
+      "slot": 3,
+      "name": "Aura of Suffering",
+      "description": "Unleash pain, dealing spirit damage over time to both enemies and yourself. The damage continues to increase the longer the ability is channeled, up to a maximum amount.",
+      "cast_type": "active",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 2,
+        "duration": 6,
+        "ability_unit_target_limit": 1,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "radius": "10m",
+        "min_d_p_s": 12,
+        "self_d_p_s": 15,
+        "tick_rate": 0.25,
+        "debuff_duration": 0.5,
+        "toggle_off_delay": 0.5,
+        "max_d_p_s": 54,
+        "self_damage_percentage": 70
+      },
+      "effects": [
+        {
+          "type": "bullet_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.1
+          },
+          "formula": "0 + (spirit_power * 1.1)",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_damage",
+          "base_value": 70,
+          "unit": "damage"
+        }
+      ],
+      "upgrades": []
+    },
+    {
+      "id": "ability_frank_revive",
+      "slot": 4,
+      "name": "Shocking Reanimation",
+      "description": "Reanimate after taking lethal damage, dealing spirit damage and applying stun to nearby enemies.",
+      "cast_type": "passive",
+      "targeting": "instant",
+      "stats": {
+        "cooldown": 190,
+        "ability_unit_target_limit": 1,
+        "ability_channel_time": 3,
+        "ability_post_cast_duration": 0.66,
+        "ability_cooldown_between_charge": -1,
+        "channel_move_speed": -1,
+        "damage": 200,
+        "radius": "12m",
+        "half_height": "15m",
+        "initial_delay": 0.5,
+        "respawn_delay": 3,
+        "respawn_health_percent": 50,
+        "slow_percent": 80,
+        "slow_duration": 3,
+        "zombie_tick_rate": 0.02,
+        "stun_duration": 1.5
+      },
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 200,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 2
+          },
+          "formula": "200 + (spirit_power * 2)",
+          "unit": "damage"
+        },
+        {
+          "type": "heal",
+          "base_value": 50,
+          "unit": "hp"
+        },
+        {
+          "type": "slow",
+          "base_value": 80,
+          "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 3,
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 0,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0
+          },
+          "formula": "0 + (spirit_power * 0)",
+          "unit": "damage"
+        },
+        {
+          "type": "stun",
+          "base_value": 1.5,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1.5 + (spirit_power * 1)",
+          "unit": "seconds"
+        }
+      ],
+      "upgrades": []
+    }
+  ],
+  "weapon": {
+    "id": "citadel_weapon_frank_set2",
+    "bullet_damage": 12,
+    "rounds_per_sec": 5.05,
+    "clip_size": 24,
+    "reload_time": 2.4,
+    "bullet_speed": 8000,
+    "bullets_per_shot": 1,
+    "bullet_gravity": 0,
+    "spread": 0.6,
+    "standing_spread": 1.5,
+    "inherit_shooter_velocity": 0,
+    "falloff_range": [
+      787,
+      2264
+    ],
+    "falloff_scale": [
+      1,
+      0.1
+    ],
+    "falloff_bias": 0.5,
+    "crit_bonus": 1.65,
+    "crit_range": [
+      500,
+      1500
+    ],
+    "can_zoom": false,
+    "attributes": []
+  },
+  "good_items": [
+    {
+      "id": "upgrade_ability_refresher",
+      "name": "Refresher"
+    },
+    {
+      "id": "upgrade_boundless_spirit",
+      "name": "Boundless Spirit"
+    },
+    {
+      "id": "upgrade_bulletshredimbue",
+      "name": "Ballistic Enchantment"
+    },
+    {
+      "id": "upgrade_cardio_calibrator",
+      "name": "Enduring Speed"
+    },
+    {
+      "id": "upgrade_cooldown_reduction",
+      "name": "Superior Cooldown"
+    },
+    {
+      "id": "upgrade_damage_recycler",
+      "name": "Leech"
+    },
+    {
+      "id": "upgrade_deflecting_armor",
+      "name": "Plated Armor"
+    },
+    {
+      "id": "upgrade_endurance",
+      "name": "Extra Regen"
+    },
+    {
+      "id": "upgrade_escalating_exposure",
+      "name": "Escalating Exposure"
+    },
+    {
+      "id": "upgrade_extra_charge",
+      "name": "Extra Charge"
+    },
+    {
+      "id": "upgrade_fleetfoot_boots",
+      "name": "Fleetfoot"
+    },
+    {
+      "id": "upgrade_healbane",
+      "name": "Healbane"
+    },
+    {
+      "id": "upgrade_healbuff",
+      "name": "Healing Tempo"
+    },
+    {
+      "id": "upgrade_healing_booster",
+      "name": "Healing Booster"
+    },
+    {
+      "id": "upgrade_health_stealing_magic",
+      "name": "Spirit Lifesteal"
+    },
+    {
+      "id": "upgrade_improved_bullet_armor",
+      "name": "Bullet Resilience"
+    },
+    {
+      "id": "upgrade_improved_spirit",
+      "name": "Extra Spirit"
+    },
+    {
+      "id": "upgrade_infuser",
+      "name": "Infuser"
+    },
+    {
+      "id": "upgrade_juggernaut",
+      "name": "Juggernaut"
+    },
+    {
+      "id": "upgrade_magic_reach",
+      "name": "Mystic Expansion"
+    },
+    {
+      "id": "upgrade_magic_tempo",
+      "name": "Compress Cooldown"
+    },
+    {
+      "id": "upgrade_magic_vulnerability",
+      "name": "Mystic Vulnerability"
+    },
+    {
+      "id": "upgrade_metal_skin",
+      "name": "Metal Skin"
+    },
+    {
+      "id": "upgrade_mystic_regeneration",
+      "name": "Mystic Regeneration"
+    },
+    {
+      "id": "upgrade_mystic_reverb",
+      "name": "Mystic Reverb"
+    },
+    {
+      "id": "upgrade_non_player_bonus",
+      "name": "Monster Rounds"
+    },
+    {
+      "id": "upgrade_non_player_bonus_sacrifice",
+      "name": "Cultlist Sacrifice"
+    },
+    {
+      "id": "upgrade_rapid_recharge",
+      "name": "Rapid Recharge"
+    },
+    {
+      "id": "upgrade_resonant_healing",
+      "name": "Radiant Regeneration"
+    },
+    {
+      "id": "upgrade_self_bubble",
+      "name": "Ethereal Shift"
+    },
+    {
+      "id": "upgrade_soaring_spirit",
+      "name": "Improved Spirit"
+    },
+    {
+      "id": "upgrade_spellbreaker",
+      "name": "Spellbreaker"
+    },
+    {
+      "id": "upgrade_sprint_booster",
+      "name": "Sprint Boots"
+    },
+    {
+      "id": "upgrade_tech_damage_pulse",
+      "name": "Torment Pulse"
+    },
+    {
+      "id": "upgrade_tech_purge",
+      "name": "Spirit Resilience"
+    },
+    {
+      "id": "upgrade_tech_range",
+      "name": "Greater Expansion"
+    },
+    {
+      "id": "upgrade_transcendent_cooldown",
+      "name": "Transcendent Cooldown"
+    },
+    {
+      "id": "upgrade_vampire",
+      "name": "Bullet Lifesteal"
+    },
+    {
+      "id": "upgrade_warp_stone",
+      "name": "Warp Stone"
+    }
+  ]
+}
