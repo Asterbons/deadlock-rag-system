@@ -9,7 +9,10 @@ def to_snake_case(text: str) -> str:
     clean = text.replace(" ", "_").replace("-", "_")
     # Add underscores before capital letters (if not already there)
     clean = re.sub(r'(?<!^)(?=[A-Z])', '_', clean)
-    return clean.lower()
+    clean = clean.lower()
+    # Collapse multiple underscores and strip shell underscores
+    clean = re.sub(r'_+', '_', clean).strip('_')
+    return clean
 
 class MappingHandler:
     def __init__(self, mapping_path: str | Path):
@@ -77,8 +80,9 @@ class MappingHandler:
         else:
             clean = re.sub(r'(?<!^)(?=[A-Z])', '_', clean).lower()
         
-        # Final "tech" -> "spirit" replacement
-        return clean.replace("tech", "spirit")
+        # Final "tech" -> "spirit" replacement and cleanup
+        clean = clean.replace("tech", "spirit")
+        return re.sub(r'_+', '_', clean).strip('_')
 
     def get_scale_type(self, raw_type: str) -> str:
         """Standardize a scale type string."""
@@ -91,7 +95,8 @@ class MappingHandler:
             clean = clean[1:]
         
         clean = re.sub(r'(?<!^)(?=[A-Z])', '_', clean).lower()
-        return clean.replace("tech", "spirit")
+        clean = clean.replace("tech", "spirit")
+        return re.sub(r'_+', '_', clean).strip('_')
 
     def get_slot_name(self, raw_slot: str) -> str:
         """Standardize a slot name."""

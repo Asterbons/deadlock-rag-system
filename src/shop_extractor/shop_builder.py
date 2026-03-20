@@ -568,6 +568,11 @@ def extract_items(parsed_abilities: dict, localization: dict) -> list[dict]:
         if item_data.get("m_bDisabled", False):
             skipped += 1
             continue
+        
+        # Skip template/base items (e.g. weapon_upgrade_t1)
+        if re.match(r'.+_upgrade_t[1-5]$', item_id):
+            skipped += 1
+            continue
 
         tier_str = item_data.get("m_iItemTier", "")
         slot_str = item_data.get("m_eItemSlotType", "")
@@ -599,6 +604,8 @@ def extract_items(parsed_abilities: dict, localization: dict) -> list[dict]:
             "tier": tier,
             "slot": slot,
             "passive": passive,
+            "upgrades_from": item_data.get("m_vecComponentItems", []),
+            "upgrades_into": None,
         }
 
         # Description
@@ -652,21 +659,32 @@ def build_shop_json(items: list[dict], purchase_bonuses: dict) -> dict:
     if "weapon_mod" in renamed_bonuses:
         renamed_bonuses["weapon"] = renamed_bonuses.pop("weapon_mod")
 
-    def _replace_tech_with_spirit(obj, is_id=False):
+    def _replace_tech_with_spirit(obj):
         if isinstance(obj, dict):
             return {
-                (k if is_id else (k.replace("tech", "spirit") if "tech" in k else k)): 
-                _replace_tech_with_spirit(v, k == "id")
+                (k.replace("tech", "spirit") if "tech" in k else k): 
+                _replace_tech_with_spirit(v)
                 for k, v in obj.items()
             }
         elif isinstance(obj, list):
-            return [_replace_tech_with_spirit(v, is_id) for v in obj]
-        elif isinstance(obj, str) and not is_id:
+            return [_replace_tech_with_spirit(v) for v in obj]
+        elif isinstance(obj, str):
             return obj.replace("tech", "spirit") if "tech" in obj else obj
         return obj
 
     renamed_bonuses = _replace_tech_with_spirit(renamed_bonuses)
     items = _replace_tech_with_spirit(items)
+
+    # 1. build index
+    item_by_id = {item["id"]: item for item in items}
+
+    # 2. fill upgrades_into
+    for item in items:
+        for component_id in item.get("upgrades_from", []):
+            if component_id in item_by_id:
+                item_by_id[component_id]["upgrades_into"] = item["id"]
+            else:
+                logger.warning("Component %s not found for %s", component_id, item["id"])
 
     shop: dict = {
         "global_mechanics": {

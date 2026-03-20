@@ -168,6 +168,13 @@ def chunk_items(shop_path):
         
     chunks = []
     
+    # Build a lookup map for item names to resolve upgrades
+    item_lookup = {}
+    for cat in ["weapon", "vitality", "spirit"]:
+        if cat in shop:
+            for item in shop[cat]:
+                item_lookup[item['id']] = item['name']
+
     for category in ["weapon", "vitality", "spirit"]:
         if category not in shop:
             continue
@@ -211,6 +218,17 @@ def chunk_items(shop_path):
             if provides:
                 text_parts.append(f"provides: {format_list(provides)}")
                 
+            # Upgrade chains
+            upgrades_from = item.get('upgrades_from', [])
+            if upgrades_from:
+                from_names = [item_lookup.get(cid, cid) for cid in upgrades_from]
+                text_parts.append(f"upgrades from: {', '.join(from_names)}")
+            
+            upgrades_into = item.get('upgrades_into')
+            if upgrades_into:
+                into_name = item_lookup.get(upgrades_into, upgrades_into)
+                text_parts.append(f"upgrades into: {into_name}")
+
             upgrade = item.get('upgrade')
             if upgrade:
                 text_parts.append(f"upgrade: {upgrade}")

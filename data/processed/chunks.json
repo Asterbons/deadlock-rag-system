@@ -2802,7 +2802,7 @@
     }
   },
   {
-    "text": "Extended Magazine | tier 1 | weapon | stats: {'bonus_clip_size_percent': 30, 'attack_damage_percent': 8} | provides: ammo_clip_size_percent, baseattack_damage_percent",
+    "text": "Extended Magazine | tier 1 | weapon | stats: {'bonus_clip_size_percent': 30, 'attack_damage_percent': 8} | provides: ammo_clip_size_percent, baseattack_damage_percent | upgrades into: Titanic Magazine",
     "metadata": {
       "type": "item",
       "id": "upgrade_clip_size",
@@ -2812,7 +2812,7 @@
     }
   },
   {
-    "text": "Monster Rounds | tier 1 | weapon | stats: {'non_player_bonus_weapon_power': 25, 'out_of_combat_health_regen': 1, 'non_player_bullet_resist': 25} | provides: modifier_non_player_bonus_base_damage_percent, out_of_combat_health_regen, bullet_armor_damage_resist_non_hero",
+    "text": "Monster Rounds | tier 1 | weapon | stats: {'non_player_bonus_weapon_power': 25, 'out_of_combat_health_regen': 1, 'non_player_bullet_resist': 25} | provides: modifier_non_player_bonus_base_damage_percent, out_of_combat_health_regen, bullet_armor_damage_resist_non_hero | upgrades into: Cultlist Sacrifice",
     "metadata": {
       "type": "item",
       "id": "upgrade_non_player_bonus",
@@ -2822,7 +2822,7 @@
     }
   },
   {
-    "text": "High-Velocity Rounds | tier 1 | weapon | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8} | provides: bonus_bullet_speed_percent, baseattack_damage_percent",
+    "text": "High-Velocity Rounds | tier 1 | weapon | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8} | provides: bonus_bullet_speed_percent, baseattack_damage_percent | upgrades into: Express Shot",
     "metadata": {
       "type": "item",
       "id": "upgrade_high_velocity_mag",
@@ -2832,7 +2832,7 @@
     }
   },
   {
-    "text": "Close Quarters | tier 1 | weapon | Deal additional Weapon Damage when in close range to your target. | stats: {'close_range_bonus_weapon_power': 20, 'close_range_bonus_damage_range': 15, 'melee_resist_percent': 20} | provides: close_range_bonus_base_damage_percent, bonus_weapon_damage_close_range_max_range, melee_damage_reduction_percent",
+    "text": "Close Quarters | tier 1 | weapon | Deal additional Weapon Damage when in close range to your target. | stats: {'close_range_bonus_weapon_power': 20, 'close_range_bonus_damage_range': 15, 'melee_resist_percent': 20} | provides: close_range_bonus_base_damage_percent, bonus_weapon_damage_close_range_max_range, melee_damage_reduction_percent | upgrades into: Point Blank",
     "metadata": {
       "type": "item",
       "id": "upgrade_close_range",
@@ -2842,7 +2842,7 @@
     }
   },
   {
-    "text": "Headshot Booster | tier 1 | weapon | Your next headshot against an enemy Hero deals . | stats: {'bonus_health': 30} | proc cooldown: 9s | scales_with: item__cooldown | provides: health_max",
+    "text": "Headshot Booster | tier 1 | weapon | Your next headshot against an enemy Hero deals . | stats: {'bonus_health': 30} | proc cooldown: 9s | scales_with: item__cooldown | provides: health_max | upgrades into: Headhunter",
     "metadata": {
       "type": "item",
       "id": "upgrade_headshot_booster",
@@ -2852,7 +2852,7 @@
     }
   },
   {
-    "text": "Rapid Rounds | tier 1 | weapon | stats: {'bonus_fire_rate': 9} | provides: fire_rate",
+    "text": "Rapid Rounds | tier 1 | weapon | stats: {'bonus_fire_rate': 9} | provides: fire_rate | upgrades into: Swift Striker",
     "metadata": {
       "type": "item",
       "id": "upgrade_rapid_rounds",
@@ -2882,7 +2882,7 @@
     }
   },
   {
-    "text": "Long Range | tier 2 | weapon | Deal additional Weapon Damage when beyond a minimum distance from your target. | stats: {'long_range_bonus_weapon_power': 40, 'long_range_bonus_weapon_power_min_range': 15, 'bonus_sprint_speed': 0.75, 'bonus_attack_range_percent': 8} | provides: baseattack_damage_percent, long_range_bonus_base_damage_percent, bonus_weapon_damage_long_range_min_range, reload_speed, sprint_speed_bonus, bonus_attack_range_percent",
+    "text": "Long Range | tier 2 | weapon | Deal additional Weapon Damage when beyond a minimum distance from your target. | stats: {'long_range_bonus_weapon_power': 40, 'long_range_bonus_weapon_power_min_range': 15, 'bonus_sprint_speed': 0.75, 'bonus_attack_range_percent': 8} | provides: baseattack_damage_percent, long_range_bonus_base_damage_percent, bonus_weapon_damage_long_range_min_range, reload_speed, sprint_speed_bonus, bonus_attack_range_percent | upgrades into: Sharpshooter",
     "metadata": {
       "type": "item",
       "id": "upgrade_long_range",
@@ -2892,7 +2892,7 @@
     }
   },
   {
-    "text": "Slowing Bullets | tier 2 | weapon | Your bullets build up a Movement Slow on enemies. | stats: {'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'attack_damage_percent': 15} | effects: 3.5 | scales_with: build__up__rate | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, baseattack_damage_percent",
+    "text": "Slowing Bullets | tier 2 | weapon | Your bullets build up a Movement Slow on enemies. | stats: {'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'attack_damage_percent': 15} | effects: 3.5 | scales_with: build__up__rate | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, baseattack_damage_percent | upgrades into: Weighted Shots",
     "metadata": {
       "type": "item",
       "id": "upgrade_slowing_bullets",
@@ -2902,17 +2902,17 @@
     }
   },
   {
-    "text": "Spirit Shredder Bullets | tier 2 | weapon | Your bullets apply a debuff that reduces the Spirit Resist of the target and grants you and your allies Spirit Lifesteal against them. | stats: {'spirit__resist': -8, 'ability_lifesteal_percent_hero': 12} | effects: 8 | scales_with: heal__amp | provides: spirit_armor_damage_resist_reduction, spirit_damage_taken_heals_attacker",
+    "text": "Spirit Shredder Bullets | tier 2 | weapon | Your bullets apply a debuff that reduces the Spirit Resist of the target and grants you and your allies Spirit Lifesteal against them. | stats: {'spirit__resist': -8, 'ability_lifesteal_percent_hero': 12} | effects: 8 | scales_with: heal__amp | provides: spirit_armor_damage_resist_reduction, spirit_damage_taken_heals_attacker | upgrades into: Spirit Rend",
     "metadata": {
       "type": "item",
-      "id": "upgrade_tech_defense_shredders",
+      "id": "upgrade_spirit_defense_shredders",
       "name": "Spirit Shredder Bullets",
       "slot": "weapon",
       "tier": 2
     }
   },
   {
-    "text": "Weakening Headshot  | tier 2 | weapon | Landing a Headshot on Heroes reduces their Bullet Resist. | stats: {'bullet_resist_reduction': -13, 'bonus_health': 60} | effects: 12 | provides: bullet_armor_damage_resist_reduction, spirit_armor_damage_resist_reduction, heal_amp_receive_percent, heal_amp_regen_percent, health_max",
+    "text": "Weakening Headshot  | tier 2 | weapon | Landing a Headshot on Heroes reduces their Bullet Resist. | stats: {'bullet_resist_reduction': -13, 'bonus_health': 60} | effects: 12 | provides: bullet_armor_damage_resist_reduction, spirit_armor_damage_resist_reduction, heal_amp_receive_percent, heal_amp_regen_percent, health_max | upgrades into: Crippling Headshot",
     "metadata": {
       "type": "item",
       "id": "upgrade_headshot_booster2",
@@ -2942,7 +2942,7 @@
     }
   },
   {
-    "text": "Kinetic Dash | tier 2 | weapon | When you Dash-Jump you gain Fire Rate and bonus Ammo until your next reload. Lasts up to s. | stats: {'bonus_fire_rate': 25, 'bonus_clip_size': 6, 'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: fire_rate, ammo_clip_size, stamina, stamina_regen_per_second_percentage",
+    "text": "Kinetic Dash | tier 2 | weapon | When you Dash-Jump you gain Fire Rate and bonus Ammo until your next reload. Lasts up to s. | stats: {'bonus_fire_rate': 25, 'bonus_clip_size': 6, 'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: fire_rate, ammo_clip_size, stamina, stamina_regen_per_second_percentage | upgrades from: Extra Stamina",
     "metadata": {
       "type": "item",
       "id": "upgrade_kinetic_sash",
@@ -2952,7 +2952,7 @@
     }
   },
   {
-    "text": "Melee Charge | tier 2 | weapon | Your next Heavy Melee attack against an enemy deals increased damage. | stats: {'bullet_resist': 6, 'bonus_melee_damage_percent': 10, 'melee_distance_scale': 50} | proc cooldown: 7s | scales_with: item__cooldown | provides: baseattack_damage_percent, bullet_armor_damage_resist, base_melee_damage_percent, melee_travel_distance_percentage",
+    "text": "Melee Charge | tier 2 | weapon | Your next Heavy Melee attack against an enemy deals increased damage. | stats: {'bullet_resist': 6, 'bonus_melee_damage_percent': 10, 'melee_distance_scale': 50} | proc cooldown: 7s | scales_with: item__cooldown | provides: baseattack_damage_percent, bullet_armor_damage_resist, base_melee_damage_percent, melee_travel_distance_percentage | upgrades into: Crushing Fists",
     "metadata": {
       "type": "item",
       "id": "upgrade_melee_charge",
@@ -2972,7 +2972,7 @@
     }
   },
   {
-    "text": "Swift Striker | tier 2 | weapon | stats: {'bonus_fire_rate': 20, 'bonus_sprint_speed': 0.75} | provides: fire_rate, ammo_clip_size_percent, bullet_armor_damage_resist_reduction, sprint_speed_bonus, baseattack_damage_percent",
+    "text": "Swift Striker | tier 2 | weapon | stats: {'bonus_fire_rate': 20, 'bonus_sprint_speed': 0.75} | provides: fire_rate, ammo_clip_size_percent, bullet_armor_damage_resist_reduction, sprint_speed_bonus, baseattack_damage_percent | upgrades from: Rapid Rounds",
     "metadata": {
       "type": "item",
       "id": "upgrade_blitz_bullets",
@@ -2982,7 +2982,7 @@
     }
   },
   {
-    "text": "Titanic Magazine | tier 2 | weapon | stats: {'bonus_clip_size_percent': 90, 'attack_damage_percent': 12} | provides: ammo_clip_size_percent, baseattack_damage_percent, melee_damage_reduction_percent, spirit__resist",
+    "text": "Titanic Magazine | tier 2 | weapon | stats: {'bonus_clip_size_percent': 90, 'attack_damage_percent': 12} | provides: ammo_clip_size_percent, baseattack_damage_percent, melee_damage_reduction_percent, spirit__resist | upgrades from: Extended Magazine",
     "metadata": {
       "type": "item",
       "id": "upgrade_titan_round",
@@ -3032,7 +3032,7 @@
     }
   },
   {
-    "text": "Cultlist Sacrifice | tier 3 | weapon | Target an enemy NPC and consume it for % Bonus Souls and grants a powerful long lasting buff. | stats: {'non_player_bonus_weapon_power': 30, 'out_of_combat_health_regen': 2, 'non_player_bullet_resist': 30, 'bonus_health': 50, 'attack_damage_percent': 8, 'bonus_ability_charges': 1, 'spirit_range_multiplier': 15, 'spirit_radius_multiplier': 15} | proc cooldown: 270s | scales_with: item__cooldown, level__up__boons | provides: modifier_non_player_bonus_base_damage_percent, out_of_combat_health_regen, bullet_armor_damage_resist_non_hero, health_max, baseattack_damage_percent, bonus_ability_charges, ability__range, radius",
+    "text": "Cultlist Sacrifice | tier 3 | weapon | Target an enemy NPC and consume it for % Bonus Souls and grants a powerful long lasting buff. | stats: {'non_player_bonus_weapon_power': 30, 'out_of_combat_health_regen': 2, 'non_player_bullet_resist': 30, 'bonus_health': 50, 'attack_damage_percent': 8, 'bonus_ability_charges': 1, 'spirit_range_multiplier': 15, 'spirit_radius_multiplier': 15} | proc cooldown: 270s | scales_with: item__cooldown, level__up__boons | provides: modifier_non_player_bonus_base_damage_percent, out_of_combat_health_regen, bullet_armor_damage_resist_non_hero, health_max, baseattack_damage_percent, bonus_ability_charges, ability__range, radius | upgrades from: Monster Rounds",
     "metadata": {
       "type": "item",
       "id": "upgrade_non_player_bonus_sacrifice",
@@ -3042,7 +3042,7 @@
     }
   },
   {
-    "text": "Tesla Bullets | tier 3 | weapon | Your bullets have a chance to shock your target. The shock will jump to a nearby enemy. | effects: 33 + (spirit__power * 0.19), 33 + (spirit__power * 0.19) | proc cooldown: 0.25s | scales_with: item__cooldown, spirit__power, ability__range",
+    "text": "Tesla Bullets | tier 3 | weapon | Your bullets have a chance to shock your target. The shock will jump to a nearby enemy. | effects: 33 + (spirit__power * 0.19), 33 + (spirit__power * 0.19) | proc cooldown: 0.25s | scales_with: item__cooldown, spirit__power, ability__range | upgrades into: Capacitor",
     "metadata": {
       "type": "item",
       "id": "upgrade_chain_lightning",
@@ -3062,7 +3062,7 @@
     }
   },
   {
-    "text": "Weighted Shots | tier 3 | weapon | Your bullets build up a Movement Slow on enemies. | stats: {'attack_damage_percent': 40, 'status_resistance_percent': 18, 'stamina_cooldown_reduction': -14, 'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'bonus_move_speed': -0.5} | effects: 3.5 | scales_with: build__up__rate | provides: baseattack_damage_percent, status_resistance, spirit__resist, bonus_bullet_speed_percent, stamina_regen_per_second_percentage, movement_speed_slow_percent, movement_ground_dash_reduction_percent, movement_speed_max",
+    "text": "Weighted Shots | tier 3 | weapon | Your bullets build up a Movement Slow on enemies. | stats: {'attack_damage_percent': 40, 'status_resistance_percent': 18, 'stamina_cooldown_reduction': -14, 'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'bonus_move_speed': -0.5} | effects: 3.5 | scales_with: build__up__rate | provides: baseattack_damage_percent, status_resistance, spirit__resist, bonus_bullet_speed_percent, stamina_regen_per_second_percentage, movement_speed_slow_percent, movement_ground_dash_reduction_percent, movement_speed_max | upgrades from: Slowing Bullets",
     "metadata": {
       "type": "item",
       "id": "upgrade_weighted_shots",
@@ -3092,7 +3092,7 @@
     }
   },
   {
-    "text": "Sharpshooter | tier 3 | weapon | Deal additional Weapon Damage when beyond a minimum distance from your target. | stats: {'long_range_bonus_weapon_power': 70, 'long_range_bonus_weapon_power_min_range': 15, 'bonus_attack_range_percent': 20, 'bonus_zoom_percent': 25, 'bonus_move_speed': -1, 'bonus_sprint_speed': 1} | provides: baseattack_damage_percent, long_range_bonus_base_damage_percent, bonus_weapon_damage_long_range_min_range, bonus_attack_range_percent, zoom_increase_percent, reload_speed, movement_speed_max, sprint_speed_bonus",
+    "text": "Sharpshooter | tier 3 | weapon | Deal additional Weapon Damage when beyond a minimum distance from your target. | stats: {'long_range_bonus_weapon_power': 70, 'long_range_bonus_weapon_power_min_range': 15, 'bonus_attack_range_percent': 20, 'bonus_zoom_percent': 25, 'bonus_move_speed': -1, 'bonus_sprint_speed': 1} | provides: baseattack_damage_percent, long_range_bonus_base_damage_percent, bonus_weapon_damage_long_range_min_range, bonus_attack_range_percent, zoom_increase_percent, reload_speed, movement_speed_max, sprint_speed_bonus | upgrades from: Long Range",
     "metadata": {
       "type": "item",
       "id": "upgrade_sharpshooter",
@@ -3102,7 +3102,7 @@
     }
   },
   {
-    "text": "Headhunter | tier 3 | weapon | Your next headshot against an enemy Hero deals , you, and briefly grants . | stats: {'attack_damage_percent': 5, 'bonus_health': 50, 'bonus_move_speed': 1.75} | effects: 3 | proc cooldown: 8s | scales_with: item__cooldown, level__up__boons, heal__amp | provides: baseattack_damage_percent, health_max, movement_speed_max",
+    "text": "Headhunter | tier 3 | weapon | Your next headshot against an enemy Hero deals , you, and briefly grants . | stats: {'attack_damage_percent': 5, 'bonus_health': 50, 'bonus_move_speed': 1.75} | effects: 3 | proc cooldown: 8s | scales_with: item__cooldown, level__up__boons, heal__amp | provides: baseattack_damage_percent, health_max, movement_speed_max | upgrades from: Headshot Booster",
     "metadata": {
       "type": "item",
       "id": "upgrade_headhunter",
@@ -3112,7 +3112,7 @@
     }
   },
   {
-    "text": "Spirit Rend | tier 3 | weapon | stats: {'bonus_health': 75, 'ability_lifesteal_percent_hero': 12, 'magic_resist_reduction': -7, 'spirit__resist': -8} | effects: 8 | proc cooldown: 2s | scales_with: item__cooldown, heal__amp | provides: health_max, spirit_damage_taken_heals_attacker, spirit_armor_damage_resist_reduction",
+    "text": "Spirit Rend | tier 3 | weapon | stats: {'bonus_health': 75, 'ability_lifesteal_percent_hero': 12, 'magic_resist_reduction': -7, 'spirit__resist': -8} | effects: 8 | proc cooldown: 2s | scales_with: item__cooldown, heal__amp | provides: health_max, spirit_damage_taken_heals_attacker, spirit_armor_damage_resist_reduction | upgrades from: Spirit Shredder Bullets",
     "metadata": {
       "type": "item",
       "id": "upgrade_spellslinger_headshots",
@@ -3122,7 +3122,7 @@
     }
   },
   {
-    "text": "Point Blank | tier 3 | weapon | When in close range to your target, gain Weapon Damage and your bullets apply a Movement Slow. | stats: {'close_range_bonus_weapon_power': 50, 'slow_percent': 25, 'close_range_bonus_damage_range': 15, 'melee_resist_percent': 30, 'bonus_health': 75} | effects: 2 | provides: close_range_bonus_base_damage_percent, movement_speed_slow_percent, bonus_weapon_damage_close_range_max_range, melee_damage_reduction_percent, health_max",
+    "text": "Point Blank | tier 3 | weapon | When in close range to your target, gain Weapon Damage and your bullets apply a Movement Slow. | stats: {'close_range_bonus_weapon_power': 50, 'slow_percent': 25, 'close_range_bonus_damage_range': 15, 'melee_resist_percent': 30, 'bonus_health': 75} | effects: 2 | provides: close_range_bonus_base_damage_percent, movement_speed_slow_percent, bonus_weapon_damage_close_range_max_range, melee_damage_reduction_percent, health_max | upgrades from: Close Quarters",
     "metadata": {
       "type": "item",
       "id": "upgrade_close_quarter_combat",
@@ -3172,7 +3172,7 @@
     }
   },
   {
-    "text": "Burst Fire | tier 3 | weapon | Briefly gain Fire Rate and Move Speed when one of your bullets hits an enemy hero. | stats: {'bonus_fire_rate': 10, 'activated_fire_rate': 32, 'slide_scale': 50, 'bonus_move_speed': 1.25} | proc cooldown: 7s | scales_with: item__cooldown | provides: fire_rate, movement_slide_distance_scale, movement_slow_resistance, movement_speed_max",
+    "text": "Burst Fire | tier 3 | weapon | Briefly gain Fire Rate and Move Speed when one of your bullets hits an enemy hero. | stats: {'bonus_fire_rate': 10, 'activated_fire_rate': 32, 'slide_scale': 50, 'bonus_move_speed': 1.25} | proc cooldown: 7s | scales_with: item__cooldown | provides: fire_rate, movement_slide_distance_scale, movement_slow_resistance, movement_speed_max | upgrades from: Rapid Rounds",
     "metadata": {
       "type": "item",
       "id": "upgrade_burst_fire",
@@ -3182,7 +3182,7 @@
     }
   },
   {
-    "text": "Escalating Resilience | tier 3 | weapon | Grants Bullet Resist when your bullets hit an enemy hero. Each shot can only grant one stack. | stats: {'bullet_resist_per_stack': 2, 'attack_damage_percent': 15, 'bonus_health': 75, 'bonus_clip_size_percent': 30} | provides: bullet_armor_damage_resist, baseattack_damage_percent, health_max, ammo_clip_size_percent",
+    "text": "Escalating Resilience | tier 3 | weapon | Grants Bullet Resist when your bullets hit an enemy hero. Each shot can only grant one stack. | stats: {'bullet_resist_per_stack': 2, 'attack_damage_percent': 15, 'bonus_health': 75, 'bonus_clip_size_percent': 30} | provides: bullet_armor_damage_resist, baseattack_damage_percent, health_max, ammo_clip_size_percent | upgrades from: Extended Magazine",
     "metadata": {
       "type": "item",
       "id": "upgrade_reinforcing_casings",
@@ -3192,7 +3192,7 @@
     }
   },
   {
-    "text": "Express Shot | tier 3 | weapon | Your next attack will fire twice in quick succession with increased damage and velocity. This attack consumes extra ammo. | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8, 'proc_bullet_velocity': 100, 'proc_base_attack_damage_percent': 125, 'proc_base_attack_damage_percent_alt_fire': 35} | proc cooldown: 8s | scales_with: item__cooldown, level__up__boons | provides: bonus_bullet_speed_percent, baseattack_damage_percent",
+    "text": "Express Shot | tier 3 | weapon | Your next attack will fire twice in quick succession with increased damage and velocity. This attack consumes extra ammo. | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8, 'proc_bullet_velocity': 100, 'proc_base_attack_damage_percent': 125, 'proc_base_attack_damage_percent_alt_fire': 35} | proc cooldown: 8s | scales_with: item__cooldown, level__up__boons | provides: bonus_bullet_speed_percent, baseattack_damage_percent | upgrades from: High-Velocity Rounds",
     "metadata": {
       "type": "item",
       "id": "upgrade_express_shot",
@@ -3212,7 +3212,7 @@
     }
   },
   {
-    "text": "Capacitor | tier 4 | weapon | Launch a projectile that deals damage, applies a strong slow that recovers over time, prevents Stamina usage and Silences their movement-based items and abilities. | stats: {'bonus_fire_rate': 5} | effects: 43 + (spirit__power * 0.19), 43 + (spirit__power * 0.19), 3 | proc cooldown: 40s | scales_with: item__cooldown, spirit__power, ability__range | provides: fire_rate",
+    "text": "Capacitor | tier 4 | weapon | Launch a projectile that deals damage, applies a strong slow that recovers over time, prevents Stamina usage and Silences their movement-based items and abilities. | stats: {'bonus_fire_rate': 5} | effects: 43 + (spirit__power * 0.19), 43 + (spirit__power * 0.19), 3 | proc cooldown: 40s | scales_with: item__cooldown, spirit__power, ability__range | provides: fire_rate | upgrades from: Tesla Bullets",
     "metadata": {
       "type": "item",
       "id": "upgrade_capacitor",
@@ -3242,7 +3242,7 @@
     }
   },
   {
-    "text": "Crippling Headshot | tier 4 | weapon | stats: {'bonus_health': 125, 'bullet_resist_reduction': -16, 'magic_resist_reduction': -16, 'heal_amp_receive_penalty_percent': -35, 'heal_amp_regen_penalty_percent': -35} | effects: 12 | provides: health_max, bullet_armor_damage_resist_reduction, spirit_armor_damage_resist_reduction, heal_amp_receive_percent, heal_amp_regen_percent",
+    "text": "Crippling Headshot | tier 4 | weapon | stats: {'bonus_health': 125, 'bullet_resist_reduction': -16, 'magic_resist_reduction': -16, 'heal_amp_receive_penalty_percent': -35, 'heal_amp_regen_penalty_percent': -35} | effects: 12 | provides: health_max, bullet_armor_damage_resist_reduction, spirit_armor_damage_resist_reduction, heal_amp_receive_percent, heal_amp_regen_percent | upgrades from: Weakening Headshot ",
     "metadata": {
       "type": "item",
       "id": "upgrade_banshee_slugs",
@@ -3275,7 +3275,7 @@
     "text": "Spiritual Overflow | tier 4 | weapon | Gain bonus Fire Rate, Spirit Power and Ability Duration by charging up when shooting enemy heroes. | stats: {'ability_lifesteal_percent_hero': 15, 'bonus_fire_rate': 32, 'bonus_spirit': 40, 'bonus_ability_duration_percent': 20} | scales_with: heal__amp, build__up__rate | provides: spirit__lifesteal, fire_rate, spirit__power, ability__duration",
     "metadata": {
       "type": "item",
-      "id": "upgrade_tech_overflow",
+      "id": "upgrade_spirit_overflow",
       "name": "Spiritual Overflow",
       "slot": "weapon",
       "tier": 4
@@ -3302,7 +3302,7 @@
     }
   },
   {
-    "text": "Crushing Fists | tier 4 | weapon | Your will restore ammo and apply a stacking bullet resist debuff on enemies. Heavy melee applies 2 stacks. If the target reaches max stacks, they will be stunned. | stats: {'bullet_resist': 12, 'bonus_melee_damage_percent': 20, 'melee_distance_scale': 60, 'bullet_resist_reduction': -4} | effects: 8, 0.5 | proc cooldown: 7s | scales_with: item__cooldown | provides: bullet_armor_damage_resist, base_melee_damage_percent, melee_travel_distance_percentage, bullet_armor_damage_resist_reduction",
+    "text": "Crushing Fists | tier 4 | weapon | Your will restore ammo and apply a stacking bullet resist debuff on enemies. Heavy melee applies 2 stacks. If the target reaches max stacks, they will be stunned. | stats: {'bullet_resist': 12, 'bonus_melee_damage_percent': 20, 'melee_distance_scale': 60, 'bullet_resist_reduction': -4} | effects: 8, 0.5 | proc cooldown: 7s | scales_with: item__cooldown | provides: bullet_armor_damage_resist, base_melee_damage_percent, melee_travel_distance_percentage, bullet_armor_damage_resist_reduction | upgrades from: Melee Charge",
     "metadata": {
       "type": "item",
       "id": "upgrade_crushing_fists",
@@ -3312,7 +3312,7 @@
     }
   },
   {
-    "text": "Armor Piercing Rounds | tier 4 | weapon | Your Bullets have a chance to become unavoidable, piercing through enemies and ignoring their Bullet Resistance. | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8} | provides: bonus_bullet_speed_percent, baseattack_damage_percent",
+    "text": "Armor Piercing Rounds | tier 4 | weapon | Your Bullets have a chance to become unavoidable, piercing through enemies and ignoring their Bullet Resistance. | stats: {'bonus_bullet_speed_percent': 60, 'attack_damage_percent': 8} | provides: bonus_bullet_speed_percent, baseattack_damage_percent | upgrades from: High-Velocity Rounds",
     "metadata": {
       "type": "item",
       "id": "upgrade_aprounds",
@@ -3362,7 +3362,7 @@
     }
   },
   {
-    "text": "Melee Lifesteal | tier 1 | vitality | Your next Melee attack heals you. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits. | stats: {'bonus_melee_damage_percent': 12} | proc cooldown: 8s | scales_with: item__cooldown, heal__amp | provides: base_melee_damage_percent",
+    "text": "Melee Lifesteal | tier 1 | vitality | Your next Melee attack heals you. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits. | stats: {'bonus_melee_damage_percent': 12} | proc cooldown: 8s | scales_with: item__cooldown, heal__amp | provides: base_melee_damage_percent | upgrades into: Lifestrike",
     "metadata": {
       "type": "item",
       "id": "upgrade_lifestrike_gauntlets",
@@ -3382,7 +3382,7 @@
     }
   },
   {
-    "text": "Extra Health | tier 1 | vitality | stats: {'bonus_health': 210} | provides: health_max, baseattack_damage_percent",
+    "text": "Extra Health | tier 1 | vitality | stats: {'bonus_health': 210} | provides: health_max, baseattack_damage_percent | upgrades into: Colossus",
     "metadata": {
       "type": "item",
       "id": "upgrade_health",
@@ -3392,7 +3392,7 @@
     }
   },
   {
-    "text": "Sprint Boots | tier 1 | vitality | stats: {'bonus_sprint_speed': 2, 'out_of_combat_health_regen': 2} | provides: sprint_speed_bonus, baseattack_damage_percent, health_regen_per_second, out_of_combat_health_regen",
+    "text": "Sprint Boots | tier 1 | vitality | stats: {'bonus_sprint_speed': 2, 'out_of_combat_health_regen': 2} | provides: sprint_speed_bonus, baseattack_damage_percent, health_regen_per_second, out_of_combat_health_regen | upgrades into: Enduring Speed",
     "metadata": {
       "type": "item",
       "id": "upgrade_sprint_booster",
@@ -3402,7 +3402,7 @@
     }
   },
   {
-    "text": "Extra Stamina | tier 1 | vitality | stats: {'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: stamina, stamina_regen_per_second_percentage",
+    "text": "Extra Stamina | tier 1 | vitality | stats: {'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: stamina, stamina_regen_per_second_percentage | upgrades into: Arcane Surge",
     "metadata": {
       "type": "item",
       "id": "upgrade_improved_stamina",
@@ -3412,7 +3412,7 @@
     }
   },
   {
-    "text": "Healing Rite | tier 1 | vitality | Grant Regen and Sprint Speed to the target. Gets dispelled if you take damage from enemy players or objectives. Can be self-cast. | stats: {'bonus_sprint_speed': 2} | proc cooldown: 70s | scales_with: item__cooldown, spirit__power, heal__amp | provides: sprint_speed_bonus",
+    "text": "Healing Rite | tier 1 | vitality | Grant Regen and Sprint Speed to the target. Gets dispelled if you take damage from enemy players or objectives. Can be self-cast. | stats: {'bonus_sprint_speed': 2} | proc cooldown: 70s | scales_with: item__cooldown, spirit__power, heal__amp | provides: sprint_speed_bonus | upgrades into: Healing Nova",
     "metadata": {
       "type": "item",
       "id": "upgrade_health_stimpak",
@@ -3422,7 +3422,7 @@
     }
   },
   {
-    "text": "Extra Regen | tier 1 | vitality | stats: {'bonus_health_regen': 3, 'out_of_combat_health_regen': 1} | provides: health_regen_per_second, out_of_combat_health_regen, ammo_clip_size_percent",
+    "text": "Extra Regen | tier 1 | vitality | stats: {'bonus_health_regen': 3, 'out_of_combat_health_regen': 1} | provides: health_regen_per_second, out_of_combat_health_regen, ammo_clip_size_percent | upgrades into: Healing Booster",
     "metadata": {
       "type": "item",
       "id": "upgrade_endurance",
@@ -3432,7 +3432,7 @@
     }
   },
   {
-    "text": "Bullet Lifesteal | tier 2 | vitality | stats: {'bullet_lifesteal_percent': 16, 'bonus_health': 90} | scales_with: heal__amp | provides: bullet_lifesteal, health_max",
+    "text": "Bullet Lifesteal | tier 2 | vitality | stats: {'bullet_lifesteal_percent': 16, 'bonus_health': 90} | scales_with: heal__amp | provides: bullet_lifesteal, health_max | upgrades into: Vampiric Burst",
     "metadata": {
       "type": "item",
       "id": "upgrade_vampire",
@@ -3442,7 +3442,7 @@
     }
   },
   {
-    "text": "Debuff Reducer | tier 2 | vitality | Reduces the duration of all negative effects applied to you. | stats: {'status_resistance_percent': 25} | provides: status_resistance",
+    "text": "Debuff Reducer | tier 2 | vitality | Reduces the duration of all negative effects applied to you. | stats: {'status_resistance_percent': 25} | provides: status_resistance | upgrades into: Spellbreaker",
     "metadata": {
       "type": "item",
       "id": "upgrade_debuff_reducer",
@@ -3452,7 +3452,7 @@
     }
   },
   {
-    "text": "Healing Booster | tier 2 | vitality | Increases the effectiveness of your healing. | stats: {'heal_amp_cast_percent': 20, 'heal_amp_regen_percent': 20, 'bonus_health_regen': 3, 'out_of_combat_health_regen': 1} | provides: heal_amp_cast_percent, heal_amp_regen_percent, health_regen_per_second, heal_degen_resistance, out_of_combat_health_regen",
+    "text": "Healing Booster | tier 2 | vitality | Increases the effectiveness of your healing. | stats: {'heal_amp_cast_percent': 20, 'heal_amp_regen_percent': 20, 'bonus_health_regen': 3, 'out_of_combat_health_regen': 1} | provides: heal_amp_cast_percent, heal_amp_regen_percent, health_regen_per_second, heal_degen_resistance, out_of_combat_health_regen | upgrades from: Extra Regen | upgrades into: Healing Tempo",
     "metadata": {
       "type": "item",
       "id": "upgrade_healing_booster",
@@ -3462,7 +3462,7 @@
     }
   },
   {
-    "text": "Enduring Speed | tier 2 | vitality | Reduces the effect of enemy Move Speed penalties. | stats: {'bonus_move_speed': 2, 'slow_resistance_percent': 25, 'out_of_combat_health_regen': 2} | provides: movement_speed_max, movement_slow_resistance, out_of_combat_health_regen",
+    "text": "Enduring Speed | tier 2 | vitality | Reduces the effect of enemy Move Speed penalties. | stats: {'bonus_move_speed': 2, 'slow_resistance_percent': 25, 'out_of_combat_health_regen': 2} | provides: movement_speed_max, movement_slow_resistance, out_of_combat_health_regen | upgrades from: Sprint Boots | upgrades into: Juggernaut",
     "metadata": {
       "type": "item",
       "id": "upgrade_cardio_calibrator",
@@ -3522,7 +3522,7 @@
     }
   },
   {
-    "text": "Spirit Lifesteal | tier 2 | vitality | stats: {'spirit__power': 6, 'ability_lifesteal_percent_hero': 16, 'bonus_health': 70} | scales_with: heal__amp | provides: spirit__power, spirit__lifesteal, health_max",
+    "text": "Spirit Lifesteal | tier 2 | vitality | stats: {'spirit__power': 6, 'ability_lifesteal_percent_hero': 16, 'bonus_health': 70} | scales_with: heal__amp | provides: spirit__power, spirit__lifesteal, health_max | upgrades into: Infuser",
     "metadata": {
       "type": "item",
       "id": "upgrade_health_stealing_magic",
@@ -3552,7 +3552,7 @@
     }
   },
   {
-    "text": "Guardian Ward | tier 2 | vitality | Provide the target with a Barrier and temporary Move Speed. Can be self-cast.Cooldown is reduced by half when cast on someone else. | stats: {'guardian_ward_combat_barrier': 200, 'bonus_move_speed': 2.75, 'spirit_range_multiplier': 10, 'spirit_radius_multiplier': 10} | effects: 6 | proc cooldown: 45s | scales_with: item__cooldown | provides: barrier_health, movement_speed_max, ability__range, radius",
+    "text": "Guardian Ward | tier 2 | vitality | Provide the target with a Barrier and temporary Move Speed. Can be self-cast.Cooldown is reduced by half when cast on someone else. | stats: {'guardian_ward_combat_barrier': 200, 'bonus_move_speed': 2.75, 'spirit_range_multiplier': 10, 'spirit_radius_multiplier': 10} | effects: 6 | proc cooldown: 45s | scales_with: item__cooldown | provides: barrier_health, movement_speed_max, ability__range, radius | upgrades into: Divine Barrier",
     "metadata": {
       "type": "item",
       "id": "upgrade_guardian_ward",
@@ -3595,7 +3595,7 @@
     "text": "Spirit Resilience | tier 3 | vitality | When below % health, gain additional Spirit Resist. | stats: {'spirit__resist': 30} | provides: spirit__resist",
     "metadata": {
       "type": "item",
-      "id": "upgrade_tech_purge",
+      "id": "upgrade_spirit_purge",
       "name": "Spirit Resilience",
       "slot": "vitality",
       "tier": 3
@@ -3622,7 +3622,7 @@
     }
   },
   {
-    "text": "Fortitude | tier 3 | vitality | After not taking damage for a period, gain health regen. | stats: {'bonus_move_speed': 1.25, 'bonus_health': 375} | provides: movement_speed_max, health_max",
+    "text": "Fortitude | tier 3 | vitality | After not taking damage for a period, gain health regen. | stats: {'bonus_move_speed': 1.25, 'bonus_health': 375} | provides: movement_speed_max, health_max | upgrades from: Extra Health",
     "metadata": {
       "type": "item",
       "id": "upgrade_chonky",
@@ -3632,7 +3632,7 @@
     }
   },
   {
-    "text": "Trophy Collector | tier 3 | vitality | Whenever you score an assist or kill, gain extra health, sprint, ability range and passive soul generation. This effect stacks and persists through death. | stats: {'bonus_sprint_speed': 2, 'out_of_combat_health_regen': 4} | provides: sprint_speed_bonus, out_of_combat_health_regen",
+    "text": "Trophy Collector | tier 3 | vitality | Whenever you score an assist or kill, gain extra health, sprint, ability range and passive soul generation. This effect stacks and persists through death. | stats: {'bonus_sprint_speed': 2, 'out_of_combat_health_regen': 4} | provides: sprint_speed_bonus, out_of_combat_health_regen | upgrades from: Sprint Boots",
     "metadata": {
       "type": "item",
       "id": "upgrade_trophy_collector",
@@ -3642,7 +3642,7 @@
     }
   },
   {
-    "text": "Stamina Mastery | tier 3 | vitality | stats: {'stamina': 2, 'stamina_cooldown_reduction': 18, 'air_move_increase_percent': 23} | provides: stamina, stamina_regen_per_second_percentage, air_move_distance_increase_percent",
+    "text": "Stamina Mastery | tier 3 | vitality | stats: {'stamina': 2, 'stamina_cooldown_reduction': 18, 'air_move_increase_percent': 23} | provides: stamina, stamina_regen_per_second_percentage, air_move_distance_increase_percent | upgrades from: Extra Stamina",
     "metadata": {
       "type": "item",
       "id": "upgrade_superior_stamina",
@@ -3652,7 +3652,7 @@
     }
   },
   {
-    "text": "Rescue Beam | tier 3 | vitality | Heals a target allied hero and yourself for a percentage of Max Health. Once while healing, you can Pull the target towards you. Can be self-cast. | stats: {'bonus_sprint_speed': 0.75, 'spirit_range_multiplier': 8, 'spirit_radius_multiplier': 8} | proc cooldown: 60s | scales_with: item__cooldown, heal__amp | provides: movement_speed_max, sprint_speed_bonus, ability__range, radius",
+    "text": "Rescue Beam | tier 3 | vitality | Heals a target allied hero and yourself for a percentage of Max Health. Once while healing, you can Pull the target towards you. Can be self-cast. | stats: {'bonus_sprint_speed': 0.75, 'spirit_range_multiplier': 8, 'spirit_radius_multiplier': 8} | proc cooldown: 60s | scales_with: item__cooldown, heal__amp | provides: movement_speed_max, sprint_speed_bonus, ability__range, radius | upgrades from: Healing Rite",
     "metadata": {
       "type": "item",
       "id": "upgrade_rescue_beam",
@@ -3682,7 +3682,7 @@
     }
   },
   {
-    "text": "Healing Nova | tier 3 | vitality | Heal yourself and nearby allies. | stats: {'spirit_power': 8, 'spirit_range_multiplier': 6, 'spirit_radius_multiplier': 6} | proc cooldown: 60s | scales_with: item__cooldown, level__up__boons, heal__amp, ability__range | provides: spirit__power, ability__range, radius",
+    "text": "Healing Nova | tier 3 | vitality | Heal yourself and nearby allies. | stats: {'spirit_power': 8, 'spirit_range_multiplier': 6, 'spirit_radius_multiplier': 6} | proc cooldown: 60s | scales_with: item__cooldown, level__up__boons, heal__amp, ability__range | provides: spirit__power, ability__range, radius | upgrades from: Healing Rite",
     "metadata": {
       "type": "item",
       "id": "upgrade_health_nova",
@@ -3692,7 +3692,7 @@
     }
   },
   {
-    "text": "Fury Trance | tier 3 | vitality | stats: {'bullet_lifesteal_percent': 18, 'spirit__resist': 40, 'bonus_health': 100} | proc cooldown: 18s | scales_with: item__cooldown, heal__amp | provides: bullet_lifesteal, spirit__resist, health_max",
+    "text": "Fury Trance | tier 3 | vitality | stats: {'bullet_lifesteal_percent': 18, 'spirit__resist': 40, 'bonus_health': 100} | proc cooldown: 18s | scales_with: item__cooldown, heal__amp | provides: bullet_lifesteal, spirit__resist, health_max | upgrades from: Bullet Lifesteal",
     "metadata": {
       "type": "item",
       "id": "upgrade_fury_trance",
@@ -3702,7 +3702,7 @@
     }
   },
   {
-    "text": "Lifestrike | tier 3 | vitality | Your Melee Attack applies Movement Slow and heals you for a percentage of the Melee Damage dealt plus a fixed amount. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits. | stats: {'slow_percent': 60, 'bonus_melee_damage_percent': 16, 'bonus_health': 125} | effects: 2.5 | proc cooldown: 4s | scales_with: item__cooldown, level__up__boons, heal__amp | provides: movement_speed_slow_percent, base_melee_damage_percent, health_max",
+    "text": "Lifestrike | tier 3 | vitality | Your Melee Attack applies Movement Slow and heals you for a percentage of the Melee Damage dealt plus a fixed amount. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits. | stats: {'slow_percent': 60, 'bonus_melee_damage_percent': 16, 'bonus_health': 125} | effects: 2.5 | proc cooldown: 4s | scales_with: item__cooldown, level__up__boons, heal__amp | provides: movement_speed_slow_percent, base_melee_damage_percent, health_max | upgrades from: Melee Lifesteal",
     "metadata": {
       "type": "item",
       "id": "upgrade_boxing_glove",
@@ -3742,7 +3742,7 @@
     }
   },
   {
-    "text": "Leech | tier 4 | vitality | Reduces the effect of enemy applied healing reduction. | stats: {'spirit__power': 12, 'ability_lifesteal_percent_hero': 30, 'bullet_lifesteal_percent': 30, 'attack_damage_percent': 12, 'bonus_health': 120} | scales_with: heal__amp | provides: spirit__power, spirit__lifesteal, bullet_lifesteal, baseattack_damage_percent, health_max",
+    "text": "Leech | tier 4 | vitality | Reduces the effect of enemy applied healing reduction. | stats: {'spirit__power': 12, 'ability_lifesteal_percent_hero': 30, 'bullet_lifesteal_percent': 30, 'attack_damage_percent': 12, 'bonus_health': 120} | scales_with: heal__amp | provides: spirit__power, spirit__lifesteal, bullet_lifesteal, baseattack_damage_percent, health_max | upgrades from: Bullet Lifesteal, Spirit Lifesteal",
     "metadata": {
       "type": "item",
       "id": "upgrade_damage_recycler",
@@ -3772,7 +3772,7 @@
     }
   },
   {
-    "text": "Infuser | tier 4 | vitality | Gain Spirit Lifesteal and Spirit Power. | stats: {'bonus_health': 100, 'bonus_spirit': 30, 'ability_lifesteal_percent_hero': 80, 'spirit__resist': 10, 'ability_lifesteal_percent_hero_passive': 16} | proc cooldown: 30s | scales_with: item__cooldown, heal__amp | provides: health_max, spirit__power, spirit__lifesteal, spirit__resist",
+    "text": "Infuser | tier 4 | vitality | Gain Spirit Lifesteal and Spirit Power. | stats: {'bonus_health': 100, 'bonus_spirit': 30, 'ability_lifesteal_percent_hero': 80, 'spirit__resist': 10, 'ability_lifesteal_percent_hero_passive': 16} | proc cooldown: 30s | scales_with: item__cooldown, heal__amp | provides: health_max, spirit__power, spirit__lifesteal, spirit__resist | upgrades from: Spirit Lifesteal",
     "metadata": {
       "type": "item",
       "id": "upgrade_infuser",
@@ -3782,7 +3782,7 @@
     }
   },
   {
-    "text": "Divine Barrier | tier 4 | vitality | Remove all non-stun debuffs from the target and provide them with a Barrier and Move Speed. Can be self-cast. Cooldown is reduced by half when cast on someone else. | stats: {'combat_barrier': 600, 'bonus_move_speed': 2.75, 'spirit_range_multiplier': 15, 'spirit_radius_multiplier': 15} | effects: 6 | proc cooldown: 45s | scales_with: item__cooldown | provides: barrier_health, movement_speed_max, ability__range, radius",
+    "text": "Divine Barrier | tier 4 | vitality | Remove all non-stun debuffs from the target and provide them with a Barrier and Move Speed. Can be self-cast. Cooldown is reduced by half when cast on someone else. | stats: {'combat_barrier': 600, 'bonus_move_speed': 2.75, 'spirit_range_multiplier': 15, 'spirit_radius_multiplier': 15} | effects: 6 | proc cooldown: 45s | scales_with: item__cooldown | provides: barrier_health, movement_speed_max, ability__range, radius | upgrades from: Guardian Ward",
     "metadata": {
       "type": "item",
       "id": "upgrade_divine_barrier",
@@ -3792,7 +3792,7 @@
     }
   },
   {
-    "text": "Unstoppable | tier 4 | vitality | Temporarily suppress negative status effects and become immune to Stun, Silence, Sleep, Root, and Disarm. Cannot be used while Stunned or Slept. | stats: {'bonus_health': 125, 'status_resistance_percent': 25} | proc cooldown: 65s | scales_with: item__cooldown | provides: health_max, spirit__power, status_resistance",
+    "text": "Unstoppable | tier 4 | vitality | Temporarily suppress negative status effects and become immune to Stun, Silence, Sleep, Root, and Disarm. Cannot be used while Stunned or Slept. | stats: {'bonus_health': 125, 'status_resistance_percent': 25} | proc cooldown: 65s | scales_with: item__cooldown | provides: health_max, spirit__power, status_resistance | upgrades from: Debuff Reducer",
     "metadata": {
       "type": "item",
       "id": "upgrade_unstoppable",
@@ -3802,7 +3802,7 @@
     }
   },
   {
-    "text": "Colossus | tier 4 | vitality | Grow larger in size, gaining , , and . Nearby enemies suffer from and have reduced dash speed. | stats: {'bonus_health': 300, 'bonus_base_health': 15, 'attack_damage_percent': 15, 'buff_bullet_resist': 35, 'buff_spirit_resist': 35, 'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'bonus_melee_damage_percent': 30} | proc cooldown: 37s | scales_with: item__cooldown, ability__range | provides: health_max, base_health_percent, baseattack_damage_percent, bullet_armor_damage_resist, spirit__resist, movement_speed_slow_percent, movement_ground_dash_reduction_percent, base_melee_damage_percent",
+    "text": "Colossus | tier 4 | vitality | Grow larger in size, gaining , , and . Nearby enemies suffer from and have reduced dash speed. | stats: {'bonus_health': 300, 'bonus_base_health': 15, 'attack_damage_percent': 15, 'buff_bullet_resist': 35, 'buff_spirit_resist': 35, 'slow_percent': 30, 'ground_dash_reduction_percent': -25, 'bonus_melee_damage_percent': 30} | proc cooldown: 37s | scales_with: item__cooldown, ability__range | provides: health_max, base_health_percent, baseattack_damage_percent, bullet_armor_damage_resist, spirit__resist, movement_speed_slow_percent, movement_ground_dash_reduction_percent, base_melee_damage_percent | upgrades from: Extra Health",
     "metadata": {
       "type": "item",
       "id": "upgrade_colossus",
@@ -3812,7 +3812,7 @@
     }
   },
   {
-    "text": "Vampiric Burst | tier 4 | vitality | stats: {'active_bonus_lifesteal': 80, 'bonus_health': 100, 'bullet_resist': 10, 'bullet_lifesteal_percent': 16} | proc cooldown: 30s | scales_with: item__cooldown, heal__amp | provides: bullet_lifesteal, health_max, bullet_armor_damage_resist",
+    "text": "Vampiric Burst | tier 4 | vitality | stats: {'active_bonus_lifesteal': 80, 'bonus_health': 100, 'bullet_resist': 10, 'bullet_lifesteal_percent': 16} | proc cooldown: 30s | scales_with: item__cooldown, heal__amp | provides: bullet_lifesteal, health_max, bullet_armor_damage_resist | upgrades from: Bullet Lifesteal",
     "metadata": {
       "type": "item",
       "id": "upgrade_surging_power",
@@ -3842,7 +3842,7 @@
     }
   },
   {
-    "text": "Healing Tempo | tier 4 | vitality | Applying to yourself or an ally grants the target and .Does not apply on innate Regen or passive Bullet/Spirit Lifesteals. | stats: {'bonus_fire_rate': 35, 'bonus_move_speed': 1.25, 'spirit__resist': 10, 'bonus_health_regen': 6, 'heal_amp_cast_percent': 25, 'heal_amp_regen_percent': 25, 'out_of_combat_health_regen': 4} | effects: 7 | proc cooldown: 1s | scales_with: item__cooldown | provides: fire_rate, movement_speed_max, spirit__resist, health_regen_per_second, heal_amp_cast_percent, heal_amp_regen_percent, out_of_combat_health_regen",
+    "text": "Healing Tempo | tier 4 | vitality | Applying to yourself or an ally grants the target and .Does not apply on innate Regen or passive Bullet/Spirit Lifesteals. | stats: {'bonus_fire_rate': 35, 'bonus_move_speed': 1.25, 'spirit__resist': 10, 'bonus_health_regen': 6, 'heal_amp_cast_percent': 25, 'heal_amp_regen_percent': 25, 'out_of_combat_health_regen': 4} | effects: 7 | proc cooldown: 1s | scales_with: item__cooldown | provides: fire_rate, movement_speed_max, spirit__resist, health_regen_per_second, heal_amp_cast_percent, heal_amp_regen_percent, out_of_combat_health_regen | upgrades from: Healing Booster",
     "metadata": {
       "type": "item",
       "id": "upgrade_healbuff",
@@ -3862,7 +3862,7 @@
     }
   },
   {
-    "text": "Spellbreaker | tier 4 | vitality | The next instance of high spirit damage you take is significantly reduced. | stats: {'spirit__resist': 18, 'status_resistance_percent': 25} | proc cooldown: 9s | scales_with: item__cooldown | provides: spirit__resist, status_resistance",
+    "text": "Spellbreaker | tier 4 | vitality | The next instance of high spirit damage you take is significantly reduced. | stats: {'spirit__resist': 18, 'status_resistance_percent': 25} | proc cooldown: 9s | scales_with: item__cooldown | provides: spirit__resist, status_resistance | upgrades from: Debuff Reducer",
     "metadata": {
       "type": "item",
       "id": "upgrade_spellbreaker",
@@ -3872,7 +3872,7 @@
     }
   },
   {
-    "text": "Juggernaut | tier 4 | vitality | stats: {'melee_resist_percent': 25, 'slow_resistance_percent': 50, 'fire_rate_slow': 36, 'bonus_health_regen': 8, 'bonus_move_speed': 2} | effects: 4 | provides: melee_damage_reduction_percent, movement_slow_resistance, fire_rate_slow, health_regen_per_second, movement_speed_max",
+    "text": "Juggernaut | tier 4 | vitality | stats: {'melee_resist_percent': 25, 'slow_resistance_percent': 50, 'fire_rate_slow': 36, 'bonus_health_regen': 8, 'bonus_move_speed': 2} | effects: 4 | provides: melee_damage_reduction_percent, movement_slow_resistance, fire_rate_slow, health_regen_per_second, movement_speed_max | upgrades from: Enduring Speed",
     "metadata": {
       "type": "item",
       "id": "upgrade_juggernaut",
@@ -3952,7 +3952,7 @@
     }
   },
   {
-    "text": "Extra Spirit | tier 1 | spirit | stats: {'spirit__power': 10} | provides: spirit__power, health_regen_per_second",
+    "text": "Extra Spirit | tier 1 | spirit | stats: {'spirit__power': 10} | provides: spirit__power, health_regen_per_second | upgrades into: Surge of Power",
     "metadata": {
       "type": "item",
       "id": "upgrade_improved_spirit",
@@ -3962,7 +3962,7 @@
     }
   },
   {
-    "text": "Mystic Regeneration | tier 1 | spirit | Dealing Spirit Damage to enemy Heroes grants you Bonus Health Regen. Stacks when dealing damage to different heroes. | stats: {'bonus_health': 50} | effects: 6 | scales_with: heal__amp | provides: health_max",
+    "text": "Mystic Regeneration | tier 1 | spirit | Dealing Spirit Damage to enemy Heroes grants you Bonus Health Regen. Stacks when dealing damage to different heroes. | stats: {'bonus_health': 50} | effects: 6 | scales_with: heal__amp | provides: health_max | upgrades into: Radiant Regeneration",
     "metadata": {
       "type": "item",
       "id": "upgrade_mystic_regeneration",
@@ -3972,7 +3972,7 @@
     }
   },
   {
-    "text": "Mystic Expansion | tier 1 | spirit | Imbue an ability to increase its range and effect radius. | stats: {'spirit_range_multiplier': 20, 'spirit_radius_multiplier': 20} | provides: ability__range, radius",
+    "text": "Mystic Expansion | tier 1 | spirit | Imbue an ability to increase its range and effect radius. | stats: {'spirit_range_multiplier': 20, 'spirit_radius_multiplier': 20} | provides: ability__range, radius | upgrades into: Greater Expansion",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_reach",
@@ -3982,7 +3982,7 @@
     }
   },
   {
-    "text": "Extra Charge | tier 1 | spirit | stats: {'bonus_ability_charges': 1, 'bonus_spirit_for_charged_abilities': 7} | provides: bonus_ability_charges, spirit__power",
+    "text": "Extra Charge | tier 1 | spirit | stats: {'bonus_ability_charges': 1, 'bonus_spirit_for_charged_abilities': 7} | provides: bonus_ability_charges, spirit__power | upgrades into: Rapid Recharge",
     "metadata": {
       "type": "item",
       "id": "upgrade_extra_charge",
@@ -3992,7 +3992,7 @@
     }
   },
   {
-    "text": "Mystic Burst | tier 1 | spirit | Charges up over time with , causing abilities dealing more than damage to deal additional damage. | proc cooldown: 14s | scales_with: item__cooldown",
+    "text": "Mystic Burst | tier 1 | spirit | Charges up over time with , causing abilities dealing more than damage to deal additional damage. | proc cooldown: 14s | scales_with: item__cooldown | upgrades into: Tankbuster",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_burst",
@@ -4002,7 +4002,7 @@
     }
   },
   {
-    "text": "Rusted Barrel | tier 1 | spirit | Target an enemy to reduce their Fire Rate and Bullet Resistance. | stats: {'fire_rate_slow': 32, 'bonus_health': 50, 'bonus_sprint_speed': 0.5, 'bullet_armor_reduction': -8} | proc cooldown: 16s | scales_with: item__cooldown | provides: fire_rate_slow, health_max, sprint_speed_bonus, bullet_armor_damage_resist_reduction",
+    "text": "Rusted Barrel | tier 1 | spirit | Target an enemy to reduce their Fire Rate and Bullet Resistance. | stats: {'fire_rate_slow': 32, 'bonus_health': 50, 'bonus_sprint_speed': 0.5, 'bullet_armor_reduction': -8} | proc cooldown: 16s | scales_with: item__cooldown | provides: fire_rate_slow, health_max, sprint_speed_bonus, bullet_armor_damage_resist_reduction | upgrades into: Disarming Hex",
     "metadata": {
       "type": "item",
       "id": "upgrade_withering_whip",
@@ -4012,7 +4012,7 @@
     }
   },
   {
-    "text": "Spirit Strike | tier 1 | spirit | When you perform a Light or Heavy Melee attack against a hero, deal extra Spirit Damage with the attack and reduce the target's Spirit Resist.Cooldown is x longer for Light Melee hits. | stats: {'spirit__resist': -6} | effects: 40 + (spirit__power * 0.372) | proc cooldown: 8s | scales_with: item__cooldown, spirit__power | provides: spirit_armor_damage_resist_reduction",
+    "text": "Spirit Strike | tier 1 | spirit | When you perform a Light or Heavy Melee attack against a hero, deal extra Spirit Damage with the attack and reduce the target's Spirit Resist.Cooldown is x longer for Light Melee hits. | stats: {'spirit__resist': -6} | effects: 40 + (spirit__power * 0.372) | proc cooldown: 8s | scales_with: item__cooldown, spirit__power | provides: spirit_armor_damage_resist_reduction | upgrades into: Spirit Snatch",
     "metadata": {
       "type": "item",
       "id": "upgrade_acolytes_glove",
@@ -4032,7 +4032,7 @@
     }
   },
   {
-    "text": "Improved Spirit | tier 2 | spirit | stats: {'spirit__power': 18, 'bonus_sprint_speed': 1, 'bonus_health': 75, 'out_of_combat_health_regen': 1.5} | provides: spirit__power, health_regen_per_second, sprint_speed_bonus, health_max, out_of_combat_health_regen",
+    "text": "Improved Spirit | tier 2 | spirit | stats: {'spirit__power': 18, 'bonus_sprint_speed': 1, 'bonus_health': 75, 'out_of_combat_health_regen': 1.5} | provides: spirit__power, health_regen_per_second, sprint_speed_bonus, health_max, out_of_combat_health_regen | upgrades from: Extra Spirit | upgrades into: Boundless Spirit",
     "metadata": {
       "type": "item",
       "id": "upgrade_soaring_spirit",
@@ -4052,7 +4052,7 @@
     }
   },
   {
-    "text": "Mystic Vulnerability | tier 2 | spirit | When an enemy takes Spirit Damage, they have their Spirit Resist reduced. | stats: {'spirit__resist': 8} | provides: spirit_armor_damage_resist_reduction, spirit__resist",
+    "text": "Mystic Vulnerability | tier 2 | spirit | When an enemy takes Spirit Damage, they have their Spirit Resist reduced. | stats: {'spirit__resist': 8} | provides: spirit_armor_damage_resist_reduction, spirit__resist | upgrades into: Escalating Exposure",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_vulnerability",
@@ -4062,7 +4062,7 @@
     }
   },
   {
-    "text": "Mystic Slow | tier 2 | spirit | When the target takes Spirit Damage, they have their Move Speed reduced. | stats: {'movement_speed_slow': 30, 'ground_dash_reduction_percent': -12, 'bonus_sprint_speed': 0.75, 'bonus_health': 30} | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, sprint_speed_bonus, health_max",
+    "text": "Mystic Slow | tier 2 | spirit | When the target takes Spirit Damage, they have their Move Speed reduced. | stats: {'movement_speed_slow': 30, 'ground_dash_reduction_percent': -12, 'bonus_sprint_speed': 0.75, 'bonus_health': 30} | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, sprint_speed_bonus, health_max | upgrades into: Lightning Scroll",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_slow",
@@ -4072,7 +4072,7 @@
     }
   },
   {
-    "text": "Compress Cooldown | tier 2 | spirit | Imbue an ability to reduce its Cooldown. | stats: {'cooldown_reduction': 18} | provides: cooldown_reduction_percentage",
+    "text": "Compress Cooldown | tier 2 | spirit | Imbue an ability to reduce its Cooldown. | stats: {'cooldown_reduction': 18} | provides: cooldown_reduction_percentage | upgrades into: Superior Cooldown",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_tempo",
@@ -4082,7 +4082,7 @@
     }
   },
   {
-    "text": "Slowing Hex | tier 2 | spirit | Slows movement of enemy target. Also Silences their movement-based items and abilities.Increases the target's gravity.Does not affect target's stamina usage. | stats: {'slow_percent': 20, 'ground_dash_reduction_percent': -30, 'bonus_sprint_speed': 0.5} | proc cooldown: 27s | scales_with: item__cooldown | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, sprint_speed_bonus",
+    "text": "Slowing Hex | tier 2 | spirit | Slows movement of enemy target. Also Silences their movement-based items and abilities.Increases the target's gravity.Does not affect target's stamina usage. | stats: {'slow_percent': 20, 'ground_dash_reduction_percent': -30, 'bonus_sprint_speed': 0.5} | proc cooldown: 27s | scales_with: item__cooldown | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, sprint_speed_bonus | upgrades into: Vortex Web",
     "metadata": {
       "type": "item",
       "id": "upgrade_containment",
@@ -4092,7 +4092,7 @@
     }
   },
   {
-    "text": "Spirit Sap | tier 2 | spirit | Target an enemy to reduce their Spirit Resist and Spirit Power. | stats: {'magic_resist_reduction': -9, 'bonus_health': 50, 'spirit_power_reduction': -30} | proc cooldown: 18s | scales_with: item__cooldown | provides: spirit_armor_damage_resist_reduction, health_max, spirit__power",
+    "text": "Spirit Sap | tier 2 | spirit | Target an enemy to reduce their Spirit Resist and Spirit Power. | stats: {'magic_resist_reduction': -9, 'bonus_health': 50, 'spirit_power_reduction': -30} | proc cooldown: 18s | scales_with: item__cooldown | provides: spirit_armor_damage_resist_reduction, health_max, spirit__power | upgrades into: Focus Lens",
     "metadata": {
       "type": "item",
       "id": "upgrade_spirit_sap",
@@ -4102,7 +4102,7 @@
     }
   },
   {
-    "text": "Arcane Surge | tier 2 | spirit | When you Dash-Jump the next ability you use will have bonus Range, Duration, and Spirit Power. Lasts up to s. | stats: {'bonus_ability_duration_percent': 15, 'spirit_power': 20, 'spirit_radius_multiplier_buff': 15, 'spirit_range_multiplier_buff': 15, 'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: movement_slow_resistance, ability__duration, spirit__power, radius, ability__range, ammo_clip_size, stamina, stamina_regen_per_second_percentage",
+    "text": "Arcane Surge | tier 2 | spirit | When you Dash-Jump the next ability you use will have bonus Range, Duration, and Spirit Power. Lasts up to s. | stats: {'bonus_ability_duration_percent': 15, 'spirit_power': 20, 'spirit_radius_multiplier_buff': 15, 'spirit_range_multiplier_buff': 15, 'stamina': 1, 'stamina_cooldown_reduction': 12} | provides: movement_slow_resistance, ability__duration, spirit__power, radius, ability__range, ammo_clip_size, stamina, stamina_regen_per_second_percentage | upgrades from: Extra Stamina",
     "metadata": {
       "type": "item",
       "id": "upgrade_arcane_surge",
@@ -4112,7 +4112,7 @@
     }
   },
   {
-    "text": "Cold Front | tier 2 | spirit | Release an expanding ice blast that deals Spirit Damage and Slows targets it hits. | stats: {'movement_speed_slow': 60, 'spirit__resist': 6} | effects: 95 + (spirit__power * 0.465) | proc cooldown: 25s | scales_with: item__cooldown, ability__range, spirit__power | provides: movement_speed_slow_percent, spirit__resist",
+    "text": "Cold Front | tier 2 | spirit | Release an expanding ice blast that deals Spirit Damage and Slows targets it hits. | stats: {'movement_speed_slow': 60, 'spirit__resist': 6} | effects: 95 + (spirit__power * 0.465) | proc cooldown: 25s | scales_with: item__cooldown, ability__range, spirit__power | provides: movement_speed_slow_percent, spirit__resist | upgrades into: Arctic Blast",
     "metadata": {
       "type": "item",
       "id": "upgrade_cold_front",
@@ -4122,7 +4122,7 @@
     }
   },
   {
-    "text": "Duration Extender | tier 2 | spirit | Imbue an ability to increase its Duration. | stats: {'bonus_ability_duration_percent': 22} | provides: ability__duration",
+    "text": "Duration Extender | tier 2 | spirit | Imbue an ability to increase its Duration. | stats: {'bonus_ability_duration_percent': 22} | provides: ability__duration | upgrades into: Superior Duration",
     "metadata": {
       "type": "item",
       "id": "upgrade_arcane_extension",
@@ -4142,7 +4142,7 @@
     }
   },
   {
-    "text": "Quicksilver Reload | tier 2 | spirit | Your imbued ability charges up over time with , , and bonus bullets on use. | stats: {'bonus_fire_rate': 10} | effects: 44 + (spirit__power * 0.16) | proc cooldown: 18s | scales_with: item__cooldown, spirit__power | provides: fire_rate",
+    "text": "Quicksilver Reload | tier 2 | spirit | Your imbued ability charges up over time with , , and bonus bullets on use. | stats: {'bonus_fire_rate': 10} | effects: 44 + (spirit__power * 0.16) | proc cooldown: 18s | scales_with: item__cooldown, spirit__power | provides: fire_rate | upgrades into: Mercurial Magnum",
     "metadata": {
       "type": "item",
       "id": "upgrade_quick_silver",
@@ -4162,17 +4162,17 @@
     }
   },
   {
-    "text": "Greater Expansion | tier 3 | spirit | Increases the range and effect radius of your abilities and items. | stats: {'spirit_range_multiplier': 35, 'spirit_radius_multiplier': 35, 'spirit__resist': 10} | provides: ability__range, radius, spirit__resist",
+    "text": "Greater Expansion | tier 3 | spirit | Increases the range and effect radius of your abilities and items. | stats: {'spirit_range_multiplier': 35, 'spirit_radius_multiplier': 35, 'spirit__resist': 10} | provides: ability__range, radius, spirit__resist | upgrades from: Mystic Expansion",
     "metadata": {
       "type": "item",
-      "id": "upgrade_tech_range",
+      "id": "upgrade_spirit_range",
       "name": "Greater Expansion",
       "slot": "spirit",
       "tier": 3
     }
   },
   {
-    "text": "Tankbuster | tier 3 | spirit | Charges up over time with , causing abilities dealing more than damage to deal additional damage. Ignores Spirit Resistance. | stats: {'bonus_health': 50} | proc cooldown: 14s | scales_with: item__cooldown | provides: health_max",
+    "text": "Tankbuster | tier 3 | spirit | Charges up over time with , causing abilities dealing more than damage to deal additional damage. Ignores Spirit Resistance. | stats: {'bonus_health': 50} | proc cooldown: 14s | scales_with: item__cooldown | provides: health_max | upgrades from: Mystic Burst",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_shock",
@@ -4182,7 +4182,7 @@
     }
   },
   {
-    "text": "Rapid Recharge | tier 3 | spirit | stats: {'cooldown_between_charge_reduction': 30, 'bonus_ability_charges': 2, 'cooldown_reduction_on_charged_abilities': 14, 'bonus_spirit_for_charged_abilities': 10} | provides: cooldown_between_charge_reduction_percentage, bonus_ability_charges, cooldown_reduction_percentage, spirit__power",
+    "text": "Rapid Recharge | tier 3 | spirit | stats: {'cooldown_between_charge_reduction': 30, 'bonus_ability_charges': 2, 'cooldown_reduction_on_charged_abilities': 14, 'bonus_spirit_for_charged_abilities': 10} | provides: cooldown_between_charge_reduction_percentage, bonus_ability_charges, cooldown_reduction_percentage, spirit__power | upgrades from: Extra Charge",
     "metadata": {
       "type": "item",
       "id": "upgrade_rapid_recharge",
@@ -4192,7 +4192,7 @@
     }
   },
   {
-    "text": "Superior Cooldown | tier 3 | spirit | Reduces the Cooldown of your abilities. | stats: {'cooldown_reduction': 20, 'out_of_combat_health_regen': 4} | provides: cooldown_reduction_percentage, out_of_combat_health_regen",
+    "text": "Superior Cooldown | tier 3 | spirit | Reduces the Cooldown of your abilities. | stats: {'cooldown_reduction': 20, 'out_of_combat_health_regen': 4} | provides: cooldown_reduction_percentage, out_of_combat_health_regen | upgrades from: Compress Cooldown | upgrades into: Transcendent Cooldown",
     "metadata": {
       "type": "item",
       "id": "upgrade_cooldown_reduction",
@@ -4202,7 +4202,7 @@
     }
   },
   {
-    "text": "Disarming Hex | tier 3 | spirit | Disarms enemy target and reduces their Bullet Resist. | stats: {'bonus_sprint_speed': 0.75, 'bonus_health': 75, 'bullet_armor_reduction': -13} | proc cooldown: 16s | scales_with: item__cooldown | provides: sprint_speed_bonus, health_max, bullet_armor_damage_resist_reduction",
+    "text": "Disarming Hex | tier 3 | spirit | Disarms enemy target and reduces their Bullet Resist. | stats: {'bonus_sprint_speed': 0.75, 'bonus_health': 75, 'bullet_armor_reduction': -13} | proc cooldown: 16s | scales_with: item__cooldown | provides: sprint_speed_bonus, health_max, bullet_armor_damage_resist_reduction | upgrades from: Rusted Barrel",
     "metadata": {
       "type": "item",
       "id": "upgrade_greater_withering_whip",
@@ -4235,14 +4235,14 @@
     "text": "Torment Pulse | tier 3 | spirit | Periodically deals Spirit Damage to the closest two enemies nearby. | stats: {'bonus_health': 100, 'melee_resist_percent': 15} | effects: 25 + (spirit__power * 0.23) | proc cooldown: 1.4s | scales_with: item__cooldown, spirit__power, ability__range | provides: health_max, melee_damage_reduction_percent",
     "metadata": {
       "type": "item",
-      "id": "upgrade_tech_damage_pulse",
+      "id": "upgrade_spirit_damage_pulse",
       "name": "Torment Pulse",
       "slot": "spirit",
       "tier": 3
     }
   },
   {
-    "text": "Superior Duration | tier 3 | spirit | Increases the duration of your abilities and items. | stats: {'bonus_ability_duration_percent': 28, 'bullet_resist': 8} | provides: ability__duration, bullet_armor_damage_resist",
+    "text": "Superior Duration | tier 3 | spirit | Increases the duration of your abilities and items. | stats: {'bonus_ability_duration_percent': 28, 'bullet_resist': 8} | provides: ability__duration, bullet_armor_damage_resist | upgrades from: Duration Extender",
     "metadata": {
       "type": "item",
       "id": "upgrade_imbued_duration_extender",
@@ -4252,7 +4252,7 @@
     }
   },
   {
-    "text": "Spirit Snatch | tier 3 | spirit | When you perform a Light or Heavy Melee attack against a hero, the attack deals extra Spirit Damage and steals Spirit Resist and Spirit Power.Effects are reduced to % for Light Melee hits. | stats: {'spirit__resist': -12, 'spirit__armor': 12, 'spirit_power_reduction': -15, 'spirit__power': 15, 'bonus_melee_damage_percent': 7, 'bonus_health': 75} | effects: 50 + (spirit__power * 0.744) | proc cooldown: 6s | scales_with: item__cooldown, spirit__power | provides: spirit_armor_damage_resist_reduction, spirit__resist, spirit__power, base_melee_damage_percent, sprint_speed_bonus, health_max",
+    "text": "Spirit Snatch | tier 3 | spirit | When you perform a Light or Heavy Melee attack against a hero, the attack deals extra Spirit Damage and steals Spirit Resist and Spirit Power.Effects are reduced to % for Light Melee hits. | stats: {'spirit__resist': -12, 'spirit__armor': 12, 'spirit_power_reduction': -15, 'spirit__power': 15, 'bonus_melee_damage_percent': 7, 'bonus_health': 75} | effects: 50 + (spirit__power * 0.744) | proc cooldown: 6s | scales_with: item__cooldown, spirit__power | provides: spirit_armor_damage_resist_reduction, spirit__resist, spirit__power, base_melee_damage_percent, sprint_speed_bonus, health_max | upgrades from: Spirit Strike",
     "metadata": {
       "type": "item",
       "id": "upgrade_spirit_snatch",
@@ -4262,7 +4262,7 @@
     }
   },
   {
-    "text": "Radiant Regeneration | tier 3 | spirit | Heal and gain bonus Movement Speed for a short duration when you cast an ability. | stats: {'bonus_move_speed': 1.75, 'bonus_health': 90} | effects: 6 | proc cooldown: 6s | scales_with: item__cooldown, level__up__boons, heal__amp, spirit__power | provides: movement_speed_max, health_max",
+    "text": "Radiant Regeneration | tier 3 | spirit | Heal and gain bonus Movement Speed for a short duration when you cast an ability. | stats: {'bonus_move_speed': 1.75, 'bonus_health': 90} | effects: 6 | proc cooldown: 6s | scales_with: item__cooldown, level__up__boons, heal__amp, spirit__power | provides: movement_speed_max, health_max | upgrades from: Mystic Regeneration",
     "metadata": {
       "type": "item",
       "id": "upgrade_resonant_healing",
@@ -4272,7 +4272,7 @@
     }
   },
   {
-    "text": "Surge of Power | tier 3 | spirit | Imbue an ability with permanent Spirit Power. When that ability is used, gain bonus Move Speed and maintain full speed while attacking. | stats: {'imbued_spirit_power': 24, 'fire_rate_bonus': 20, 'bonus_move_speed': 1.75, 'move_while_shooting_speed_penalty_reduction_percent': 100, 'move_while_zoomed_speed_penalty_reduction_percent': 100} | effects: 8 | proc cooldown: 14s | scales_with: item__cooldown | provides: spirit__power, fire_rate, movement_speed_max, movement_speed_while_shooting_penalty_reduction_percent, movement_speed_while_zoomed_penalty_reduction_percent",
+    "text": "Surge of Power | tier 3 | spirit | Imbue an ability with permanent Spirit Power. When that ability is used, gain bonus Move Speed and maintain full speed while attacking. | stats: {'imbued_spirit_power': 24, 'fire_rate_bonus': 20, 'bonus_move_speed': 1.75, 'move_while_shooting_speed_penalty_reduction_percent': 100, 'move_while_zoomed_speed_penalty_reduction_percent': 100} | effects: 8 | proc cooldown: 14s | scales_with: item__cooldown | provides: spirit__power, fire_rate, movement_speed_max, movement_speed_while_shooting_penalty_reduction_percent, movement_speed_while_zoomed_penalty_reduction_percent | upgrades from: Extra Spirit",
     "metadata": {
       "type": "item",
       "id": "upgrade_magic_storm",
@@ -4292,7 +4292,7 @@
     }
   },
   {
-    "text": "Escalating Exposure | tier 4 | spirit | Dealing Spirit Damage applies a stacking Spirit Amp that increases your Spirit Damage to the target. | stats: {'spirit__resist': -8} | scales_with: item__cooldown | provides: spirit__resist, spirit_armor_damage_resist_reduction",
+    "text": "Escalating Exposure | tier 4 | spirit | Dealing Spirit Damage applies a stacking Spirit Amp that increases your Spirit Damage to the target. | stats: {'spirit__resist': -8} | scales_with: item__cooldown | provides: spirit__resist, spirit_armor_damage_resist_reduction | upgrades from: Mystic Vulnerability",
     "metadata": {
       "type": "item",
       "id": "upgrade_escalating_exposure",
@@ -4302,7 +4302,7 @@
     }
   },
   {
-    "text": "Transcendent Cooldown | tier 4 | spirit | Reduces the Cooldown of your abilities and items. | stats: {'cooldown_reduction': 25, 'item_cooldown_reduction': 25, 'out_of_combat_health_regen': 4} | provides: cooldown_reduction_percentage, item_cooldown_reduction_percentage, out_of_combat_health_regen",
+    "text": "Transcendent Cooldown | tier 4 | spirit | Reduces the Cooldown of your abilities and items. | stats: {'cooldown_reduction': 25, 'item_cooldown_reduction': 25, 'out_of_combat_health_regen': 4} | provides: cooldown_reduction_percentage, item_cooldown_reduction_percentage, out_of_combat_health_regen | upgrades from: Superior Cooldown",
     "metadata": {
       "type": "item",
       "id": "upgrade_transcendent_cooldown",
@@ -4312,7 +4312,7 @@
     }
   },
   {
-    "text": "Focus Lens | tier 4 | spirit | Target an enemy to Silence them. A portion of all damage dealt during the silence gets applied to the target when the silence wears off. | stats: {'bonus_fire_rate': 10, 'magic_resist_reduction': -9, 'spirit_power_reduction': -30} | effects: 12 | proc cooldown: 45s | scales_with: item__cooldown | provides: fire_rate, spirit_armor_damage_resist_reduction, spirit__power",
+    "text": "Focus Lens | tier 4 | spirit | Target an enemy to Silence them. A portion of all damage dealt during the silence gets applied to the target when the silence wears off. | stats: {'bonus_fire_rate': 10, 'magic_resist_reduction': -9, 'spirit_power_reduction': -30} | effects: 12 | proc cooldown: 45s | scales_with: item__cooldown | provides: fire_rate, spirit_armor_damage_resist_reduction, spirit__power | upgrades from: Spirit Sap",
     "metadata": {
       "type": "item",
       "id": "upgrade_focus_lens",
@@ -4332,7 +4332,7 @@
     }
   },
   {
-    "text": "Vortex Web | tier 4 | spirit | stats: {'slow_percent': 35, 'ground_dash_reduction_percent': -40, 'spirit_range_multiplier': 10, 'spirit_radius_multiplier': 10, 'bonus_sprint_speed': 0.75} | proc cooldown: 42s | scales_with: item__cooldown, ability__range | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, ability__range, radius, sprint_speed_bonus",
+    "text": "Vortex Web | tier 4 | spirit | stats: {'slow_percent': 35, 'ground_dash_reduction_percent': -40, 'spirit_range_multiplier': 10, 'spirit_radius_multiplier': 10, 'bonus_sprint_speed': 0.75} | proc cooldown: 42s | scales_with: item__cooldown, ability__range | provides: movement_speed_slow_percent, movement_ground_dash_reduction_percent, ability__range, radius, sprint_speed_bonus | upgrades from: Slowing Hex",
     "metadata": {
       "type": "item",
       "id": "upgrade_aoe_root",
@@ -4362,7 +4362,7 @@
     }
   },
   {
-    "text": "Arctic Blast | tier 4 | spirit | Release an expanding ice blast that deals Spirit Damage, Freezing and then Slowing targets it hits. Targets take increased damage while frozen. | stats: {'slow_percent': 60, 'spirit__resist': 10} | effects: 4, 175 + (spirit__power * 0.6975), 0.75 | proc cooldown: 24s | scales_with: item__cooldown, ability__range, spirit__power | provides: movement_speed_slow_percent, spirit__resist",
+    "text": "Arctic Blast | tier 4 | spirit | Release an expanding ice blast that deals Spirit Damage, Freezing and then Slowing targets it hits. Targets take increased damage while frozen. | stats: {'slow_percent': 60, 'spirit__resist': 10} | effects: 4, 175 + (spirit__power * 0.6975), 0.75 | proc cooldown: 24s | scales_with: item__cooldown, ability__range, spirit__power | provides: movement_speed_slow_percent, spirit__resist | upgrades from: Cold Front",
     "metadata": {
       "type": "item",
       "id": "upgrade_arctic_blast",
@@ -4392,7 +4392,7 @@
     }
   },
   {
-    "text": "Boundless Spirit | tier 4 | spirit | stats: {'spirit__power': 15, 'bonus_health': 75, 'out_of_combat_health_regen': 4} | provides: spirit__power, health_max, out_of_combat_health_regen, spirit_power_percent",
+    "text": "Boundless Spirit | tier 4 | spirit | stats: {'spirit__power': 15, 'bonus_health': 75, 'out_of_combat_health_regen': 4} | provides: spirit__power, health_max, out_of_combat_health_regen, spirit_power_percent | upgrades from: Improved Spirit",
     "metadata": {
       "type": "item",
       "id": "upgrade_boundless_spirit",
@@ -4402,7 +4402,7 @@
     }
   },
   {
-    "text": "Mercurial Magnum | tier 4 | spirit | Your imbued ability charges up over time with , , and reloads bullets on use. Until your next reload, your bullets deal bonus Spirit Damage based on your Spirit Power. | stats: {'spirit__power': 7, 'bonus_fire_rate': 22, 'bonus_clip_size_percent': 20} | effects: 60 + (spirit__power * 0.16), 25 + (spirit__power * 0.465) | proc cooldown: 15s | scales_with: item__cooldown, spirit__power | provides: spirit__power, fire_rate, ammo_clip_size_percent",
+    "text": "Mercurial Magnum | tier 4 | spirit | Your imbued ability charges up over time with , , and reloads bullets on use. Until your next reload, your bullets deal bonus Spirit Damage based on your Spirit Power. | stats: {'spirit__power': 7, 'bonus_fire_rate': 22, 'bonus_clip_size_percent': 20} | effects: 60 + (spirit__power * 0.16), 25 + (spirit__power * 0.465) | proc cooldown: 15s | scales_with: item__cooldown, spirit__power | provides: spirit__power, fire_rate, ammo_clip_size_percent | upgrades from: Quicksilver Reload",
     "metadata": {
       "type": "item",
       "id": "upgrade_ethereal_bullets",
@@ -4432,7 +4432,7 @@
     }
   },
   {
-    "text": "Lightning Scroll | tier 4 | spirit | Damage from your ultimate applies a and deals after a short delay. | stats: {'slow_percent': 80, 'bonus_health': 50, 'bonus_sprint_speed': 0.75, 'movement_speed_slow': 30, 'ground_dash_reduction_percent': -12} | effects: 0.75 | provides: movement_speed_slow_percent, health_max, sprint_speed_bonus, movement_ground_dash_reduction_percent",
+    "text": "Lightning Scroll | tier 4 | spirit | Damage from your ultimate applies a and deals after a short delay. | stats: {'slow_percent': 80, 'bonus_health': 50, 'bonus_sprint_speed': 0.75, 'movement_speed_slow': 30, 'ground_dash_reduction_percent': -12} | effects: 0.75 | provides: movement_speed_slow_percent, health_max, sprint_speed_bonus, movement_ground_dash_reduction_percent | upgrades from: Mystic Slow",
     "metadata": {
       "type": "item",
       "id": "upgrade_ultimate_burst",

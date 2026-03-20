@@ -3,14 +3,14 @@
 ETechPower = Spirit Power
 ETechDuration = Ability Duration
 ETechRange = Ability Range
-ETechRadius = Radius
+ETechRadius = Ability Radius
 ETechCooldown = Ability Cooldown
 EItemCooldown = Item Cooldown
 EHealingOutput = Heal Amp
 EChannelDuration = Channel Duration
 EBuildUpRate = Build Up Rate
 ELevelUpBoons = Level Up Boons
-EDamageScale = Spirit Damage
+EDamageScale = Spirit Damage Scale
 ELightMeleeDamage = Light Melee
 EHeavyMeleeDamage = Heavy Melee
 EBulletDamage = Bullet Damage
@@ -20,7 +20,6 @@ EBulletDamage = Bullet Damage
 TechPower = Spirit Power
 TechResist = Spirit Resist
 TechArmorDamageReduction = Spirit Resist
-TechArmorDamageResist = Spirit Resist
 TechArmorGain = Spirit Armor
 TechDuration = Ability Duration
 TechRange = Ability Range
@@ -41,6 +40,7 @@ MODIFIER_VALUE_TECH_RADIUS_PERCENT = Radius
 MODIFIER_VALUE_TECH_LIFESTEAL = Spirit Lifesteal
 MODIFIER_VALUE_BONUS_ABILITY_DURATION_PERCENTAGE = Ability Duration
 MODIFIER_VALUE_TECH_COOLDOWN_REDUCTION_PERCENTAGE = Ability Cooldown Reduction
+MODIFIER_VALUE_BASEATTACK_DAMAGE_PERCENT = Weapon Damage
 
 # Slot Name Mapping
 # Format: internal_slot = your_clean_name
