@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Tiny",
       "zZzzZ",
-      "Helpful",
-      "Tiny"
+      "Helpful"
     ],
     "playstyle": [],
     "damage_type": [
@@ -271,11 +271,6 @@
             "ratio": 0.14
           },
           "formula": "8 + (spirit_power * 0.14)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 2,
           "unit": "hp"
         },
         {

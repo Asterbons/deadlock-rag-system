@@ -8,8 +8,8 @@
     "tags": {
       "flavor": [
         "Explosive",
-        "Burn Rubber",
-        "Arsonist"
+        "Arsonist",
+        "Burn Rubber"
       ],
       "playstyle": [
         "marksman"
@@ -116,8 +116,8 @@
           "fire_rate": 0
         },
         "effect_types": [
-          "slow",
           "move_speed",
+          "slow",
           "spirit_damage"
         ]
       },
@@ -147,8 +147,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "burn",
-          "spirit_damage"
+          "spirit_damage",
+          "burn"
         ]
       },
       {
@@ -170,11 +170,12 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "fire_rate_per_hero": 0,
           "buff_duration": 0
         },
         "effect_types": [
-          "stun",
-          "spirit_damage"
+          "spirit_damage",
+          "stun"
         ]
       }
     ],
@@ -382,9 +383,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
+        "Merciless",
         "Area Denial",
-        "High Voltage",
-        "Merciless"
+        "High Voltage"
       ],
       "playstyle": [
         "mystic"
@@ -473,8 +474,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "stun",
-          "spirit_damage"
+          "spirit_damage",
+          "stun"
         ]
       },
       {
@@ -534,8 +535,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "knock_back",
-          "spirit_damage"
+          "spirit_damage",
+          "knock_back"
         ]
       }
     ],
@@ -759,8 +760,8 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Sniper",
         "Soaring",
+        "Sniper",
         "One Shot Kill"
       ],
       "playstyle": [
@@ -856,8 +857,8 @@
           "max_fall_speed": 0
         },
         "effect_types": [
-          "weapon_damage",
           "move_speed",
+          "weapon_damage",
           "spirit_damage"
         ]
       },
@@ -884,11 +885,12 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "target_bounce_count": 0,
           "fire_rate": 0
         },
         "effect_types": [
-          "bleed",
           "debuff",
+          "bleed",
           "bullet_resist",
           "spirit_damage"
         ]
@@ -923,10 +925,10 @@
           "ability_post_cast_duration": 0
         },
         "effect_types": [
-          "heal",
-          "knockup",
           "weapon_damage",
-          "spirit_damage"
+          "knockup",
+          "spirit_damage",
+          "heal"
         ]
       }
     ],
@@ -1190,9 +1192,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Self Damage",
         "Fatale",
-        "Lifesteal",
-        "Self Damage"
+        "Lifesteal"
       ],
       "playstyle": [
         "mystic"
@@ -1257,8 +1259,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -1284,8 +1286,8 @@
         },
         "effect_types": [
           "slow",
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -1314,10 +1316,10 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "slow",
           "debuff",
-          "heal",
-          "spirit_damage"
+          "slow",
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -1347,8 +1349,8 @@
           "fire_rate": 0
         },
         "effect_types": [
-          "heal",
-          "move_speed"
+          "move_speed",
+          "heal"
         ]
       }
     ],
@@ -1576,9 +1578,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
+        "Brawler",
         "Tank",
-        "Bull-Headed",
-        "Brawler"
+        "Bull-Headed"
       ],
       "playstyle": [
         "brawler"
@@ -1672,9 +1674,9 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "stun",
           "move_speed",
-          "spirit_damage"
+          "spirit_damage",
+          "stun"
         ]
       },
       {
@@ -1727,8 +1729,8 @@
         },
         "effect_types": [
           "knockup",
-          "stun",
-          "spirit_damage"
+          "spirit_damage",
+          "stun"
         ]
       }
     ],
@@ -1960,9 +1962,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Duelist",
         "Isolator",
-        "Telekinetic"
+        "Telekinetic",
+        "Duelist"
       ],
       "playstyle": [
         "marksman"
@@ -2043,8 +2045,8 @@
         },
         "effect_types": [
           "slow",
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -2086,7 +2088,9 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
-          "bullet_lifesteal": 0
+          "bullet_lifesteal": 0,
+          "allied_fire_rate_percentage": 0,
+          "unlimited_ammo": 0
         },
         "effect_types": [
           "spirit_damage"
@@ -2114,11 +2118,12 @@
           "toss_up_strength": 220,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "lift_chain_count": 0
         },
         "effect_types": [
-          "slow",
           "knockup",
+          "slow",
           "spirit_damage"
         ]
       }
@@ -2428,8 +2433,8 @@
           "ability_post_cast_duration": 0
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -2785,9 +2790,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Tactician",
         "Disruptor",
-        "Calculated"
+        "Calculated",
+        "Tactician"
       ],
       "playstyle": [
         "marksman"
@@ -2854,8 +2859,8 @@
         },
         "effect_types": [
           "slow",
-          "debuff",
           "move_speed",
+          "debuff",
           "spirit_damage"
         ]
       },
@@ -2925,8 +2930,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "bullet_damage",
           "move_speed",
+          "bullet_damage",
           "spirit_damage"
         ]
       },
@@ -3228,8 +3233,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Clutch",
         "Teamplay",
+        "Clutch",
         "Initiator"
       ],
       "playstyle": [
@@ -3574,9 +3579,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Explorer",
         "Ice Cold",
-        "Protector",
-        "Explorer"
+        "Protector"
       ],
       "playstyle": [
         "brawler"
@@ -3643,8 +3648,8 @@
         },
         "effect_types": [
           "slow",
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -3711,11 +3716,12 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "beam_split_count": 0
         },
         "effect_types": [
-          "slow",
           "debuff",
+          "slow",
           "spirit_damage"
         ]
       },
@@ -3957,8 +3963,8 @@
     "tags": {
       "flavor": [
         "Stealthy",
-        "Assassin",
-        "Lethal"
+        "Lethal",
+        "Assassin"
       ],
       "playstyle": [
         "assassin"
@@ -4075,7 +4081,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "proc_damage_stack_count": 0
         },
         "effect_types": [
           "weapon_damage"
@@ -4327,8 +4334,8 @@
     "tags": {
       "flavor": [
         "Explosive",
-        "Apprehender",
-        "Crackshot"
+        "Crackshot",
+        "Apprehender"
       ],
       "playstyle": [
         "marksman"
@@ -4500,11 +4507,12 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "lift_initial_velocity_end": 0
         },
         "effect_types": [
-          "damage_amp",
-          "spirit_damage"
+          "spirit_damage",
+          "damage_amp"
         ]
       }
     ],
@@ -4736,9 +4744,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Hook",
+        "Bomb",
         "Punch",
-        "Bomb"
+        "Hook"
       ],
       "playstyle": [
         "brawler"
@@ -5121,8 +5129,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Tricksy",
         "Burst Damage",
+        "Tricksy",
         "Slippery"
       ],
       "playstyle": [
@@ -5185,7 +5193,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "grenade_spread_angle": 0
         },
         "effect_types": [
           "knockup",
@@ -5218,12 +5227,13 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "turn_rate_max": 0,
           "cooldown_refund": 0,
           "bounty_duration": 0
         },
         "effect_types": [
-          "heal",
-          "move_speed"
+          "move_speed",
+          "heal"
         ]
       },
       {
@@ -5616,8 +5626,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "slow",
           "tether",
+          "slow",
           "spirit_damage"
         ]
       },
@@ -5642,8 +5652,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "stun",
-          "spirit_damage"
+          "spirit_damage",
+          "stun"
         ]
       }
     ],
@@ -5906,8 +5916,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -5940,10 +5950,10 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "slow",
-          "bullet_resist",
           "knockup",
-          "spirit_damage"
+          "slow",
+          "spirit_damage",
+          "bullet_resist"
         ]
       },
       {
@@ -5990,8 +6000,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       }
     ],
@@ -6203,9 +6213,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Rage",
         "Repeat",
-        "Bleed",
-        "Rage"
+        "Bleed"
       ],
       "playstyle": [
         "brawler"
@@ -6269,9 +6279,9 @@
           "cast_delay": 0
         },
         "effect_types": [
-          "bleed",
           "slow",
-          "spirit_damage"
+          "spirit_damage",
+          "bleed"
         ]
       },
       {
@@ -6300,13 +6310,14 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "turn_rate_max": 0,
           "cooldown_reduced_on_hero_hit": 0,
           "cooldown_reduced_on_nonhero_hit": 0,
           "max_cooldown_reduction": 0
         },
         "effect_types": [
-          "debuff",
           "move_speed",
+          "debuff",
           "spirit_damage"
         ]
       },
@@ -6366,8 +6377,8 @@
           "recast_window": 0
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       }
     ],
@@ -6599,9 +6610,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Rock Solid",
         "Disruptor",
-        "Team-up"
+        "Team-up",
+        "Rock Solid"
       ],
       "playstyle": [
         "marksman"
@@ -6663,6 +6674,7 @@
           "cast_range": 0,
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
+          "time_to_entangle": 0,
           "ntangle_duration": 0
         },
         "effect_types": [
@@ -6725,9 +6737,9 @@
           "max_fall_speed": 0
         },
         "effect_types": [
+          "spirit_damage",
           "heal",
-          "stun",
-          "spirit_damage"
+          "stun"
         ]
       },
       {
@@ -7021,9 +7033,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "One Man Army",
         "Fearless",
-        "Initiator",
-        "One Man Army"
+        "Initiator"
       ],
       "playstyle": [
         "brawler"
@@ -7091,9 +7103,9 @@
         },
         "effect_types": [
           "slow",
-          "debuff",
           "weapon_damage",
-          "spirit_damage"
+          "spirit_damage",
+          "debuff"
         ]
       },
       {
@@ -7171,8 +7183,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "bullet_resist",
-          "spirit_damage"
+          "spirit_damage",
+          "bullet_resist"
         ]
       }
     ],
@@ -7448,8 +7460,8 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Relentless",
         "Acrobatics",
+        "Relentless",
         "Pursuer"
       ],
       "playstyle": [
@@ -7520,8 +7532,8 @@
           "air_speed_max": 0
         },
         "effect_types": [
-          "bullet_resist",
-          "spirit_damage"
+          "spirit_damage",
+          "bullet_resist"
         ]
       },
       {
@@ -7571,8 +7583,8 @@
         },
         "effect_types": [
           "debuff",
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -7598,9 +7610,9 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "bullet_resist",
           "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "bullet_resist"
         ]
       }
     ],
@@ -7796,9 +7808,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Initiator",
         "High Flying",
-        "Arrogant"
+        "Arrogant",
+        "Initiator"
       ],
       "playstyle": [
         "assassin"
@@ -7916,8 +7928,8 @@
           "fire_rate": 0
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -7951,7 +7963,8 @@
           "duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "min_aim_angle": 0
         },
         "effect_types": [
           "slow",
@@ -8131,9 +8144,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Evasive",
+        "Disruptor",
         "Gooey",
-        "Disruptor"
+        "Evasive"
       ],
       "playstyle": [
         "mystic"
@@ -8308,9 +8321,9 @@
           "charge_delay": -1
         },
         "effect_types": [
+          "spirit_damage",
           "bullet_resist",
-          "stun",
-          "spirit_damage"
+          "stun"
         ]
       }
     ],
@@ -8554,9 +8567,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Trickster",
+        "Frogs",
         "Burst Damage",
-        "Frogs"
+        "Trickster"
       ],
       "playstyle": [
         "assassin"
@@ -8627,8 +8640,8 @@
         },
         "effect_types": [
           "slow",
-          "damage_amp",
-          "spirit_damage"
+          "spirit_damage",
+          "damage_amp"
         ]
       },
       {
@@ -8969,8 +8982,8 @@
           "ability_post_cast_duration": 0
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -9006,6 +9019,7 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "split_angle": 0,
           "recast_window": 0
         },
         "effect_types": [
@@ -9277,9 +9291,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Gunner",
         "Rat-a-Tat",
-        "Slippery"
+        "Slippery",
+        "Gunner"
       ],
       "playstyle": [
         "assassin"
@@ -9347,8 +9361,8 @@
           "cooldown_refund": 0
         },
         "effect_types": [
-          "slow",
           "move_speed",
+          "slow",
           "spirit_damage"
         ]
       },
@@ -9376,8 +9390,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -9427,8 +9441,8 @@
         },
         "effect_types": [
           "slow",
-          "petrify",
-          "spirit_damage"
+          "spirit_damage",
+          "petrify"
         ]
       }
     ],
@@ -9672,9 +9686,9 @@
     "complexity": 4,
     "tags": {
       "flavor": [
+        "Copycat",
         "Trickster",
-        "Versatile",
-        "Copycat"
+        "Versatile"
       ],
       "playstyle": [
         "mystic"
@@ -9740,7 +9754,6 @@
           "fire_rate": 0
         },
         "effect_types": [
-          "unknown",
           "spirit_damage"
         ]
       },
@@ -10010,9 +10023,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Nimble",
         "Harasser",
-        "Vexing",
-        "Nimble"
+        "Vexing"
       ],
       "playstyle": [
         "marksman"
@@ -10083,8 +10096,8 @@
           "air_speed_max": 0
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -10187,13 +10200,13 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "bat_bounce_count": 0
         },
         "effect_types": [
           "debuff",
-          "heal",
-          "unknown",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       }
     ],
@@ -10393,9 +10406,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Stalker",
         "Cruel",
-        "Bloodthirsty"
+        "Bloodthirsty",
+        "Stalker"
       ],
       "playstyle": [
         "assassin"
@@ -10490,6 +10503,7 @@
           "charge_delay": -1,
           "fire_rate": 0,
           "buff_duration": 0,
+          "teleport_height_offset_from_target": 0,
           "float_duration": 0
         },
         "effect_types": [
@@ -10533,9 +10547,9 @@
           "stamina_restored": 0
         },
         "effect_types": [
-          "heal",
           "weapon_damage",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -10566,7 +10580,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "fire_rate": 0
         },
         "effect_types": []
       }
@@ -10771,9 +10786,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Devout",
         "Tactical",
-        "Arms Expert",
-        "Devout"
+        "Arms Expert"
       ],
       "playstyle": [
         "marksman"
@@ -10943,8 +10958,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "damage_amp",
           "bullet_damage",
+          "damage_amp",
           "spirit_damage"
         ]
       }
@@ -11177,9 +11192,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Kill Me",
         "Can't",
-        "You"
+        "You",
+        "Kill Me"
       ],
       "playstyle": [
         "brawler"
@@ -11247,8 +11262,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -11332,11 +11347,11 @@
           "fire_rate": 0
         },
         "effect_types": [
-          "move_speed",
+          "heal",
           "spirit_damage",
-          "stun",
           "slow",
-          "heal"
+          "move_speed",
+          "stun"
         ]
       }
     ],
@@ -11624,7 +11639,8 @@
           "bonus_spirit_damage_percent": 15,
           "channel_duration": 0,
           "charges": 0,
-          "charge_delay": 0
+          "charge_delay": 0,
+          "fire_rate": 0
         },
         "effect_types": [
           "shield",
@@ -11655,8 +11671,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "slow",
           "immobilize",
+          "slow",
           "spirit_damage"
         ]
       },
@@ -11713,11 +11729,11 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "knockup",
+          "heal",
           "spirit_damage",
-          "stun",
           "damage_amp",
-          "heal"
+          "knockup",
+          "stun"
         ]
       }
     ],
@@ -11942,8 +11958,8 @@
     "tags": {
       "flavor": [
         "Mind Games",
-        "Disorienting",
-        "Map Control"
+        "Map Control",
+        "Disorienting"
       ],
       "playstyle": [
         "mystic"
@@ -12010,7 +12026,6 @@
         "effect_types": [
           "slow",
           "weapon_damage",
-          "unknown",
           "spirit_damage"
         ]
       },
@@ -12378,12 +12393,14 @@
           "wave_end_radius": "8.0m",
           "duration": 0,
           "cast_delay": 0,
+          "fire_rate_slow_duration": 0,
           "fire_rate": 0,
-          "cooldown_speed_per_blasted_pct": 0
+          "cooldown_speed_per_blasted_pct": 0,
+          "counts_as_heavy_melee": 0
         },
         "effect_types": [
-          "knockup",
           "move_speed",
+          "knockup",
           "spirit_damage"
         ]
       },
@@ -12465,8 +12482,8 @@
           "blasted_extend_by_bullet_duration": 0
         },
         "effect_types": [
-          "damage_amp",
-          "heal"
+          "heal",
+          "damage_amp"
         ]
       },
       {
@@ -12497,11 +12514,12 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "fire_rate_slow_duration": 0,
           "fire_rate": 0
         },
         "effect_types": [
-          "slow",
           "pull",
+          "slow",
           "spirit_damage"
         ]
       }
@@ -12699,8 +12717,8 @@
     "tags": {
       "flavor": [
         "Area Denial",
-        "Morbid",
-        "Necromancer"
+        "Necromancer",
+        "Morbid"
       ],
       "playstyle": [
         "marksman"
@@ -12825,10 +12843,10 @@
           "buff_duration": 0
         },
         "effect_types": [
-          "tether",
           "immobilize",
           "move_speed",
-          "spirit_damage"
+          "spirit_damage",
+          "tether"
         ]
       },
       {
@@ -12916,14 +12934,15 @@
           "charges": 0,
           "charge_delay": 0,
           "buff_duration": -1,
-          "cooldown_refund": 0
+          "cooldown_refund": 0,
+          "summon_burst_count": 0
         },
         "effect_types": [
-          "bullet_resist",
-          "knockup",
+          "heal",
           "spirit_damage",
           "slow",
-          "heal"
+          "knockup",
+          "bullet_resist"
         ]
       }
     ],
@@ -13143,8 +13162,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "A Cut Above",
         "Finesse",
+        "A Cut Above",
         "Mobility"
       ],
       "playstyle": [
@@ -13215,7 +13234,9 @@
           "charges": 0,
           "charge_delay": -1,
           "fire_rate": 0,
+          "reset_air_limit": 0,
           "stamina_restored": 0,
+          "bullet_velocity": 0,
           "buff_duration": 0
         },
         "effect_types": [
@@ -13259,10 +13280,10 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "slow",
-          "stun",
           "move_speed",
-          "spirit_damage"
+          "slow",
+          "spirit_damage",
+          "stun"
         ]
       },
       {
@@ -13350,16 +13371,17 @@
           "charges": 0,
           "charge_delay": -1,
           "fire_rate": 0,
+          "turn_rate_max": 0,
           "cooldown_reduced_on_hero_hit": 0,
           "cooldown_reduced_on_nonhero_hit": 0,
           "max_cooldown_reduction": 0
         },
         "effect_types": [
-          "move_speed",
+          "heal",
           "spirit_damage",
-          "debuff",
           "slow",
-          "heal"
+          "debuff",
+          "move_speed"
         ]
       }
     ],
@@ -13547,9 +13569,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Tiny",
         "zZzzZ",
-        "Helpful",
-        "Tiny"
+        "Helpful"
       ],
       "playstyle": [],
       "damage_type": [
@@ -13617,9 +13639,9 @@
           "fire_rate": 0
         },
         "effect_types": [
+          "knockup",
           "slow",
           "debuff",
-          "knockup",
           "spirit_damage"
         ]
       },
@@ -13690,8 +13712,8 @@
           "charge_delay": -1
         },
         "effect_types": [
-          "heal",
-          "spirit_damage"
+          "spirit_damage",
+          "heal"
         ]
       },
       {
@@ -13720,8 +13742,8 @@
           "consume_stamina_on_wake": 0
         },
         "effect_types": [
-          "slow",
           "sleep",
+          "slow",
           "spirit_damage"
         ]
       }
@@ -13931,8 +13953,8 @@
     "tags": {
       "flavor": [
         "Hot Mess",
-        "Transformation",
-        "Feral"
+        "Feral",
+        "Transformation"
       ],
       "playstyle": [
         "marksman"
@@ -14008,11 +14030,11 @@
           "stack_duration": 0
         },
         "effect_types": [
-          "move_speed",
           "weapon_damage",
-          "debuff",
+          "heal",
           "spirit_damage",
-          "heal"
+          "debuff",
+          "move_speed"
         ]
       },
       {
@@ -14074,6 +14096,7 @@
           "charge_delay": -1,
           "root_duration": 0,
           "bonus_debuff_duration": 0,
+          "ricochet_count": 0,
           "ricochet_range": 0
         },
         "effect_types": [
@@ -14126,8 +14149,8 @@
           "kill_duration_bonus": 0
         },
         "effect_types": [
-          "heal",
-          "move_speed"
+          "move_speed",
+          "heal"
         ]
       }
     ],
@@ -14367,9 +14390,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Dazzling",
         "Performer",
-        "Disruptive",
-        "Dazzling"
+        "Disruptive"
       ],
       "playstyle": [
         "marksman"

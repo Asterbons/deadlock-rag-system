@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "A Cut Above",
       "Finesse",
+      "A Cut Above",
       "Mobility"
     ],
     "playstyle": [
@@ -80,7 +80,9 @@
         "charges": 0,
         "charge_delay": -1,
         "fire_rate": 0,
+        "reset_air_limit": 0,
         "stamina_restored": 0,
+        "bullet_velocity": 0,
         "buff_duration": 0
       },
       "effects": [
@@ -421,6 +423,7 @@
         "charges": 0,
         "charge_delay": -1,
         "fire_rate": 0,
+        "turn_rate_max": 0,
         "cooldown_reduced_on_hero_hit": 0,
         "cooldown_reduced_on_nonhero_hit": 0,
         "max_cooldown_reduction": 0

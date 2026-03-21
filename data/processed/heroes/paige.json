@@ -161,7 +161,8 @@
         "bonus_spirit_damage_percent": 15,
         "channel_duration": 0,
         "charges": 0,
-        "charge_delay": 0
+        "charge_delay": 0,
+        "fire_rate": 0
       },
       "effects": [
         {

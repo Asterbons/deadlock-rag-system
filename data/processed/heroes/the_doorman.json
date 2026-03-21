@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Mind Games",
-      "Disorienting",
-      "Map Control"
+      "Map Control",
+      "Disorienting"
     ],
     "playstyle": [
       "mystic"
@@ -84,16 +84,6 @@
           },
           "formula": "85 + (spirit_power * 1.4)",
           "unit": "damage"
-        },
-        {
-          "type": "unknown",
-          "base_value": 3,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "3 + (spirit_power * 1)",
-          "unit": ""
         },
         {
           "type": "weapon_damage",

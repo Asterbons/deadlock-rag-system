@@ -149,6 +149,7 @@
         "ability_post_cast_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "split_angle": 0,
         "recast_window": 0
       },
       "effects": [

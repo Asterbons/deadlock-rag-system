@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
+      "Self Damage",
       "Fatale",
-      "Lifesteal",
-      "Self Damage"
+      "Lifesteal"
     ],
     "playstyle": [
       "mystic"

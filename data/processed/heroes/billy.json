@@ -80,8 +80,10 @@
         "wave_end_radius": "8.0m",
         "duration": 0,
         "cast_delay": 0,
+        "fire_rate_slow_duration": 0,
         "fire_rate": 0,
-        "cooldown_speed_per_blasted_pct": 0
+        "cooldown_speed_per_blasted_pct": 0,
+        "counts_as_heavy_melee": 0
       },
       "effects": [
         {
@@ -336,6 +338,7 @@
         "channel_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "fire_rate_slow_duration": 0,
         "fire_rate": 0
       },
       "effects": [

@@ -6,8 +6,8 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Sniper",
       "Soaring",
+      "Sniper",
       "One Shot Kill"
     ],
     "playstyle": [
@@ -227,6 +227,7 @@
         "channel_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "target_bounce_count": 0,
         "fire_rate": 0
       },
       "effects": [

@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
+      "Explorer",
       "Ice Cold",
-      "Protector",
-      "Explorer"
+      "Protector"
     ],
     "playstyle": [
       "brawler"
@@ -244,7 +244,8 @@
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "beam_split_count": 0
       },
       "effects": [
         {

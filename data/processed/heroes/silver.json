@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Hot Mess",
-      "Transformation",
-      "Feral"
+      "Feral",
+      "Transformation"
     ],
     "playstyle": [
       "marksman"
@@ -239,6 +239,7 @@
         "charge_delay": -1,
         "root_duration": 0,
         "bonus_debuff_duration": 0,
+        "ricochet_count": 0,
         "ricochet_range": 0
       },
       "effects": [

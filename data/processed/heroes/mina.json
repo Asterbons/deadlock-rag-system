@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Nimble",
       "Harasser",
-      "Vexing",
-      "Nimble"
+      "Vexing"
     ],
     "playstyle": [
       "marksman"
@@ -310,7 +310,8 @@
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "bat_bounce_count": 0
       },
       "effects": [
         {
@@ -322,17 +323,6 @@
           },
           "formula": "5.6 + (spirit_power * 0.12)",
           "unit": "damage"
-        },
-        {
-          "type": "unknown",
-          "base_value": 75,
-          "localized_name": "Total Bats Released",
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "75 + (spirit_power * 1)",
-          "unit": ""
         },
         {
           "type": "debuff",

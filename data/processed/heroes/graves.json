@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Area Denial",
-      "Morbid",
-      "Necromancer"
+      "Necromancer",
+      "Morbid"
     ],
     "playstyle": [
       "marksman"
@@ -108,11 +108,6 @@
             "ratio": 0.25
           },
           "formula": "20 + (spirit_power * 0.25)",
-          "unit": "damage"
-        },
-        {
-          "type": "spirit_damage",
-          "base_value": 1,
           "unit": "damage"
         }
       ],
@@ -370,7 +365,8 @@
         "charges": 0,
         "charge_delay": 0,
         "buff_duration": -1,
-        "cooldown_refund": 0
+        "cooldown_refund": 0,
+        "summon_burst_count": 0
       },
       "effects": [
         {

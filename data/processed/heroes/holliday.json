@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Explosive",
-      "Apprehender",
-      "Crackshot"
+      "Crackshot",
+      "Apprehender"
     ],
     "playstyle": [
       "marksman"
@@ -313,7 +313,8 @@
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "lift_initial_velocity_end": 0
       },
       "effects": [
         {

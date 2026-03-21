@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Rock Solid",
       "Disruptor",
-      "Team-up"
+      "Team-up",
+      "Rock Solid"
     ],
     "playstyle": [
       "marksman"
@@ -72,6 +72,7 @@
         "cast_range": 0,
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
+        "time_to_entangle": 0,
         "ntangle_duration": 0
       },
       "effects": [

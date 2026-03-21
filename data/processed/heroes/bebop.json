@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Hook",
+      "Bomb",
       "Punch",
-      "Bomb"
+      "Hook"
     ],
     "playstyle": [
       "brawler"
@@ -103,16 +103,6 @@
             "ratio": 0.6
           },
           "formula": "75 + (spirit_power * 0.6)",
-          "unit": "damage"
-        },
-        {
-          "type": "spirit_damage",
-          "base_value": -14,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": -0.186
-          },
-          "formula": "-14 + (spirit_power * -0.186)",
           "unit": "damage"
         }
       ],
@@ -256,11 +246,6 @@
         "bullet_amp_duration": 0
       },
       "effects": [
-        {
-          "type": "slow",
-          "base_value": 5,
-          "unit": "%"
-        },
         {
           "type": "slow",
           "base_value": 90,

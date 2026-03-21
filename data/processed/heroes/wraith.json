@@ -6,9 +6,9 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Duelist",
       "Isolator",
-      "Telekinetic"
+      "Telekinetic",
+      "Duelist"
     ],
     "playstyle": [
       "marksman"
@@ -238,7 +238,9 @@
         "ability_post_cast_duration": 0,
         "charges": 0,
         "charge_delay": -1,
-        "bullet_lifesteal": 0
+        "bullet_lifesteal": 0,
+        "allied_fire_rate_percentage": 0,
+        "unlimited_ammo": 0
       },
       "effects": [
         {
@@ -301,7 +303,8 @@
         "toss_up_strength": 220,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "lift_chain_count": 0
       },
       "effects": [
         {

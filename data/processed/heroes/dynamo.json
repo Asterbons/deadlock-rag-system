@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Clutch",
       "Teamplay",
+      "Clutch",
       "Initiator"
     ],
     "playstyle": [
@@ -265,11 +265,6 @@
         {
           "type": "knockup",
           "base_value": 350,
-          "unit": ""
-        },
-        {
-          "type": "knockup",
-          "base_value": 45,
           "unit": ""
         },
         {

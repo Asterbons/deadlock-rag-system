@@ -597,7 +597,9 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
                     detected_type = "spirit_damage"
             else:
                 detected_type = TYPE_ALIASES.get(detected_type, detected_type)
-            eff["type"] = detected_type
+            
+            property_snake = get_stat_name(pk, loc["stat_labels"])
+            eff["type"] = detected_type or property_snake or "unknown"
 
             STAT_TYPES = {
                 'cooldown', 'duration', 'radius', 'range',
@@ -609,16 +611,20 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
                 "frequency", "generation", "summon", "count",
                 "rate", "interval", "angle", "time-stop",
                 "per bullet", "per headshot", "per shot",
+                "fuse", "released", "velocity", "drag", "offset",
+                "limit", "angle", "trail"
             }
             
             loc_lower = eff.get("localized_name", "").lower()
             scale_stat = eff.get("scales_with", {}).get("stat", "")
             
-            is_mechanic = any(kw in loc_lower for kw in MECHANIC_NAME_BLACKLIST)
+            is_mechanic = any(kw in loc_lower for kw in MECHANIC_NAME_BLACKLIST) or \
+                          any(kw in property_snake for kw in MECHANIC_NAME_BLACKLIST)
+
             is_cooldown_mechanic = eff["type"] == "unknown" and scale_stat in ("ability_cooldown", "cooldown", "level_up_boons")
             
             if eff["type"] in STAT_TYPES or is_mechanic or is_cooldown_mechanic:
-                stat_key = get_stat_name(pk, loc["stat_labels"])
+                stat_key = property_snake
                 if stat_key == "ability_cooldown": stat_key = "cooldown"
                 elif stat_key == "ability_cast_range": stat_key = "cast_range"
                 elif stat_key == "ability_duration": stat_key = "duration"

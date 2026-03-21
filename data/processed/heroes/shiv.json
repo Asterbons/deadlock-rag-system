@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Rage",
       "Repeat",
-      "Bleed",
-      "Rage"
+      "Bleed"
     ],
     "playstyle": [
       "brawler"
@@ -74,11 +74,6 @@
         "cast_delay": 0
       },
       "effects": [
-        {
-          "type": "bleed",
-          "base_value": 1,
-          "unit": ""
-        },
         {
           "type": "slow",
           "base_value": 35,
@@ -160,6 +155,7 @@
         "channel_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "turn_rate_max": 0,
         "cooldown_reduced_on_hero_hit": 0,
         "cooldown_reduced_on_nonhero_hit": 0,
         "max_cooldown_reduction": 0

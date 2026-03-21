@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Explosive",
-      "Burn Rubber",
-      "Arsonist"
+      "Arsonist",
+      "Burn Rubber"
     ],
     "playstyle": [
       "marksman"
@@ -332,6 +332,7 @@
         "ability_post_cast_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "fire_rate_per_hero": 0,
         "buff_duration": 0
       },
       "effects": [

@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Tricksy",
       "Burst Damage",
+      "Tricksy",
       "Slippery"
     ],
     "playstyle": [
@@ -72,7 +72,8 @@
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "grenade_spread_angle": 0
       },
       "effects": [
         {
@@ -143,6 +144,7 @@
         "ability_post_cast_duration": 0,
         "charges": 0,
         "charge_delay": -1,
+        "turn_rate_max": 0,
         "cooldown_refund": 0,
         "bounty_duration": 0
       },

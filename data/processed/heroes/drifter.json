@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Stalker",
       "Cruel",
-      "Bloodthirsty"
+      "Bloodthirsty",
+      "Stalker"
     ],
     "playstyle": [
       "assassin"
@@ -139,6 +139,7 @@
         "charge_delay": -1,
         "fire_rate": 0,
         "buff_duration": 0,
+        "teleport_height_offset_from_target": 0,
         "float_duration": 0
       },
       "effects": [
@@ -292,7 +293,8 @@
         "channel_duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "fire_rate": 0
       },
       "effects": [],
       "upgrades": [

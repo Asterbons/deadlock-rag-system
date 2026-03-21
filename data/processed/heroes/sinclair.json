@@ -6,9 +6,9 @@
   "complexity": 4,
   "tags": {
     "flavor": [
+      "Copycat",
       "Trickster",
-      "Versatile",
-      "Copycat"
+      "Versatile"
     ],
     "playstyle": [
       "mystic"
@@ -85,16 +85,6 @@
           },
           "formula": "120 + (spirit_power * 1.86)",
           "unit": "damage"
-        },
-        {
-          "type": "unknown",
-          "base_value": 4,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "4 + (spirit_power * 1)",
-          "unit": ""
         },
         {
           "type": "spirit_damage",

@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Initiator",
       "High Flying",
-      "Arrogant"
+      "Arrogant",
+      "Initiator"
     ],
     "playstyle": [
       "assassin"
@@ -309,7 +309,8 @@
         "duration": 0,
         "ability_post_cast_duration": 0,
         "charges": 0,
-        "charge_delay": -1
+        "charge_delay": -1,
+        "min_aim_angle": 0
       },
       "effects": [
         {

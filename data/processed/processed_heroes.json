@@ -7,9 +7,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
+        "Brawler",
         "Tank",
-        "Bull-Headed",
-        "Brawler"
+        "Bull-Headed"
       ],
       "playstyle": [
         "brawler"
@@ -558,8 +558,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "A Cut Above",
         "Finesse",
+        "A Cut Above",
         "Mobility"
       ],
       "playstyle": [
@@ -632,7 +632,9 @@
           "charges": 0,
           "charge_delay": -1,
           "fire_rate": 0,
+          "reset_air_limit": 0,
           "stamina_restored": 0,
+          "bullet_velocity": 0,
           "buff_duration": 0
         },
         "effects": [
@@ -973,6 +975,7 @@
           "charges": 0,
           "charge_delay": -1,
           "fire_rate": 0,
+          "turn_rate_max": 0,
           "cooldown_reduced_on_hero_hit": 0,
           "cooldown_reduced_on_nonhero_hit": 0,
           "max_cooldown_reduction": 0
@@ -1247,9 +1250,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Hook",
+        "Bomb",
         "Punch",
-        "Bomb"
+        "Hook"
       ],
       "playstyle": [
         "brawler"
@@ -1344,16 +1347,6 @@
               "ratio": 0.6
             },
             "formula": "75 + (spirit_power * 0.6)",
-            "unit": "damage"
-          },
-          {
-            "type": "spirit_damage",
-            "base_value": -14,
-            "scales_with": {
-              "stat": "spirit_power",
-              "ratio": -0.186
-            },
-            "formula": "-14 + (spirit_power * -0.186)",
             "unit": "damage"
           }
         ],
@@ -1497,11 +1490,6 @@
           "bullet_amp_duration": 0
         },
         "effects": [
-          {
-            "type": "slow",
-            "base_value": 5,
-            "unit": "%"
-          },
           {
             "type": "slow",
             "base_value": 90,
@@ -1901,8 +1889,10 @@
           "wave_end_radius": "8.0m",
           "duration": 0,
           "cast_delay": 0,
+          "fire_rate_slow_duration": 0,
           "fire_rate": 0,
-          "cooldown_speed_per_blasted_pct": 0
+          "cooldown_speed_per_blasted_pct": 0,
+          "counts_as_heavy_melee": 0
         },
         "effects": [
           {
@@ -2157,6 +2147,7 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "fire_rate_slow_duration": 0,
           "fire_rate": 0
         },
         "effects": [
@@ -2417,8 +2408,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Tricksy",
         "Burst Damage",
+        "Tricksy",
         "Slippery"
       ],
       "playstyle": [
@@ -2483,7 +2474,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "grenade_spread_angle": 0
         },
         "effects": [
           {
@@ -2554,6 +2546,7 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "turn_rate_max": 0,
           "cooldown_refund": 0,
           "bounty_duration": 0
         },
@@ -2947,9 +2940,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Dazzling",
         "Performer",
-        "Disruptive",
-        "Dazzling"
+        "Disruptive"
       ],
       "playstyle": [
         "marksman"
@@ -3512,9 +3505,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Stalker",
         "Cruel",
-        "Bloodthirsty"
+        "Bloodthirsty",
+        "Stalker"
       ],
       "playstyle": [
         "assassin"
@@ -3645,6 +3638,7 @@
           "charge_delay": -1,
           "fire_rate": 0,
           "buff_duration": 0,
+          "teleport_height_offset_from_target": 0,
           "float_duration": 0
         },
         "effects": [
@@ -3798,7 +3792,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "fire_rate": 0
         },
         "effects": [],
         "upgrades": [
@@ -4027,8 +4022,8 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Clutch",
         "Teamplay",
+        "Clutch",
         "Initiator"
       ],
       "playstyle": [
@@ -4289,11 +4284,6 @@
             "unit": ""
           },
           {
-            "type": "knockup",
-            "base_value": 45,
-            "unit": ""
-          },
-          {
             "type": "spirit_damage",
             "base_value": 75,
             "scales_with": {
@@ -4526,8 +4516,8 @@
     "tags": {
       "flavor": [
         "Area Denial",
-        "Morbid",
-        "Necromancer"
+        "Necromancer",
+        "Morbid"
       ],
       "playstyle": [
         "marksman"
@@ -4627,11 +4617,6 @@
               "ratio": 0.25
             },
             "formula": "20 + (spirit_power * 0.25)",
-            "unit": "damage"
-          },
-          {
-            "type": "spirit_damage",
-            "base_value": 1,
             "unit": "damage"
           }
         ],
@@ -4889,7 +4874,8 @@
           "charges": 0,
           "charge_delay": 0,
           "buff_duration": -1,
-          "cooldown_refund": 0
+          "cooldown_refund": 0,
+          "summon_burst_count": 0
         },
         "effects": [
           {
@@ -5742,8 +5728,8 @@
     "tags": {
       "flavor": [
         "Stealthy",
-        "Assassin",
-        "Lethal"
+        "Lethal",
+        "Assassin"
       ],
       "playstyle": [
         "assassin"
@@ -5938,7 +5924,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "proc_damage_stack_count": 0
         },
         "effects": [
           {
@@ -6260,8 +6247,8 @@
     "tags": {
       "flavor": [
         "Explosive",
-        "Apprehender",
-        "Crackshot"
+        "Crackshot",
+        "Apprehender"
       ],
       "playstyle": [
         "marksman"
@@ -6566,7 +6553,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "lift_initial_velocity_end": 0
         },
         "effects": [
           {
@@ -6839,8 +6827,8 @@
     "tags": {
       "flavor": [
         "Explosive",
-        "Burn Rubber",
-        "Arsonist"
+        "Arsonist",
+        "Burn Rubber"
       ],
       "playstyle": [
         "marksman"
@@ -7164,6 +7152,7 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "fire_rate_per_hero": 0,
           "buff_duration": 0
         },
         "effects": [
@@ -7420,9 +7409,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Rock Solid",
         "Disruptor",
-        "Team-up"
+        "Team-up",
+        "Rock Solid"
       ],
       "playstyle": [
         "marksman"
@@ -7486,6 +7475,7 @@
           "cast_range": 0,
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
+          "time_to_entangle": 0,
           "ntangle_duration": 0
         },
         "effects": [
@@ -8029,9 +8019,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Explorer",
         "Ice Cold",
-        "Protector",
-        "Explorer"
+        "Protector"
       ],
       "playstyle": [
         "brawler"
@@ -8267,7 +8257,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "beam_split_count": 0
         },
         "effects": [
           {
@@ -8640,9 +8631,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Self Damage",
         "Fatale",
-        "Lifesteal",
-        "Self Damage"
+        "Lifesteal"
       ],
       "playstyle": [
         "mystic"
@@ -9236,9 +9227,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Initiator",
         "High Flying",
-        "Arrogant"
+        "Arrogant",
+        "Initiator"
       ],
       "playstyle": [
         "assassin"
@@ -9539,7 +9530,8 @@
           "duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "min_aim_angle": 0
         },
         "effects": [
           {
@@ -10400,9 +10392,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Nimble",
         "Harasser",
-        "Vexing",
-        "Nimble"
+        "Vexing"
       ],
       "playstyle": [
         "marksman"
@@ -10704,7 +10696,8 @@
           "channel_duration": 0,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "bat_bounce_count": 0
         },
         "effects": [
           {
@@ -10716,17 +10709,6 @@
             },
             "formula": "5.6 + (spirit_power * 0.12)",
             "unit": "damage"
-          },
-          {
-            "type": "unknown",
-            "base_value": 75,
-            "localized_name": "Total Bats Released",
-            "scales_with": {
-              "stat": "spirit_power",
-              "ratio": 1
-            },
-            "formula": "75 + (spirit_power * 1)",
-            "unit": ""
           },
           {
             "type": "debuff",
@@ -11109,6 +11091,7 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "split_angle": 0,
           "recast_window": 0
         },
         "effects": [
@@ -12202,7 +12185,8 @@
           "bonus_spirit_damage_percent": 15,
           "channel_duration": 0,
           "charges": 0,
-          "charge_delay": 0
+          "charge_delay": 0,
+          "fire_rate": 0
         },
         "effects": [
           {
@@ -12703,9 +12687,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Tactician",
         "Disruptor",
-        "Calculated"
+        "Calculated",
+        "Tactician"
       ],
       "playstyle": [
         "marksman"
@@ -13347,9 +13331,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Trickster",
+        "Frogs",
         "Burst Damage",
-        "Frogs"
+        "Trickster"
       ],
       "playstyle": [
         "assassin"
@@ -13875,9 +13859,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Tiny",
         "zZzzZ",
-        "Helpful",
-        "Tiny"
+        "Helpful"
       ],
       "playstyle": [],
       "damage_type": [
@@ -14140,11 +14124,6 @@
               "ratio": 0.14
             },
             "formula": "8 + (spirit_power * 0.14)",
-            "unit": "hp"
-          },
-          {
-            "type": "heal",
-            "base_value": 2,
             "unit": "hp"
           },
           {
@@ -14489,9 +14468,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
+        "Merciless",
         "Area Denial",
-        "High Voltage",
-        "Merciless"
+        "High Voltage"
       ],
       "playstyle": [
         "mystic"
@@ -15054,9 +15033,9 @@
     "complexity": 3,
     "tags": {
       "flavor": [
+        "Rage",
         "Repeat",
-        "Bleed",
-        "Rage"
+        "Bleed"
       ],
       "playstyle": [
         "brawler"
@@ -15122,11 +15101,6 @@
           "cast_delay": 0
         },
         "effects": [
-          {
-            "type": "bleed",
-            "base_value": 1,
-            "unit": ""
-          },
           {
             "type": "slow",
             "base_value": 35,
@@ -15208,6 +15182,7 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "turn_rate_max": 0,
           "cooldown_reduced_on_hero_hit": 0,
           "cooldown_reduced_on_nonhero_hit": 0,
           "max_cooldown_reduction": 0
@@ -15658,8 +15633,8 @@
     "tags": {
       "flavor": [
         "Hot Mess",
-        "Transformation",
-        "Feral"
+        "Feral",
+        "Transformation"
       ],
       "playstyle": [
         "marksman"
@@ -15890,6 +15865,7 @@
           "charge_delay": -1,
           "root_duration": 0,
           "bonus_debuff_duration": 0,
+          "ricochet_count": 0,
           "ricochet_range": 0
         },
         "effects": [
@@ -16304,9 +16280,9 @@
     "complexity": 4,
     "tags": {
       "flavor": [
+        "Copycat",
         "Trickster",
-        "Versatile",
-        "Copycat"
+        "Versatile"
       ],
       "playstyle": [
         "mystic"
@@ -16383,16 +16359,6 @@
             },
             "formula": "120 + (spirit_power * 1.86)",
             "unit": "damage"
-          },
-          {
-            "type": "unknown",
-            "base_value": 4,
-            "scales_with": {
-              "stat": "spirit_power",
-              "ratio": 1
-            },
-            "formula": "4 + (spirit_power * 1)",
-            "unit": ""
           },
           {
             "type": "spirit_damage",
@@ -16810,8 +16776,8 @@
     "tags": {
       "flavor": [
         "Mind Games",
-        "Disorienting",
-        "Map Control"
+        "Map Control",
+        "Disorienting"
       ],
       "playstyle": [
         "mystic"
@@ -16887,16 +16853,6 @@
             },
             "formula": "85 + (spirit_power * 1.4)",
             "unit": "damage"
-          },
-          {
-            "type": "unknown",
-            "base_value": 3,
-            "scales_with": {
-              "stat": "spirit_power",
-              "ratio": 1
-            },
-            "formula": "3 + (spirit_power * 1)",
-            "unit": ""
           },
           {
             "type": "weapon_damage",
@@ -17350,9 +17306,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "Devout",
         "Tactical",
-        "Arms Expert",
-        "Devout"
+        "Arms Expert"
       ],
       "playstyle": [
         "marksman"
@@ -17971,9 +17927,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Kill Me",
         "Can't",
-        "You"
+        "You",
+        "Kill Me"
       ],
       "playstyle": [
         "brawler"
@@ -18506,8 +18462,8 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Sniper",
         "Soaring",
+        "Sniper",
         "One Shot Kill"
       ],
       "playstyle": [
@@ -18727,6 +18683,7 @@
           "channel_duration": 0,
           "charges": 0,
           "charge_delay": -1,
+          "target_bounce_count": 0,
           "fire_rate": 0
         },
         "effects": [
@@ -19164,9 +19121,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
-        "Evasive",
+        "Disruptor",
         "Gooey",
-        "Disruptor"
+        "Evasive"
       ],
       "playstyle": [
         "mystic"
@@ -19798,9 +19755,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Gunner",
         "Rat-a-Tat",
-        "Slippery"
+        "Slippery",
+        "Gunner"
       ],
       "playstyle": [
         "assassin"
@@ -20419,9 +20376,9 @@
     "complexity": 2,
     "tags": {
       "flavor": [
+        "One Man Army",
         "Fearless",
-        "Initiator",
-        "One Man Army"
+        "Initiator"
       ],
       "playstyle": [
         "brawler"
@@ -21050,9 +21007,9 @@
     "complexity": 1,
     "tags": {
       "flavor": [
-        "Duelist",
         "Isolator",
-        "Telekinetic"
+        "Telekinetic",
+        "Duelist"
       ],
       "playstyle": [
         "marksman"
@@ -21282,7 +21239,9 @@
           "ability_post_cast_duration": 0,
           "charges": 0,
           "charge_delay": -1,
-          "bullet_lifesteal": 0
+          "bullet_lifesteal": 0,
+          "allied_fire_rate_percentage": 0,
+          "unlimited_ammo": 0
         },
         "effects": [
           {
@@ -21345,7 +21304,8 @@
           "toss_up_strength": 220,
           "ability_post_cast_duration": 0,
           "charges": 0,
-          "charge_delay": -1
+          "charge_delay": -1,
+          "lift_chain_count": 0
         },
         "effects": [
           {
@@ -21625,8 +21585,8 @@
     "complexity": 3,
     "tags": {
       "flavor": [
-        "Relentless",
         "Acrobatics",
+        "Relentless",
         "Pursuer"
       ],
       "playstyle": [
