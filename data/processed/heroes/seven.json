@@ -7,14 +7,13 @@
   "tags": {
     "flavor": [
       "Area Denial",
-      "Merciless",
-      "High Voltage"
+      "High Voltage",
+      "Merciless"
     ],
     "playstyle": [
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -47,7 +46,7 @@
     "health": 41,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -60,61 +59,135 @@
       "stats": {
         "cooldown": 26,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 8,
+        "cast_delay": 0.2,
+        "charges": 1,
+        "charge_delay": 8,
         "channel_move_speed": "1.3m",
-        "shock_radius": "4.25m",
-        "dps": 75,
+        "radius": "4.25m",
+        "damage_per_second": 75,
         "tick_rate": 0.1,
         "min_shock_duration": 0.5,
-        "max_lifetime": 5
+        "lifetime": 5,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
-      "effects": [],
-      "upgrades": []
+      "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 75,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.5
+          },
+          "formula": "75 + (spirit_power * 0.5)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "-X% move speed on hit targets and +Xs Lifetime",
+          "changes": {
+            "move_speed": 35,
+            "lifetime": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X DPS and +Xm radius",
+          "changes": {
+            "damage_per_second": 58.5,
+            "radius": "1.5m"
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_static_charge",
       "slot": 2,
       "name": "Static Charge",
-      "description": "Apply a charge to a target enemy hero. After a short duration, the static charge stuns and damages enemies within the radius.",
+      "description": "Apply a charge to a target enemy hero. After a short duration, the static charge stuns and damages enemies within the radius. | Strike in front of you with lightning, applying a charge to the unit or area hit. After a short duration, the static charge stuns and damages enemies within the radius.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
         "cooldown": 42,
         "cast_range": "15m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.2,
         "channel_move_speed": "1.3m",
-        "shock_radius": "5m",
+        "radius": "5m",
         "damage": 35,
-        "shock_delay": 3.5,
-        "stun_duration": 0.9
+        "delay_before_stun": 3.5,
+        "stun_duration": 0.9,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 35,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.792137
           },
-          "formula": "35 + (spirit__power * 0.792137)",
+          "formula": "35 + (spirit_power * 0.792137)",
           "unit": "damage"
         },
         {
           "type": "stun",
+          "base_value": 3.5,
+          "localized_name": "Delay Before Stun",
+          "unit": "seconds"
+        },
+        {
+          "type": "stun",
           "base_value": 0.9,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.9 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "0.9 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Radius +Xm Cast range",
+          "changes": {
+            "radius": "7m",
+            "cast_range": "5m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Stun Duration +X Damage",
+          "changes": {
+            "stun_duration": 0.9,
+            "damage": 160
+          }
+        }
+      ]
     },
     {
       "id": "ability_power_surge",
@@ -127,61 +200,112 @@
         "cooldown": 50,
         "duration": 10,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "damage_per_chain": 10,
-        "bonus_per_chain": 10,
-        "chain_count": 4,
+        "cast_delay": 0.2,
+        "shock_damage": 10,
+        "damage_on_jump": 10,
+        "max_jumps": 4,
         "chain_tick_rate": 0.2,
-        "chain_radius": "10m",
-        "bonus_move_speed": "0m"
+        "jump_radius": "10m",
+        "move_speed": "0m",
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 10,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.14
           },
-          "formula": "10 + (spirit__power * 0.14)",
+          "formula": "10 + (spirit_power * 0.14)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 10,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.32
+          },
+          "formula": "10 + (spirit_power * 0.32)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-18s Cooldown",
+          "changes": {
+            "cooldown": -18
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Move Speed +X Damage and increased scaling",
+          "changes": {
+            "move_speed": "3m",
+            "damage_on_jump": 8,
+            "shock_damage": 8,
+            "damage_on_jump_scale_bonus": 0.23,
+            "shock_damage_scale_bonus": 0.23
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs DurationApplies X% Spirit Resist",
+          "changes": {
+            "spirit_resist_debuff": -15,
+            "debuff_duration": 10,
+            "duration": 12
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_storm_cloud",
       "slot": 4,
       "name": "Storm Cloud",
-      "description": "Channel an expanding storm cloud around you that damages all enemies within its radius. Enemies do not take damage when they are out of line-of-sight.",
+      "description": "Channel an expanding storm cloud around you that damages all enemies within its radius. Enemies do not take damage when they are out of line-of-sight. | While channeling, press[Attack]to mark the targeted area to be struck with a powerful lightning bolt that knocks enemies away after a Xs delay. One use per cast.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 180,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 7,
-        "ability_cooldown_between_charge": -1,
+        "channel_duration": 7,
         "radius": "30m",
         "initial_radius": "10m",
-        "dps": 95,
+        "damage_per_second": 95,
         "damage_interval": 0.25,
         "xpand_time": 1.5,
         "cloud_height": 120,
         "camera_distance": 600,
         "nding_soon_time": 2,
         "lightning_strikes": 1,
-        "lightning_strike_radius": "7m",
+        "strike_radius": "7m",
         "lightning_strike_delay": 0.25,
-        "lightning_strike_damage": 75,
+        "strike_damage": 75,
         "lightning_strike_knock_back_force": 500,
-        "flight_control_enabled": "1.5m"
+        "flight_speed": "1.5m",
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0.25,
+          "type": "spirit_damage",
+          "base_value": 95,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.6
+          },
+          "formula": "95 + (spirit_power * 0.6)",
           "unit": "damage"
         },
         {
@@ -193,9 +317,38 @@
           },
           "formula": "75 + (spirit_power * 0.5)",
           "unit": "damage"
+        },
+        {
+          "type": "knock_back",
+          "base_value": 500,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X% Bullet Resist while channeling Storm Cloud",
+          "changes": {
+            "bullet_resist": 55
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xs Channel Time +Xm Radius",
+          "changes": {
+            "radius": "10m",
+            "channel_duration": 7
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs DPS+Xm Flight Speed",
+          "changes": {
+            "damage_per_second": 65,
+            "flight_speed": "3m"
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -383,22 +536,6 @@
     {
       "id": "upgrade_suppressor",
       "name": "Suppressor"
-    },
-    {
-      "id": "upgrade_tech_defense_shredders",
-      "name": "Spirit Shredder Bullets"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_titan_round",

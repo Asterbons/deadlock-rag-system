@@ -6,15 +6,14 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Slippery",
       "Gunner",
-      "Rat-a-Tat"
+      "Rat-a-Tat",
+      "Slippery"
     ],
     "playstyle": [
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -48,7 +47,7 @@
     "health": 35,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -61,17 +60,22 @@
       "stats": {
         "cooldown": 10,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_charges": 2,
-        "ability_cooldown_between_charge": 4.5,
-        "channel_move_speed": -1,
+        "cast_delay": 0.2,
+        "charges": 2,
+        "charge_delay": 4.5,
         "damage": 50,
         "slow_duration": 2,
-        "slow_percent": 35,
+        "move_speed": 35,
         "damage_per_stack": 25,
         "slow_percent_per_stack": 15,
         "stack_duration": 10,
-        "max_stacks": 3
+        "max_stacks": 3,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "stamina_reduction": 0,
+        "cooldown_refund": 0
       },
       "effects": [
         {
@@ -87,17 +91,19 @@
         {
           "type": "slow",
           "base_value": 2,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "2 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
-          "type": "slow",
+          "type": "move_speed",
           "base_value": 35,
-          "unit": "%"
+          "localized_name": "Move Speed",
+          "unit": "m/s"
         },
         {
           "type": "spirit_damage",
@@ -115,7 +121,30 @@
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "On Hit: X% Bullet Resist and X% Bullet Resist per Stack",
+          "changes": {
+            "bullet_resist": -8,
+            "bullet_resist_per_stack": -5
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Hit: Refund X% Charge Cooldown",
+          "changes": {
+            "cooldown_refund": 55
+          }
+        }
+      ]
     },
     {
       "id": "ability_viper_venom",
@@ -128,35 +157,41 @@
         "cooldown": 24,
         "cast_range": "15m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "venom_duration": 3,
-        "venom_min_damage": 20,
-        "venom_max_damage": 140,
+        "venom_buildup_duration": 3,
+        "minimum_venom_damage": 20,
+        "max_venom_damage": 140,
         "venom_min_damage_health_percentage": 100,
-        "venom_max_damage_health_percentage": 30,
+        "health_for_max_damage": 30,
         "venom_buildup_per_shot": 1,
-        "build_up_duration": 5
+        "build_up_duration": 5,
+        "duration": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 20,
+          "localized_name": "Minimum Venom Damage",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.651
           },
-          "formula": "20 + (spirit__power * 0.651)",
+          "formula": "20 + (spirit_power * 0.651)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 140,
+          "localized_name": "Max Venom Damage",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 2.79
           },
-          "formula": "140 + (spirit__power * 2.79)",
+          "formula": "140 + (spirit_power * 2.79)",
           "unit": "damage"
         },
         {
@@ -167,10 +202,34 @@
         {
           "type": "heal",
           "base_value": 30,
+          "localized_name": "Health for Max Damage",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+31.5 Max Venom Damage",
+          "changes": {
+            "max_venom_damage": 31.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "X% Healing Reduction and Xs Cooldown",
+          "changes": {
+            "healing_reduction": -40,
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 3,
+          "description": "Bullets also build up Lethal Venom",
+          "changes": {
+            "build_up_per_shot": 4.5
+          }
+        }
+      ]
     },
     {
       "id": "ability_viper_snakedash",
@@ -181,12 +240,46 @@
       "targeting": "instant",
       "stats": {
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "slide_scale": 10
+        "slide_distance": 10,
+        "cooldown": 0,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "stamina": 0,
+        "slide_resist": 0,
+        "buff_duration": 0
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+20m Slide Distance",
+          "changes": {
+            "slide_distance": 20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+2 Stamina",
+          "changes": {
+            "stamina": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Slide: Gain X barrier for Xs",
+          "changes": {
+            "buff_duration": 5,
+            "barrier": 180,
+            "cooldown": 8,
+            "barrier_scale_bonus": 0.6
+          }
+        }
+      ]
     },
     {
       "id": "ability_viper_petrifybola",
@@ -198,16 +291,20 @@
       "stats": {
         "cooldown": 90,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.1,
         "damage": 50,
         "petrify_damage": 180,
         "radius": "8m",
         "petrify_duration": 2,
         "slow_duration": 1.5,
-        "petrify_damage_break_threshold": 200,
-        "slow_percent": 50
+        "petrify_damage_block": 200,
+        "move_speed": 50,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -231,27 +328,63 @@
           "unit": "damage"
         },
         {
+          "type": "petrify",
+          "base_value": 2,
+          "localized_name": "Petrify Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "2 + (spirit_power * 1)",
+          "unit": "s"
+        },
+        {
           "type": "slow",
           "base_value": 1.5,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "1.5 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
-          "type": "bullet_damage",
+          "type": "petrify",
           "base_value": 200,
-          "unit": "damage"
+          "localized_name": "Petrify Damage Block",
+          "unit": ""
         },
         {
           "type": "slow",
           "base_value": 50,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+49.5 Petrify Damage",
+          "changes": {
+            "petrify_damage": 49.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "-25s Cooldown",
+          "changes": {
+            "cooldown": -25
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Petrify Duration. Petrifies all enemies in the area.",
+          "changes": {
+            "petrify_duration": 1
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -467,14 +600,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_titan_round",

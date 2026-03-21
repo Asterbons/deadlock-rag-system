@@ -6,21 +6,20 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Protector",
       "Booksmart",
+      "Protector",
       "Helpful"
     ],
     "playstyle": [
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
-      "heal"
+      "heal",
+      "stun"
     ]
   },
   "base_stats": {
@@ -48,7 +47,7 @@
     "health": 29,
     "base_melee_damage_from_level": 1.2,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,27 +61,45 @@
         "cooldown": 33,
         "duration": 5,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 8,
-        "channel_move_speed": -1,
-        "dps": 30,
+        "cast_delay": 0.1,
+        "charges": 1,
+        "charge_delay": 8,
+        "damage_per_second": 30,
         "tick_rate": 0.3,
         "startup_delay": 0.3,
         "debuff_duration": 1.5,
         "dragon_search_radius": "8.5m",
         "dragon_cone_range": "5m",
         "dragon_upward_speed": 400,
-        "ground_flame_duration": 3,
+        "trail_duration": 3,
         "damage": 60,
         "radius": "4m",
         "dragon_search_tick_rate": 0.1,
         "ground_aura_spacing": "1m",
         "aura_linger_duration": 0.1,
         "dragon_travel_range": "20m",
-        "dragon_range_per_second": 500
+        "dragon_range_per_second": 500,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
+        {
+          "type": "spirit_damage",
+          "base_value": 30,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.3
+          },
+          "formula": "30 + (spirit_power * 0.3)",
+          "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 1.5,
+          "localized_name": "Debuff Duration",
+          "unit": "s"
+        },
         {
           "type": "spirit_damage",
           "base_value": 60,
@@ -94,7 +111,33 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Trail Duration +Xm Radius",
+          "changes": {
+            "trail_duration": 2,
+            "radius": "1m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Travel Range Xs Cooldown",
+          "changes": {
+            "dragon_travel_range": "10m",
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage +X DPS+X Charge",
+          "changes": {
+            "damage": 100,
+            "damage_per_second": 30,
+            "charges": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_bookworm_knightbarrier",
@@ -108,17 +151,30 @@
         "duration": 5,
         "cast_range": "35m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
+        "cast_delay": 0.1,
         "ability_post_cast_duration": 0.2,
-        "channel_move_speed": -1,
-        "combat_barrier": 125,
+        "barrier": 125,
         "push_force": 900,
-        "attack_damage_percent": 25,
+        "weapon_damage": 25,
         "shove_radius": "6m",
         "bonus_target_radius": "30m",
-        "bonus_spirit_damage_percent": 15
+        "bonus_spirit_damage_percent": 15,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": 0
       },
       "effects": [
+        {
+          "type": "shield",
+          "base_value": 125,
+          "localized_name": "Barrier",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.3
+          },
+          "formula": "125 + (spirit_power * 1.3)",
+          "unit": ""
+        },
         {
           "type": "spirit_damage",
           "base_value": 25,
@@ -130,12 +186,38 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 15,
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Barrier: +X% Fire Rate",
+          "changes": {
+            "fire_rate": 14,
+            "fire_rate_scale_bonus": 0.13
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Barrier and +Xs Duration",
+          "changes": {
+            "barrier": 100,
+            "duration": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "Increases barrier scaling.Up to X additional allies gain X% Barrier",
+          "changes": {
+            "barrier_scale_bonus": 0.3,
+            "bonus_targets": 2,
+            "bonus_targets_barrier_percentage": 75
+          }
+        }
+      ]
     },
     {
       "id": "ability_bookworm_aoemagic",
@@ -148,16 +230,19 @@
         "cooldown": 30,
         "cast_range": "30m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.15,
         "damage": 90,
         "radius": "7.5m",
         "detonation_delay": 1.25,
         "immobilize_duration": 1,
         "slow_duration": 0.5,
-        "slow_percent": 45,
-        "height": "8m"
+        "move_speed": 45,
+        "height": "8m",
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -171,22 +256,59 @@
           "unit": "damage"
         },
         {
+          "type": "immobilize",
+          "base_value": 1,
+          "localized_name": "Immobilize Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1 + (spirit_power * 1)",
+          "unit": "s"
+        },
+        {
           "type": "slow",
           "base_value": 0.5,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "0.5 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 45,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-11s Cooldown",
+          "changes": {
+            "cooldown": -11
+          }
+        },
+        {
+          "level": 2,
+          "description": "+1s Immobilize Duration",
+          "changes": {
+            "immobilize_duration": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm RadiusOn Hit: Reduce Spirit Resist by X% for Xs",
+          "changes": {
+            "spirit_resist": -18,
+            "debuff_duration": 6,
+            "radius": "1m"
+          }
+        }
+      ]
     },
     {
       "id": "ability_bookworm_knightcharge",
@@ -200,16 +322,15 @@
         "duration": 13,
         "cast_range": "600m",
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 0.7,
-        "ability_cooldown_between_charge": -1,
+        "channel_duration": 0.7,
         "channel_move_speed": "1.3m",
         "damage": 125,
         "ground_stick_height": "0.05m",
         "toss_up_speed": 600,
         "knight_charge_width": "1.7m",
         "knight_count": 5,
-        "knight_position_spread": "1.8m",
-        "bonus_move_speed": "5m",
+        "knight_spread": "1.8m",
+        "move_speed": "5m",
         "buff_duration": 9,
         "ally_radius": "4m",
         "ally_height": "20m",
@@ -237,7 +358,11 @@
         "cancel_cooldown_refund_percentage": 50,
         "target_finding_delay": 0.04,
         "max_amp": 100,
-        "max_amp_distance": "350m"
+        "max_amp_distance": "350m",
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -251,27 +376,70 @@
           "unit": "damage"
         },
         {
+          "type": "knockup",
+          "base_value": 600,
+          "unit": ""
+        },
+        {
+          "type": "knockup",
+          "base_value": 100,
+          "unit": ""
+        },
+        {
           "type": "stun",
           "base_value": 1,
+          "localized_name": "Stun Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "1 + (spirit_power * 1)",
-          "unit": "seconds"
+          "unit": "s"
         },
         {
           "type": "heal",
           "base_value": 125,
+          "localized_name": "Heal Amount",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.6
           },
-          "formula": "125 + (spirit__power * 1.6)",
+          "formula": "125 + (spirit_power * 1.6)",
           "unit": "hp"
+        },
+        {
+          "type": "damage_amp",
+          "base_value": 100,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+150 Heal Amount",
+          "changes": {
+            "heal_amount": 150
+          }
+        },
+        {
+          "level": 2,
+          "description": "Increase width by +X SteedsX Cooldown",
+          "changes": {
+            "knight_count": 4,
+            "knight_count_in_first_wave": 4,
+            "cooldown": -30
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage +Xs Stun Duration+X% Max Amp",
+          "changes": {
+            "damage": 135,
+            "stun_duration": 0.5,
+            "max_amp": 50
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -463,10 +631,6 @@
     {
       "id": "upgrade_target_stun",
       "name": "Knockdown"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_thermal_detonator",

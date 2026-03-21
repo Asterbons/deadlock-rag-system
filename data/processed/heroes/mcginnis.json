@@ -10,12 +10,10 @@
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
       "heal"
     ]
   },
@@ -44,8 +42,8 @@
     "health": 52,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__resist": 0.625,
-    "spirit__power": 1.1
+    "spirit_resist": 0.625,
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -59,63 +57,97 @@
         "cooldown": 18,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 3,
+        "cast_delay": 0.2,
+        "charges": 1,
+        "charge_delay": 3,
         "model_scale": 0.8,
         "tick_rate": 0.5,
         "tracking_speed": 430,
         "attack_cone_angle": 10,
         "turret_deploy_time": 0.25,
-        "turret_base_health": 90,
-        "turret_attack_range": "25m",
+        "turret_health": 90,
+        "attack_range": "25m",
         "turret_attack_falloff_start": "20m",
         "turret_attack_falloff_end": "30m",
         "turret_attack_delay": 0.2,
-        "turret_d_p_s": 30,
-        "turret_lifetime": 35,
+        "turret_dps": 30,
+        "lifetime": 35,
         "attack_speed_mult": 100,
-        "spirit__resist": 35,
+        "spirit_resist": 35,
         "melee_resist": 35,
         "non_hero_damage_percent_outgoing": 50,
         "boss_damage_percent_outgoing": 30,
         "boss_damage_percent_incoming": 50,
         "decaying_resist": 80,
-        "decaying_resist_duration": 6
+        "decaying_resist_duration": 6,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 90,
+          "localized_name": "Turret Health",
           "scales_with": {
-            "stat": "level__up__boons",
+            "stat": "level_up_boons",
             "ratio": 7.8
           },
-          "formula": "90 + (level__up__boons * 7.8)",
+          "formula": "90 + (level_up_boons * 7.8)",
           "unit": "hp"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
+          "base_value": 30,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.389975
+          },
+          "formula": "30 + (spirit_power * 0.389975)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 35,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
           "base_value": 50,
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 30,
           "unit": "damage"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Turret DPS and +Xm Attack Range",
+          "changes": {
+            "attack_range": "10m",
+            "turret_dps": 10
+          }
+        },
+        {
+          "level": 2,
+          "description": "+2charges Charges",
+          "changes": {
+            "charges": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Turret Fire Rate and +Xs Turret Lifetime",
+          "changes": {
+            "attack_speed_mult": 30,
+            "lifetime": 12
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_mobile_resupply",
@@ -129,63 +161,67 @@
         "duration": 6,
         "cast_range": "15m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.2,
         "heal_radius": "5m",
-        "xternal_bonus_health_regen": 25,
+        "health_regen": 25,
         "turret_heal_mult": 1,
-        "heal_interval": 0.1
+        "heal_interval": 0.1,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "aura_fire_rate_bonus": 0
       },
       "effects": [
         {
           "type": "heal",
-          "base_value": "5m",
-          "scales_with": {
-            "stat": "radius",
-            "ratio": 1
-          },
-          "formula": "5m + (radius * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
           "base_value": 25,
+          "localized_name": "Health Regen",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.3
           },
-          "formula": "25 + (spirit__power * 0.3)",
+          "formula": "25 + (spirit_power * 0.3)",
           "unit": "hp"
         },
         {
           "type": "heal",
           "base_value": 1,
           "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 0.1,
-          "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Specter provides +X% Spirit Resist",
+          "changes": {
+            "spirit_resist": 40
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and provides +X% Stamina Recovery",
+          "changes": {
+            "cooldown": -20,
+            "stamina_recovery": 100
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Max Health regen per second, +Xm Heal Radius and +Xs Duration",
+          "changes": {
+            "max_health_regen": 2,
+            "heal_radius": "3m",
+            "duration": 1
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_fissure_wall",
       "slot": 3,
       "name": "Spectral Wall",
-      "description": "Cast a wall that applies slow on enemies it passes through. Erupt the wall to divide the terrain in half and damage nearby enemies. After casting, pressorto erupt the wall early. Can be Destroyed with Melee Attacks",
+      "description": "Cast a wall that applies slow on enemies it passes through. Erupt the wall to divide the terrain in half and damage nearby enemies. After casting, press[Attack]or[Ability3]to erupt the wall early. Can be Destroyed with Melee Attacks",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
@@ -193,10 +229,8 @@
         "duration": 4.5,
         "cast_range": "50m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "min_range": "5m",
-        "wall_impact_range": "5m",
+        "minimum_range": "5m",
+        "impact_range": "5m",
         "push_force": 175,
         "damage": 60,
         "num_wall_segments": 7,
@@ -204,46 +238,70 @@
         "segment_emit_time": 0.1,
         "time_to_max_distance": 1.8,
         "slow_duration": 2.5,
-        "slow_percent": 20
+        "move_speed": 20,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "stamina_reduction": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 60,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.731203
           },
-          "formula": "60 + (spirit__power * 0.731203)",
+          "formula": "60 + (spirit_power * 0.731203)",
           "unit": "damage"
-        },
-        {
-          "type": "stun",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "seconds"
         },
         {
           "type": "slow",
           "base_value": 2.5,
+          "localized_name": "Slow Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "2.5 + (ability__duration * 1)",
-          "unit": "%"
+          "formula": "2.5 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 20,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Amplifies X's damage by +X% on hit enemies for Xs",
+          "changes": {
+            "bonus_damage": 20,
+            "debuff_duration": 7
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +Xs Duration",
+          "changes": {
+            "cooldown": -20,
+            "duration": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "Deploy X Mini Turrets near the wall for Xs+X% Slow",
+          "changes": {
+            "create_turrets": 2,
+            "turret_life_time": 8,
+            "move_speed": 30
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_rocket_barrage",
@@ -257,47 +315,67 @@
         "duration": 8,
         "cast_range": "50m",
         "ability_unit_target_limit": 100,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage_per_rocket": 22.5,
-        "grenades_per_second": 6,
+        "rockets_per_second": 6,
         "interval_ramp_up_time": 0.3,
         "interval_ramp_up_start": 0.35,
         "detonate_timer": 5,
         "xplosion_falloff_disabled": 1,
-        "xplosion_radius": "5m",
+        "explosion_radius": "5m",
         "tracking_variance": "0m",
         "track_speed_near": 150,
         "track_speed_far": 100,
         "tracking_time": 0.4,
-        "min_distance": "8.5m",
+        "min_range": "8.5m",
         "max_spread": 5,
         "projectile_ignore_collision_time": 0.2,
-        "ground_dash_reduction_percent": -35
+        "dash_distance": -35,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 22.5,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.2325
           },
-          "formula": "22.5 + (spirit__power * 0.2325)",
+          "formula": "22.5 + (spirit_power * 0.2325)",
           "unit": "damage"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Applies X% movement and dash slow for Xs",
+          "changes": {
+            "move_slow_percent": 30,
+            "nemy_dash_slow_percent": -30,
+            "move_slow_duration": 1.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +Xs Duration",
+          "changes": {
+            "cooldown": -55,
+            "duration": 6
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm Radius and +X Damage per Rocket with increased spirit scaling",
+          "changes": {
+            "damage_per_rocket": 25,
+            "damage_per_rocket_scale_bonus": 0.25,
+            "explosion_radius": "2m"
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -525,14 +603,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_titan_round",

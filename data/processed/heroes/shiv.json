@@ -6,15 +6,14 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Bleed",
       "Repeat",
+      "Bleed",
       "Rage"
     ],
     "playstyle": [
       "brawler"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -47,187 +46,307 @@
     "health": 45,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
       "id": "citadel_ability_shiv_dagger",
       "slot": 1,
       "name": "Serrated Knives",
-      "description": "Throw a knife that bleeds an enemy. Each additional hit adds a stack and refreshes the bleed duration, causing the bleed to increase per stack.",
+      "description": "Throw a knife that bleeds an enemy. Each additional hit adds a stack and refreshes the bleed duration, causing the bleed to increase per stack. | Ultimate Unlock: While rage is full knives will ricochet to another enemy and apply a slow to enemies they bleed.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 16,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 0.2,
+        "channel_duration": 0.2,
         "ability_post_cast_duration": 0.3,
-        "ability_charges": 2,
-        "ability_cooldown_between_charge": 2,
-        "channel_move_speed": -1,
+        "charges": 2,
+        "charge_delay": 2,
         "bleed_tick_rate": 1,
         "movement_slow": 35,
-        "bleed_d_p_s_per_stack": 10,
+        "bleed_dps_per_knife": 10,
         "bleed_duration": 5,
-        "a_o_e_radius": "10m",
-        "ricochet_count": 1
+        "impact_radius": "10m",
+        "ricochet_count": 1,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0
       },
       "effects": [
         {
+          "type": "bleed",
+          "base_value": 1,
+          "unit": ""
+        },
+        {
           "type": "slow",
           "base_value": 35,
+          "localized_name": "Movement Slow",
           "unit": "%"
         },
         {
           "type": "spirit_damage",
-          "base_value": 0,
+          "base_value": 10,
           "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0
+            "stat": "spirit_power",
+            "ratio": 0.15
           },
-          "formula": "0 + (spirit__power * 0)",
+          "formula": "10 + (spirit_power * 0.15)",
           "unit": "damage"
+        },
+        {
+          "type": "bleed",
+          "base_value": 5,
+          "localized_name": "Bleed Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "5 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+2s Bleed Duration",
+          "changes": {
+            "bleed_duration": 2
+          }
+        },
+        {
+          "level": 2,
+          "description": "+2charges Charges",
+          "changes": {
+            "charges": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Bleed DPS with increased Spirit scaling",
+          "changes": {
+            "bleed_dps_per_knife": 12,
+            "bleed_dps_per_knife_scale_bonus": 0.1
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_shiv_dash",
       "slot": 2,
       "name": "Slice and Dice",
-      "description": "Perform a dash forward, damaging enemies along the path. Hit Enemies have their spirit resist reduced. This debuff can stack.",
+      "description": "Perform a dash forward, damaging enemies along the path. Hit Enemies have their spirit resist reduced. This debuff can stack. | Ultimate Unlock: While rage is full an echo of Shiv retraces the dash path after a short delay, damaging enemies again.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 16,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.25,
+        "cast_delay": 0.25,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "cleave__duration": 0.35,
+        "cleave_duration": 0.35,
         "dash_angle_threshold": 89,
         "dash_speed": 2400,
         "dash_range": "12m",
-        "dash_radius": "2.5m",
+        "radius": "2.5m",
         "impact_damage": 60,
         "move_speed_penalty_max_speed": 200,
         "camera_distance": 250,
         "side_move_speed_reduction": -100,
-        "spirit__resist": -6,
-        "debuff_duration": 14
+        "spirit_resist": -6,
+        "debuff_duration": 14,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "cooldown_reduced_on_hero_hit": 0,
+        "cooldown_reduced_on_nonhero_hit": 0,
+        "max_cooldown_reduction": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 60,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.4415
           },
-          "formula": "60 + (spirit__power * 1.4415)",
+          "formula": "60 + (spirit_power * 1.4415)",
           "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": 200,
+          "unit": "m/s"
+        },
+        {
+          "type": "move_speed",
+          "base_value": -100,
+          "unit": "m/s"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": -6,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 14,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "14 + (spirit_power * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-6s Cooldown",
+          "changes": {
+            "cooldown": -6
+          }
+        },
+        {
+          "level": 2,
+          "description": "X% Spirit Resist+Xm Dash Range",
+          "changes": {
+            "spirit_resist": -8,
+            "dash_range": "2m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Impact Damage-Xs Cooldown per Hero hit.",
+          "changes": {
+            "impact_damage": 50,
+            "cooldown_reduced_on_hero_hit": 2,
+            "cooldown_reduced_on_nonhero_hit": 1,
+            "max_cooldown_reduction": 8
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_shiv_defer_damage",
       "slot": 3,
       "name": "Bloodletting",
-      "description": "Take only a portion of incoming damage immediately and defer the rest to be taken over time. Activate to clear a portion of the deferred damage.",
+      "description": "Take only a portion of incoming damage immediately and defer the rest to be taken over time. Activate to clear a portion of the deferred damage. | Ultimate Unlock: While rage is full the amount of damage deferred is increased.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 20,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.25,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "damage_pct_deferred": 25,
+        "cast_delay": 0.25,
+        "incoming_damage_deferred": 15,
         "deferred_damage_duration": 6,
-        "defer_clear_pct": 40,
-        "damage_pct_deferred_max_rage": 15
+        "deferred_damage_cleared": 40,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 25,
+          "localized_name": "Incoming Damage Deferred",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
-          "base_value": 6,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "6 + (spirit_power * 1)",
+          "type": "spirit_damage",
+          "base_value": 40,
+          "localized_name": "Deferred Damage Cleared",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 15,
+          "localized_name": "Incoming Damage Deferred",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-10s Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 2,
+          "description": "+15 Incoming Damage Deferred",
+          "changes": {
+            "incoming_damage_deferred": 15
+          }
+        },
+        {
+          "level": 3,
+          "description": "+45 Deferred Damage Cleared",
+          "changes": {
+            "deferred_damage_cleared": 45
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_shiv_killing_blow",
       "slot": 4,
       "name": "Killing Blow",
-      "description": "",
+      "description": "Active: Leap forward, dealing spirit damage to the first enemy hero. If they are below the kill threshold, execute them instead. | Passive: Damaging enemies fills you with rage. While at full rage, X gains increased damage and unlocks special properties on his other abilities.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 105,
         "cast_range": "13m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.05,
+        "cast_delay": 0.05,
         "ability_post_cast_duration": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "rage_drain_rate": 0.25,
         "rage_per_weapon_damage": 0.015877,
         "rage_per_spirit_damage": 0.014529,
         "rage_per_light_melee": 1.55664,
         "rage_per_heavy_melee": 2.85384,
         "bonus_ability_resource": 10,
-        "buff_damage": 14,
+        "full_rage_damage_bonus": 14,
         "rage_drain_delay_duration": 12,
         "damage": 200,
-        "nemy_health_percent": 20,
+        "enemy_health_threshold": 20,
         "nemy_health_percent_buffer": 3,
         "camera_distance": 400,
         "move_speed_to_target": "30m",
         "min_time_to_target": 0.5,
-        "slash_range": 90
+        "slash_range": 90,
+        "duration": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "recast_window": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0.015877,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0.014529,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 14,
+          "localized_name": "Full Rage Damage Bonus",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 200,
+          "localized_name": "Damage",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 20,
+          "localized_name": "Enemy health threshold",
           "unit": "hp"
         },
         {
@@ -236,7 +355,30 @@
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Gain +X m/s move speed while at full rage.",
+          "changes": {
+            "move_speed": "2m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Full Rage Bonus Damage",
+          "changes": {
+            "full_rage_damage_bonus": 8
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Enemy Health Threshold Finishing an enemy with Killing Blow lets you recast for Xs",
+          "changes": {
+            "recast_window": 20,
+            "enemy_health_threshold": 5
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -444,14 +586,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_transcendent_cooldown",

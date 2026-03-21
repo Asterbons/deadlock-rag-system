@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Teamplay",
       "Clutch",
+      "Teamplay",
       "Initiator"
     ],
     "playstyle": [
@@ -17,7 +17,6 @@
       "spirit"
     ],
     "utility": [
-      "slow",
       "heal"
     ]
   },
@@ -46,8 +45,8 @@
     "health": 59,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "bullet_armor_damage_resist": 0.625,
-    "spirit__power": 1.1
+    "bullet_resist": 0.625,
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -60,50 +59,80 @@
       "stats": {
         "cooldown": 26,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.42,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 5,
+        "cast_delay": 0.42,
+        "charges": 1,
+        "charge_delay": 5,
         "channel_move_speed": "1.3m",
-        "cleave__duration": 0.2,
+        "cleave_duration": 0.2,
         "damage": 115,
         "climb_height": "1.0m",
         "distance_above_ground": "1.0m",
         "drop_down_rate": 20,
         "toss_speed": 450,
         "impact_interval": 0.1,
-        "stomp_range": "16m",
-        "stomp_width": "5.0m",
-        "toss_duration": 1
+        "pulse_range": "16m",
+        "pulse_width": "5.0m",
+        "toss_duration": 1,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 115,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 2.1
           },
-          "formula": "115 + (spirit__power * 2.1)",
+          "formula": "115 + (spirit_power * 2.1)",
           "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
+          "type": "knockup",
+          "base_value": 450,
+          "unit": ""
+        },
+        {
+          "type": "knockup",
+          "base_value": 1,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Charge",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "On Hit: X% Bullet Resist and -X% Move Speed for Xs",
+          "changes": {
+            "bullet_resist": -18,
+            "move_speed": 30,
+            "slow_duration": 4
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage and +Xm Cast Range",
+          "changes": {
+            "damage": 135,
+            "pulse_range": "16m"
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_void_sphere",
       "slot": 2,
       "name": "Quantum Entanglement",
-      "description": "Briefly become untargetable while teleporting to the target location. Restores stamina upon use. : Bring nearby allies with you.",
+      "description": "Briefly become untargetable while teleporting to the target location. Restores stamina upon use. [AltCast]: Bring nearby allies with you.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
@@ -111,14 +140,39 @@
         "duration": 1.4,
         "cast_range": "10m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "ally_distance": "13m",
         "trail_interval": 0.01,
-        "stamina_restore": 1
+        "stamina_restored": 1,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "6mm Cast Range",
+          "changes": {
+            "cast_range": "6m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "-6s Cooldown",
+          "changes": {
+            "cooldown": -6
+          }
+        },
+        {
+          "level": 3,
+          "description": "Dispels non-ult debuffs",
+          "changes": {
+            "dispel_debuffs": 1
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_nikuman",
@@ -130,37 +184,57 @@
       "stats": {
         "cooldown": 48,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 5,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "healing_per_second": 25,
+        "channel_duration": 5,
+        "health_restored": 25,
         "aura_linger_duration": 1,
-        "share_with_friends_radius": "8m",
-        "movement_speed_bonus": "0m"
+        "friendly_heal_radius": "8m",
+        "movement_speed_bonus": "0m",
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 25,
+          "localized_name": "Health Restored",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.4
           },
-          "formula": "25 + (spirit__power * 0.4)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
+          "formula": "25 + (spirit_power * 0.4)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Aura provides +Xm Move Speed during channel",
+          "changes": {
+            "movement_speed_bonus": "4m",
+            "move_speed_duration": 8
+          }
+        },
+        {
+          "level": 2,
+          "description": "X Cooldown and +Xs Duration",
+          "changes": {
+            "cooldown": -20,
+            "channel_duration": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "Full move and ability use and additionally heals +X% of Max Health per second",
+          "changes": {
+            "no_channel": 1,
+            "max_health_restored": 2.5
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_self_vacuum",
@@ -172,19 +246,66 @@
       "stats": {
         "cooldown": 230,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_channel_time": 2.75,
-        "ability_cooldown_between_charge": -1,
-        "vacuum_radius": "7m",
+        "cast_delay": 0.2,
+        "channel_duration": 2.75,
+        "singularity_radius": "7m",
         "speed": 200,
         "toss_speed": 350,
         "toss_angle": 45,
-        "dps": 75,
+        "damage_per_second": 75,
         "tick_rate": 0.25,
-        "camera_distance": 400
+        "camera_distance": 400,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
-      "effects": [],
-      "upgrades": []
+      "effects": [
+        {
+          "type": "knockup",
+          "base_value": 350,
+          "unit": ""
+        },
+        {
+          "type": "knockup",
+          "base_value": 45,
+          "unit": ""
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 75,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.28
+          },
+          "formula": "75 + (spirit_power * 0.28)",
+          "unit": "damage"
+        }
+      ],
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "2mm Singularity Radius",
+          "changes": {
+            "singularity_radius": "2m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+0.75s Channel Duration",
+          "changes": {
+            "channel_duration": 0.75
+          }
+        },
+        {
+          "level": 3,
+          "description": "+5.5 Max Health As Damage",
+          "changes": {
+            "max_health_as_damage": 5.5
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -356,14 +477,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

@@ -14,11 +14,9 @@
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
-      "slow",
       "heal"
     ]
   },
@@ -47,7 +45,7 @@
     "health": 29,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -60,34 +58,74 @@
       "stats": {
         "cooldown": 40,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.2,
         "damage": 40,
-        "slow_percent": 40,
-        "chain_length": "9m",
+        "move_speed": 40,
+        "tether_length": "9m",
         "capture_radius": "9m",
-        "chain_duration": 1.75,
-        "nemy_drag_speed": 1000
+        "tether_duration": 1.75,
+        "nemy_drag_speed": 1000,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 40,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.5
           },
-          "formula": "40 + (spirit__power * 0.5)",
+          "formula": "40 + (spirit_power * 0.5)",
           "unit": "damage"
         },
         {
-          "type": "slow",
+          "type": "move_speed",
           "base_value": 40,
-          "unit": "%"
+          "localized_name": "Move Speed",
+          "unit": "m/s"
+        },
+        {
+          "type": "tether",
+          "base_value": 1.75,
+          "localized_name": "Tether Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "1.75 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+65 Damage",
+          "changes": {
+            "damage": 65
+          }
+        },
+        {
+          "level": 2,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Tether Duration and +Xm Capture Radius",
+          "changes": {
+            "tether_duration": 0.75,
+            "capture_radius": "2m"
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_hornet_leap",
@@ -100,18 +138,33 @@
         "cooldown": 42,
         "duration": 13,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "flying_item_cast_range": 50,
+        "channel_duration": 0.2,
+        "item_range": 50,
         "max_fly_height": 1720,
         "jump_velocity": 1000,
-        "air_speed_bonus": "0m",
+        "bonus_air_speed": "0m",
         "air_side_move_speed_percentage": -35,
         "min_velocity_z": -20,
         "weapon_recoil_reduction": 40,
-        "magic_damage_per_bullet": 10
+        "spirit_damage_per_bullet": 10,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "max_fall_speed": 0
       },
       "effects": [
+        {
+          "type": "move_speed",
+          "base_value": -35,
+          "unit": "m/s"
+        },
+        {
+          "type": "weapon_damage",
+          "base_value": 40,
+          "unit": ""
+        },
         {
           "type": "spirit_damage",
           "base_value": 10,
@@ -123,7 +176,31 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X% base Ammo while flying",
+          "changes": {
+            "max_ammo": 50
+          }
+        },
+        {
+          "level": 2,
+          "description": "+10s Duration",
+          "changes": {
+            "duration": 10
+          }
+        },
+        {
+          "level": 3,
+          "description": "Hero Kills Refresh Duration. +X Spirit Damage with increased Spirit scaling",
+          "changes": {
+            "spirit_damage_per_bullet": 10,
+            "spirit_damage_per_bullet_scale_bonus": 0.1,
+            "refresh_on_kill": 1
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_hornet_sting",
@@ -136,22 +213,28 @@
         "cooldown": 32,
         "ability_unit_target_limit": 1,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "dot_health_percent": 2.2,
+        "bleed_damage": 2.2,
         "tick_rate": 1,
         "impact_damage": 40,
         "debuff_duration": 5,
         "visual_splash_radius": "4m",
         "target_bounce_range": "0m",
-        "bullet_resist_reduction": -6,
-        "spirit__resist": -6
+        "bullet_resist": -6,
+        "spirit_resist": -6,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0
       },
       "effects": [
         {
-          "type": "heal",
+          "type": "bleed",
           "base_value": 2.2,
-          "unit": "hp"
+          "localized_name": "Bleed Damage",
+          "unit": ""
         },
         {
           "type": "spirit_damage",
@@ -162,9 +245,57 @@
           },
           "formula": "40 + (spirit_power * 0.744)",
           "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 5,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "5 + (spirit_power * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "bullet_resist",
+          "base_value": -6,
+          "localized_name": "Bullet Resist",
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": -6,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Applies X% Healing Reduction",
+          "changes": {
+            "healing_reduction": -35
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Bleed Damage Xs Cooldown",
+          "changes": {
+            "cooldown": -12,
+            "bleed_damage": 0.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration X% Bullet Resist X% Spirit Resist",
+          "changes": {
+            "bullet_resist": -8,
+            "spirit_resist": -8,
+            "debuff_duration": 2
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_hornet_snipe",
@@ -176,61 +307,101 @@
       "stats": {
         "cooldown": 50,
         "ability_unit_target_limit": 1,
-        "ability_charges": 2,
-        "ability_cooldown_between_charge": 2.5,
-        "channel_move_speed": -1,
+        "charges": 2,
+        "charge_delay": 2.5,
         "range": "1000m",
         "damage": 90,
         "shot_radius": 4,
-        "low_health_enemy_damage_bonus": 90,
-        "low_health_enemy_threshold_pct": 50,
+        "max_bonus_damage": 90,
+        "low_health_threshold": 50,
         "view_punch": 2.5,
         "move_speed": "4m",
         "max_sound_distance": 2000,
-        "weapon_damage_bonus_per_kill": 6,
-        "bonus_gold_on_kill": 250,
-        "headshot_bonus": 20,
-        "min_charge_damage_percent": 50,
-        "time_to_full_charge": 1
+        "weapon_damage_per_kill": 6,
+        "bonus_souls_per_assassination": 250,
+        "headshot_damage": 20,
+        "no_charge_damage": 50,
+        "full_charge_time": 1,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 90,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.93
           },
-          "formula": "90 + (spirit__power * 0.93)",
+          "formula": "90 + (spirit_power * 0.93)",
           "unit": "damage"
         },
         {
           "type": "spirit_damage",
           "base_value": 90,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.7
           },
-          "formula": "90 + (spirit__power * 1.7)",
+          "formula": "90 + (spirit_power * 1.7)",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 50,
+          "localized_name": "Low Health Threshold",
           "unit": "hp"
         },
         {
-          "type": "bullet_damage",
+          "type": "knockup",
+          "base_value": 2.5,
+          "unit": ""
+        },
+        {
+          "type": "weapon_damage",
           "base_value": 6,
+          "localized_name": "Weapon Damage",
+          "unit": ""
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 20,
+          "localized_name": "Headshot Damage",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 50,
+          "localized_name": "No Charge Damage",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+80 Max Bonus Damage",
+          "changes": {
+            "max_bonus_damage": 80
+          }
+        },
+        {
+          "level": 3,
+          "description": "+4 Weapon Damage Per Kill",
+          "changes": {
+            "weapon_damage_per_kill": 4
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -458,10 +629,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
     },
     {
       "id": "upgrade_thermal_detonator",

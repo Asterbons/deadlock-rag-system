@@ -14,11 +14,9 @@
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
-      "slow",
       "heal"
     ]
   },
@@ -48,7 +46,7 @@
     "health": 39,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,62 +60,59 @@
         "cooldown": 16,
         "cast_range": "16m",
         "ability_unit_target_limit": 30,
-        "ability_cast_delay": 0.5,
+        "cast_delay": 0.5,
         "ability_post_cast_duration": 0.5,
-        "ability_cooldown_between_charge": -1,
         "channel_move_speed": "1.3m",
-        "range_for_bonus_damage": "8m",
-        "targeting_cone_angle": 50,
+        "close_range": "8m",
+        "attack_angle": 50,
         "xtra_sweep_cone_angle": 60,
         "xtra_sweep_range": "3m",
         "xtra_sweep_offset_behind_caster": 80,
         "bonus_damage": 40,
         "fall_speed_max": 1,
-        "air_speed_max": 70
+        "air_speed_max": 70,
+        "duration": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "bullet_lifesteal": 0,
+        "lifesteal_duration": 0
       },
       "effects": [
-        {
-          "type": "bullet_damage",
-          "base_value": "8m",
-          "scales_with": {
-            "stat": "ability__range",
-            "ratio": 1
-          },
-          "formula": "8m + (ability__range * 1)",
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "light__melee",
-            "ratio": 1.2
-          },
-          "formula": "0 + (light__melee * 1.2)",
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heavy__melee",
-            "ratio": 0
-          },
-          "formula": "0 + (heavy__melee * 0)",
-          "unit": "damage"
-        },
         {
           "type": "spirit_damage",
           "base_value": 40,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.8
           },
-          "formula": "40 + (spirit__power * 1.8)",
+          "formula": "40 + (spirit_power * 1.8)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+40 Bonus Damage",
+          "changes": {
+            "bonus_damage": 40
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown",
+          "changes": {
+            "cooldown": -7
+          }
+        },
+        {
+          "level": 3,
+          "description": "Silences enemies for Xs if close range",
+          "changes": {
+            "debuff_duration": 2.3
+          }
+        }
+      ]
     },
     {
       "id": "drifter_shadow_mark",
@@ -130,15 +125,21 @@
         "cooldown": 20,
         "duration": 5,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "dot_health_percent": 2,
+        "cast_delay": 0.15,
+        "bleed_damage": 2,
         "tick_rate": 0.5,
         "teleport_back_offset_from_target": 135,
         "fall_speed_max": "0.3m",
         "air_drag": 3,
-        "vertical_drag": 1
+        "vertical_drag": 1,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0,
+        "buff_duration": 0,
+        "float_duration": 0
       },
       "effects": [
         {
@@ -150,88 +151,116 @@
           },
           "formula": "2 + (spirit_power * 0.015)",
           "unit": "damage"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
-        },
-        {
-          "type": "spirit_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0.5
-          },
-          "formula": "0 + (spirit__power * 0.5)",
-          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "X% Bullet Resist",
+          "changes": {
+            "bullet_resist": -8
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +Xs Duration",
+          "changes": {
+            "duration": 3,
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Bleed and X% Healing Reduction",
+          "changes": {
+            "bleed_damage": 2,
+            "healing_reduction": -40
+          }
+        }
+      ]
     },
     {
       "id": "ability_drifter_hunger",
       "slot": 3,
       "name": "Bloodscent",
-      "description": "",
+      "description": "Isolated heroes leave a trail as they move, and emit their heartbeat from afar. You deal amplified damage against isolated heroes, and when isolated heroes die nearby you gain permanent weapon damage. | Active: Accentuate your senses, revealing a trail that leads to nearby heroes. | On Isolated Hero Death:",
       "cast_type": "passive",
       "targeting": "instant",
       "stats": {
         "cast_range": "80m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "isolation_range": "20m",
-        "amp_damage_percent": 15,
-        "low_health_threshold": 30,
-        "invis_fade_to_duration": 0.3,
+        "amplified_damage": 15,
+        "health_threshold": 30,
+        "fade_time": 0.3,
         "spotted_radius": "15m",
         "reveal_on_spotted_duration": 1.5,
         "reveal_on_damage_duration": 0.25,
-        "invis_move_speed_mod": "0m",
+        "invis_sprint_speed": "0m",
         "delay_before_invis_starts": 0.6,
         "trail_duration": 10,
         "max_trail_targets": 2,
         "target_linger_duration": 3,
         "tick_rate": 1,
         "kill_duration": 300,
-        "bonus_move_speed": "0m",
-        "weapon_dmg_per_isolation_kill": 3,
-        "isolation_assist_percent_value": 100
+        "move_speed": "0m",
+        "permanent_weapon_damage": 3,
+        "isolation_assist_percent_value": 100,
+        "cooldown": 0,
+        "duration": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "invisibility_duration": 0,
+        "cooldown_reduction": 0,
+        "stamina_restored": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 15,
+          "localized_name": "Amplified Damage",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 30,
+          "localized_name": "Health Threshold",
           "unit": "hp"
         },
         {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0
-          },
-          "formula": "0 + (spirit__power * 0)",
-          "unit": "hp"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0.25,
-          "unit": "damage"
+          "type": "weapon_damage",
+          "base_value": 3,
+          "localized_name": "Weapon Damage",
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+Xm/s Move Speed when around an isolated enemy hero",
+          "changes": {
+            "move_speed": "2m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "On isolated hero death: Heal X% of your missing health and restores X Stamina",
+          "changes": {
+            "missing_health_as_healing": 18,
+            "stamina_restored": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "+10 Amplified Damage",
+          "changes": {
+            "amplified_damage": 10
+          }
+        }
+      ]
     },
     {
       "id": "drifter_darkness",
@@ -245,10 +274,9 @@
         "duration": 6.5,
         "cast_range": "100m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 1,
         "channel_move_speed": "1.3m",
-        "small_vision_distance": "15m",
+        "reduced_vision": "15m",
         "drifter_nearby_range_check": "40m",
         "dark_factor": 1,
         "post_process_fade_in_time": 0.2,
@@ -256,14 +284,41 @@
         "min_projectile_speed": 3000,
         "max_projectile_speed": 3000,
         "distance_for_max_proj_speed": "200m",
-        "bonus_sprint_speed": "2m",
+        "sprint_speed": "2m",
         "bonus_sprint_acceleration": "12m",
         "reveal_duration": 3,
         "max_targets": 2,
-        "aura_linger_duration": 0.001
+        "aura_linger_duration": 0.001,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "10m Sprint Speed",
+          "changes": {
+            "sprint_speed": "10m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "-45s Cooldown",
+          "changes": {
+            "cooldown": -45
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration and +X Max Targets.",
+          "changes": {
+            "duration": 2.5,
+            "max_targets": 1
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -443,10 +498,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_toxic_bullets",

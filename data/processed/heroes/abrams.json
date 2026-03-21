@@ -6,21 +6,19 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Brawler",
+      "Tank",
       "Bull-Headed",
-      "Tank"
+      "Brawler"
     ],
     "playstyle": [
       "brawler"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
-      "slow",
-      "stun",
-      "heal"
+      "heal",
+      "stun"
     ]
   },
   "base_stats": {
@@ -48,7 +46,7 @@
     "health": 49,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,37 +60,55 @@
         "cooldown": 42,
         "duration": 4,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "radius": "7.5m",
-        "healing_factor": 80,
-        "non_hero_healing_factor": 40,
-        "dps": 22,
-        "tick_rate": 0.25
+        "lifesteal": 80,
+        "lifesteal_vs_nonheroes": 40,
+        "damage_per_second": 22,
+        "tick_rate": 0.25,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "heal",
-          "base_value": 80,
+          "type": "spirit_damage",
+          "base_value": 22,
           "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
+            "stat": "spirit_power",
+            "ratio": 0.6
           },
-          "formula": "80 + (heal__amp * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 40,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "40 + (heal__amp * 1)",
-          "unit": "hp"
+          "formula": "22 + (spirit_power * 0.6)",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+2s Duration",
+          "changes": {
+            "duration": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm Radius and +X DPS with improved Spirit scaling",
+          "changes": {
+            "damage_per_second": 18,
+            "damage_per_second_scale_bonus": 0.12,
+            "radius": "3.5m"
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_bull_charge",
@@ -105,8 +121,6 @@
         "cooldown": 33,
         "duration": 1.4,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 30,
         "speed_initial": "18.75m",
         "charge_speed_max": "30m",
@@ -117,41 +131,68 @@
         "camera_turn_rate_max": 200,
         "charge_radius": "2.2m",
         "collide_players_stop_time": 0.3,
-        "stun_duration": 0.3
+        "stun_duration": 0.3,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 30,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.4
           },
-          "formula": "30 + (spirit__power * 1.4)",
+          "formula": "30 + (spirit_power * 1.4)",
           "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": -65,
+          "unit": "m/s"
         },
         {
           "type": "stun",
           "base_value": 0.3,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.3 + (ability__duration * 1)",
-          "unit": "seconds"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "0 + (spirit_power * 1)",
-          "unit": "%"
+          "formula": "0.3 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Applies +X% Slow for Xs",
+          "changes": {
+            "move_speed": 40,
+            "slow_duration": 3
+          }
+        },
+        {
+          "level": 2,
+          "description": "On Wall Hit: +Xs Stun Duration",
+          "changes": {
+            "stun_duration": 0.8
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown On Hero Collide: +X Weapon Damage for Xs",
+          "changes": {
+            "cooldown": -20,
+            "weapon_damage": 1.5,
+            "weapon_damage_duration": 6
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_passive_beefy",
@@ -162,41 +203,51 @@
       "targeting": "instant",
       "stats": {
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "regen_incoming_damage_percent": 13,
-        "regen_incoming_damage_duration": 20,
+        "damage_regenerated": 13,
+        "regeneration_time": 20,
         "regen_damage_interval": 1,
-        "bonus_health_regen": 1
+        "health_regen": 1,
+        "cooldown": 0,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 13,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "13 + (heal__amp * 1)",
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 20,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 1,
-          "unit": "damage"
-        },
-        {
           "type": "heal",
           "base_value": 1,
+          "localized_name": "Health Regen",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1.5 Health Regen",
+          "changes": {
+            "health_regen": 1.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+200 Max Health",
+          "changes": {
+            "max_health": 200
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Debuff Resist and +X% Damage Regenerated",
+          "changes": {
+            "damage_regenerated": 7,
+            "debuff_resist": 20
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_bull_leap",
@@ -208,37 +259,74 @@
       "stats": {
         "cooldown": 185,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "impact_radius": "9m",
         "impact_height": "4m",
         "damage": 100,
         "stun_duration": 1.6,
-        "toss_speed": 450
+        "toss_speed": 450,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0,
+        "buff_duration": 0,
+        "immunity_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 100,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 2.325
           },
-          "formula": "100 + (spirit__power * 2.325)",
+          "formula": "100 + (spirit_power * 2.325)",
           "unit": "damage"
         },
         {
           "type": "stun",
           "base_value": 1.6,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "1.6 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "1.6 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "knockup",
+          "base_value": 450,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-35s Cooldown",
+          "changes": {
+            "cooldown": -35
+          }
+        },
+        {
+          "level": 2,
+          "description": "+0.6s Stun Duration",
+          "changes": {
+            "stun_duration": 0.6
+          }
+        },
+        {
+          "level": 3,
+          "description": "On cast, become Unstoppable and +Xm Impact Radius",
+          "changes": {
+            "immunity_duration": 4,
+            "impact_radius": "6m"
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -450,14 +538,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_transcendent_cooldown",

@@ -6,15 +6,14 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Slippery",
+      "Tricksy",
       "Burst Damage",
-      "Tricksy"
+      "Slippery"
     ],
     "playstyle": [
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -46,7 +45,7 @@
     "health": 37,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -59,31 +58,62 @@
       "stats": {
         "cooldown": 14,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.15,
         "damage": 45,
         "radius": "3.0m",
         "toss_speed": 400,
-        "grenade_count": 4,
+        "bomb_count": 4,
         "lifetime": 0.75,
         "grenade_angle_variance": 0.08,
         "time_between_grenades": 0.05,
-        "multi_hit_penalty_percentage": 65
+        "multi_hit_penalty_percentage": 65,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 45,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.644
           },
-          "formula": "45 + (spirit__power * 0.644)",
+          "formula": "45 + (spirit_power * 0.644)",
           "unit": "damage"
+        },
+        {
+          "type": "knockup",
+          "base_value": 400,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-3s Cooldown",
+          "changes": {
+            "cooldown": -3
+          }
+        },
+        {
+          "level": 2,
+          "description": "Bombs deal +X Damage vs Barriers",
+          "changes": {
+            "bonus_damage_vs_barrier": 75
+          }
+        },
+        {
+          "level": 3,
+          "description": "+3 Bomb Count",
+          "changes": {
+            "bomb_count": 3
+          }
+        }
+      ]
     },
     {
       "id": "ability_nano_dash",
@@ -96,12 +126,10 @@
         "cooldown": 11,
         "cast_range": "9m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.1,
         "dash_angle_threshold": 89,
         "dash_speed": 2400,
-        "dash_radius": "2.0m",
+        "radius": "2.0m",
         "move_speed_penalty_max_speed": 200,
         "camera_distance": 550,
         "side_move_speed_reduction": -90,
@@ -109,31 +137,63 @@
         "slash_height": "2.5m",
         "heal_amount": 40,
         "post_dash_maintained_velocity_ratio": 0.15,
-        "slash_forward_offset": "1.5m"
+        "slash_forward_offset": "1.5m",
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "cooldown_refund": 0,
+        "bounty_duration": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "light__melee",
-            "ratio": 1.5
-          },
-          "formula": "0 + (light__melee * 1.5)",
-          "unit": "damage"
+          "type": "move_speed",
+          "base_value": 200,
+          "unit": "m/s"
+        },
+        {
+          "type": "move_speed",
+          "base_value": -90,
+          "unit": "m/s"
         },
         {
           "type": "heal",
           "base_value": 40,
+          "localized_name": "Heal Amount",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.4
           },
-          "formula": "40 + (spirit__power * 1.4)",
+          "formula": "40 + (spirit_power * 1.4)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+25 Heal Amount",
+          "changes": {
+            "heal_amount": 25
+          }
+        },
+        {
+          "level": 2,
+          "description": "Heros killed within Xs grant +X souls",
+          "changes": {
+            "bonus_souls_per_assassination": 300,
+            "bounty_duration": 4
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage & On Hero Hit: X% Cooldown Refund",
+          "changes": {
+            "cooldown_refund": 50,
+            "impact_damage": 60
+          }
+        }
+      ]
     },
     {
       "id": "ability_nano_catform",
@@ -145,24 +205,64 @@
       "stats": {
         "cooldown": 30,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "buff_duration": 15,
         "interrupt_cooldown": 6,
         "speed_build_duration": 4,
         "nemy_damage_speed_penalty": 65,
         "cat_form_damage_dealt_reduction": -100,
         "min_bonus_move_speed_percent": 30,
-        "max_bonus_move_speed_percent": 65
+        "max_bonus_move_speed_percent": 65,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 65,
+          "type": "spirit_damage",
+          "base_value": -100,
           "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": 30,
+          "unit": "m/s"
+        },
+        {
+          "type": "move_speed",
+          "base_value": 65,
+          "unit": "m/s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+15s Buff Duration",
+          "changes": {
+            "buff_duration": 15
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Health Regen & +X% Max Move Speed",
+          "changes": {
+            "max_bonus_move_speed_percent": 45,
+            "health_regen": 15
+          }
+        },
+        {
+          "level": 3,
+          "description": "Gain Damage Amp over time, up to X%. Lingers for Xs",
+          "changes": {
+            "damage": 20,
+            "damage_amp_duration": 6,
+            "damage_amp_build_duration": 10
+          }
+        }
+      ]
     },
     {
       "id": "ability_nano_shadow_pulse",
@@ -174,40 +274,66 @@
       "stats": {
         "cooldown": 90,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 3,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "channel_duration": 3,
         "radius": "7.5m",
         "damage": 140,
         "fall_speed_max": 10,
-        "bonus_move_speed_percent": 30,
+        "move_speed": 30,
         "air_speed_max": 100,
         "air_drag": 4,
-        "z_acceleration": 800
+        "z_acceleration": 800,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "buff_duration": 0,
+        "refund_cooldowns": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 140,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.609336
           },
-          "formula": "140 + (spirit__power * 0.609336)",
+          "formula": "140 + (spirit_power * 0.609336)",
           "unit": "damage"
         },
         {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
+          "type": "move_speed",
+          "base_value": 30,
+          "localized_name": "Move Speed",
+          "unit": "m/s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-25s Cooldown",
+          "changes": {
+            "cooldown": -25
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage and +X% Move Speed",
+          "changes": {
+            "damage": 65,
+            "move_speed": 20
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Completion: Heal for X and refund all ability cooldowns",
+          "changes": {
+            "refund_cooldowns": 1,
+            "heal_amount": 350
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -383,14 +509,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_transcendent_cooldown",

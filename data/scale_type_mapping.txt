@@ -47,3 +47,19 @@ MODIFIER_VALUE_BASEATTACK_DAMAGE_PERCENT = Weapon Damage
 EItemSlotType_Tech = Spirit
 EItemSlotType_WeaponMod = Weapon
 EItemSlotType_Armor = Vitality
+# Effect Property Blacklist
+# Properties to skip during effect extraction
+second_hit_damage_percentage
+third_hit_damage_percentage
+fourth_hit_damage_percentage
+non_hero_damage_percent_outgoing
+boss_damage_percent_outgoing
+boss_damage_percent_incoming
+diminishing_multiplier
+self_damage_pct
+damage_falloff_start_scale
+damage_falloff_end_scale
+particle_radius_multiplier
+model_scale
+cube_scale
+attack_speed_mult

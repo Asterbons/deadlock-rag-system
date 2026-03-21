@@ -6,15 +6,14 @@
   "complexity": 2,
   "tags": {
     "flavor": [
+      "Area Denial",
       "Precision",
-      "Hunter",
-      "Area Denial"
+      "Hunter"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -47,86 +46,139 @@
     "health": 38,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
       "id": "ability_charged_shot",
       "slot": 1,
       "name": "Charged Shot",
-      "description": "Charge up a powerful shot that pierces through enemies. Hold or to hold the shot.",
+      "description": "Charge up a powerful shot that pierces through enemies. Hold [Ability1] or [Attack] to hold the shot.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 17,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.5,
-        "ability_channel_time": 9999,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 4,
+        "cast_delay": 0.5,
+        "channel_duration": 9999,
+        "charges": 1,
+        "charge_delay": 4,
         "channel_move_speed": "1.3m",
-        "cleave__duration": 0.2,
+        "cleave_duration": 0.2,
         "fall_speed_max": 60,
         "air_speed_max": 161.417,
         "damage": 80,
         "camera_height_offset": 20,
-        "camera_horizontal_offset": 15
+        "camera_horizontal_offset": 15,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 80,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1
           },
-          "formula": "80 + (spirit__power * 1)",
+          "formula": "80 + (spirit_power * 1)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage",
+          "changes": {}
+        },
+        {
+          "level": 3,
+          "description": "Improved damage scaling and Xs Charge Delay",
+          "changes": {
+            "charge_delay": -3,
+            "damage_scale_bonus": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_power_jump",
       "slot": 2,
       "name": "Rain of Arrows",
-      "description": "Launches you high in the air, allowing you to glide slowly. While airborne, you gain Weapon Damage and multishot on your weapon. for reduced jump height. Pressto cancel the glide.",
+      "description": "Launches you high in the air, allowing you to glide slowly. While airborne, you gain Weapon Damage and multishot on your weapon. [AltCast]for reduced jump height. Press[Mantle]to cancel the glide.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 30,
         "duration": 7,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.5,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.5,
         "jump_pitch": -60,
         "jump_speed": "27.5m",
         "alt_jump_speed": "12m",
-        "weapon_damage_bonus": 4,
+        "weapon_damage": 4,
         "fall_speed_max": 15,
         "air_speed_max": 161.417,
-        "bullet_split_shot": 5,
+        "weapon_multishot": 5,
         "fx_radius": "4m",
-        "air_move_increase_percent": -9
+        "air_jumpdash_distance": -9,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate_bonus": 0,
+        "bullet_lifesteal": 0
       },
       "effects": [
         {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
+          "type": "weapon_damage",
+          "base_value": 4,
+          "localized_name": "Weapon Damage",
+          "unit": ""
         },
         {
-          "type": "bullet_damage",
-          "base_value": 4,
-          "unit": "damage"
+          "type": "weapon_damage",
+          "base_value": 5,
+          "localized_name": "Weapon Multishot",
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-14s Cooldown",
+          "changes": {
+            "cooldown": -14
+          }
+        },
+        {
+          "level": 2,
+          "description": "While airborne, +X Weapon Damage and weapon damage applies X% movement slow for Xs",
+          "changes": {
+            "weapon_damage": 5,
+            "move_speed": 40,
+            "slow_duration": 1.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "While airborne, +X% Bullet Lifesteal, +X% Spirit Lifesteal and +X% Bullet Evasion",
+          "changes": {
+            "bullet_lifesteal": 30,
+            "spirit_lifesteal": 30,
+            "bullet_evasion": 30
+          }
+        }
+      ]
     },
     {
       "id": "ability_immobilize_trap",
@@ -138,8 +190,6 @@
       "stats": {
         "cooldown": 34,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "tether_radius": "6m",
         "radius": "6.5m",
         "trap_height": "2m",
@@ -151,64 +201,141 @@
         "trip_up_speed": 250,
         "trip_gravity": 0.4,
         "skip_frames": 6,
-        "slow_percent": 30,
-        "charged_shot_hit_radius_scale": 30
+        "move_speed": 30,
+        "charged_shot_radius": 30,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 25,
+          "localized_name": "Damage",
           "unit": "damage"
+        },
+        {
+          "type": "tether",
+          "base_value": 2.25,
+          "localized_name": "Tether Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "2.25 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 30,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 2,
+          "description": "Applies X% Bullet Resist for Xs",
+          "changes": {
+            "bullet_resist": -15,
+            "debuff_duration": 10
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Curse Duration and +Xm Radius",
+          "changes": {
+            "tether_duration": 1,
+            "radius": "1.5m"
+          }
+        }
+      ]
     },
     {
       "id": "ability_guided_arrow",
       "slot": 4,
       "name": "Guided Owl",
-      "description": "After Xs cast time, launch a spirit owl that you control and which explodes on impact, damaging and stunning enemies. Holdto accelerate the owl.Pressto release control. Gain permanent Spirit Power for each enemy hero killed with Guided Owl.",
+      "description": "After Xs cast time, launch a spirit owl that you control and which explodes on impact, damaging and stunning enemies. Hold[MoveForward]to accelerate the owl.Press[Mantle]to release control. Gain permanent Spirit Power for each enemy hero killed with Guided Owl.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 110,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1.5,
-        "ability_channel_time": 18,
-        "ability_cooldown_between_charge": -1,
-        "xplosion_radius": "12m",
+        "cast_delay": 1.5,
+        "channel_duration": 18,
+        "explosion_radius": "12m",
         "damage": 230,
         "stun_duration": 0.75,
-        "bonus_spirit_power_per_kill": 10
+        "spirit_power_per_kill": 10,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 230,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.93744
           },
-          "formula": "230 + (spirit__power * 0.93744)",
+          "formula": "230 + (spirit_power * 0.93744)",
           "unit": "damage"
         },
         {
           "type": "stun",
           "base_value": 0.75,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.75 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "0.75 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 10,
+          "localized_name": "Spirit Power Per Kill",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+85 Damage",
+          "changes": {
+            "damage": 85
+          }
+        },
+        {
+          "level": 2,
+          "description": "-45s Cooldown",
+          "changes": {
+            "cooldown": -45
+          }
+        },
+        {
+          "level": 3,
+          "description": "After hit, kills enemies that are below X% Health",
+          "changes": {
+            "low_health_threshold": 22
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -380,10 +507,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
     },
     {
       "id": "upgrade_transcendent_cooldown",

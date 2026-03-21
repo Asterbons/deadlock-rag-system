@@ -5,6 +5,11 @@ import os
 import sys
 from pathlib import Path
 
+def camel_to_snake(name: str) -> str:
+    s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', name)
+    s = re.sub(r'([a-z\d])([A-Z])', r'\1_\2', s)
+    return re.sub(r'_+', '_', s).lower().strip('_')
+
 # Adjust paths
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -16,6 +21,7 @@ from config import (
     HEROES_OUT_DIR, HEROES_INDEX_PATH
 )
 from mapping_handler import MAPPING
+
 
 def load_shop_valid_items():
     valid = {}
@@ -74,6 +80,15 @@ def clean_description(text: str, inline_attrs: dict) -> str:
         r"\{g:citadel_inline_attribute:'([^']+)'\}",
         _replace_inline,
         text,
+    )
+
+    def _replace_binding(m):
+        return f"[{m.group(1)}]"
+
+    clean = re.sub(
+        r"\{g:citadel_binding:'([^']+)'\}",
+        _replace_binding,
+        clean,
     )
 
     # Strip any remaining {g:…} tags (e.g. binding hints)
@@ -136,7 +151,8 @@ def parse_localization(hero_names_path, heroes_english_path, attributes_english_
         "hero_tags_by_keyword": {},
         "stat_labels": {},
         "inline_attrs": {},
-        "mod_names": {}
+        "mod_names": {},
+        "effect_types": {}
     }
 
     def load_vdf_tokens(path):
@@ -175,15 +191,28 @@ def parse_localization(hero_names_path, heroes_english_path, attributes_english_
                  if tag_key not in loc["hero_tags_by_keyword"]:
                      loc["hero_tags_by_keyword"][tag_key] = []
                  loc["hero_tags_by_keyword"][tag_key].append(v)
-        elif k.endswith("_desc"):
-            if "_t1_desc" in k or "_t2_desc" in k or "_t3_desc" in k:
-                key = k.replace("_desc", "")
-                loc["upgrade_descs"][key] = v          # store raw — cleaned later
+        elif re.search(r"_desc(?:_\d+)?$", k):
+            if re.search(r"_t[1-3]_desc(?:_\d+)?$", k):
+                key = re.sub(r"_desc(?:_\d+)?$", "", k)
+                if key in loc["upgrade_descs"]:
+                    loc["upgrade_descs"][key] += " | " + v
+                else:
+                    loc["upgrade_descs"][key] = v
             else:
-                key = k.replace("_desc", "")
-                loc["ability_descs"][key] = v          # store raw — cleaned later
+                key = re.sub(r"_desc(?:_\d+)?$", "", k)
+                if key in loc["ability_descs"]:
+                    loc["ability_descs"][key] += " | " + v
+                else:
+                    loc["ability_descs"][key] = v
         elif not k.endswith("_quip"):
-            loc["ability_names"][k] = strip_html(v)
+            if k.endswith("_label"):
+                stat_name = k.replace("_label", "")
+                if stat_name not in loc["stat_labels"]:
+                    loc["stat_labels"][stat_name] = {"label": strip_html(v), "unit": ""}
+                else:
+                    loc["stat_labels"][stat_name]["label"] = strip_html(v)
+            else:
+                loc["ability_names"][k] = strip_html(v)
 
     # 3. Attributes English
     attr_tokens = load_vdf_tokens(attributes_english_path)
@@ -193,10 +222,35 @@ def parse_localization(hero_names_path, heroes_english_path, attributes_english_
             loc["stat_labels"][stat_name] = {"label": strip_html(v), "unit": ""}
         elif k.startswith("InlineAttribute_"):
             attr_name = k.replace("InlineAttribute_", "")
-            loc["inline_attrs"][attr_name] = strip_html(v)
+            clean_v = strip_html(v)
+            loc["inline_attrs"][attr_name] = clean_v
+            
+            clean_eff = camel_to_snake(attr_name)
+            if clean_eff == "heals": clean_eff = "heal"
+            if clean_eff == "pulls": clean_eff = "pull"
+            if clean_eff == "toss": clean_eff = "knockup"
+            if clean_eff:
+                loc["effect_types"][clean_eff] = clean_v
+            
+        elif k.startswith("MODIFIER_STATE_"):
+            clean_eff = k.replace("MODIFIER_STATE_", "").lower()
+            if clean_eff:
+                loc["effect_types"][clean_eff] = strip_html(v)
+            
+        elif k.startswith("Citadel_StatusEffect"):
+            attr_name = k.replace("Citadel_StatusEffect", "")
+            clean_eff = camel_to_snake(attr_name)
+            if clean_eff:
+                loc["effect_types"][clean_eff] = strip_html(v)
             
     for k, v in attr_tokens.items():
-         if k.startswith("StatDesc_") and k.endswith("_postfix"):
+         if k.endswith("_label"):
+             stat_name = k.replace("_label", "")
+             if stat_name not in loc["stat_labels"]:
+                 loc["stat_labels"][stat_name] = {"label": strip_html(v), "unit": ""}
+             else:
+                 loc["stat_labels"][stat_name]["label"] = strip_html(v)
+         elif k.startswith("StatDesc_") and k.endswith("_postfix"):
              stat_name = k.replace("StatDesc_", "").replace("_postfix", "")
              if stat_name in loc["stat_labels"]:
                  loc["stat_labels"][stat_name]["unit"] = v.strip()
@@ -213,6 +267,34 @@ def parse_localization(hero_names_path, heroes_english_path, attributes_english_
         except Exception as e:
             print(f"Error loading shop_builder: {e}")
 
+    # Explicit aliases and common patterns
+    loc["effect_types"]["toss"] = loc["effect_types"].get("knockup", "Knockup")
+    
+    # Core stat keywords for effect categorization
+    common_stats = {
+        "cooldown": "Cooldown",
+        "duration": "Duration",
+        "range": "Range",
+        "radius": "Radius",
+        "charges": "Charges",
+        "delay": "Delay",
+        "speed": "Speed",
+        "damage": "Damage",
+        "resist": "Resist",
+        "armor": "Armor",
+        "regen": "Regen",
+        "lifesteal": "Lifesteal",
+        "amp": "Amp",
+        "bash": "Bash",
+        "movement": "Movement",
+        "weapon": "Weapon",
+        "spirit": "Spirit",
+        "stamina": "Stamina"
+    }
+    for k, v in common_stats.items():
+        if k not in loc["effect_types"]:
+            loc["effect_types"][k] = v
+
     return loc
 
 def extract_hero_tags(internal_key, display_name, hero_tags_by_keyword):
@@ -224,6 +306,12 @@ def extract_hero_tags(internal_key, display_name, hero_tags_by_keyword):
     return []
 
 def get_stat_name(raw_key, stat_labels=None):
+    if stat_labels and raw_key in stat_labels:
+        label = stat_labels[raw_key].get("label", "")
+        if label:
+            # Convert "Movement Speed" to "movement_speed"
+            clean = label.lower().replace(" ", "_")
+            return re.sub(r'[^a-z0-9_]', '', clean)
     return MAPPING.get_stat_name(raw_key)
 
 def infer_damage_type(hero_abilities):
@@ -320,9 +408,19 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
         ab["id"] = ability_id
         ab["slot"] = i
         ab["name"] = resolve_ability_name(ability_id, loc["ability_names"])
-        ab["description"] = clean_description(
-            loc["ability_descs"].get(ability_id, ""), loc["inline_attrs"]
-        )
+        
+        raw_desc_parts = []
+        main_desc = loc["ability_descs"].get(ability_id, "")
+        if main_desc:
+            raw_desc_parts.append(main_desc)
+            
+        for k, v in loc["ability_descs"].items():
+            if k.startswith(f"{ability_id}_") and k != ability_id:
+                if v and v not in raw_desc_parts:
+                    raw_desc_parts.append(v)
+                    
+        raw_desc = " | ".join(raw_desc_parts)
+        ab["description"] = clean_description(raw_desc, loc["inline_attrs"])
         
         act = ab_data.get("m_eAbilityActivation", "Unknown")
         if act == "CITADEL_ABILITY_ACTIVATION_PASSIVE":
@@ -356,10 +454,12 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
                 if clean_pk == "ability_cooldown": clean_pk = "cooldown"
                 elif clean_pk == "ability_cast_range": clean_pk = "cast_range"
                 elif clean_pk == "ability_duration": clean_pk = "duration"
-                stats[clean_pk] = normalize(val)
+                if isinstance(val, (int, float)) and val in [0, -1, 0.0, -1.0]:
+                    pass # Skip noisy stats
+                else:
+                    stats[clean_pk] = normalize(val)
         ab["stats"] = stats
         
-        MEANINGFUL_TYPES = {"spirit_damage", "bullet_damage", "heal", "dot", "stun", "slow"}
         UNIT_MAP = {
             "spirit_damage": "damage",
             "bullet_damage": "damage",
@@ -367,6 +467,24 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
             "dot": "damage/sec",
             "stun": "seconds",
             "slow": "%",
+            "cooldown": "s",
+            "duration": "s",
+            "range": "m",
+            "radius": "m",
+            "charges": "charges",
+            "delay": "s",
+            "speed": "m/s",
+            "move_speed": "m/s",
+            "spirit_power": "spirit",
+            "weapon_power": "weapon",
+            "tech_power": "spirit",
+            "fire_rate": "%",
+            "lifesteal": "%",
+            "regen": "hp/s",
+            "armor": "%",
+            "resist": "%",
+            "spirit_resist": "%",
+            "bullet_resist": "%"
         }
 
         effects = []
@@ -376,22 +494,80 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
             val = normalize(pv.get("m_strValue", 0))
             lower_pk = pk.lower()
 
-            # effect mapping
-            if not any(x in lower_pk for x in ["proc", "damage", "slow", "stun", "heal", "dot", "burn", "silence", "duration"]):
+            if pk in MAPPING.effect_property_blacklist:
                 continue
 
-            effect_type = "buff"
-            if sf and sf.get("_class") == "scale_function_tech_damage":
-                effect_type = "spirit_damage"
-            elif "slow" in lower_pk: effect_type = "slow"
-            elif "stun" in lower_pk: effect_type = "stun"
-            elif "heal" in lower_pk: effect_type = "heal"
-            elif "silence" in lower_pk: effect_type = "silence"
-            elif "dot" in lower_pk or "burn" in lower_pk: effect_type = "dot"
-            elif "damage" in lower_pk: effect_type = "bullet_damage"
-            else: continue
+            # BUG 2: Distance/size values extracted as effects
+            if isinstance(val, str) and val.endswith("m"):
+                stat_key = get_stat_name(pk, loc["stat_labels"])
+                if stat_key == "ability_cooldown": stat_key = "cooldown"
+                elif stat_key == "ability_cast_range": stat_key = "cast_range"
+                elif stat_key == "ability_duration": stat_key = "duration"
+                ab["stats"][stat_key] = val
+                continue
 
-            eff = {"type": effect_type, "base_value": val}
+            # effect mapping
+            effect_type = None
+            localized_label = ""
+            
+            # Priority 1: Scale Function Class
+            if sf:
+                sf_class = sf.get("_class")
+                if sf_class == "scale_function_tech_damage":
+                    effect_type = "spirit_damage"
+                elif sf_class == "scale_function_healing":
+                    effect_type = "heal"
+                    
+            # Priority 2: m_eProvidedPropertyType label
+            if effect_type is None:
+                provided_type = pv.get("m_eProvidedPropertyType")
+                if provided_type and provided_type in loc["stat_labels"]:
+                    localized_label = loc["stat_labels"][provided_type].get("label", "")
+            
+            # Priority 3: Property name label
+            if effect_type is None and not localized_label:
+                if pk in loc["stat_labels"]:
+                    localized_label = loc["stat_labels"][pk].get("label", "")
+            
+            # Priority 4: Search localized label for keywords
+            if effect_type is None and localized_label:
+                label_lower = localized_label.lower()
+                for et_key, et_label in loc["effect_types"].items():
+                    if et_key in label_lower or (et_label and et_label.lower() in label_lower):
+                        effect_type = et_key
+                        break
+            
+            # Priority 5: Fallback to snake_case property name
+            if effect_type is None:
+                property_snake = get_stat_name(pk, loc["stat_labels"])
+                for et_key in loc["effect_types"]:
+                    if et_key and et_key in property_snake:
+                        effect_type = et_key
+                        break
+                        
+            # Hack for telepunch / bebop toss / etc
+            if effect_type is None and any(w in pk.lower() for w in ["toss", "punch", "knockback", "knockup"]):
+                effect_type = "knockup"
+                        
+            eff = {"type": effect_type or "unknown", "base_value": val}
+            if localized_label:
+                eff["localized_name"] = localized_label
+                if eff["type"] == "unknown":
+                    # Fallback: if we have a label but no type, try to map label directly
+                    lbl = localized_label.lower()
+                    if "slow" in lbl: eff["type"] = "slow"
+                    elif "stun" in lbl: eff["type"] = "stun"
+                    elif "knockup" in lbl or "knockback" in lbl or "toss" in lbl: eff["type"] = "knockup"
+                    elif "silence" in lbl: eff["type"] = "silence"
+                    elif "disarm" in lbl: eff["type"] = "disarm"
+                    elif "heal" in lbl or "regen" in lbl: eff["type"] = "heal"
+                    elif "damage" in lbl: eff["type"] = "damage"
+                    elif "cooldown" in lbl: eff["type"] = "cooldown"
+                    elif "duration" in lbl: eff["type"] = "duration"
+                    elif "range" in lbl: eff["type"] = "range"
+                    elif "radius" in lbl: eff["type"] = "radius"
+                    elif "spirit" in lbl: eff["type"] = "spirit_power"
+                    elif "weapon" in lbl: eff["type"] = "weapon_power"
 
             if sf:
                 ratio = normalize(sf.get("m_flStatScale", 1.0))
@@ -401,23 +577,83 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
                 eff["scales_with"] = {"stat": stat, "ratio": ratio}
                 eff["formula"] = f"{val} + ({stat} * {ratio})"
 
+            TYPE_ALIASES = {
+                "spirit":         "spirit_damage",
+                "weapon":         "weapon_damage",
+                "toss":           "knockup",
+                "tethered":       "tether",
+                "combat_barrier": "shield",
+                "amp":            "damage_amp",
+                "custom_debuff":  "debuff",
+            }
+            detected_type = eff["type"]
+            if detected_type == "damage":
+                scale_stat = eff.get("scales_with", {}).get("stat", "")
+                if "melee" in scale_stat:
+                    detected_type = "melee_damage"
+                elif "bullet" in scale_stat or "weapon" in scale_stat:
+                    detected_type = "bullet_damage"
+                else:
+                    detected_type = "spirit_damage"
+            else:
+                detected_type = TYPE_ALIASES.get(detected_type, detected_type)
+            eff["type"] = detected_type
+
+            STAT_TYPES = {
+                'cooldown', 'duration', 'radius', 'range',
+                'speed', 'delay', 'charges', 'stamina',
+                'armor', 'resist', 'regen', 'lifesteal',
+            }
+            MECHANIC_NAME_BLACKLIST = {
+                "lifetime", "buildup", "recast", "window",
+                "frequency", "generation", "summon", "count",
+                "rate", "interval", "angle", "time-stop",
+                "per bullet", "per headshot", "per shot",
+            }
+            
+            loc_lower = eff.get("localized_name", "").lower()
+            scale_stat = eff.get("scales_with", {}).get("stat", "")
+            
+            is_mechanic = any(kw in loc_lower for kw in MECHANIC_NAME_BLACKLIST)
+            is_cooldown_mechanic = eff["type"] == "unknown" and scale_stat in ("ability_cooldown", "cooldown", "level_up_boons")
+            
+            if eff["type"] in STAT_TYPES or is_mechanic or is_cooldown_mechanic:
+                stat_key = get_stat_name(pk, loc["stat_labels"])
+                if stat_key == "ability_cooldown": stat_key = "cooldown"
+                elif stat_key == "ability_cast_range": stat_key = "cast_range"
+                elif stat_key == "ability_duration": stat_key = "duration"
+                ab["stats"][stat_key] = val
+                continue
+
             # --- Filtering rules ---
+            if isinstance(val, (int, float)) and val in [0, -1, 0.0, -1.0]:
+                continue
+                
             has_formula = "formula" in eff
             has_scale = eff.get("scales_with", {}).get("ratio") is not None
-            has_value = isinstance(val, (int, float)) and val > 0 and effect_type in MEANINGFUL_TYPES
+            has_value = isinstance(val, (int, float)) and eff["type"] != "unknown"
 
-            # SKIP if no formula, no scaling, and zero value
+            # SKIP if no formula, no scaling, and zero/null value
             if not has_formula and not has_scale and not has_value:
                 continue
 
+            # SKIP generic multipliers like 0.5 (50%) IF no formula/scale
+            if not has_formula and not has_scale and isinstance(val, (int, float)) and 0 < abs(val) < 1:
+                continue
+
+            if eff["type"] == "unknown":
+                logger.warning(f"Unknown effect type for property: {pk} (Label: {localized_label})")
+
             # Add unit field
-            eff["unit"] = UNIT_MAP.get(effect_type, "")
+            eff["unit"] = UNIT_MAP.get(eff["type"], "")
+            if localized_label and "duration" in localized_label.lower():
+                eff["unit"] = "s"
 
             if eff not in effects:
                 effects.append(eff)
                 
         upgrades = []
-        upgs = ab_data.get("m_aUpgrades", [])
+        upgs = ab_data.get("m_vecAbilityUpgrades", [])
         if isinstance(upgs, list):
             for lvl, u_data in enumerate(upgs, start=1):
                 if not isinstance(u_data, dict): continue
@@ -427,14 +663,42 @@ def extract_hero_profile(h_key, h_data, base_stats_fallback, base_scaling_fallba
                 )
                 
                 changes = {}
-                u_props = u_data.get("m_mapPropertyUpgrades", {})
-                if isinstance(u_props, dict):
-                    for pk, pv in u_props.items():
-                        if isinstance(pv, dict):
-                            up_val = normalize(pv.get("m_strValue", pv.get("m_flValue", 0)))
-                            clean_pk = get_stat_name(pk, loc["stat_labels"])
-                            if clean_pk == "ability_cooldown": clean_pk = "cooldown"
-                            changes[clean_pk] = up_val
+                u_props = u_data.get("m_vecPropertyUpgrades", [])
+                if isinstance(u_props, list):
+                    for entry in u_props:
+                        if not isinstance(entry, dict): continue
+                        prop_name = get_stat_name(entry.get("m_strPropertyName", ""), loc["stat_labels"])
+                        if prop_name == "ability_cooldown": prop_name = "cooldown"
+                        bonus = normalize(entry.get("m_strBonus", entry.get("m_flBonus", 0)))
+                        if isinstance(bonus, (int, float)) and bonus in [0, -1, 0.0, -1.0]:
+                            continue
+
+                        upgrade_type = entry.get("m_eUpgradeType", "EAddFlat")
+                        
+                        if upgrade_type == "EAddFlat" or not upgrade_type:
+                            changes[prop_name] = bonus
+                        elif upgrade_type == "EMultiplyScale":
+                            changes[f"{prop_name}_multiplier"] = bonus
+                        elif upgrade_type == "EAddToScale":
+                            changes[f"{prop_name}_scale_bonus"] = bonus
+                            
+                if not upg_desc and not changes:
+                    continue
+                    
+                if not upg_desc and changes:
+                    parts = []
+                    for k, v in changes.items():
+                        name = k.replace('_', ' ').title()
+                        prefix = "+" if isinstance(v, (int, float)) and v > 0 else ""
+                        
+                        base_k = k.replace('_multiplier', '').replace('_scale_bonus', '')
+                        unit = UNIT_MAP.get(base_k, "")
+                        if "duration" in k or "cooldown" in k: unit = "s"
+                        elif "radius" in k or "range" in k or "distance" in k: unit = "m"
+                        
+                        parts.append(f"{prefix}{v}{unit} {name}")
+                    upg_desc = " and ".join(parts)
+                    
                 upgrades.append({
                     "level": lvl,
                     "description": upg_desc,

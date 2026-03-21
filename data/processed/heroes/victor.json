@@ -6,21 +6,20 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "You",
+      "Kill Me",
       "Can't",
-      "Kill Me"
+      "You"
     ],
     "playstyle": [
       "brawler"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
-      "heal"
+      "heal",
+      "stun"
     ]
   },
   "base_stats": {
@@ -49,7 +48,7 @@
     "health": 39,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -63,10 +62,8 @@
         "cooldown": 2,
         "cast_range": "28m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.35,
+        "cast_delay": 0.35,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 100,
         "ability_charges_conditionally": 1,
         "bonus_shocks_delay": 0.2,
@@ -74,7 +71,11 @@
         "bolt_count": 7,
         "stored_damage_health_percent_required": 40,
         "spread_randomness": 0.005,
-        "battery_generation_percent": 100
+        "battery_generation": 100,
+        "duration": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -88,32 +89,36 @@
           "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "0 + (spirit_power * 1)",
-          "unit": "%"
-        },
-        {
           "type": "heal",
           "base_value": 40,
           "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Hit: Apply X% Slow for Xs",
+          "changes": {
+            "move_speed": 40,
+            "slow_duration": "2s"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+50 Damage",
+          "changes": {
+            "damage": 50
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Hero Hit: Heal for X% of your missing health and increased Spirit scaling",
+          "changes": {
+            "missing_health_as_healing": 18,
+            "damage_scale_bonus": 0.6
+          }
+        }
+      ]
     },
     {
       "id": "ability_frank_selfzap",
@@ -126,32 +131,51 @@
         "cooldown": 30,
         "duration": 4.5,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 0.35,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 8,
-        "channel_move_speed": -1,
-        "bonus_move_speed": "3m",
-        "current_health_percent_damage": 15,
-        "total_health_regen": 100
+        "channel_duration": 0.35,
+        "charges": 1,
+        "charge_delay": 8,
+        "move_speed": "3m",
+        "current_health": 15,
+        "total_hp_regen": 100,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "refresh_cooldown_on_death": 0
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 15,
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 100,
-          "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 1.2
-          },
-          "formula": "100 + (spirit__power * 1.2)",
+          "localized_name": "Current Health",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "3mm/s Move Speed",
+          "changes": {
+            "move_speed": "3m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Total HP Regen and Xs Cooldown",
+          "changes": {
+            "total_hp_regen": 50,
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Charge, Purges non-ultimate debuffs and increases spirit scaling",
+          "changes": {
+            "charges": 1,
+            "total_hp_regen_scale_bonus": 0.8,
+            "remove_debuffs": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_frank_painaura",
@@ -164,35 +188,74 @@
         "cooldown": 2,
         "duration": 6,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "radius": "10m",
         "min_d_p_s": 12,
         "self_d_p_s": 15,
         "tick_rate": 0.25,
         "debuff_duration": 0.5,
         "toggle_off_delay": 0.5,
-        "max_d_p_s": 54,
-        "self_damage_percentage": 70
+        "max_dps": 54,
+        "self_damage": 70,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0,
+          "type": "spirit_damage",
+          "base_value": 12,
           "scales_with": {
             "stat": "spirit_power",
-            "ratio": 1.1
+            "ratio": 0.135
           },
-          "formula": "0 + (spirit_power * 1.1)",
+          "formula": "12 + (spirit_power * 0.135)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
+          "base_value": 54,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.67
+          },
+          "formula": "54 + (spirit_power * 0.67)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
           "base_value": 70,
+          "localized_name": "Self Damage",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Enemies receive X% Slow",
+          "changes": {
+            "move_speed": 30,
+            "debuff_duration": 0.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Min DPS and +X Max DPS",
+          "changes": {
+            "min_dps": 6,
+            "max_dps": 26
+          }
+        },
+        {
+          "level": 3,
+          "description": "Enemies take +X% Damage",
+          "changes": {
+            "damage_taken": 15
+          }
+        }
+      ]
     },
     {
       "id": "ability_frank_revive",
@@ -204,20 +267,25 @@
       "stats": {
         "cooldown": 190,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 3,
+        "channel_duration": 3,
         "ability_post_cast_duration": 0.66,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 200,
         "radius": "12m",
         "half_height": "15m",
         "initial_delay": 0.5,
         "respawn_delay": 3,
-        "respawn_health_percent": 50,
-        "slow_percent": 80,
+        "rebirth_health": 50,
+        "move_speed": 80,
         "slow_duration": 3,
         "zombie_tick_rate": 0.02,
-        "stun_duration": 1.5
+        "stun_duration": 1.5,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "cooldown_refund_chance": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
@@ -233,40 +301,60 @@
         {
           "type": "heal",
           "base_value": 50,
+          "localized_name": "Rebirth Health",
           "unit": "hp"
         },
         {
-          "type": "slow",
+          "type": "move_speed",
           "base_value": 80,
-          "unit": "%"
+          "localized_name": "Move Speed",
+          "unit": "m/s"
         },
         {
           "type": "slow",
           "base_value": 3,
-          "unit": "%"
-        },
-        {
-          "type": "spirit_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 0
-          },
-          "formula": "0 + (spirit_power * 0)",
-          "unit": "damage"
+          "localized_name": "Slow Duration",
+          "unit": "s"
         },
         {
           "type": "stun",
           "base_value": 1.5,
+          "localized_name": "Stun Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "1.5 + (spirit_power * 1)",
-          "unit": "seconds"
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "While On Cooldown: Gain +X% Fire Rate and X Spirit Damage per Bullet",
+          "changes": {
+            "damage_per_bullet": 6,
+            "fire_rate": 15,
+            "damage_per_bullet_scale_bonus": 0.06
+          }
+        },
+        {
+          "level": 2,
+          "description": "+50 Rebirth Health",
+          "changes": {
+            "rebirth_health": 50
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm Radius +X Stun Xs Cooldown",
+          "changes": {
+            "radius": "6m",
+            "stun_duration": 1.5,
+            "cooldown": -50
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -430,18 +518,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

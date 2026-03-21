@@ -6,16 +6,16 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Tactician",
       "Disruptor",
-      "Calculated",
-      "Tactician"
+      "Calculated"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "bullet",
-      "spirit"
+      "spirit",
+      "bullet"
     ],
     "utility": [
       "slow"
@@ -46,7 +46,7 @@
     "health": 45,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -60,51 +60,92 @@
         "cooldown": 32,
         "duration": 3.2,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.2,
         "radius": "5.5m",
-        "radius_increase_per_pulse": "1m",
+        "radius_per_pulse": "1m",
         "pulse_interval": 0.8,
         "pulse_damage": 35,
-        "damage_amplification_per_stack": 4,
+        "bonus_damage_per_stack": 4,
         "debuff_duration": 8,
-        "slow_percent": 20,
-        "movement_slow_duration": 0.2
+        "move_speed": 20,
+        "slow_duration": 0.2,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 35,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.3
           },
-          "formula": "35 + (spirit__power * 0.3)",
+          "formula": "35 + (spirit_power * 0.3)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 4,
+          "localized_name": "Bonus Damage per Stack",
           "unit": "damage"
         },
         {
-          "type": "slow",
+          "type": "debuff",
+          "base_value": 8,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "8 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "move_speed",
           "base_value": 20,
-          "unit": "%"
+          "localized_name": "Move Speed",
+          "unit": "m/s"
         },
         {
           "type": "slow",
           "base_value": 0.2,
+          "localized_name": "Slow Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.2 + (ability__duration * 1)",
-          "unit": "%"
+          "formula": "0.2 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-12s Cooldown",
+          "changes": {
+            "cooldown": -12
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Pulse Damage and increased Spirit scaling",
+          "changes": {
+            "pulse_damage": 20,
+            "pulse_damage_scale_bonus": 0.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Damage Amp and +Xs Duration",
+          "changes": {
+            "bonus_damage_per_stack": 4,
+            "duration": 1.6
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_chrono_time_wall",
@@ -118,67 +159,105 @@
         "duration": 5.5,
         "cast_range": 200,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
+        "cast_delay": 0.2,
         "channel_move_speed": "1.3m",
-        "time_wall_width": "7.5m",
-        "time_wall_height": "3.5m",
+        "wall_width": "7.5m",
+        "wall_height": "3.5m",
         "time_wall_depth": "0.5m",
         "time_wall_depth_visual_scale": 0.16,
         "time_wall_time_scale": 0.0001,
-        "time_scale_duration": 0.5,
-        "time_wall_time_scale_friendly": 2,
-        "friendly_bullet_damage_bonus": 30,
-        "movement_slow_pct": 80,
+        "time_stop_duration": 0.5,
+        "ally_bullet_speed": 2,
+        "ally_weapon_damage": 30,
+        "movement_slow": 80,
         "aura_effect_duration": 2,
-        "time_wall_formation_time": 0.5
+        "time_wall_formation_time": 0.5,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "weapon_damage",
           "base_value": 30,
-          "unit": "damage"
+          "localized_name": "Ally Weapon Damage",
+          "unit": ""
         },
         {
           "type": "slow",
           "base_value": 80,
+          "localized_name": "Movement Slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+Xs Duration +Xm Width+Xm Height",
+          "changes": {
+            "wall_width": "3m",
+            "wall_height": "1m",
+            "duration": 2.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Silence Duration +X% Weapon Damage",
+          "changes": {
+            "ally_weapon_damage": 30,
+            "debuff_duration": 2.3
+          }
+        },
+        {
+          "level": 3,
+          "description": "Enable X Ability Charges",
+          "changes": {
+            "charges": 2,
+            "charge_delay": 4
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_chrono_kinetic_carbine",
       "slot": 3,
       "name": "Kinetic Carbine",
-      "description": "Charge up a powerful shot of time energy, dealing spirit damage and applying a Time-Stop to enemies hit. The damage dealt increases with weapon damage. Move speed is increased while charging. While in the air and charging, to timeslow your movement.",
+      "description": "Charge up a powerful shot of time energy, dealing spirit damage and applying a Time-Stop to enemies hit. The damage dealt increases with weapon damage. Move speed is increased while charging. While in the air and charging, [ADS] to timeslow your movement.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 30,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "speed_change": 25,
-        "speed_boost_duration": 3.5,
-        "min_bonus_bullet_damage": 5,
-        "max_bonus_bullet_damage": 5,
-        "headshot_bonus": 14,
-        "max_slow_duration": 0.4,
+        "bonus_speed": 25,
+        "charge_hold_duration": 3.5,
+        "min_damage": 5,
+        "max_damage": 5,
+        "headshot_damage": 14,
+        "max_timestop": 0.4,
         "bullet_time_scale": 0.01,
         "projectile_time_scale": 0.01,
         "time_warp_radius": "5m",
         "bonus_bullet_speed": 100,
         "shot_count": 1,
-        "max_charge_duration": 2.5,
+        "full_charge_time": 2.5,
         "bullet_radius_override": 13.7,
         "move_speed_while_shooting_penalty_reduction": 100,
-        "min_slow_duration": 0.25,
-        "time_scale_debuff": 90
+        "min_timestop": 0.25,
+        "time_scale_debuff": 90,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "bullet_damage",
           "base_value": 5,
+          "localized_name": "Min Damage",
           "scales_with": {
             "stat": "weapon_power",
             "ratio": 25
@@ -189,6 +268,7 @@
         {
           "type": "bullet_damage",
           "base_value": 5,
+          "localized_name": "Max Damage",
           "scales_with": {
             "stat": "weapon_power",
             "ratio": 125
@@ -197,27 +277,41 @@
           "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0.4,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0.4 + (ability__duration * 1)",
-          "unit": "%"
+          "type": "spirit_damage",
+          "base_value": 14,
+          "localized_name": "Headshot Damage",
+          "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0.25,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0.25 + (ability__duration * 1)",
-          "unit": "%"
+          "type": "move_speed",
+          "base_value": 100,
+          "unit": "m/s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+0.4 Max Timestop",
+          "changes": {
+            "max_timestop": 0.4
+          }
+        },
+        {
+          "level": 2,
+          "description": "-12s Cooldown",
+          "changes": {
+            "cooldown": -12
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Charge Hold Duration and +X% Max Damage Scaling",
+          "changes": {
+            "charge_hold_duration": 2,
+            "max_damage_scale_bonus": 50
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_chrono_swap",
@@ -230,8 +324,7 @@
         "cooldown": 95,
         "cast_range": "25m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.15,
         "channel_move_speed": "1.3m",
         "initial_freeze_time": 0.25,
         "min_swap_time": 0.6,
@@ -240,21 +333,53 @@
         "swap_damage": 125,
         "initial_height": 350,
         "tick_rate": 0.25,
-        "multi_swap": "0m"
+        "multi_target_radius": "0m",
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 125,
+          "localized_name": "Swap Damage",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.1
           },
-          "formula": "125 + (spirit__power * 1.1)",
+          "formula": "125 + (spirit_power * 1.1)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "X Barrier for Xs. Barrier scales with Spirit",
+          "changes": {
+            "barrier": 200,
+            "barrier_duration": 8,
+            "barrier_scale_bonus": 1.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +Xm Cast Range",
+          "changes": {
+            "cast_range": "13m",
+            "cooldown": -35
+          }
+        },
+        {
+          "level": 3,
+          "description": "Swaps all enemies within Xm of hit target and +X% Max Health Damage",
+          "changes": {
+            "multi_target_radius": "7m",
+            "max_health_damage": 10
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -494,14 +619,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_thermal_detonator",

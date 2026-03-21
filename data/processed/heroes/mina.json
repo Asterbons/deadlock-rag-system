@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Harasser",
       "Vexing",
-      "Nimble",
-      "Harasser"
+      "Nimble"
     ],
     "playstyle": [
       "marksman"
@@ -17,7 +17,6 @@
       "spirit"
     ],
     "utility": [
-      "slow",
       "heal"
     ]
   },
@@ -46,26 +45,24 @@
     "health": 28,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
       "id": "ability_vampirebat_steallife",
       "slot": 1,
       "name": "Rake",
-      "description": "Active: Slash with your umbrella, dealing spirit damage, increasing with their missing health. Receive a heal for every target killed.Passive: Holding causes you to briefly float.",
+      "description": "Active: Slash with your umbrella, dealing spirit damage, increasing with their missing health. Receive a heal for every target killed.Passive: Holding [ADS] causes you to briefly float.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
         "cooldown": 16,
         "cast_range": "10m",
         "ability_unit_target_limit": 6,
-        "ability_cast_delay": 0.1,
+        "cast_delay": 0.1,
         "ability_post_cast_duration": 0.4,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 60,
-        "targeting_cone_angle": 60,
+        "attack_angle": 60,
         "time_between_attacks": 0.04,
         "missing_health_damage_percentage": 5,
         "mini_jump_velocity": 200,
@@ -76,7 +73,12 @@
         "fall_speed_max": 3,
         "air_drag": 0.2,
         "falling_drag": 20,
-        "max_float_time": 2.5
+        "max_float_time": 2.5,
+        "duration": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "air_speed_max": 0
       },
       "effects": [
         {
@@ -105,7 +107,31 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+60 Damage",
+          "changes": {
+            "damage": 60
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Heal per Kill Xs Cooldown",
+          "changes": {
+            "rake_heal_per_kill": 30,
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Missing health damage and increased Heal per Kill Spirit scaling",
+          "changes": {
+            "missing_health_damage_percentage": 7,
+            "rake_heal_per_kill_scale_bonus": 1.2
+          }
+        }
+      ]
     },
     {
       "id": "ability_vampirebat_batblink",
@@ -119,16 +145,45 @@
         "duration": 0.65,
         "cast_range": "9m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "max_recasts": 1,
         "recast_window": 3.5,
         "xit_velocity": "5m",
         "nd_jump_velocity": 200,
-        "bonus_move_speed": "0m"
+        "move_speed": "0m",
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "buff_duration": 0,
+        "fire_rate": 0
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Cast: Gain +X% Fire Rate for Xs and add X bullets",
+          "changes": {
+            "fire_rate": 25,
+            "buff_duration": 8,
+            "bonus_bullets": 8
+          }
+        },
+        {
+          "level": 2,
+          "description": "-10s Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Recast",
+          "changes": {
+            "max_recasts": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_vampirebat_lovebites",
@@ -139,8 +194,6 @@
       "targeting": "instant",
       "stats": {
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 4,
         "per_target_cooldown": 10,
         "build_up_per_shot": 18.4,
@@ -150,7 +203,18 @@
         "build_up_per_dagger": 30,
         "build_up_headshot_bonus": 1.5,
         "ffectiveness_volume_scale_min": 0.5,
-        "ffectiveness_volume_scale_max": 1
+        "ffectiveness_volume_scale_max": 1,
+        "cooldown": 0,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "stamina_reduction": 0,
+        "fire_rate": 0,
+        "buff_duration": 0
       },
       "effects": [
         {
@@ -172,19 +236,35 @@
           },
           "formula": "45 + (spirit_power * 1.85)",
           "unit": "damage"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "0 + (spirit_power * 1)",
-          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Proc: +X% Slow for Xs",
+          "changes": {
+            "slow_duration": 3,
+            "move_speed": 30
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage +X Bonus Damage",
+          "changes": {
+            "damage": 3,
+            "bonus_damage": 45
+          }
+        },
+        {
+          "level": 3,
+          "description": "X Cooldown On Proc: +X% Fire Rate for Xs",
+          "changes": {
+            "per_target_cooldown": -4,
+            "fire_rate": 25,
+            "buff_duration": 5
+          }
+        }
+      ]
     },
     {
       "id": "ability_vampirebat_batswarm",
@@ -202,9 +282,7 @@
         "cooldown": 130,
         "cast_range": "40m",
         "ability_unit_target_limit": 12,
-        "ability_cast_delay": 0.5,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.5,
         "bat_spawn_radius": "1.5m",
         "fall_speed_max": "1m",
         "bat_spawn_random_velocity": 300,
@@ -212,22 +290,27 @@
         "damage": 5.6,
         "jump_pitch": -60,
         "jump_speed": "17m",
-        "bat_count": 75,
+        "total_bats_released": 75,
         "debuff_duration": 1.25,
         "bat_spawn_random_angle": 0.15,
         "bat_count_per_wave": 1,
-        "bonus_bats_max": 50,
-        "bonus_bats_per_proc": 2,
+        "max_additional_bats": 50,
+        "additional_bats_per_love_bite": 2,
         "current_health_damage_cap_to_bosses": 20,
-        "bat_per_second": 30,
+        "bats_per_second": 30,
         "jump_ceiling_check_distance": "11m",
         "not_in_cone_loses_lock": 1,
-        "targeting_cone_angle": 20,
+        "attack_angle": 20,
         "ground_acceleration_percentage": -80,
         "ground_frictio_npercentage": -80,
         "vertical_drag": 1,
         "bat_effectiveness": 0.2,
-        "max_bat_targets": 2
+        "max_bat_targets": 2,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -241,12 +324,56 @@
           "unit": "damage"
         },
         {
+          "type": "unknown",
+          "base_value": 75,
+          "localized_name": "Total Bats Released",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "75 + (spirit_power * 1)",
+          "unit": ""
+        },
+        {
+          "type": "debuff",
+          "base_value": 1.25,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1.25 + (spirit_power * 1)",
+          "unit": "s"
+        },
+        {
           "type": "heal",
           "base_value": 20,
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+2.2 Damage",
+          "changes": {
+            "damage": 2.2
+          }
+        },
+        {
+          "level": 2,
+          "description": "-55s Cooldown",
+          "changes": {
+            "cooldown": -55
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Hit: Deal +X% Current Health as Damage",
+          "changes": {
+            "current_health": 1
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -422,14 +549,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_defense_shredders",
-      "name": "Spirit Shredder Bullets"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
     },
     {
       "id": "upgrade_titan_round",

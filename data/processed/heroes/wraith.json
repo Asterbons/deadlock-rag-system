@@ -14,7 +14,6 @@
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -47,7 +46,7 @@
     "health": 35,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,9 +61,7 @@
         "cast_range": "500m",
         "ability_unit_target_limit": 1,
         "ability_post_cast_duration": 0.1,
-        "ability_charges": 2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "charges": 2,
         "damage": 45,
         "radius": "4m",
         "ability_charges_conditionally": 1,
@@ -75,62 +72,103 @@
         "card_resource_per_bullet_crit": 6,
         "card_resource_per_light_melee": 10,
         "card_resource_per_heavy_melee": 25,
-        "card_resource_gen_pct_scale": 85,
+        "card_summon_rate": 85,
         "projectile_origin_height_offset": 50,
-        "club_slow_percent": -30,
+        "movement_slow": -30,
         "club_slow_duration": 3,
-        "joker_extra_cards": 1,
+        "split_cards": 1,
         "diamond_resist_shred_duration": 5,
-        "diamond_resist_shred": -8,
+        "bullet_and_spirit_resist_reduction": -8,
         "joker_extra_card_search_radius": "20m",
         "cooldown_between_cards": 0.5,
-        "heart_heal": 75,
+        "heal": 75,
         "heart_heal_non_hero_ratio": 0.5,
-        "spade_damage_bonus": 60
+        "bonus_damage": 60,
+        "duration": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 45,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.55
           },
-          "formula": "45 + (spirit__power * 0.55)",
+          "formula": "45 + (spirit_power * 0.55)",
           "unit": "damage"
+        },
+        {
+          "type": "slow",
+          "base_value": -30,
+          "localized_name": "Movement slow",
+          "unit": "%"
         },
         {
           "type": "slow",
           "base_value": 3,
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "3 + (ability__duration * 1)",
+          "formula": "3 + (ability_duration * 1)",
           "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": -8,
+          "localized_name": "Bullet and Spirit Resist Reduction",
+          "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 75,
+          "localized_name": "Heal",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1
           },
-          "formula": "75 + (spirit__power * 1)",
+          "formula": "75 + (spirit_power * 1)",
           "unit": "hp"
         },
         {
-          "type": "heal",
-          "base_value": 0.5,
-          "unit": "hp"
-        },
-        {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 60,
+          "localized_name": "Bonus Damage",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+2charges Charges",
+          "changes": {
+            "charges": 2
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage and increased Spirit Scaling",
+          "changes": {
+            "damage": 40,
+            "damage_scale_bonus": 0.4
+          }
+        },
+        {
+          "level": 3,
+          "description": "All suits are improved and higher chance for Jokers",
+          "changes": {
+            "improved_joker_chance": 1,
+            "bonus_damage": 50,
+            "bullet_and_spirit_resist_reduction": -5,
+            "heal": 75,
+            "heal_scale_bonus": 0.75,
+            "movement_slow": -20
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_projectmind",
@@ -143,14 +181,42 @@
         "cooldown": 42,
         "cast_range": "25m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.75,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.75,
         "channel_move_speed": "5.1m",
         "camera_distance": 250,
-        "trail_interval": 0.1
+        "trail_interval": 0.1,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "15mm Cast Range",
+          "changes": {
+            "cast_range": "15m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "X Barrier for Xs. Barrier scales with Spirit Power.",
+          "changes": {
+            "barrier": 300,
+            "barrier_duration": 5,
+            "barrier_scale_bonus": 1.7
+          }
+        },
+        {
+          "level": 3,
+          "description": "-28s Cooldown",
+          "changes": {
+            "cooldown": -28
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_wraith_rapidfire",
@@ -163,11 +229,16 @@
         "cooldown": 45,
         "duration": 5,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "radius": "0m",
-        "bonus_fire_rate": 20,
-        "magic_damage_per_bullet": 2
+        "fire_rate": 20,
+        "spirit_damage_per_bullet": 2,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "bullet_lifesteal": 0
       },
       "effects": [
         {
@@ -181,13 +252,36 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-20s Cooldown",
+          "changes": {
+            "cooldown": -20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Fire Rate and +Xs Duration",
+          "changes": {
+            "duration": 3
+          }
+        },
+        {
+          "level": 3,
+          "description": "Unlimited Ammo and Increased Scaling on Spirit Damage Per Bullet",
+          "changes": {
+            "spirit_damage_per_bullet_scale_bonus": 0.06,
+            "unlimited_ammo": 1
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_psychic_lift",
       "slot": 4,
       "name": "Telekinesis",
-      "description": "Lift an enemy hero into the air and then slam them towards the target location.",
+      "description": "Lift an enemy hero into the air and then slam them towards the target location. | Slamming the target into the ground deals spirit damage, applying slow and prevents Stamina and movement-based items and abilities",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
@@ -195,37 +289,68 @@
         "duration": 2.75,
         "cast_range": "14m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.3,
-        "ability_channel_time": 0.65,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.3,
+        "channel_duration": 0.65,
         "damping_factor": 0.3,
         "lift_height": 80,
         "damage": 100,
         "lift_chain_radius": "20m",
         "lift_duration": 2,
-        "toss_distance": "14m",
-        "slow_percent": 40,
-        "toss_up_strength": 220
+        "throw_range": "14m",
+        "move_speed": 40,
+        "toss_up_strength": 220,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 100,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1
           },
-          "formula": "100 + (spirit__power * 1)",
+          "formula": "100 + (spirit_power * 1)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 40,
+          "localized_name": "Movement slow",
           "unit": "%"
+        },
+        {
+          "type": "knockup",
+          "base_value": 220,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+100 Damage",
+          "changes": {
+            "damage": 100
+          }
+        },
+        {
+          "level": 2,
+          "description": "-50s Cooldown",
+          "changes": {
+            "cooldown": -50
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Debuff Duration and +Xm Throw and Cast Range",
+          "changes": {
+            "duration": 1.5,
+            "throw_range": "6m",
+            "cast_range": "6m"
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -433,14 +558,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_titan_round",

@@ -6,21 +6,20 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Mobility",
       "A Cut Above",
-      "Finesse"
+      "Finesse",
+      "Mobility"
     ],
     "playstyle": [
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
-      "heal"
+      "heal",
+      "stun"
     ]
   },
   "base_stats": {
@@ -49,7 +48,7 @@
     "health": 44,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,19 +61,27 @@
       "stats": {
         "cooldown": 12,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.5,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.5,
         "channel_move_speed": "1.3m",
-        "sigil_radius": "6.5m",
+        "radius": "6.5m",
         "sigil_height": "15m",
         "damage": 100,
         "jump_velocity_hidden": "10.5m",
         "slow_duration": 4,
-        "slow_percent": 30,
+        "move_speed": 30,
         "trace_to_ground_distance": 1000,
         "fall_speed_max": 1,
         "air_speed_max": 70,
-        "air_drag": 2
+        "air_drag": 2,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0,
+        "stamina_restored": 0,
+        "buff_duration": 0
       },
       "effects": [
         {
@@ -90,121 +97,191 @@
         {
           "type": "slow",
           "base_value": 4,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "4 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 30,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+30 Damage",
+          "changes": {
+            "damage": 30
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Fire Rate and +X% Bullet Speed for Xs",
+          "changes": {
+            "fire_rate": 20,
+            "bullet_velocity": 50,
+            "buff_duration": 10
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Player Hit: +X stamina restored and resets Air Jump/Dash limit",
+          "changes": {
+            "stamina_restored": 2,
+            "reset_air_limit": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_fencer_riposte",
       "slot": 2,
       "name": "Riposte",
-      "description": "Prepare to deflect the next incoming attack. On a successful deflection, briefly become invulnerable, before performing a dash forward that stuns an enemy and reduces their Melee Resist.Does not trigger against trooper or neutral damage.",
+      "description": "Prepare to deflect the next incoming attack. On a successful deflection, briefly become invulnerable, before performing a dash forward that stuns an enemy and reduces their Melee Resist.Does not trigger against trooper or neutral damage. | Perform a quick dash forward and stun an enemy with your weapon's pommel.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 22,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 0.8,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "channel_duration": 0.8,
         "dash_speed": 2400,
         "dash_range": "20m",
         "side_move_speed": -100,
         "turn_rate_max": 10,
-        "dash_radius": "2.2m",
+        "radius": "2.2m",
         "counterattack_anti_mash_delay": "0.2s",
-        "parry_window": "0.3s",
+        "invulnerability_duration": "0.3s",
         "damage_threshold": 60,
         "slash_cone_angle": 90,
         "slash_radius": "6m",
         "slash_half_width": "1m",
         "slow_duration": 4,
-        "slow_percent": 40,
-        "ability_lifesteal_percent_hero": 50,
+        "move_speed": "4m",
+        "spirit_lifesteal": 50,
         "stun_duration": 0.6,
         "damping_factor": 0.5,
         "lift_height": 240,
-        "move_speed_max": "4m",
-        "melee_resist_reduction": 22,
-        "melee_resist_reduction_duration": 3
+        "melee_resist": 22,
+        "melee_resist_reduction_duration": 3,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "move_speed",
+          "base_value": -100,
+          "unit": "m/s"
+        },
+        {
+          "type": "spirit_damage",
           "base_value": 60,
+          "localized_name": "Damage Threshold",
           "scales_with": {
-            "stat": "level__up__boons",
+            "stat": "level_up_boons",
             "ratio": 4
           },
-          "formula": "60 + (level__up__boons * 4)",
+          "formula": "60 + (level_up_boons * 4)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 4,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "4 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 40,
+          "localized_name": "Movement slow",
           "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 50,
+          "localized_name": "Spirit Lifesteal",
+          "scales_with": {
+            "stat": "heal_amp",
+            "ratio": 1
+          },
+          "formula": "50 + (heal_amp * 1)",
+          "unit": "damage"
         },
         {
           "type": "stun",
           "base_value": 0.6,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.6 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "0.6 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-7s Cooldown",
+          "changes": {
+            "cooldown": -7
+          }
+        },
+        {
+          "level": 2,
+          "description": "+22 Melee Resist",
+          "changes": {
+            "melee_resist": 22
+          }
+        },
+        {
+          "level": 3,
+          "description": "+1.2s Stun Duration",
+          "changes": {
+            "stun_duration": 1.2
+          }
+        }
+      ]
     },
     {
       "id": "ability_fencer_lunge",
       "slot": 3,
       "name": "Flawless Advance",
-      "description": "Perform a series of lunges in any direction, delivering piercing stabs ahead of you. Hold your ability key to time your attacks, dealing more damage the longer it's held. Releasing your attack during the perfect window deals maximum damage.Press to re-cast.",
+      "description": "Perform a series of lunges in any direction, delivering piercing stabs ahead of you. Hold your ability key to time your attacks, dealing more damage the longer it's held. Releasing your attack during the perfect window deals maximum damage.Press [Ability3] to re-cast.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 26,
         "duration": 8,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
+        "cast_delay": 0.1,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "dash_angle_threshold": 89,
         "dash_speed": 1100,
         "attacking_dash_speed": 2200,
         "dash_range": "5.0m",
-        "attack_dash_range": "3.0m",
-        "dash_radius": "1.85m",
+        "attacking_lunge_distance": "3.0m",
+        "radius": "1.85m",
         "hold_duration_min": 0.25,
-        "perfect_hold_time_start": 0.525,
+        "perfect_window_start": 0.525,
         "perfect_window_duration": 0.25,
         "hold_duration_max": 1.1,
-        "damage": 25,
-        "max_damage_before_perfect": 40,
+        "base_damage": 25,
+        "max_hold_damage": 40,
         "perfect_damage": 65,
         "pct_travel_distance_to_damage_in": 80,
         "max_proc_bleed_damage_percent": 50,
@@ -212,9 +289,14 @@
         "slash_length": "13m",
         "slash_collision_radius": 4.5,
         "max_stacks": 2,
-        "max_stabs": 3,
+        "max_lunges": 3,
         "recast_time": 5,
-        "parry_cooldown_reduction": 5
+        "parry_cooldown": 5,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "dash_buff_duration": 0
       },
       "effects": [
         {
@@ -248,53 +330,73 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 80,
           "unit": "damage"
         },
         {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0
-          },
-          "formula": "0 + (spirit__power * 0)",
-          "unit": "hp"
-        },
-        {
-          "type": "bullet_damage",
+          "type": "bleed",
           "base_value": 50,
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "50 + (spirit_power * 1)",
-          "unit": "damage"
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Perfect Hit on Hero: Heal X",
+          "changes": {
+            "heal_on_hero_hit": 30,
+            "heal_on_hero_hit_scale_bonus": 0.75
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown. Gain +X% Bullet Resist during lunge",
+          "changes": {
+            "cooldown": -10,
+            "bullet_resist": 60,
+            "dash_buff_duration": 1.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Perfect Damage and increased spirit scaling.Increased lunge attacking dash speed & distance.",
+          "changes": {
+            "base_damage": 30,
+            "base_damage_multiplier": 1.15,
+            "max_hold_damage": 45,
+            "max_hold_damage_multiplier": 1.15,
+            "perfect_damage": 65,
+            "perfect_damage_multiplier": 1.15,
+            "attacking_lunge_distance": "3.0m"
+          }
+        }
+      ]
     },
     {
       "id": "ability_fencer_ultimate",
       "slot": 4,
       "name": "Itani Lo Sahn",
-      "description": "Charge up and perform a long range slash. Struck enemies cannot take action or heal and are stuck in slow motion. When this effect expires, they suffer devastating damage, dealing bonus damage against half-health enemies.While in slow motion, Apollo is invulnerable and enemies take reduced damage.Hold or to delay the cast.",
+      "description": "Charge up and perform a long range slash. Struck enemies cannot take action or heal and are stuck in slow motion. When this effect expires, they suffer devastating damage, dealing bonus damage against half-health enemies.While in slow motion, Apollo is invulnerable and enemies take reduced damage.Hold [Ability4] or [Attack] to delay the cast.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 125,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1.5,
-        "ability_channel_time": 9999,
+        "cast_delay": 1.5,
+        "channel_duration": 9999,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
         "channel_move_speed": "0m",
-        "cleave__duration": 0.35,
+        "cleave_duration": 0.35,
         "dash_angle_threshold": 89,
         "dash_speed": 10000,
         "dash_range": "27m",
-        "dash_radius": "7m",
+        "radius": "7m",
         "gap_distance_to_wall": 180,
         "travel_dist_pct_before_wall_gap_check": 70,
         "debuff_duration": 1.8,
@@ -303,56 +405,110 @@
         "vacuum_speed": 400,
         "impact_damage": 70,
         "delayed_damage": 190,
-        "ground_dash_reduction_percent": -30,
+        "dash_distance": -30,
         "move_speed_penalty_max_speed": 200,
         "camera_distance": 250,
         "side_move_speed_reduction": -100,
         "turn_rate_max_during_cast": 999,
         "fall_speed_max": 1,
         "air_speed_max": 70,
-        "low_health_enemy_threshold_pct": 50,
-        "bonus_damage_percent": 60,
-        "incoming_damage_reduction_percent": 70,
-        "timer_sound_duration": 1
+        "low_health_threshold": 50,
+        "bonus_damage": 60,
+        "time_slow_damage_reduction": 70,
+        "timer_sound_duration": 1,
+        "duration": 0,
+        "cast_range": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0,
+        "cooldown_reduced_on_hero_hit": 0,
+        "cooldown_reduced_on_nonhero_hit": 0,
+        "max_cooldown_reduction": 0
       },
       "effects": [
+        {
+          "type": "debuff",
+          "base_value": 1.8,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1.8 + (spirit_power * 1)",
+          "unit": "s"
+        },
         {
           "type": "spirit_damage",
           "base_value": 70,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.77
           },
-          "formula": "70 + (spirit__power * 0.77)",
+          "formula": "70 + (spirit_power * 0.77)",
           "unit": "damage"
         },
         {
           "type": "spirit_damage",
           "base_value": 190,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 2.3
           },
-          "formula": "190 + (spirit__power * 2.3)",
+          "formula": "190 + (spirit_power * 2.3)",
           "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": 200,
+          "unit": "m/s"
+        },
+        {
+          "type": "move_speed",
+          "base_value": -100,
+          "unit": "m/s"
         },
         {
           "type": "heal",
           "base_value": 50,
+          "localized_name": "Low Health Threshold",
           "unit": "hp"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 60,
+          "localized_name": "Bonus Damage",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "slow",
           "base_value": 70,
-          "unit": "damage"
+          "localized_name": "Time Slow Damage Reduction",
+          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "8mm Dash Range",
+          "changes": {
+            "dash_range": "8m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "-40s Cooldown",
+          "changes": {
+            "cooldown": -40
+          }
+        },
+        {
+          "level": 3,
+          "description": "+40 Bonus Damage",
+          "changes": {
+            "bonus_damage": 40
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -520,22 +676,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_defense_shredders",
-      "name": "Spirit Shredder Bullets"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

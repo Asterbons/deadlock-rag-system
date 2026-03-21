@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Mind Games",
-      "Map Control",
-      "Disorienting"
+      "Disorienting",
+      "Map Control"
     ],
     "playstyle": [
       "mystic"
@@ -17,8 +17,7 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "stun"
+      "slow"
     ]
   },
   "base_stats": {
@@ -47,7 +46,7 @@
     "health": 42,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,45 +61,79 @@
         "duration": 4,
         "ability_unit_target_limit": 1,
         "ability_post_cast_duration": 0.5,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 6,
-        "channel_move_speed": -1,
+        "charges": 1,
+        "charge_delay": 6,
         "radius": "5m",
-        "xplosion_damage": 85,
+        "explosion_damage": 85,
         "projectile_fuse": 3,
         "projectile_drag": 0.975,
-        "debuff_accuracy": -100,
+        "weapon_accuracy": -100,
         "accuracy_debuff_falloff_bias": 0.3,
-        "slow_percent": 30
+        "move_speed": 30,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 85,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.4
           },
-          "formula": "85 + (spirit__power * 1.4)",
+          "formula": "85 + (spirit_power * 1.4)",
           "unit": "damage"
         },
         {
-          "type": "spirit_damage",
-          "base_value": 0,
+          "type": "unknown",
+          "base_value": 3,
           "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0
+            "stat": "spirit_power",
+            "ratio": 1
           },
-          "formula": "0 + (spirit__power * 0)",
-          "unit": "damage"
+          "formula": "3 + (spirit_power * 1)",
+          "unit": ""
+        },
+        {
+          "type": "weapon_damage",
+          "base_value": -100,
+          "localized_name": "Weapon Accuracy",
+          "unit": ""
         },
         {
           "type": "slow",
           "base_value": 30,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "3mm Radius",
+          "changes": {
+            "radius": "3m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Impact Damage+X Explosion Damage",
+          "changes": {
+            "explosion_damage": 75,
+            "explosion_damage_scale_bonus": 0.6
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Charge+Xs Bell LifetimeBell continuously emits improved slow",
+          "changes": {
+            "charges": 1,
+            "projectile_fuse": 22,
+            "nable_aura": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_doorman_doorway",
@@ -114,18 +147,47 @@
         "duration": 20,
         "cast_range": "50m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "doorway_distance": "60m"
+        "doorway_distance": "60m",
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+15s Duration",
+          "changes": {
+            "duration": 15
+          }
+        },
+        {
+          "level": 2,
+          "description": "Grants a Barrier first time traveling through doors",
+          "changes": {
+            "barrier": 250,
+            "barrier_duration": 12,
+            "barrier_scale_bonus": 1.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm Cast Range. +Xm Doorway Distance and scales with Spirit Power.",
+          "changes": {
+            "doorway_distance": "50m",
+            "cast_range": "30m",
+            "doorway_distance_scale_bonus": 0.25
+          }
+        }
+      ]
     },
     {
       "id": "ability_doorman_luggage_cart",
       "slot": 3,
       "name": "Luggage Cart",
-      "description": "Send out a luggage Cart that deals spirit damage and pulls enemy heroes along its path. Can be alt cast with to target friendly heroes instead.",
+      "description": "Send out a luggage Cart that deals spirit damage and pulls enemy heroes along its path. Can be alt cast with [AltCast] to target friendly heroes instead.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
@@ -133,10 +195,12 @@
         "duration": 6,
         "cast_range": "25m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.25,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "cart_damage": 80
+        "cast_delay": 0.25,
+        "cart_damage": 80,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -148,29 +212,31 @@
           },
           "formula": "80 + (spirit_power * 0.75)",
           "unit": "damage"
-        },
-        {
-          "type": "stun",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "0 + (spirit_power * 1)",
-          "unit": "seconds"
-        },
-        {
-          "type": "spirit_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 0
-          },
-          "formula": "0 + (spirit_power * 0)",
-          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+60 Cart Damage",
+          "changes": {
+            "cart_damage": 60
+          }
+        },
+        {
+          "level": 2,
+          "description": "20mm Cast Range",
+          "changes": {
+            "cast_range": "20m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown and Xs stun on wall impact",
+          "changes": {
+            "stun_duration": 1.5
+          }
+        }
+      ]
     },
     {
       "id": "ability_doorman_hotel",
@@ -184,14 +250,17 @@
         "duration": 6.5,
         "cast_range": "7m",
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 1,
+        "channel_duration": 1,
         "ability_post_cast_duration": 0.7,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "damage": 75,
         "late_checkout_damage": 125,
         "time_slow_duration": 1,
-        "time_slow_percentage": 100
+        "time_slow_percentage": 100,
+        "cast_delay": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "stamina_drain_per_second": 0,
+        "late_checkout_cooldown": 0
       },
       "effects": [
         {
@@ -225,7 +294,33 @@
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "X Stamina Drain and X Cooldown",
+          "changes": {
+            "cooldown": -25,
+            "stamina_drain_per_second": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage+Xs Stun on Failure to Check Out",
+          "changes": {
+            "damage": 150,
+            "late_checkout_damage": 150,
+            "late_checkout_stun": 1.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "Unstoppable while the Baroness is occupied.Xs Cooldown on Failure to Check Out.",
+          "changes": {
+            "unstoppable_while_hotel_occupied": 1,
+            "late_checkout_cooldown": 13
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -433,14 +528,6 @@
     {
       "id": "upgrade_target_stun",
       "name": "Knockdown"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_thermal_detonator",

@@ -10,7 +10,6 @@
       "brawler"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -44,7 +43,7 @@
     "health": 63,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -57,48 +56,79 @@
       "stats": {
         "cooldown": 12.5,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.2,
         "channel_move_speed": "1.3m",
         "radius": "9m",
         "damage": 50,
-        "damage_heal_mult_non_hero": 0.5,
-        "damage_heal_mult": 1.2,
-        "tick_rate": 0.1
+        "damage_to_heal": 0.5,
+        "hero_damage_to_heal": 1.2,
+        "tick_rate": 0.1,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 50,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.75
           },
-          "formula": "50 + (spirit__power * 0.75)",
+          "formula": "50 + (spirit_power * 0.75)",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 0.5,
+          "localized_name": "Damage to Heal",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "heal_amp",
             "ratio": 1
           },
-          "formula": "0.5 + (heal__amp * 1)",
+          "formula": "0.5 + (heal_amp * 1)",
           "unit": "hp"
         },
         {
           "type": "heal",
           "base_value": 1.2,
+          "localized_name": "Hero Damage to Heal",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "heal_amp",
             "ratio": 1
           },
-          "formula": "1.2 + (heal__amp * 1)",
+          "formula": "1.2 + (heal_amp * 1)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+35 Damage",
+          "changes": {
+            "damage": 35
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown +Xm Radius",
+          "changes": {
+            "cooldown": -5,
+            "radius": "1m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "Adds a debuff to enemies that lets X deal +X% Damage to them. Stacks and lasts Xs.",
+          "changes": {
+            "damage_bonus": 15,
+            "debuff_duration": 16
+          }
+        }
+      ]
     },
     {
       "id": "ability_burrow",
@@ -110,42 +140,87 @@
       "stats": {
         "cooldown": 40,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1,
-        "ability_channel_time": 5,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "dps": 75,
+        "cast_delay": 1,
+        "channel_duration": 5,
+        "damage_per_second": 75,
         "radius": "5m",
-        "bonus_move_speed": "4m",
+        "move_speed": "4m",
         "speed_lost_duration": 1,
         "nemy_damage_speed_penalty": 0.5,
         "spin_duration": 1.5,
         "spin_slow_percent": 10,
         "spin_slow_duration": 0.3,
-        "spirit__resist": 30,
+        "spirit_resist": 30,
         "bullet_resist": 60,
         "tick_rate": 0.1,
         "up_force": 250,
-        "toss_duration": 1
+        "toss_duration": 1,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0.5,
+          "type": "spirit_damage",
+          "base_value": 75,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.488
+          },
+          "formula": "75 + (spirit_power * 1.488)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 10,
+          "localized_name": "Movement slow",
           "unit": "%"
         },
         {
-          "type": "slow",
-          "base_value": 0.3,
+          "type": "spirit_damage",
+          "base_value": 30,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_resist",
+          "base_value": 60,
+          "localized_name": "Bullet Resist",
           "unit": "%"
+        },
+        {
+          "type": "knockup",
+          "base_value": 1,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Spin DPS",
+          "changes": {
+            "damage_per_second": 50
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xs Burrow time and +X radius",
+          "changes": {
+            "channel_duration": 4,
+            "radius": "2m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "X Cooldown and +Xm/s Move Speed",
+          "changes": {
+            "cooldown": -20,
+            "move_speed": "4m"
+          }
+        }
+      ]
     },
     {
       "id": "ability_throw_sand",
@@ -159,22 +234,51 @@
         "duration": 2.5,
         "cast_range": "25m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.15,
         "channel_move_speed": "1.3m",
         "growth_per_meter": "0.5m",
         "initial_width": "5m",
         "height_off_ground": 20,
-        "damage": 40
+        "damage": 40,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 40,
+          "localized_name": "Damage",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Damage and +Xm Range",
+          "changes": {
+            "damage": 50,
+            "cast_range": "5m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "Slow targets by -X% and reduces dash distances by X%",
+          "changes": {
+            "move_speed": 25,
+            "dash_distance": -25
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration and X Cooldown",
+          "changes": {
+            "cooldown": -20,
+            "duration": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_ult_combo",
@@ -187,19 +291,58 @@
         "cooldown": 150,
         "cast_range": "4.8m",
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 2.4,
-        "ability_cooldown_between_charge": -1,
-        "dps": 60,
-        "bonus_health_on_kill": 50
+        "channel_duration": 2.4,
+        "damage_per_second": 60,
+        "bonus_max_health_per_kill": 50,
+        "duration": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
+          "type": "spirit_damage",
+          "base_value": 60,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.2
+          },
+          "formula": "60 + (spirit_power * 1.2)",
+          "unit": "damage"
+        },
+        {
           "type": "heal",
           "base_value": 50,
+          "localized_name": "Bonus Health",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X% lifesteal",
+          "changes": {
+            "life_steal_percent_on_hit": 100
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +X% Bullet Resist",
+          "changes": {
+            "damage_per_second": 60,
+            "bullet_resist": 50
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration and +X Damage Per Second",
+          "changes": {
+            "channel_duration": 0.7,
+            "cooldown": -60
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -383,18 +526,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

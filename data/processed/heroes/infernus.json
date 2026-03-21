@@ -14,9 +14,7 @@
       "marksman"
     ],
     "damage_type": [
-      "dot",
-      "spirit",
-      "bullet"
+      "spirit"
     ],
     "utility": [
       "slow",
@@ -48,7 +46,7 @@
     "health": 39,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,89 +60,177 @@
         "cooldown": 25,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 6,
+        "cast_delay": 0.1,
+        "charges": 1,
+        "charge_delay": 6,
         "channel_move_speed": "18m",
         "tick_rate": 0.5,
         "particle_radius_multiplier": 1.15,
-        "incoming_damage_percent_from_caster": 16,
+        "damage_taken": 16,
         "debuff_duration": 8,
         "damage": 40,
         "height_off_ground": 50,
         "growth_per_meter": "0.5m",
         "initial_width": "1m",
         "slow_duration": 4,
-        "slow_percent": 35
+        "move_speed": 35,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "lifesteal": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 16,
+          "localized_name": "Damage Taken",
           "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 8,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "8 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "spirit_damage",
           "base_value": 40,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.6
           },
-          "formula": "40 + (spirit__power * 0.6)",
+          "formula": "40 + (spirit_power * 0.6)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 4,
+          "localized_name": "Slow Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "4 + (ability__duration * 1)",
-          "unit": "%"
+          "formula": "4 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 35,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "Napalm Effect: +X% Lifesteal",
+          "changes": {
+            "lifesteal": 15
+          }
+        },
+        {
+          "level": 3,
+          "description": "Napalm Effect: +X% Damage Taken and X% Healing",
+          "changes": {
+            "damage_taken": 17,
+            "healing_reduction": -33
+          }
+        }
+      ]
     },
     {
       "id": "ability_flame_dash",
       "slot": 2,
       "name": "Flame Dash",
-      "description": "Dash forward, gaining slow resistance while leaving a flaming trail that deals spirit damage over time. Holdwhile active to dash farther.",
+      "description": "Dash forward, gaining slow resistance while leaving a flaming trail that deals spirit damage over time. Hold[MoveForward]while active to dash farther.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 38,
         "duration": 3,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
+        "cast_delay": 0.2,
         "channel_move_speed": "18m",
         "dash_speed": "12m",
         "dash_air_speed": "8m",
-        "flame_aura_radius": "4.5m",
-        "dps": 30,
+        "trail_width": "4.5m",
+        "damage_per_second": 30,
         "aura_linger_duration": 1,
         "tick_rate": 0.5,
-        "ground_flame_duration": 4,
+        "trail_duration": 4,
         "ground_aura_spacing": "1m",
-        "speed_burst_speed": "20m",
+        "max_dash_speed": "20m",
         "side_move_speed_reduction": -65,
         "flame_dash_jump_bonus": 50,
-        "slow_resistance": 50
+        "slow_resistance": 50,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": 0,
+        "speed_burst_duration": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
+          "type": "spirit_damage",
+          "base_value": 30,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "30 + (spirit_power * 1)",
+          "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": -65,
+          "unit": "m/s"
+        },
+        {
           "type": "slow",
           "base_value": 50,
+          "localized_name": "Slow Resistance",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-12s Cooldown",
+          "changes": {
+            "cooldown": -12
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xs Trail Duration and +X DPS",
+          "changes": {
+            "damage_per_second": 20,
+            "trail_duration": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "Enable X Ability Charges with Xs Recharge time",
+          "changes": {
+            "charges": 2,
+            "charge_delay": 14
+          }
+        }
+      ]
     },
     {
       "id": "ability_afterburn",
@@ -155,36 +241,75 @@
       "targeting": "instant",
       "stats": {
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "build_up_duration": 17,
-        "build_up_bullet_percent_per_hit": 8.1,
-        "crit_buildup": 15.4,
+        "buildup_per_bullet": 8.1,
+        "buildup_per_headshot": 15.4,
         "refill_duration": 0.5,
         "refill_duration_crit": 1,
         "tick_rate": 0.5,
         "burn_duration_base": 3,
         "burn_duration": 3,
-        "dps": 12
+        "damage_per_second": 12,
+        "cooldown": 0,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "dot",
+          "type": "burn",
           "base_value": 3,
-          "unit": "damage/sec"
+          "unit": ""
         },
         {
-          "type": "dot",
+          "type": "burn",
           "base_value": 3,
+          "localized_name": "Burn Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "3 + (ability__duration * 1)",
-          "unit": "damage/sec"
+          "formula": "3 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 12,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.66
+          },
+          "formula": "12 + (spirit_power * 0.66)",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+14 Damage Per Second",
+          "changes": {
+            "damage_per_second": 14
+          }
+        },
+        {
+          "level": 2,
+          "description": "Burn Effect: X% Spirit Damage",
+          "changes": {
+            "spirit_damage": -35
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Max Burn Duration",
+          "changes": {
+            "burn_duration": 3
+          }
+        }
+      ]
     },
     {
       "id": "ability_fire_bomb",
@@ -196,23 +321,30 @@
       "stats": {
         "cooldown": 165,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "xplode_delay": 3.25,
+        "explosion_delay": 3.25,
         "stun_duration": 1.25,
         "damage": 125,
-        "radius": "12m"
+        "radius": "12m",
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "buff_duration": 0
       },
       "effects": [
         {
           "type": "stun",
           "base_value": 1.25,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "1.25 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "1.25 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "spirit_damage",
@@ -223,19 +355,33 @@
           },
           "formula": "125 + (spirit_power * 0.974938)",
           "unit": "damage"
-        },
-        {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+100 Damage",
+          "changes": {
+            "damage": 100
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +X% Explosion Lifesteal",
+          "changes": {
+            "cooldown": -65,
+            "life_steal_percent_on_hit": 65
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Stun Duration and +Xm Radius",
+          "changes": {
+            "stun_duration": 0.75,
+            "radius": "10m"
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -411,18 +557,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_defense_shredders",
-      "name": "Spirit Shredder Bullets"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_titan_round",

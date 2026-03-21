@@ -6,13 +6,12 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Tiny",
       "zZzzZ",
-      "Helpful"
+      "Helpful",
+      "Tiny"
     ],
     "playstyle": [],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -48,7 +47,7 @@
     "health": 29,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,44 +61,87 @@
         "cooldown": 25,
         "cast_range": "40m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.3,
+        "cast_delay": 0.3,
         "ability_post_cast_duration": 0.2,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 10,
-        "channel_move_speed": -1,
+        "charges": 1,
+        "charge_delay": 10,
         "orbs_to_fire": 1,
         "damage": 75,
         "radius": "5m",
-        "ffect_duration": 3,
-        "fading_slow_percent": 45,
+        "debuff_duration": 3,
+        "fading_move_speed": 45,
         "toss_duration": 0.4,
         "toss_force": 300,
-        "c_d_reduce_on_pillow_hit": 5
+        "c_d_reduce_on_pillow_hit": 5,
+        "duration": 0,
+        "channel_duration": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 75,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.6
           },
-          "formula": "75 + (spirit__power * 1.6)",
+          "formula": "75 + (spirit_power * 1.6)",
           "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 3,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "3 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 45,
+          "localized_name": "Movement slow",
           "unit": "%"
+        },
+        {
+          "type": "knockup",
+          "base_value": 300,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-7s Cooldown",
+          "changes": {
+            "cooldown": -7
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Radius and applies -X% Fire Rate",
+          "changes": {
+            "fire_rate": 35,
+            "radius": "2m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage and +1 Charge",
+          "changes": {
+            "damage": 90,
+            "charges": 1
+          }
+        }
+      ]
     },
     {
       "id": "ability_familiar_attach",
       "slot": 2,
       "name": "Tag Along",
-      "description": "Jump to an ally and nap alongside them. Both you and the ally receive a burst heal based on missing health followed by lingering regeneration.Hop between allies with to refresh the duration, once per ally.You are knocked off if stunned by an ultimate ability.You can use items and all self-casts target your ally instead.",
+      "description": "Jump to an ally and nap alongside them. Both you and the ally receive a burst heal based on missing health followed by lingering regeneration.Hop between allies with [Ability2] to refresh the duration, once per ally.You are knocked off if stunned by an ultimate ability.You can use items and all self-casts target your ally instead. | Hop to another ally and refresh the regeneration duration, once per ally.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
@@ -107,48 +149,74 @@
         "duration": 5.5,
         "cast_range": "23m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.5,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.5,
         "channel_move_speed": "5m",
-        "bonus_move_speed": "4m",
+        "move_speed": "4m",
         "hop_out_lockout_duration": 1,
-        "health_regen_duration": 3,
-        "healing_per_second": 28,
-        "missing_health_burst_pct": 15
+        "regen_duration": 3,
+        "health_restored": 28,
+        "missing_health_burst": 15,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "item_cooldown_reduce_pct": 0,
+        "bonus_item_duration_percent": 0,
+        "bonus_item_range_percent": 0,
+        "casts_refresh_duration": 0,
+        "buff_duration": 0
       },
       "effects": [
         {
           "type": "heal",
-          "base_value": 3,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "3 + (ability__duration * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
           "base_value": 28,
+          "localized_name": "Health Restored",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.44
           },
-          "formula": "28 + (spirit__power * 0.44)",
+          "formula": "28 + (spirit_power * 0.44)",
           "unit": "hp"
         },
         {
           "type": "heal",
           "base_value": 15,
+          "localized_name": "Missing Health Burst",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.03
           },
-          "formula": "15 + (spirit__power * 0.03)",
+          "formula": "15 + (spirit_power * 0.03)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-8s Cooldown",
+          "changes": {
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 2,
+          "description": "Bonus Item Range, Duration, and Barrier Effectiveness while napping",
+          "changes": {
+            "barrier_effectiveness": 25,
+            "bonus_item_duration_percent": 25,
+            "bonus_item_range_percent": 25
+          }
+        },
+        {
+          "level": 3,
+          "description": "Bonus spirit power while napping and for a short duration after waking",
+          "changes": {
+            "spirit_power": 15,
+            "bonus_spirit_power": 35,
+            "buff_duration": 10
+          }
+        }
+      ]
     },
     {
       "id": "ability_familiar_helpinghands",
@@ -160,9 +228,7 @@
       "stats": {
         "cast_range": "45m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.1,
         "helper_downtime_duration": 15.1,
         "helper_chore_cooldown_duration": 5,
         "aura_radius": "10m",
@@ -171,38 +237,40 @@
         "d_p_s_per_sprite": 1,
         "tick_rate": 0.2,
         "damage": 20,
-        "bonus_move_speed": "3.0m",
+        "move_speed": "3.0m",
         "arm_time": 0.1,
         "patrol_damage_cooldown": 10,
         "helpers_per_patrol": 4,
         "helper_count": 1,
-        "infest_heal": 8,
+        "trooper_heal": 8,
         "infest_heal_interval": 2,
         "infest_damage_taken_percent": 30,
         "infest_burst_health_percent": 75,
-        "spirit__armor": 15,
-        "player_infest_duration": 8,
-        "n_p_c_infest_duration": 50
+        "spirit_armor": 15,
+        "duration": 8,
+        "n_p_c_infest_duration": 50,
+        "cooldown": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 20,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 10,
+          "localized_name": "Damage",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 8,
+          "localized_name": "Trooper Heal",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.14
           },
-          "formula": "8 + (spirit__power * 0.14)",
+          "formula": "8 + (spirit_power * 0.14)",
           "unit": "hp"
         },
         {
@@ -211,7 +279,7 @@
           "unit": "hp"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 30,
           "unit": "damage"
         },
@@ -219,9 +287,39 @@
           "type": "heal",
           "base_value": 75,
           "unit": "hp"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 15,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Helper",
+          "changes": {
+            "helper_count": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Spirit Resist+Xm/s Move Speed",
+          "changes": {
+            "spirit_armor": 8,
+            "move_speed": "1.5m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Helpers+X% Trooper Damage and Resist",
+          "changes": {
+            "helper_count": 2,
+            "infest_damage_taken_percent": 20
+          }
+        }
+      ]
     },
     {
       "id": "ability_familiar_ability01",
@@ -234,47 +332,88 @@
         "cooldown": 175,
         "cast_range": "24m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.18,
-        "ability_channel_time": 1.9,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.18,
+        "channel_duration": 1.9,
         "sleep_duration": 4,
         "radius": "17.0m",
         "min_sleep_time": 0.5,
         "sleep_damage_threshold": 100,
-        "sleep_move_speed": "1.5m",
-        "awake_damage": 120,
+        "sleep_movespeed": "1.5m",
+        "wake_damage": 120,
         "height": "20m",
-        "move_speed_and_dash_slow_pct": 25
+        "movedash_slow": 25,
+        "duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "consume_stamina_on_wake": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 100,
+          "type": "sleep",
+          "base_value": 4,
+          "localized_name": "Sleep Duration",
           "scales_with": {
-            "stat": "level__up__boons",
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "sleep",
+          "base_value": 100,
+          "localized_name": "Sleep Damage Threshold",
+          "scales_with": {
+            "stat": "level_up_boons",
             "ratio": 3.1
           },
-          "formula": "100 + (level__up__boons * 3.1)",
-          "unit": "damage"
+          "formula": "100 + (level_up_boons * 3.1)",
+          "unit": ""
         },
         {
           "type": "spirit_damage",
           "base_value": 120,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.6
           },
-          "formula": "120 + (spirit__power * 1.6)",
+          "formula": "120 + (spirit_power * 1.6)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 25,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-X Stamina On Wake and no Stamina Regen while sleeping",
+          "changes": {
+            "consume_stamina_on_wake": 1,
+            "no_stamina_regen_during_sleep": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Radius and +Xs Sleep Duration",
+          "changes": {
+            "sleep_duration": 0.5,
+            "radius": "3m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs cooldown and reduced damage while channeling",
+          "changes": {
+            "damage_resist_pct_while_channeling": 50,
+            "cooldown": -65
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -458,14 +597,6 @@
     {
       "id": "upgrade_target_stun",
       "name": "Knockdown"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

@@ -6,15 +6,14 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Dazzling",
       "Performer",
-      "Disruptive"
+      "Disruptive",
+      "Dazzling"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -48,14 +47,14 @@
     "health": 35,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
       "id": "ability_unicorn_radiantblast",
       "slot": 1,
       "name": "Light Eater",
-      "description": "Blast enemies in a cone in front of you with a flare of light. Blasted enemies take spirit damage when attacked by X and provides her spirit lifesteal.",
+      "description": "Blast enemies in a cone in front of you with a flare of light. Blasted enemies take spirit damage when attacked by X and provides her spirit lifesteal. | On Bullet Hit",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
@@ -63,15 +62,17 @@
         "duration": 12,
         "cast_range": "10m",
         "ability_unit_target_limit": 100,
-        "ability_cast_delay": 0.3,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.3,
         "flare_damage": 50,
         "damage": 25,
         "tick_rate": 0.5,
-        "targeting_cone_angle": 70,
+        "attack_angle": 70,
         "xtra_sweep_radius": "2m",
-        "ability_lifesteal_percent_hero": 20
+        "spirit_lifesteal": 20,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -93,38 +94,125 @@
           },
           "formula": "25 + (spirit_power * 0.23)",
           "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 20,
+          "localized_name": "Spirit Lifesteal",
+          "scales_with": {
+            "stat": "heal_amp",
+            "ratio": 1
+          },
+          "formula": "20 + (heal_amp * 1)",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+15 Spirit Lifesteal",
+          "changes": {
+            "spirit_lifesteal": 15
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +Xm Cast Range",
+          "changes": {
+            "cast_range": "3m",
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Damage and Increased Spirit Scaling",
+          "changes": {
+            "damage": 25,
+            "damage_scale_bonus": 0.2
+          }
+        }
+      ]
     },
     {
       "id": "ability_unicorn_prismaticguard",
       "slot": 2,
       "name": "Dazzling Trick",
-      "description": "Surround yourself in a protective prism that provides bonus move speed. If the barrier is destroyed, it silences nearby enemies and deals a portion of the barrier as damage.",
+      "description": "Surround yourself in a protective prism that provides bonus move speed. If the barrier is destroyed, it silences nearby enemies and deals a portion of the barrier as damage. | On Explode",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 35,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "max_lifetime": 4,
+        "lifetime": 4,
         "buff_duration": 4,
-        "xplode_radius": "14m",
+        "explosion_radius": "14m",
         "debuff_duration": 1.75,
-        "bonus_move_speed": "1.0m",
-        "combat_barrier": 120,
-        "barrier_damage_percentage": 50
+        "move_speed": "1.0m",
+        "barrier": 120,
+        "barrier_damage": 50,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "debuff",
+          "base_value": 1.75,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "1.75 + (spirit_power * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "shield",
+          "base_value": 120,
+          "localized_name": "Barrier",
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1.1
+          },
+          "formula": "120 + (spirit_power * 1.1)",
+          "unit": ""
+        },
+        {
+          "type": "shield",
           "base_value": 50,
-          "unit": "damage"
+          "localized_name": "Barrier Damage",
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "2.5mm/s Move Speed",
+          "changes": {
+            "move_speed": "2.5m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Barrier and Increased Barrier Spirit Scaling",
+          "changes": {
+            "barrier": 100,
+            "barrier_scale_bonus": 0.7
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Silence Duration and X Cooldown. Allows Shining Wonder Bounce.",
+          "changes": {
+            "debuff_duration": 2,
+            "cooldown": -18
+          }
+        }
+      ]
     },
     {
       "id": "ability_unicorn_luminousstrike",
@@ -137,21 +225,24 @@
         "cooldown": 33,
         "cast_range": "30m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 2,
-        "channel_move_speed": -1,
-        "xplosion_interval": 0.7,
+        "cast_delay": 0.2,
+        "charges": 1,
+        "charge_delay": 2,
+        "beam_interval": 0.7,
         "pre_explosion_duration": 1.4,
-        "xplosion_radius": "8m",
+        "explosion_radius": "8m",
         "impact_damage": 55,
         "climb_height": "50.0m",
         "tick_rate": 0.5,
         "buff_max_stacks": 6,
         "buff_duration": 25,
-        "magic_increase_per_stack": 8,
+        "spirit_amp_per_stack": 8,
         "buff_delay": 0.75,
-        "post_explosion_duration": 0.8
+        "post_explosion_duration": 0.8,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "fire_rate_per_stack": 0
       },
       "effects": [
         {
@@ -165,17 +256,37 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "spirit_power",
-            "ratio": 1
-          },
-          "formula": "0 + (spirit_power * 1)",
+          "type": "spirit_damage",
+          "base_value": 8,
+          "localized_name": "Spirit Amp per Stack",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+2charges Charges",
+          "changes": {
+            "charges": 2
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown and +X Impact Damage",
+          "changes": {
+            "impact_damage": 60,
+            "cooldown": -15
+          }
+        },
+        {
+          "level": 3,
+          "description": "+3 Spirit Amp Per Stack and +6 Fire Rate Per Stack",
+          "changes": {
+            "spirit_amp_per_stack": 3,
+            "fire_rate_per_stack": 6
+          }
+        }
+      ]
     },
     {
       "id": "ability_unicorn_dazzlingorb",
@@ -187,19 +298,22 @@
       "stats": {
         "cooldown": 140,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.75,
-        "ability_channel_time": 9999,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.75,
+        "channel_duration": 9999,
         "damage": 105,
         "slow_duration": 1.5,
-        "slow_percent": 40,
-        "ground_dash_reduction_percent": -25,
-        "max_bounces": 8,
-        "bounce_radius": "15m",
+        "move_speed": 40,
+        "dash_distance": -25,
+        "bounces": 8,
+        "bounce_range": "15m",
         "priority_bounce_radius": "11m",
         "bounce_grace": 3.25,
-        "next_target_duration": 4
+        "next_target_duration": 4,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -215,20 +329,46 @@
         {
           "type": "slow",
           "base_value": 1.5,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "1.5 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 40,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-X% Move Speed and X% Dash Distance",
+          "changes": {
+            "dash_distance": -15,
+            "move_speed": 20
+          }
+        },
+        {
+          "level": 2,
+          "description": "+50 Damage",
+          "changes": {
+            "damage": 50
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Max Bounces and Xs Cooldown",
+          "changes": {
+            "bounces": 10,
+            "cooldown": -35
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -412,22 +552,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_defense_shredders",
-      "name": "Spirit Shredder Bullets"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

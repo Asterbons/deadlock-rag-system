@@ -6,20 +6,18 @@
   "complexity": 2,
   "tags": {
     "flavor": [
+      "Bodyguard",
       "Focused",
-      "Traveller",
-      "Bodyguard"
+      "Traveller"
     ],
     "playstyle": [
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
       "heal"
     ]
   },
@@ -48,7 +46,7 @@
     "health": 44,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -62,33 +60,59 @@
         "cooldown": 45,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.05,
-        "ability_charges": 2,
-        "ability_cooldown_between_charge": 1,
-        "channel_move_speed": -1,
-        "incoming_damage_percent_from_caster": 10,
+        "cast_delay": 0.05,
+        "charges": 2,
+        "charge_delay": 1,
+        "damage_taken": 10,
         "health_steal": 70,
         "steal_duration": 14,
-        "max_stacks": 100
+        "max_stacks": 100,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 10,
+          "localized_name": "Damage Taken",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 70,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.8
           },
-          "formula": "70 + (spirit__power * 0.8)",
+          "formula": "70 + (spirit_power * 0.8)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+50 Health Steal",
+          "changes": {
+            "health_steal": 50
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Charges",
+          "changes": {
+            "charges": 2
+          }
+        },
+        {
+          "level": 3,
+          "description": "+10 Damage Taken and +1.2 Health Steal Scale Bonus",
+          "changes": {
+            "damage_taken": 10,
+            "health_steal_scale_bonus": 1.2
+          }
+        }
+      ]
     },
     {
       "id": "mirage_tornado",
@@ -101,9 +125,7 @@
         "cooldown": 32,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.1,
         "radius": "3.5m",
         "open_height": "8m",
         "damage": 65,
@@ -113,99 +135,147 @@
         "climb_height": "1m",
         "drop_down_rate": 10,
         "tornado_speed": "24m",
-        "nemy_lift_duration": 0.2,
+        "lift_up_time": 0.2,
         "lift_height": "3m",
         "damping_factor": 0.1,
         "max_delta_movement_control": "2m",
-        "hold_in_place_duration": 0.3,
-        "whirlwind_evasion_chance": 30,
-        "whirlwind_duration": 4,
+        "lift_duration": 0.3,
+        "bullet_evasion_chance": 30,
+        "bullet_evasion_duration": 4,
         "slow_duration": 3,
-        "slow_percent": 30
+        "move_speed": 30,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "recast_window": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 65,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.3
           },
-          "formula": "65 + (spirit__power * 0.3)",
+          "formula": "65 + (spirit_power * 0.3)",
           "unit": "damage"
         },
         {
           "type": "slow",
           "base_value": 3,
+          "localized_name": "Slow Duration",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
           },
           "formula": "3 + (spirit_power * 1)",
-          "unit": "%"
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 30,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Damage",
+          "changes": {
+            "damage": 60
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Cooldown+X% Evasion",
+          "changes": {
+            "cooldown": -8,
+            "bullet_evasion_chance": 30
+          }
+        },
+        {
+          "level": 3,
+          "description": "Can be recast within Xs. Increases spirit scaling.",
+          "changes": {
+            "recast_window": 5,
+            "damage_scale_bonus": 1
+          }
+        }
+      ]
     },
     {
       "id": "mirage_sand_phantom",
       "slot": 3,
       "name": "Djinn's Mark",
-      "description": "Active: Consume all Djinn Mark's to deal its damage now.",
+      "description": "Active: Consume all Djinn Mark's to deal its damage now. | Passive: Your shots apply a Djinn Mark on the target. When the mark expires or is consumed, it deals spirit damage and the target is briefly revealed on the map. Each added mark doubles the current damage.There is a per target Cooldown for applying additional marks",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 3,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "proc_cooldown": 3,
-        "proc_damage_base": 11,
+        "max_frequency": 3,
+        "base_damage": 11,
         "proc_chance": 100,
         "proc_max_range": "40m",
-        "victim_stack_duration": 5,
+        "djinns_mark_duration": 5,
         "reveal_duration": 6,
         "max_stacks": 4,
-        "d_mark_multiplier_per_stack": 2
+        "damage_per_mark": 2,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 11,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.5115
           },
-          "formula": "11 + (spirit__power * 0.5115)",
+          "formula": "11 + (spirit_power * 0.5115)",
           "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "%"
-        },
-        {
-          "type": "stun",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "seconds"
+          "type": "spirit_damage",
+          "base_value": 2,
+          "localized_name": "Damage Per Mark",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Proc: Apply a fading X% Slow for Xs",
+          "changes": {
+            "movement_slow": 60,
+            "slow_duration": 0.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Base Damage and +Xs Multiplier Duration",
+          "changes": {
+            "base_damage": 20,
+            "djinns_mark_duration": 2.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown +X Max Marks Stun Victim for Xs on Max Marks",
+          "changes": {
+            "stun_duration": 0.5,
+            "max_stacks": 1
+          }
+        }
+      ]
     },
     {
       "id": "mirage_teleport",
@@ -217,15 +287,45 @@
       "stats": {
         "cooldown": 145,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "teleport_completed_time": 3,
+        "wait_time": 3,
         "interrupt_cooldown": 6,
         "search_radius": "30m",
-        "bonus_move_speed": "0m"
+        "move_speed": "0m",
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "immunity_duration": 0
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+Xm Move Speed and +X% Fire Rate for Xs",
+          "changes": {
+            "move_speed": "3m",
+            "move_speed_duration": 12
+          }
+        },
+        {
+          "level": 2,
+          "description": "X Barrier that scales with Spirit",
+          "changes": {
+            "barrier": 400,
+            "barrier_scale_bonus": 0.6
+          }
+        },
+        {
+          "level": 3,
+          "description": "-80s Cooldown",
+          "changes": {
+            "cooldown": -80
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -413,14 +513,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_titan_round",

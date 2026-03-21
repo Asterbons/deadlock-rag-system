@@ -6,20 +6,18 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Rock Solid",
       "Disruptor",
-      "Team-up",
-      "Rock Solid"
+      "Team-up"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "silence",
       "heal",
       "stun"
     ]
@@ -49,7 +47,7 @@
     "health": 44,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.2
+    "spirit_power": 1.2
   },
   "abilities": [
     {
@@ -63,24 +61,62 @@
         "cooldown": 32,
         "duration": 4,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.2,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 5,
-        "channel_move_speed": -1,
+        "cast_delay": 0.2,
+        "charges": 1,
+        "charge_delay": 5,
         "tick_rate": 0.25,
         "radius": "6m",
         "height": "2m",
-        "dps": 40,
-        "slow_percent": 35
+        "damage_per_second": 40,
+        "move_speed": 35,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "ntangle_duration": 0
       },
       "effects": [
         {
+          "type": "spirit_damage",
+          "base_value": 40,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.45
+          },
+          "formula": "40 + (spirit_power * 0.45)",
+          "unit": "damage"
+        },
+        {
           "type": "slow",
           "base_value": 35,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Radius and increased DPS Spirit scaling",
+          "changes": {
+            "radius": "2m",
+            "damage_per_second_scale_bonus": 0.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "Enemies caught in thorns for Xs are Immobilized for +Xs",
+          "changes": {
+            "time_to_entangle": 2,
+            "ntangle_duration": 1.6
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_tangotether",
@@ -94,27 +130,31 @@
         "duration": 12,
         "cast_range": "16m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "bonus_fire_rate": 10,
-        "bullet_lifesteal_percent": 15,
-        "move_speed_bonus": "0m",
+        "fire_rate": 10,
+        "bullet_lifesteal": 15,
+        "move_speed": "0m",
         "tick_rate": 0.1,
-        "tether_shared_heal_pct": 35,
+        "replicated_healing": 35,
         "healing_per_glub": 20,
-        "total_tether_targets": 1,
+        "tether_count": 1,
         "move_while_shooting_speed_penalty_reduction_percent": 100,
-        "move_while_zoomed_speed_penalty_reduction_percent": 100
+        "move_while_zoomed_speed_penalty_reduction_percent": 100,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 35,
+          "localized_name": "Replicated Healing",
           "scales_with": {
-            "stat": "level__up__boons",
+            "stat": "level_up_boons",
             "ratio": 0.5
           },
-          "formula": "35 + (level__up__boons * 0.5)",
+          "formula": "35 + (level_up_boons * 0.5)",
           "unit": "hp"
         },
         {
@@ -123,7 +163,31 @@
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "2mm/s Move Speed",
+          "changes": {
+            "move_speed": "2m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Fire Rate and +X% Bullet Lifesteal",
+          "changes": {
+            "fire_rate": 8,
+            "bullet_lifesteal": 8
+          }
+        },
+        {
+          "level": 3,
+          "description": "Ability is always active",
+          "changes": {
+            "duration": -13,
+            "cooldown": -37
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_tengu_stone_form",
@@ -135,61 +199,81 @@
       "stats": {
         "cooldown": 40,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.25,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.25,
         "damping_factor": 0.25,
-        "move_speed_max": "8m",
+        "move_speed": "8m",
         "lift_height": 180,
         "lift_time": 1,
-        "max_health_regen": 6,
+        "max_health_heal": 6,
         "damage": 75,
         "stun_duration": 0.75,
-        "radius": "6m"
+        "radius": "6m",
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "max_fall_speed": 0
       },
       "effects": [
         {
           "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
           "base_value": 6,
+          "localized_name": "Max Health Heal",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "heal_amp",
             "ratio": 1
           },
-          "formula": "6 + (heal__amp * 1)",
+          "formula": "6 + (heal_amp * 1)",
           "unit": "hp"
         },
         {
           "type": "spirit_damage",
           "base_value": 75,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.8
           },
-          "formula": "75 + (spirit__power * 0.8)",
+          "formula": "75 + (spirit_power * 0.8)",
           "unit": "damage"
         },
         {
           "type": "stun",
           "base_value": 0.75,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.75 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "0.75 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+7 Max Health Heal",
+          "changes": {
+            "max_health_heal": 7
+          }
+        },
+        {
+          "level": 2,
+          "description": "-25s Cooldown",
+          "changes": {
+            "cooldown": -25
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Stun Duration and increased Damage spirit scaling",
+          "changes": {
+            "stun_duration": 1,
+            "damage_scale_bonus": 2
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_tengu_airlift",
@@ -200,60 +284,75 @@
       "targeting": "target",
       "stats": {
         "cooldown": 65,
-        "duration": 21,
+        "duration": 0,
         "cast_range": "18m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.1,
         "channel_move_speed": "1.3m",
         "interrupt_cooldown": 3.5,
         "ally_cast_delay": 0.1,
-        "xplode_damage": 115,
+        "explode_damage": 115,
         "on_land_damage_radius_start": "16m",
-        "on_land_damage_radius": "20m",
+        "landing_radius": "20m",
         "silence_bomb_speed": "12m",
         "ally_outgoing_damage_percent": -20,
         "buff_duration": 8,
-        "air_drop_outgoing_damage_percent": 20
+        "outgoing_damage_bonus": 20,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 115,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1
           },
-          "formula": "115 + (spirit__power * 1)",
+          "formula": "115 + (spirit_power * 1)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
-          "base_value": "20m",
-          "scales_with": {
-            "stat": "radius",
-            "ratio": 1
-          },
-          "formula": "20m + (radius * 1)",
+          "type": "spirit_damage",
+          "base_value": -20,
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 20,
+          "localized_name": "Outgoing Damage Bonus",
           "unit": "damage"
-        },
-        {
-          "type": "silence",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Fly End : X Barrier to X and ally that scales with Spirit",
+          "changes": {
+            "barrier": 300,
+            "barrier_scale_bonus": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X% Slow for Xs on enemies hit",
+          "changes": {
+            "move_speed": 50,
+            "debuff_duration": 3
+          }
+        },
+        {
+          "level": 3,
+          "description": "Silence for Xs on enemies hit.Increases damage and barrier scaling.",
+          "changes": {
+            "silence_duration": 3,
+            "explode_damage_scale_bonus": 1.5,
+            "barrier_scale_bonus": 1
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -477,14 +576,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_thermal_detonator",

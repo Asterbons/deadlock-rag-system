@@ -6,15 +6,14 @@
   "complexity": 4,
   "tags": {
     "flavor": [
-      "Copycat",
       "Trickster",
-      "Versatile"
+      "Versatile",
+      "Copycat"
     ],
     "playstyle": [
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": []
@@ -44,35 +43,37 @@
     "health": 38,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.3
+    "spirit_power": 1.3
   },
   "abilities": [
     {
       "id": "ability_magician_magicbolt",
       "slot": 1,
       "name": "Vexing Bolt",
-      "description": "Fire a bolt of magic that deals Damage, increasing as it travels. If you have an Assistant, they also cast Vexing Bolt at reduced damage. Press to redirect the bolt towards your crosshairs.",
+      "description": "Fire a bolt of magic that deals Damage, increasing as it travels. If you have an Assistant, they also cast Vexing Bolt at reduced damage. Press [Ability1] to redirect the bolt towards your crosshairs.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
         "cooldown": 24,
         "cast_range": "500m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
+        "cast_delay": 0.1,
         "ability_post_cast_duration": 0.3,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 3,
-        "channel_move_speed": -1,
+        "charges": 1,
+        "charge_delay": 3,
         "max_damage": 120,
         "radius": "3.25m",
         "redirect_velocity": 1500,
         "projectile_lifetime": 4,
         "initial_projectile_velocity": 800,
-        "projectile_redirect_count": 1,
-        "clone_damage_percentage": 50,
-        "min_damage": 60,
-        "max_damage_time": 2,
-        "clone_bolt_delay": 0.1
+        "max_redirects": 1,
+        "assistant_damage": 50,
+        "minimum_damage": 60,
+        "time_for_max_damage": 2,
+        "clone_bolt_delay": 0.1,
+        "duration": 0,
+        "channel_duration": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
@@ -86,8 +87,19 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "unknown",
+          "base_value": 4,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 1
+          },
+          "formula": "4 + (spirit_power * 1)",
+          "unit": ""
+        },
+        {
+          "type": "spirit_damage",
           "base_value": 50,
+          "localized_name": "Assistant Damage",
           "scales_with": {
             "stat": "spirit_power",
             "ratio": 1
@@ -106,18 +118,42 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 2,
+          "localized_name": "Time for Max Damage",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Bolts apply -X% Fire Rate for Xs.",
+          "changes": {
+            "fire_rate": 25,
+            "debuff_duration": 5
+          }
+        },
+        {
+          "level": 2,
+          "description": "-13s Cooldown",
+          "changes": {
+            "cooldown": -13
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Max Damage. +X% Assistant Damage.",
+          "changes": {
+            "max_damage": 126
+          }
+        }
+      ]
     },
     {
       "id": "ability_magician_cloneturret",
       "slot": 2,
       "name": "Spectral Assistant",
-      "description": "Summon an Assistant at the targeted location. The Assistant attacks whenever you fire your weapon, dealing Damage. While the Assistant is out, you can press to swap positions with your Assistant. Casting Spectral Assistant also reloads your weapon.",
+      "description": "Summon an Assistant at the targeted location. The Assistant attacks whenever you fire your weapon, dealing Damage. While the Assistant is out, you can press [Ability2] to swap positions with your Assistant. Casting Spectral Assistant also reloads your weapon.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
@@ -125,15 +161,18 @@
         "duration": 6,
         "cast_range": "15m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.15,
         "damage": 15,
         "turret_bullet_vertical_offset": "2m",
         "turret_bullet_target_angle": 20,
         "turret_bullet_target_radius": "500m",
-        "total_swaps": 2,
-        "leash_radius": "20m"
+        "max_swaps": 2,
+        "max_leash_radius": "20m",
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0
       },
       "effects": [
         {
@@ -147,7 +186,32 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-10s Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xs Duration & 5m Range",
+          "changes": {
+            "duration": 7,
+            "cast_range": "5m",
+            "max_leash_radius": "5m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Fire Rate and +X Assistant Damage",
+          "changes": {
+            "fire_rate": 60,
+            "damage": 12.599999
+          }
+        }
+      ]
     },
     {
       "id": "ability_magician_animalhexarea",
@@ -160,17 +224,20 @@
         "cooldown": 26,
         "cast_range": "24m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "damage_amp_percentage": 15,
+        "cast_delay": 0.15,
+        "damage_amp": 15,
         "radius": "6.5m",
         "self_bump_impulse": 500,
         "air_damping_duration": 1,
-        "hex_move_speed_limit": "6m",
-        "move_speed_bonus_pct": 36,
+        "movement_speed_limit": "6m",
+        "move_speed_bonus": 36,
         "hex_duration": 2,
-        "detonation_delay": 0.9
+        "detonation_delay": 0.9,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
@@ -182,9 +249,38 @@
           },
           "formula": "15 + (spirit_power * 0.0558)",
           "unit": "damage"
+        },
+        {
+          "type": "move_speed",
+          "base_value": 36,
+          "localized_name": "Move Speed",
+          "unit": "m/s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-10s Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 2,
+          "description": "+1s Hex Duration",
+          "changes": {
+            "hex_duration": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Damage Amp and +Xm Radius",
+          "changes": {
+            "radius": "3m",
+            "damage_amp": 7
+          }
+        }
+      ]
     },
     {
       "id": "ability_magician_copyult",
@@ -197,15 +293,34 @@
         "cooldown": 85,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "copied_ult_window": 12,
+        "cast_delay": 0.15,
+        "copy_duration": 12,
         "copy_internal_cooldown": 0.5,
-        "copy_cooldown_percentage": 40
+        "copied_cooldown": 40,
+        "duration": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Upgrade the Copy.",
+          "changes": {}
+        },
+        {
+          "level": 2,
+          "description": "Upgrade the Copy AGAIN!",
+          "changes": {}
+        },
+        {
+          "level": 3,
+          "description": "Upgrade the Copy ONCE AGAIN!",
+          "changes": {}
+        }
+      ]
     }
   ],
   "weapon": {
@@ -365,14 +480,6 @@
     {
       "id": "upgrade_target_stun",
       "name": "Knockdown"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

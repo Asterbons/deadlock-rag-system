@@ -6,15 +6,14 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Pursuer",
+      "Relentless",
       "Acrobatics",
-      "Relentless"
+      "Pursuer"
     ],
     "playstyle": [
       "assassin"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
@@ -48,22 +47,21 @@
     "health": 44,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
       "id": "citadel_ability_power_slash",
       "slot": 1,
       "name": "Power Slash",
-      "description": "Channel to increase damage over X seconds, then release a fully-charged sword strike.Pressorto trigger the strike early, dealing partial damage.",
+      "description": "Channel to increase damage over X seconds, then release a fully-charged sword strike.Press[Ability1]or[Attack]to trigger the strike early, dealing partial damage.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
         "cooldown": 12,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1.4,
+        "cast_delay": 1.4,
         "ability_post_cast_duration": 0.4,
-        "ability_cooldown_between_charge": -1,
         "channel_move_speed": "1.3m",
         "slash_length": "22m",
         "short_charge_damage_pct": 30,
@@ -73,16 +71,22 @@
         "fall_speed_max": 5,
         "power_up_stages": 3,
         "slash_collision_radius": 4,
-        "bullet_resist": 60
+        "bullet_resist": 60,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "air_speed_max": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 30,
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 50,
           "unit": "damage"
         },
@@ -90,24 +94,45 @@
           "type": "spirit_damage",
           "base_value": 145,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.86
           },
-          "formula": "145 + (spirit__power * 1.86)",
+          "formula": "145 + (spirit_power * 1.86)",
           "unit": "damage"
         },
         {
-          "type": "slow",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
+          "type": "bullet_resist",
+          "base_value": 60,
+          "localized_name": "Bullet Resist",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X% Movement Slow for Xs",
+          "changes": {
+            "slow_duration": 3,
+            "move_speed": 40
+          }
+        },
+        {
+          "level": 2,
+          "description": "Xs Ability Cooldown",
+          "changes": {
+            "cooldown": -4
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xm Cast Range +X Damage and Increases Spirit Power scaling",
+          "changes": {
+            "full_charge_damage": 150,
+            "full_charge_damage_scale_bonus": 0.5,
+            "slash_length": "8m"
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_flying_strike",
@@ -121,38 +146,61 @@
         "cast_range": "25m",
         "ability_unit_target_limit": 1,
         "ability_post_cast_duration": 0.2,
-        "channel_move_speed": -1,
         "slow_duration": 2.5,
-        "slow_percent": 50
+        "move_speed": 50,
+        "duration": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": 0,
+        "buff_duration": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "light__melee",
-            "ratio": 1
-          },
-          "formula": "0 + (light__melee * 1)",
-          "unit": "damage"
-        },
-        {
           "type": "slow",
           "base_value": 2.5,
+          "localized_name": "Slow Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "2.5 + (ability__duration * 1)",
-          "unit": "%"
+          "formula": "2.5 + (ability_duration * 1)",
+          "unit": "s"
         },
         {
           "type": "slow",
           "base_value": 50,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-18s Cooldown",
+          "changes": {
+            "cooldown": -18
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Cast Range and gain +X Spirit Power for Xs",
+          "changes": {
+            "cast_range": "20m",
+            "bonus_spirit": 40,
+            "buff_duration": 6
+          }
+        },
+        {
+          "level": 3,
+          "description": "Can Grapple to ally Heroes and gains a charge",
+          "changes": {
+            "can_grapple_ally_heroes": 1,
+            "charges": 2,
+            "charge_delay": 3
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_healing_slash",
@@ -164,53 +212,79 @@
       "stats": {
         "cooldown": 16,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.3,
+        "cast_delay": 0.3,
         "ability_post_cast_duration": 0.4,
-        "ability_cooldown_between_charge": -1,
         "damage": 55,
         "radius": "13m",
-        "heal_fixed_health": 55,
+        "heal_on_hero_hit": 55,
         "debuff_duration": 4,
-        "fire_rate_slow": 30
+        "fire_rate": 30,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "buff_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 55,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.37
           },
-          "formula": "55 + (spirit__power * 0.37)",
+          "formula": "55 + (spirit_power * 0.37)",
           "unit": "damage"
         },
         {
           "type": "heal",
           "base_value": 55,
+          "localized_name": "Heal on hero hit",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.035871
           },
-          "formula": "55 + (spirit__power * 1.035871)",
+          "formula": "55 + (spirit_power * 1.035871)",
           "unit": "hp"
         },
         {
-          "type": "heal",
-          "base_value": 0,
+          "type": "debuff",
+          "base_value": 4,
+          "localized_name": "Debuff Duration",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
-        },
-        {
-          "type": "slow",
-          "base_value": 30,
-          "unit": "%"
+          "formula": "4 + (ability_duration * 1)",
+          "unit": "s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "On Hit : +X% Melee Damage for Xs",
+          "changes": {
+            "buff_duration": 4,
+            "buff_melee_damage": 30
+          }
+        },
+        {
+          "level": 2,
+          "description": "On Hero Hit : +X% Max Health Heal",
+          "changes": {
+            "heal_on_hero_hit": 6
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown and increases scaling",
+          "changes": {
+            "cooldown": -10,
+            "damage_scale_bonus": 0.6
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_infinity_slash",
@@ -223,38 +297,70 @@
         "cooldown": 130,
         "duration": 5,
         "ability_unit_target_limit": 1,
-        "ability_channel_time": 1.5,
-        "ability_cooldown_between_charge": -1,
-        "bonus_move_speed": "0m",
-        "ability_speed_pct": 60,
+        "channel_duration": 1.5,
+        "move_speed": "0m",
+        "ability_speed": 60,
         "bullet_resist": 30,
-        "spirit__resist": 30,
-        "max_health_regen": 15,
-        "shadow_form_duration_on_kill": 2
+        "spirit_resist": 30,
+        "max_health_heal": 15,
+        "duration_on_kill": 2,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "heal",
-          "base_value": 15,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "15 + (heal__amp * 1)",
-          "unit": "hp"
+          "type": "bullet_resist",
+          "base_value": 30,
+          "localized_name": "Bullet Resist",
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 30,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
         },
         {
           "type": "heal",
-          "base_value": 0,
+          "base_value": 15,
+          "localized_name": "Max Health Heal",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "heal_amp",
             "ratio": 1
           },
-          "formula": "0 + (heal__amp * 1)",
+          "formula": "15 + (heal_amp * 1)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+5 Weapon Damage",
+          "changes": {
+            "weapon_damage": 5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Move Speed and X Cooldown",
+          "changes": {
+            "move_speed": "4m",
+            "": -25
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration+X% Bullet Resist+X% Spirit Resist",
+          "changes": {
+            "duration": 3,
+            "bullet_resist": 30,
+            "spirit_resist": 30
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -434,14 +540,6 @@
     {
       "id": "upgrade_spirit_snatch",
       "name": "Spirit Snatch"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
     },
     {
       "id": "upgrade_transcendent_cooldown",

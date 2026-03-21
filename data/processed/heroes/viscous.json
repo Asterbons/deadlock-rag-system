@@ -6,21 +6,20 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Disruptor",
+      "Evasive",
       "Gooey",
-      "Evasive"
+      "Disruptor"
     ],
     "playstyle": [
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "stun",
-      "heal"
+      "heal",
+      "stun"
     ]
   },
   "base_stats": {
@@ -49,25 +48,23 @@
     "health": 44,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.3
+    "spirit_power": 1.3
   },
   "abilities": [
     {
       "id": "viscous_goo_grenade",
       "slot": 1,
       "name": "Splatter",
-      "description": "Throw a ball of goo that deals damage and leaves puddles of goo behind that apply movement slow to enemies in the radius.",
+      "description": "Throw a ball of goo that deals damage and leaves puddles of goo behind that apply movement slow to enemies in the radius. | Multiple hits to the same target deal less damage. | Goo puddles linger on the ground and apply a movement slow to enemies walking on them. You and your allies slide faster on goo puddles.",
       "cast_type": "active",
       "targeting": "instant",
       "stats": {
         "cooldown": 26,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.001,
+        "cast_delay": 0.001,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "slow_percent": 35,
-        "max_bounces": 1,
+        "move_speed": 35,
+        "bounces": 1,
         "damage": 70,
         "radius": "5m",
         "puddle_duration": 10,
@@ -75,47 +72,62 @@
         "second_hit_damage_percentage": 0.5,
         "third_hit_damage_percentage": 0.38,
         "fourth_hit_damage_percentage": 0.26,
-        "puddle_slide_buff": 60
+        "puddle_slide_buff": 60,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "slow",
           "base_value": 35,
+          "localized_name": "Movement slow",
           "unit": "%"
         },
         {
           "type": "spirit_damage",
           "base_value": 70,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.8
           },
-          "formula": "70 + (spirit__power * 0.8)",
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0.5,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0.38,
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 0.26,
+          "formula": "70 + (spirit_power * 0.8)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X Damage and +Xm Radius",
+          "changes": {
+            "damage": 36,
+            "radius": "2m"
+          }
+        },
+        {
+          "level": 2,
+          "description": "-14s Cooldown",
+          "changes": {
+            "cooldown": -14
+          }
+        },
+        {
+          "level": 3,
+          "description": "Bounces X times and improves Spirit Scaling",
+          "changes": {
+            "bounces": 2,
+            "damage_scale_bonus": 1.1
+          }
+        }
+      ]
     },
     {
       "id": "viscous_restorative_goo",
       "slot": 2,
       "name": "The Cube",
-      "description": "Encase the target in a cube of restorative goo that protects from damage, and increases health regen. Target is unable to take any new actions while cubed. Can be used on self. Press to escape early.",
+      "description": "Encase the target in a cube of restorative goo that protects from damage, and increases health regen. Target is unable to take any new actions while cubed. Can be used on self. Press [Mantle] to escape early. | After exiting the cube, the target has increased move speed and stamina recovery for a short duration.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
@@ -123,12 +135,10 @@
         "duration": 3,
         "cast_range": "26m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.1,
         "cube_scale": 1.5,
         "friction": -80,
-        "bonus_health_regen": 40,
+        "health_regen": 40,
         "push_back_radius": 50,
         "push_back_force": 250,
         "light_melee_force": 300,
@@ -136,32 +146,53 @@
         "bullet_force": 600,
         "slide_force": 70,
         "breakout_time": 1,
-        "bonus_move_speed": "0m",
-        "post_cube_buff_duration": 8
+        "move_speed": "0m",
+        "buff_duration": 8,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 40,
+          "localized_name": "Health Regen",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.3
           },
-          "formula": "40 + (spirit__power * 0.3)",
-          "unit": "hp"
-        },
-        {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
+          "formula": "40 + (spirit_power * 0.3)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Increases Move Speed and Stamina Recovery",
+          "changes": {
+            "move_speed": "2.5m",
+            "stamina_recovery": 30,
+            "post_cube_buff": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Health Regen and +Xs Duration",
+          "changes": {
+            "health_regen": 25,
+            "duration": 1
+          }
+        },
+        {
+          "level": 3,
+          "description": "Removes all non-ult Debuffs and Xs Cooldown",
+          "changes": {
+            "cooldown": -25,
+            "purge_debuffs": 1
+          }
+        }
+      ]
     },
     {
       "id": "viscous_telepunch",
@@ -174,9 +205,8 @@
         "cooldown": 24,
         "cast_range": "40m",
         "ability_unit_target_limit": 1,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 1.7,
-        "channel_move_speed": -1,
+        "charges": 1,
+        "charge_delay": 1.7,
         "radius": "4m",
         "punch_half_height": "5.5m",
         "toss_speed": 625,
@@ -185,32 +215,36 @@
         "toss_ground_side_ratio": 0.7,
         "punch_roll_slow": -40,
         "punch_roll_slow_duration": 1,
-        "slow_percent": 20,
-        "impact_duration": 4,
+        "move_speed": 20,
+        "slow_duration": 4,
         "friendly_impact_duration": 2,
         "toss_duration": 0.8,
-        "punch_friendly_air_control": 30
+        "punch_friendly_air_control": 30,
+        "duration": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "light__melee",
-            "ratio": 1
-          },
-          "formula": "0 + (light__melee * 1)",
-          "unit": "damage"
+          "type": "knockup",
+          "base_value": 625,
+          "unit": ""
         },
         {
-          "type": "bullet_damage",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heavy__melee",
-            "ratio": 0
-          },
-          "formula": "0 + (heavy__melee * 0)",
-          "unit": "damage"
+          "type": "knockup",
+          "base_value": 750,
+          "unit": ""
+        },
+        {
+          "type": "knockup",
+          "base_value": 500,
+          "unit": ""
+        },
+        {
+          "type": "slow",
+          "base_value": -40,
+          "unit": "%"
         },
         {
           "type": "slow",
@@ -220,10 +254,54 @@
         {
           "type": "slow",
           "base_value": 20,
+          "localized_name": "Movement slow",
           "unit": "%"
+        },
+        {
+          "type": "slow",
+          "base_value": 4,
+          "localized_name": "Slow Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "knockup",
+          "base_value": 30,
+          "localized_name": "Air Control",
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+1charges Charges",
+          "changes": {
+            "charges": 1
+          }
+        },
+        {
+          "level": 2,
+          "description": "+Xm Radius and +X Damage",
+          "changes": {
+            "radius": "1.5m",
+            "damage": 30
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown and now deals Heavy Melee Damage",
+          "changes": {
+            "cooldown": -12,
+            "use_heavy_melee": 1,
+            "damage_scale_bonus": 1,
+            "damage": -30
+          }
+        }
+      ]
     },
     {
       "id": "viscous_goo_bowling_ball",
@@ -236,8 +314,7 @@
         "cooldown": 130,
         "duration": 10,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.55,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.55,
         "channel_move_speed": "7m",
         "ball_radius": "1.4m",
         "ball_hit_radius": "1.8m",
@@ -245,46 +322,82 @@
         "ball_offset": 50,
         "friction_percentage": -85,
         "acceleration_percentage": -60,
-        "move_speed_max": "7m",
+        "move_speed": "7m",
         "breakable_prop_damage_radius": 75,
         "jump_force": 500,
         "particle_radius_multiplier": 1.2,
         "tick_rate": 0.25,
         "stun_duration": 0.7,
         "knock_force": 400,
-        "spirit__resist": 35,
+        "spirit_resist": 35,
         "bullet_resist": 35,
         "air_jump_force": 500,
-        "cast_while_rolling": 1
+        "cast_while_rolling": 1,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 110,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1
           },
-          "formula": "110 + (spirit__power * 1)",
-          "unit": "damage"
-        },
-        {
-          "type": "bullet_damage",
-          "base_value": 75,
+          "formula": "110 + (spirit_power * 1)",
           "unit": "damage"
         },
         {
           "type": "stun",
           "base_value": 0.7,
+          "localized_name": "Stun Duration",
           "scales_with": {
-            "stat": "ability__duration",
+            "stat": "ability_duration",
             "ratio": 1
           },
-          "formula": "0.7 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "0.7 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 35,
+          "localized_name": "Spirit Resist",
+          "unit": "damage"
+        },
+        {
+          "type": "bullet_resist",
+          "base_value": 35,
+          "localized_name": "Bullet Resist",
+          "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-30s Cooldown",
+          "changes": {
+            "cooldown": -30
+          }
+        },
+        {
+          "level": 2,
+          "description": "+70 Damage",
+          "changes": {
+            "damage": 70
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Duration and +Xs\t Stun Duration",
+          "changes": {
+            "duration": 6,
+            "stun_duration": 0.3
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -504,18 +617,6 @@
     {
       "id": "upgrade_surging_power",
       "name": "Vampiric Burst"
-    },
-    {
-      "id": "upgrade_tech_damage_pulse",
-      "name": "Torment Pulse"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_titan_round",

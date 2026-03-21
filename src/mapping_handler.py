@@ -21,6 +21,7 @@ class MappingHandler:
         self.stat_key_map = {}
         self.modifier_map = {}
         self.slot_map = {}
+        self.effect_property_blacklist = set()
         self._parse()
 
     def _parse(self):
@@ -41,6 +42,12 @@ class MappingHandler:
                     current_section = "modifier"
                 elif "Slot Name Mapping" in line:
                     current_section = "slot"
+                elif "Effect Property Blacklist" in line:
+                    current_section = "blacklist"
+                continue
+                
+            if current_section == "blacklist":
+                self.effect_property_blacklist.add(line)
                 continue
 
             if "=" in line:

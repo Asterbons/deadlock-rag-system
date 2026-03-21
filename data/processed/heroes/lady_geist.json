@@ -6,20 +6,18 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Lifesteal",
       "Fatale",
+      "Lifesteal",
       "Self Damage"
     ],
     "playstyle": [
       "mystic"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
       "slow",
-      "silence",
       "heal"
     ]
   },
@@ -48,7 +46,7 @@
     "health": 51,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -61,40 +59,70 @@
       "stats": {
         "cooldown": 14,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "self_damage_pct": 30,
+        "health_cost": 30,
         "damage": 90,
         "radius": "7m",
         "arming_duration": 0.65,
         "beep_sound_interval_bias": 0.55,
         "beep_sound_max_frequency": 0.1,
-        "beep_sound_buildup_count": 4
+        "beep_sound_buildup_count": 4,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "heal",
           "base_value": 30,
-          "unit": "damage"
+          "localized_name": "Health Cost",
+          "unit": "hp"
         },
         {
           "type": "spirit_damage",
           "base_value": 90,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.22
           },
-          "formula": "90 + (spirit__power * 1.22)",
+          "formula": "90 + (spirit_power * 1.22)",
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-5s Cooldown",
+          "changes": {
+            "cooldown": -5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Radius and +X Damage.",
+          "changes": {
+            "damage": 50,
+            "radius": "2m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "Bombs leave a toxic mess on the ground, dealing X% of the original damage per second, for Xs.",
+          "changes": {
+            "blood_spill_d_p_s_percent": 26,
+            "toxic_mess_duration": 6
+          }
+        }
+      ]
     },
     {
       "id": "ability_life_drain",
       "slot": 2,
       "name": "Life Drain",
-      "description": "Create a tether that drains enemy health over time and heals you. Target must be in line of sight and within max range to drain. You can shoot and use other abilities during the drain, but your move speed is reduced. to give health to friendly Heroes.",
+      "description": "Create a tether that drains enemy health over time and heals you. Target must be in line of sight and within max range to drain. You can shoot and use other abilities during the drain, but your move speed is reduced. [AltCast] to give health to friendly Heroes.",
       "cast_type": "active",
       "targeting": "target",
       "stats": {
@@ -102,27 +130,71 @@
         "duration": 2.5,
         "cast_range": "18m",
         "ability_unit_target_limit": 10,
-        "ability_cast_delay": 0.2,
-        "channel_move_speed": -1,
-        "max_range": "28m",
+        "cast_delay": 0.2,
+        "max_tether_range": "28m",
         "move_speed_reduction": 40,
-        "life_drain_per_second": 32,
+        "damage_per_second": 32,
         "tick_rate": 0.1,
-        "life_drain_health_mult": 80
+        "damage_to_heal": 80,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": 0
       },
       "effects": [
         {
+          "type": "slow",
+          "base_value": 40,
+          "localized_name": "Movement slow",
+          "unit": "%"
+        },
+        {
+          "type": "spirit_damage",
+          "base_value": 32,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 0.536216
+          },
+          "formula": "32 + (spirit_power * 0.536216)",
+          "unit": "damage"
+        },
+        {
           "type": "heal",
           "base_value": 80,
+          "localized_name": "Damage to Heal",
           "scales_with": {
-            "stat": "heal__amp",
+            "stat": "heal_amp",
             "ratio": 1
           },
-          "formula": "80 + (heal__amp * 1)",
+          "formula": "80 + (heal_amp * 1)",
           "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+18 Damage Per Second",
+          "changes": {
+            "damage_per_second": 18
+          }
+        },
+        {
+          "level": 2,
+          "description": "+2.5s Duration",
+          "changes": {
+            "duration": 2.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "Enables and Grants +2 Charges. Increases spirit scaling.",
+          "changes": {
+            "charges": 3,
+            "charge_delay": 0.1,
+            "damage_per_second_scale_bonus": 0.3
+          }
+        }
+      ]
     },
     {
       "id": "ability_blood_shards",
@@ -134,48 +206,100 @@
       "stats": {
         "cooldown": 6,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.12,
+        "cast_delay": 0.12,
         "ability_post_cast_duration": 0.3,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
-        "health_to_damage": 23,
-        "num_blood_shards": 3,
+        "damage": 23,
+        "blood_shards": 3,
         "spread_angle_degrees": 6,
-        "move_speed_penalty_per_stack": 15,
-        "vulnerability_per_stack": 8,
+        "movement_slow": 15,
+        "damage_amplification": 8,
         "debuff_duration": 9,
         "slow_duration": 4,
         "max_stacks": 5,
-        "self_damage_pct": 9
+        "health_cost": 9,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 23,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.558
           },
-          "formula": "23 + (spirit__power * 0.558)",
+          "formula": "23 + (spirit_power * 0.558)",
           "unit": "damage"
         },
         {
           "type": "slow",
-          "base_value": 4,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "4 + (ability__duration * 1)",
+          "base_value": 15,
+          "localized_name": "Movement Slow",
           "unit": "%"
         },
         {
-          "type": "bullet_damage",
-          "base_value": 9,
+          "type": "spirit_damage",
+          "base_value": 8,
+          "localized_name": "Damage Amplification",
           "unit": "damage"
+        },
+        {
+          "type": "debuff",
+          "base_value": 9,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "9 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "slow",
+          "base_value": 4,
+          "localized_name": "Slow Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "4 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
+          "type": "heal",
+          "base_value": 9,
+          "localized_name": "Health Cost",
+          "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-3s Cooldown",
+          "changes": {
+            "cooldown": -3
+          }
+        },
+        {
+          "level": 2,
+          "description": "+X Damage and +X Blood Shards",
+          "changes": {
+            "damage": 25.199999,
+            "blood_shards": 4,
+            "spread_angle_degrees": 22
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X% Damage Amp",
+          "changes": {
+            "damage_amplification": 7
+          }
+        }
+      ]
     },
     {
       "id": "ability_health_swap",
@@ -189,50 +313,69 @@
         "duration": 0.25,
         "cast_range": "5.5m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 0.1,
         "channel_move_speed": "2m",
         "post_cast_hold_time": 0.2,
         "initial_up_speed": 150,
-        "nemy_min_health_pct": 30,
-        "min_health_taken_pct": 30,
+        "enemy_min_health": 30,
+        "min_health_received": 30,
         "min_diff_to_cast": 0.1,
-        "nemy_slow_pct": 70,
-        "silence_radius": "0m"
+        "enemy_move_speed": 70,
+        "silence_radius": "0m",
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "self_buff_duration": 0,
+        "fire_rate": 0
       },
       "effects": [
         {
           "type": "heal",
           "base_value": 30,
+          "localized_name": "Enemy Min Health",
           "unit": "hp"
         },
         {
-          "type": "slow",
+          "type": "heal",
+          "base_value": 30,
+          "localized_name": "Min Health Received",
+          "unit": "hp"
+        },
+        {
+          "type": "move_speed",
           "base_value": 70,
-          "unit": "%"
-        },
-        {
-          "type": "silence",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": ""
-        },
-        {
-          "type": "silence",
-          "base_value": "0m",
-          "scales_with": {
-            "stat": "ability__range",
-            "ratio": 1
-          },
-          "formula": "0m + (ability__range * 1)",
-          "unit": ""
+          "localized_name": "Enemy Move Speed",
+          "unit": "m/s"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-60s Cooldown",
+          "changes": {
+            "cooldown": -60
+          }
+        },
+        {
+          "level": 2,
+          "description": "Silence enemies within Xm for Xs",
+          "changes": {
+            "silence_duration": 3,
+            "silence_radius": "25m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "On cast, +X Spirit Power, +X% Fire Rate and +X% Spirit Resistance for Xs.",
+          "changes": {
+            "self_buff_duration": 8,
+            "spirit_resist": 50,
+            "fire_rate": 40,
+            "spirit_power": 60
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -432,14 +575,6 @@
     {
       "id": "upgrade_sprint_booster",
       "name": "Sprint Boots"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_toxic_bullets",

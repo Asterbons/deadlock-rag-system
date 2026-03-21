@@ -14,13 +14,10 @@
       "brawler"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
-      "slow",
-      "stun",
-      "heal"
+      "slow"
     ]
   },
   "base_stats": {
@@ -49,8 +46,8 @@
     "base_melee_damage_from_level": 1.58,
     "bonus_attack_range": 59,
     "boon_count": 1,
-    "bullet_armor_damage_resist": 0.3,
-    "spirit__power": 1.1
+    "bullet_resist": 0.3,
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -65,31 +62,38 @@
         "melee_attack_length": "6m",
         "cooldown": 22,
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "nemy_hero_toss_velocity": "20m",
         "toss_velocity": "25m",
         "melee_radius": "2.5m",
         "force_reduction_on_angle_down": 0.75,
         "uppercut_damage": 0.01,
-        "landing_damage": 75,
-        "on_land_damage_radius": "14m",
+        "area_damage": 75,
+        "landing_radius": "14m",
         "buff_gun_range_percent": 100,
-        "bonus_fire_rate": -14,
-        "xplode_debuff_duration": 5,
+        "fire_rate": -14,
+        "fire_rate_slow_duration": 5,
         "toss_duration": 0.5,
-        "toss_duration_friendly": 0.3
+        "toss_duration_friendly": 0.3,
+        "duration": 0,
+        "cast_range": 0,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "restore_hook_cooldown": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "melee_damage",
           "base_value": 0.01,
+          "localized_name": "Uppercut Damage",
           "scales_with": {
-            "stat": "light__melee",
+            "stat": "light_melee",
             "ratio": 1
           },
-          "formula": "0.01 + (light__melee * 1)",
-          "unit": "damage"
+          "formula": "0.01 + (light_melee * 1)",
+          "unit": ""
         },
         {
           "type": "spirit_damage",
@@ -102,27 +106,41 @@
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
-          "base_value": "14m",
+          "type": "spirit_damage",
+          "base_value": -14,
           "scales_with": {
-            "stat": "radius",
-            "ratio": 1
+            "stat": "spirit_power",
+            "ratio": -0.186
           },
-          "formula": "14m + (radius * 1)",
+          "formula": "-14 + (spirit_power * -0.186)",
           "unit": "damage"
-        },
-        {
-          "type": "heal",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "heal__amp",
-            "ratio": 1
-          },
-          "formula": "0 + (heal__amp * 1)",
-          "unit": "hp"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-11s Cooldown",
+          "changes": {
+            "cooldown": -11
+          }
+        },
+        {
+          "level": 2,
+          "description": "On Hero Hit: Gain fast spin-up time, 2x weapon range and +X% weapon damage for Xs",
+          "changes": {
+            "uppercut_buff_on_hit": 9,
+            "buff_base_weapon_pct": 40
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Hero Hit: Set Grapple Arm cooldown to 0 and restores +X% of your missing health",
+          "changes": {
+            "restore_hook_cooldown": 1,
+            "missing_hp_heal": 17
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_sticky_bomb",
@@ -133,63 +151,82 @@
       "targeting": "target",
       "stats": {
         "cooldown": 18,
-        "duration": 3.5,
+        "duration": 0,
         "cast_range": "6m",
         "ability_unit_target_limit": 1,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "radius": "10m",
         "fuse_time": 3.5,
         "kill_check_window": 10,
         "on_hit_diminish": 60,
         "on_kill_diminish": 7,
         "damage": 85,
-        "bonus_damage_pct_per_player_killed": 2.5,
-        "bonus_damage_pct_per_player_hit": 1
+        "sticky_bomb_damage": 1,
+        "cast_delay": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "fire_rate": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 85,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.5
           },
-          "formula": "85 + (spirit__power * 1.5)",
+          "formula": "85 + (spirit_power * 1.5)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 2.5,
+          "localized_name": "Sticky Bomb Damage",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.01
           },
-          "formula": "2.5 + (spirit__power * 0.01)",
+          "formula": "2.5 + (spirit_power * 0.01)",
           "unit": "damage"
         },
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
           "base_value": 1,
+          "localized_name": "Sticky Bomb Damage",
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 0.0015
           },
-          "formula": "1 + (spirit__power * 0.0015)",
+          "formula": "1 + (spirit_power * 0.0015)",
           "unit": "damage"
-        },
-        {
-          "type": "stun",
-          "base_value": 0,
-          "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
-          },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "seconds"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-8s Cooldown",
+          "changes": {
+            "cooldown": -8
+          }
+        },
+        {
+          "level": 2,
+          "description": "+75 Damage",
+          "changes": {
+            "damage": 75
+          }
+        },
+        {
+          "level": 3,
+          "description": "On Cast: +Xm Move Speed and +X% Fire Rate for Xs",
+          "changes": {
+            "movement_speed_bonus": "5m",
+            "fire_rate": 20,
+            "move_speed_duration": 5
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_hook",
@@ -202,17 +239,21 @@
         "cooldown": 23,
         "cast_range": "30m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.1,
+        "cast_delay": 0.1,
         "ability_post_cast_duration": 0.2,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
         "hooking_slow_speed_limit": 5,
-        "slow_percent": 90,
+        "move_speed": 90,
         "restriction_duration": 0.5,
         "nd_of_hook_move_speed_bonus": "0m",
         "friendly_hook_ignore_range": "8m",
         "cancel_hook_duration": 0.2,
-        "hook_impact_delay": 0.5
+        "hook_impact_delay": 0.5,
+        "duration": 0,
+        "channel_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "reset_cooldown_on_friendly_hook": 0,
+        "bullet_amp_duration": 0
       },
       "effects": [
         {
@@ -223,10 +264,34 @@
         {
           "type": "slow",
           "base_value": 90,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+X% weapon damage against victims for Xs",
+          "changes": {
+            "bullet_amp": 20,
+            "bullet_amp_duration": 6
+          }
+        },
+        {
+          "level": 2,
+          "description": "30mm Cast Range",
+          "changes": {
+            "cast_range": "30m"
+          }
+        },
+        {
+          "level": 3,
+          "description": "-11.5s Cooldown",
+          "changes": {
+            "cooldown": -11.5
+          }
+        }
+      ]
     },
     {
       "id": "citadel_ability_bebop_laser_beam",
@@ -238,11 +303,10 @@
       "stats": {
         "cooldown": 105,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 1,
-        "ability_channel_time": 11,
-        "ability_cooldown_between_charge": -1,
+        "cast_delay": 1,
+        "channel_duration": 11,
         "channel_move_speed": "1.8m",
-        "dps": 160,
+        "damage_per_second": 160,
         "beam_length": "70m",
         "beam_width": "2.9m",
         "beam_close_radius": "5.0m",
@@ -255,27 +319,63 @@
         "fall_speed_max": 1,
         "air_speed_max": 70,
         "slow_target_duration": 0.5,
-        "slow_percent": 25,
-        "ground_dash_reduction_percent": -40
+        "move_speed": 25,
+        "dash_distance": -40,
+        "duration": 0,
+        "cast_range": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "beam_lifesteal": 0,
+        "beam_lifesteal_non_hero_percent": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
+          "type": "spirit_damage",
+          "base_value": 160,
+          "scales_with": {
+            "stat": "spirit_power",
+            "ratio": 2.511
+          },
+          "formula": "160 + (spirit_power * 2.511)",
+          "unit": "damage"
+        },
+        {
+          "type": "spirit_damage",
           "base_value": 75,
           "unit": "damage"
         },
         {
           "type": "slow",
-          "base_value": 0.5,
-          "unit": "%"
-        },
-        {
-          "type": "slow",
           "base_value": 25,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-25s Cooldown",
+          "changes": {
+            "cooldown": -25
+          }
+        },
+        {
+          "level": 2,
+          "description": "+108 Damage Per Second",
+          "changes": {
+            "damage_per_second": 108
+          }
+        },
+        {
+          "level": 3,
+          "description": "Hyper Beam heals X for X% of its damage on Heroes. X% on non-hero",
+          "changes": {
+            "beam_lifesteal": 65,
+            "beam_lifesteal_non_hero_percent": 20
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -459,14 +559,6 @@
     {
       "id": "upgrade_superior_stamina",
       "name": "Stamina Mastery"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_transcendent_cooldown",

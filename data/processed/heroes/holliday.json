@@ -7,19 +7,17 @@
   "tags": {
     "flavor": [
       "Explosive",
-      "Crackshot",
-      "Apprehender"
+      "Apprehender",
+      "Crackshot"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "bullet",
       "spirit"
     ],
     "utility": [
-      "slow",
-      "stun"
+      "slow"
     ]
   },
   "base_stats": {
@@ -47,7 +45,7 @@
     "health": 41,
     "base_melee_damage_from_level": 1.58,
     "boon_count": 1,
-    "spirit__power": 1.1
+    "spirit_power": 1.1
   },
   "abilities": [
     {
@@ -60,13 +58,12 @@
       "stats": {
         "cooldown": 28,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.125,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 3.5,
-        "channel_move_speed": -1,
+        "cast_delay": 0.125,
+        "charges": 1,
+        "charge_delay": 3.5,
         "radius": "6m",
         "barrel_lifetime": 8,
-        "barrel_damage": 80,
+        "explosion_damage": 80,
         "barrel_roll_speed_move_min": "15m",
         "barrel_pitch_min": 2,
         "barrel_pitch_max": 45,
@@ -79,21 +76,54 @@
         "toss_speed": 140,
         "arm_time": 0.5,
         "min_time_before_destroy": 1,
-        "toss_duration": 0.4
+        "toss_duration": 0.4,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0
       },
       "effects": [
         {
           "type": "spirit_damage",
           "base_value": 80,
           "scales_with": {
-            "stat": "spirit__power",
+            "stat": "spirit_power",
             "ratio": 1.6
           },
-          "formula": "80 + (spirit__power * 1.6)",
+          "formula": "80 + (spirit_power * 1.6)",
           "unit": "damage"
+        },
+        {
+          "type": "knockup",
+          "base_value": 140,
+          "unit": ""
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-10s Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 2,
+          "description": "+58.5 Explosion Damage",
+          "changes": {
+            "explosion_damage": 58.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "+Xs Displacement and +X Charges.",
+          "changes": {
+            "charges": 2,
+            "toss_duration": 0.4,
+            "toss_speed": 140
+          }
+        }
+      ]
     },
     {
       "id": "ability_bounce_pad",
@@ -104,50 +134,73 @@
       "targeting": "instant",
       "stats": {
         "cooldown": 41,
-        "duration": 22,
+        "duration": 0,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.08,
-        "ability_charges": 1,
-        "ability_cooldown_between_charge": 3.5,
-        "channel_move_speed": -1,
+        "cast_delay": 0.08,
+        "charges": 1,
+        "charge_delay": 3.5,
         "bounce_velocity": 750,
         "up_factor": 1.2,
         "barrel_bounce_velocity": 800,
         "barrel_up_factor": 1,
         "scale": 1,
         "place_distance": 200,
-        "air_control_percent": 100,
+        "air_control": 100,
         "air_control_accel_percent": 50,
         "min_air_time_for_stomp": 0.2,
         "radius": "12m",
         "vertical_difference_tolerance": 60,
         "toss_speed": 500,
         "stomp_damage": 60,
-        "speed_on_land": "0m"
+        "speed_on_land": "0m",
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "speed_on_land_duration": 0
       },
       "effects": [
         {
-          "type": "bullet_damage",
-          "base_value": 60,
-          "scales_with": {
-            "stat": "spirit__power",
-            "ratio": 0.372
-          },
-          "formula": "60 + (spirit__power * 0.372)",
-          "unit": "damage"
+          "type": "knockup",
+          "base_value": 500,
+          "unit": ""
         },
         {
-          "type": "stun",
-          "base_value": 0,
+          "type": "spirit_damage",
+          "base_value": 60,
+          "localized_name": "Stomp Damage",
           "scales_with": {
-            "stat": "ability__duration",
-            "ratio": 1
+            "stat": "spirit_power",
+            "ratio": 0.372
           },
-          "formula": "0 + (ability__duration * 1)",
-          "unit": "seconds"
+          "formula": "60 + (spirit_power * 0.372)",
+          "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "Xs Cooldown",
+          "changes": {
+            "cooldown": -10
+          }
+        },
+        {
+          "level": 2,
+          "description": "You and allies gain a +Xm/s move speed bonus for Xs on landing",
+          "changes": {
+            "speed_on_land": "4m",
+            "speed_on_land_duration": 4
+          }
+        },
+        {
+          "level": 3,
+          "description": "+X Stomp Damage. Improve Spirit scaling",
+          "changes": {
+            "stomp_damage": 67.5,
+            "stomp_damage_scale_bonus": 0.32178
+          }
+        }
+      ]
     },
     {
       "id": "ability_crackshot",
@@ -159,13 +212,20 @@
       "stats": {
         "cooldown": 20,
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.15,
-        "ability_cooldown_between_charge": -1,
-        "xplosion_radius": "2m",
+        "cast_delay": 0.15,
+        "explosion_radius": "2m",
         "damage": 55,
         "debuff_duration": 2,
-        "fading_slow_percent": 50,
-        "crackshot_n_p_c_c_d_reduction": 50
+        "fading_move_speed": 50,
+        "crackshot_n_p_c_c_d_reduction": 50,
+        "duration": 0,
+        "cast_range": 0,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1,
+        "cooldown_per_headshot": 0,
+        "cooldown_per_headshot_npc": 0
       },
       "effects": [
         {
@@ -179,12 +239,47 @@
           "unit": "damage"
         },
         {
+          "type": "debuff",
+          "base_value": 2,
+          "localized_name": "Debuff Duration",
+          "scales_with": {
+            "stat": "ability_duration",
+            "ratio": 1
+          },
+          "formula": "2 + (ability_duration * 1)",
+          "unit": "s"
+        },
+        {
           "type": "slow",
           "base_value": 50,
+          "localized_name": "Movement slow",
           "unit": "%"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "-X% Fading Move Speed",
+          "changes": {
+            "fading_move_speed": 25
+          }
+        },
+        {
+          "level": 2,
+          "description": "+49.5 Damage",
+          "changes": {
+            "damage": 49.5
+          }
+        },
+        {
+          "level": 3,
+          "description": "Xs Cooldown on Hero Headshots. Xs on NPC Headshots",
+          "changes": {
+            "cooldown_per_headshot": -4,
+            "cooldown_per_headshot_npc": -2
+          }
+        }
+      ]
     },
     {
       "id": "ability_gravity_lasso",
@@ -198,15 +293,13 @@
         "duration": 2.25,
         "cast_range": "20m",
         "ability_unit_target_limit": 1,
-        "ability_cast_delay": 0.5,
-        "ability_cooldown_between_charge": -1,
-        "channel_move_speed": -1,
+        "cast_delay": 0.5,
         "bounce_pad_extend_duration": 1,
         "lift_height": 7,
         "lift_horizontal": -30,
         "follow_damping_factor": 8,
         "grab_extra_targets_radius_mult": 2,
-        "xtra_target_cone_angle": 60,
+        "targetting_cone_angle": 60,
         "xtra_target_horizontal_offset": 30,
         "follow_distance": 60,
         "camera_preview_offset": 25,
@@ -216,9 +309,18 @@
         "lift_initial_delay": 0.5,
         "lift_initial_velocity_start": 500,
         "lift_initial_rising_speed": 100,
-        "damage": 80
+        "damage": 80,
+        "channel_duration": 0,
+        "ability_post_cast_duration": 0,
+        "charges": 0,
+        "charge_delay": -1
       },
       "effects": [
+        {
+          "type": "damage_amp",
+          "base_value": 8,
+          "unit": ""
+        },
         {
           "type": "spirit_damage",
           "base_value": 80,
@@ -230,7 +332,29 @@
           "unit": "damage"
         }
       ],
-      "upgrades": []
+      "upgrades": [
+        {
+          "level": 1,
+          "description": "+67.5 Damage",
+          "changes": {
+            "damage": 67.5
+          }
+        },
+        {
+          "level": 2,
+          "description": "+0.75s Duration",
+          "changes": {
+            "duration": 0.75
+          }
+        },
+        {
+          "level": 3,
+          "description": "-30s Cooldown",
+          "changes": {
+            "cooldown": -30
+          }
+        }
+      ]
     }
   ],
   "weapon": {
@@ -438,18 +562,6 @@
     {
       "id": "upgrade_target_stun",
       "name": "Knockdown"
-    },
-    {
-      "id": "upgrade_tech_overflow",
-      "name": "Spiritual Overflow"
-    },
-    {
-      "id": "upgrade_tech_purge",
-      "name": "Spirit Resilience"
-    },
-    {
-      "id": "upgrade_tech_range",
-      "name": "Greater Expansion"
     },
     {
       "id": "upgrade_thermal_detonator",

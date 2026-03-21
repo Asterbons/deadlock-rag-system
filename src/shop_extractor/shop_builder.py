@@ -379,6 +379,9 @@ def _extract_proc(props: dict, activation: str) -> dict | None:
     # Effects
     effects = []
     for prop_name, prop_data in props.items():
+        if prop_name in MAPPING.effect_property_blacklist:
+            continue
+
         if not isinstance(prop_data, dict):
             continue
         val = _parse_numeric(prop_data.get("m_strValue"))
@@ -442,6 +445,9 @@ def _extract_synergies(props: dict) -> dict:
     scales_with: list[str] = []
 
     for prop_name, prop_data in props.items():
+        if prop_name in MAPPING.effect_property_blacklist:
+            continue
+
         if not isinstance(prop_data, dict):
             continue
 
@@ -521,6 +527,9 @@ def _extract_stats(props: dict) -> dict:
     stats: dict = {}
 
     for prop_name, prop_data in props.items():
+        if prop_name in MAPPING.effect_property_blacklist:
+            continue
+
         if not isinstance(prop_data, dict):
             continue
 
