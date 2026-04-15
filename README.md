@@ -1,93 +1,146 @@
-# Deadlock RAG Data Pipeline
+# Deadlock RAG
 
-This project is a Python-based data pipeline designed to parse and extract information from Valve's KeyValues3 (`.vdata`) game files for the game Deadlock. The goal is to clean, normalize, and merge this data into a structured JSON format suitable for analytical tasks and Retrieval-Augmented Generation (RAG) systems.
+A data pipeline and RAG (Retrieval-Augmented Generation) system for Valve's *Deadlock*. Extracts hero, ability, and item data from raw `.vdata` game files, indexes them as embeddings in Qdrant, and serves a semantic search + LLM-powered query API with a web UI.
+
+## Setup
+
+No `requirements.txt` — install dependencies manually:
+
+```bash
+pip install qdrant-client fastapi uvicorn requests
+```
+
+**External services required at runtime:**
+
+| Service | Command |
+|---|---|
+| Qdrant (first run) | `docker run -d --name qdrant -p 6333:6333 -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant` |
+| Qdrant (subsequent) | `docker start qdrant` |
+| Ollama | `ollama serve` |
+
+Ollama models needed:
+```bash
+ollama pull mxbai-embed-large   # embeddings
+ollama pull qwen2.5:7b          # LLM
+```
+
+## Pipeline
+
+The system runs in two phases: **once** to build the knowledge base, and **on every query** at runtime.
+
+### Build phase (run once, or when game data updates)
+
+```bash
+# 1. Extract hero + ability data
+python src/heroes_abilities_extractor/pipeline.py
+python src/heroes_abilities_extractor/hero_profile_extractor.py
+
+# 2. Extract shop/item data
+python src/shop_extractor/pipeline.py
+
+# 3. Chunk extracted JSON into RAG-ready pieces
+python src/rag/chunker.py
+
+# 4. Embed chunks and load into Qdrant (requires Ollama + Qdrant running)
+python src/rag/indexer.py
+```
+
+### Runtime
+
+```bash
+# Start the API + web UI
+python src/api/server.py
+# → http://localhost:8000
+
+# Or use the interactive CLI
+python src/rag/rag.py
+```
+
+## How it works
+
+```
+data/raw/*.vdata + localization .txt
+        ↓  Extraction
+data/processed/processed_heroes.json   (38 heroes + 152 abilities)
+data/processed/shop.json               (171 items)
+data/processed/heroes_index.json       (cross-hero summary)
+        ↓  Chunking  (src/rag/chunker.py)
+data/processed/chunks.json             (361 semantic chunks)
+        ↓  Indexing  (src/rag/indexer.py → mxbai-embed-large via Ollama)
+Qdrant collections:
+  deadlock_heroes     (38 points)
+  deadlock_abilities  (152 points)
+  deadlock_items      (171 points)
+        ↓  Query time
+src/rag/router.py    → classifies question, picks collections
+src/rag/retriever.py → embeds query, searches Qdrant, returns top chunks
+src/rag/rag.py       → builds prompt, calls LLM (streaming)
+src/api/server.py    → FastAPI, SSE streaming to web UI
+```
+
+**Why each piece exists:**
+
+| Component | Purpose |
+|---|---|
+| Extractors | Converts unreadable `.vdata` to clean JSON |
+| Chunker | Splits JSON into one-chunk-per-entity (hero / ability / item) |
+| Indexer | Converts text chunks to 1024-dim vectors via `mxbai-embed-large` |
+| Qdrant | Stores vectors + full text payloads; enables cosine similarity search |
+| Router | Classifies the query to pick the right collections and apply hero filters |
+| Retriever | Finds the top-k most semantically relevant chunks for a query |
+| LLM | Reads retrieved chunks as context, generates a grounded answer |
 
 ## Project Structure
 
-```text
+```
 dlrag/
 ├── data/
-│   ├── raw/                # Original Valve .vdata and .txt files
-│   └── processed/          # Pipeline outputs
-│       ├── heroes/         # Individual hero JSON files
-│       ├── chunks.json     # RAG-ready text chunks
-│       ├── heroes_index.json # Summary of all heroes
-│       ├── processed_heroes.json # Unified hero data
-│       └── shop.json       # Extracted shop and item data
+│   ├── raw/                          # Valve .vdata + localization .txt files
+│   └── processed/
+│       ├── chunks.json               # 361 RAG-ready chunks
+│       ├── heroes_index.json         # Summary of all 38 heroes
+│       ├── processed_heroes.json     # Unified hero + ability data
+│       ├── shop.json                 # All items
+│       └── heroes/                   # Per-hero JSON files
 ├── src/
 │   ├── heroes_abilities_extractor/
-│   │   ├── kv3_parser.py   # Custom KeyValues3 recursive descent parser
-│   │   ├── hero_extractor.py # Hero stat extraction with inheritance logic
-│   │   ├── ability_enricher.py # Ability detail enrichment and semantic tagging
-│   │   ├── pipeline.py     # Orchestrates unified hero data extraction
-│   │   └── hero_profile_extractor.py # Granular extractor for individual files
+│   │   ├── kv3_parser.py             # Custom KV3 recursive-descent parser
+│   │   ├── hero_extractor.py         # Hero stat extraction with hero_base inheritance
+│   │   ├── ability_enricher.py       # Ability enrichment + semantic tags
+│   │   ├── pipeline.py               # Hero/ability extraction entrypoint
+│   │   └── hero_profile_extractor.py # Per-hero profile files
 │   ├── shop_extractor/
-│   │   ├── shop_builder.py # Item and shop data processing
-│   │   └── pipeline.py     # Shop extraction pipeline
+│   │   ├── shop_builder.py           # Item extraction + stat normalization
+│   │   └── pipeline.py               # Shop extraction entrypoint
 │   ├── rag/
-│   │   └── chunker.py      # RAG chunking pipeline (Hero, Ability, Item chunks)
-│   └── config.py           # Centralized path and configuration management
-├── PROJECT_CONTEXT.md      # High-level overview
-├── research_notes.md       # Development notes and implementation details
-└── README.md               # This file
+│   │   ├── chunker.py                # Produces chunks.json
+│   │   ├── indexer.py                # Loads chunks into Qdrant
+│   │   ├── retriever.py              # Embeds query + searches Qdrant
+│   │   ├── router.py                 # Query classification
+│   │   └── rag.py                    # Full RAG pipeline + streaming
+│   ├── api/
+│   │   └── server.py                 # FastAPI server (SSE streaming)
+│   ├── config.py                     # Centralized file paths
+│   └── mapping_handler.py            # MODIFIER_VALUE_* → clean stat names
+├── web/
+│   └── index.html                    # Web UI
+└── tests/
 ```
 
-## Data Overview
+## API Endpoints
 
-### Raw Data (`data/raw/`)
-Contains original game files like `heroes.vdata` and `abilities.vdata`, along with localization files (`citadel_attributes_english.txt`, etc.).
+| Endpoint | Description |
+|---|---|
+| `GET /api/health` | Checks Ollama + Qdrant connectivity |
+| `GET /api/heroes` | Returns all heroes from `heroes_index.json` |
+| `POST /api/ask` | Streaming SSE RAG query endpoint |
 
-### Processed Data (`data/processed/`)
-- **`processed_heroes.json`**: A single JSON containing all heroes and their abilities.
-- **`heroes/`**: Individual JSON files for each hero, used for granular access.
-- **`shop.json`**: Comprehensive data on items, tiers, and stats.
-- **`chunks.json`**: The final output for RAG, containing text-based representations of heroes, abilities, and items with associated metadata.
+## Key concepts
 
-## Key Scripts & Pipelines
+**Embedding** — `mxbai-embed-large` converts text to a 1024-dimensional vector. Semantically similar texts produce mathematically close vectors, enabling search without keyword matching.
 
-### 1. Hero & Ability Extraction
-- **`kv3_parser.py`**: A custom parser specifically designed for Deadlock's `.vdata` format, handling its unique syntax and data types.
-- **`pipeline.py`**: The main entry point to regenerate the complete hero knowledge base.
-- **`hero_extractor.py`**: Handles "stat inheritance," ensuring heroes get baseline stats from `hero_base`.
-- **`ability_enricher.py`**: Adds property modifiers and applies semantic tags like `[Spirit]`, `[DoT]`, or `[Mobility]`.
+**Cosine similarity** — Qdrant ranks results by how closely their vectors point in the same direction as the query vector. Score 1.0 = identical meaning, 0.0 = unrelated.
 
-### 2. Shop Extraction
-- **`shop_extractor/pipeline.py`**: Processes items from the raw data to produce `shop.json`.
+**Payload** — Full original text stored alongside each vector in Qdrant. The vector finds the right chunk; the payload is what the LLM reads as context.
 
-### 3. RAG Chunking
-- **`rag/chunker.py`**: Orchestrates the final transformation of processed data into chunks suitable for a vector database. It generates:
-  - **Hero Chunks**: Summary of hero stats, types, and recommended items.
-  - **Ability Chunks**: Detailed descriptions, stats, and effects of each hero ability.
-  - **Item Chunks**: Item descriptions, tiers, stats, and proc effects.
-
-## Usage
-
-### Run the Full Pipeline
-To regenerate all processed data:
-1. Extract hero and ability data:
-   ```bash
-   python src/heroes_abilities_extractor/pipeline.py
-   python src/heroes_abilities_extractor/hero_profile_extractor.py
-   ```
-2. Extract shop data:
-   ```bash
-   python src/shop_extractor/pipeline.py
-   ```
-3. Generate RAG chunks:
-   ```bash
-   python src/rag/chunker.py
-   ```
-
-### Verification
-You can verify the integrity of the data using:
-```bash
-python tmp_verify_all.py
-```
-run assistent
-```bash
-python src/rag/rag.py
-```
-### Run the API
-```bash
-python src/api/server.py
-```
+**Truncation** — Chunks longer than 1000 characters are truncated before embedding (model limit), but the full text is always stored in the payload and sent to the LLM.
