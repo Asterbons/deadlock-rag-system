@@ -83,3 +83,11 @@ You can verify the integrity of the data using:
 ```bash
 python tmp_verify_all.py
 ```
+run assistent
+```bash
+python src/rag/rag.py
+```
+### Run the API
+```bash
+python src/api/server.py
+```

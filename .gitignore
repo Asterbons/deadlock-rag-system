@@ -26,6 +26,9 @@ ENV/
 # Environment Variables
 .env
 
+# Qdrant
+qdrant_storage/
+
 # Project Specific Exclusions
 all_labels.txt
 mappings_output.txt
@@ -38,3 +41,5 @@ extract_mappings.py
 test_kv3.py
 data/test/
 notes.md
+walkthrough.md
+CLAUDE.md
