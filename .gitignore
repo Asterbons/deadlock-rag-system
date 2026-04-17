@@ -43,3 +43,10 @@ data/test/
 notes.md
 walkthrough.md
 CLAUDE.md
+verify_fixes.py
+verify_upgrades.py
+debug.py
+debug.txt
+res.txt
+test_regex.py
+test_validation.py
