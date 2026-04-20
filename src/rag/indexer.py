@@ -7,10 +7,15 @@ from qdrant_client import QdrantClient
 from qdrant_client.http.exceptions import UnexpectedResponse
 from qdrant_client.http.models import Distance, VectorParams, PointStruct
 
+import os
+PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJ_ROOT not in sys.path:
+    sys.path.insert(0, PROJ_ROOT)
+
+from src.config import OLLAMA_URL, EMBEDDING_MODEL as EMBED_MODEL
+
 # Configuration
 QDRANT_URL      = "http://localhost:6333"
-OLLAMA_URL      = "http://localhost:11434"
-EMBED_MODEL     = "mxbai-embed-large"
 VECTOR_SIZE     = 1024
 CHUNKS_PATH     = "data/processed/chunks.json"
 BATCH_SIZE      = 50
@@ -94,40 +99,59 @@ def index_chunks(client: QdrantClient, chunks: list):
     """Split chunks by type into groups and index them in batches."""
     groups = {
         "hero": [],
+        "hero_build": [],
         "ability": [],
         "item": []
     }
-    
+
     for chunk in chunks:
         ctype = chunk["metadata"].get("type")
         if ctype in groups:
             groups[ctype].append(chunk)
 
     counts = {"hero": 0, "ability": 0, "item": 0}
-    
+
+    # hero_build chunks go into the same heroes collection
+    COLLECTION_MAP = {
+        "hero":       "deadlock_heroes",
+        "hero_build": "deadlock_heroes",
+        "ability":    "deadlock_abilities",
+        "item":       "deadlock_items",
+    }
+    COUNT_KEY = {
+        "hero":       "hero",
+        "hero_build": "hero",
+        "ability":    "ability",
+        "item":       "item",
+    }
+
     for ctype, group in groups.items():
-        collection_name = COLLECTIONS[ctype]
+        collection_name = COLLECTION_MAP[ctype]
         print(f"Indexing {ctype}s into {collection_name}...")
-        
+
         for i in range(0, len(group), BATCH_SIZE):
             batch = group[i : i + BATCH_SIZE]
             points = []
-            
+
             for chunk in batch:
                 embedding = get_embedding(chunk["text"])
                 if embedding is None:
                     continue
-                
-                # ID Generation logic
+
+                # ID Generation logic (Deterministic using MD5)
+                import hashlib
                 metadata = chunk["metadata"]
                 if ctype == "hero":
-                    key = metadata["hero"]
+                    key = f"hero_{metadata['hero']}"
+                elif ctype == "hero_build":
+                    key = f"hero_build_{metadata['hero']}"
                 elif ctype == "ability":
-                    key = f"{metadata['hero']}_{metadata['slot']}"
+                    key = f"ability_{metadata['hero']}_{metadata['slot']}"
                 else: # item
-                    key = metadata["id"]
-                
-                point_id = abs(hash(key)) % (10**12)
+                    key = f"item_{metadata['id']}"
+
+                # Generate a stable 64-bit integer ID from the key string
+                point_id = int(hashlib.md5(key.encode()).hexdigest()[:12], 16)
                 
                 points.append(PointStruct(
                     id=point_id,
@@ -140,10 +164,9 @@ def index_chunks(client: QdrantClient, chunks: list):
             
             if points:
                 client.upsert(collection_name=collection_name, points=points)
-            
-            counts[ctype] += len(points)
-            label = ctype.capitalize() + "es" if ctype in ["hero", "ability"] else "Items"
-            print(f"{label}: {counts[ctype]}/{len(group)} indexed...")
+
+            counts[COUNT_KEY[ctype]] += len(points)
+            print(f"{ctype}: {counts[COUNT_KEY[ctype]]}/{len(group)} indexed...")
 
     return counts
 

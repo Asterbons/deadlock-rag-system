@@ -1,0 +1,37 @@
+import subprocess
+import sys
+from datetime import datetime
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+PIPELINE_STEPS = [
+    ("Heroes & Abilities extraction",
+     [sys.executable, "src/heroes_abilities_extractor/pipeline.py"]),
+    ("Shop extraction",
+     [sys.executable, "src/shop_extractor/pipeline.py"]),
+    ("Chunker",
+     [sys.executable, "src/rag/chunker.py"]),
+    ("Indexer",
+     [sys.executable, "src/rag/indexer.py"]),
+]
+
+
+def run_full_pipeline() -> bool:
+    print(f"\n{'='*50}")
+    print(f"Starting full pipeline update at {datetime.now():%Y-%m-%d %H:%M:%S}")
+    print(f"{'='*50}")
+
+    for step_name, cmd in PIPELINE_STEPS:
+        print(f"\n→ {step_name}...")
+        result = subprocess.run(cmd, cwd=PROJECT_ROOT)
+        if result.returncode != 0:
+            print(f"  FAILED: {step_name} exited with code {result.returncode}")
+            print("  Pipeline aborted.")
+            return False
+        print(f"  Done: {step_name}")
+
+    print(f"\n{'='*50}")
+    print(f"Pipeline complete at {datetime.now():%Y-%m-%d %H:%M:%S}")
+    print(f"{'='*50}\n")
+    return True

@@ -8,12 +8,9 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
+from src.config import OLLAMA_URL, LLM_MODEL
 from src.rag.retriever import retrieve, format_context
 from src.rag.router import route_query
-
-# Config
-OLLAMA_URL = "http://localhost:11434"
-LLM_MODEL  = "qwen2.5:7b"
 
 HEROES_INDEX_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "processed", "heroes_index.json"
@@ -26,12 +23,16 @@ Deadlock is a 6v6 hero shooter MOBA developed by Valve.
 Your rules:
 1. Answer using ONLY the provided context. Never use outside knowledge
    for specific numbers, stats, or game mechanics.
-2. If the question requires math (e.g. damage at X spirit power),
+2. Do NOT invent, guess, or fabricate item names, ability names, or hero names.
+   Only reference items, abilities, or heroes that appear verbatim in the CONTEXT section.
+3. When the context contains a "good items:" field for a hero, list those items directly
+   as the answer to build/item questions. Do not derive recommendations from ability descriptions.
+3. If the question requires math (e.g. damage at X spirit power),
    always show the formula and calculation step by step.
-3. If the context does not contain enough information to answer,
+4. If the context does not contain enough information to answer,
    say exactly: "I don't have enough data to answer this question."
-4. Be concise and precise.
-5. When referencing stats, always mention the source
+5. Be concise and precise.
+6. When referencing stats, always mention the source
    (e.g. "According to Infernus's ability data...").
 """
 
@@ -66,7 +67,8 @@ def call_llm(prompt: str) -> str:
                 "options": {
                     "temperature": 0.1,
                     "top_p": 0.9
-                }
+                },
+                "think": False
             },
             timeout=60
         )
@@ -92,7 +94,8 @@ def call_llm_stream(prompt: str):
                 "options": {
                     "temperature": 0.1,
                     "top_p": 0.9
-                }
+                },
+                "think": False
             },
             stream=True,
             timeout=(10, 120)  # (connect_timeout, read_timeout) — was 60 (connect only)
@@ -186,13 +189,40 @@ def _get_route_and_context(question: str, history: list[dict] | None, verbose: b
         context = "ALL HEROES DATA:\n" + "\n".join(lines)
         results = []
     else:
-        filters = {"hero": route["hero_filter"]} if route.get("hero_filter") else None
-        results = retrieve(
-            question,
-            collections=route["collections"],
-            top_k=route["top_k"],
-            filters=filters,
+        collections = route["collections"]
+        hero_filter = route.get("hero_filter")
+        top_k = route["top_k"]
+
+        # For build queries (items + hero_filter), retrieve hero/ability context
+        # and items separately so items aren't crowded out by hero/ability chunks.
+        is_build_query = (
+            "item" in collections
+            and hero_filter
+            and len(collections) > 1
         )
+
+        if is_build_query:
+            hero_cols = [c for c in collections if c != "item"]
+            hero_results = retrieve(
+                question,
+                collections=hero_cols,
+                top_k=top_k,
+                filters={"hero": hero_filter},
+            )
+            item_results = retrieve(
+                question,
+                collections=["item"],
+                top_k=top_k,
+            )
+            results = hero_results + item_results
+        else:
+            filters = {"hero": hero_filter} if hero_filter else None
+            results = retrieve(
+                question,
+                collections=collections,
+                top_k=top_k,
+                filters=filters,
+            )
 
         if not results:
             context = "No results found."

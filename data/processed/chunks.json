@@ -1,12 +1,22 @@
 [
   {
-    "text": "Infernus | Marksman | complexity 1 | flavor tags: Explosive, Arsonist, Burn Rubber | damage: spirit | utility: slow, stun | playstyle: marksman | health: 800 | move_speed: 6.7 | bullet_damage: 5.5 | bullet_speed: 26000 | rounds_per_sec: 9.52 | clip_size: 27 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl | good items: Active Reload, Duration Extender, Swift Striker, Boundless Spirit, Burst Fire, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Healbane, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Infuser, Inhibitor, Juggernaut, Kinetic Dash, Enchanter's Emblem, Mystic Vulnerability, Mystic Regeneration, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "text": "Infernus | Marksman | complexity 1 | health: 800 | move_speed: 6.7 | bullet_damage: 5.5 | bullet_speed: 26000 | rounds_per_sec: 9.52 | clip_size: 27 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_inferno",
       "hero_id": 1,
       "name": "Infernus",
       "complexity": 1,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Infernus build guide | Marksman | damage type: spirit | utility: slow, stun | playstyle: marksman | flavor tags: Explosive, Arsonist, Burn Rubber | good items: Active Reload, Duration Extender, Swift Striker, Boundless Spirit, Burst Fire, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Healbane, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Infuser, Inhibitor, Juggernaut, Kinetic Dash, Enchanter's Emblem, Mystic Vulnerability, Mystic Regeneration, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_inferno",
+      "hero_id": 1,
+      "name": "Infernus",
       "hero_type": "Marksman"
     }
   },
@@ -77,13 +87,23 @@
     }
   },
   {
-    "text": "Seven | Mystic | complexity 1 | flavor tags: Merciless, Area Denial, High Voltage | damage: spirit | utility: stun | playstyle: mystic | health: 700 | move_speed: 6.7 | bullet_damage: 10.81 | bullet_speed: 25000 | rounds_per_sec: 3.81 | clip_size: 29 | can_zoom: False | scaling: health +41/lvl, spirit_power +1.1/lvl | good items: Refresher, Duration Extender, Crippling Headshot, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Fleetfoot, Healbane, Spirit Lifesteal, Superior Duration, Extra Spirit, Infuser, Intensifying Magazine, Juggernaut, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Recharge, Battle Vest, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Suppressor, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Unstoppable, Bullet Lifesteal",
+    "text": "Seven | Mystic | complexity 1 | health: 700 | move_speed: 6.7 | bullet_damage: 10.81 | bullet_speed: 25000 | rounds_per_sec: 3.81 | clip_size: 29 | can_zoom: False | scaling: health +41/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_gigawatt",
       "hero_id": 2,
       "name": "Seven",
       "complexity": 1,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Seven build guide | Mystic | damage type: spirit | utility: stun | playstyle: mystic | flavor tags: Merciless, Area Denial, High Voltage | good items: Refresher, Duration Extender, Crippling Headshot, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Fleetfoot, Healbane, Spirit Lifesteal, Superior Duration, Extra Spirit, Infuser, Intensifying Magazine, Juggernaut, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Recharge, Battle Vest, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Suppressor, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Unstoppable, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_gigawatt",
+      "hero_id": 2,
+      "name": "Seven",
       "hero_type": "Mystic"
     }
   },
@@ -150,13 +170,23 @@
     }
   },
   {
-    "text": "Vindicta | Marksman | complexity 1 | flavor tags: Soaring, Sniper, One Shot Kill | damage: spirit | utility: heal | playstyle: marksman | health: 725 | move_speed: 7.9 | bullet_damage: 12.33 | bullet_speed: 25984.3 | rounds_per_sec: 4.33 | clip_size: 19 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl | good items: Armor Piercing Rounds, Duration Extender, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Extended Magazine, Superior Cooldown, Lucky Shot, Leech, Escalating Exposure, Mercurial Magnum, Extra Charge, Glass Cannon, Headshot Booster, Weakening Headshot , Extra Health, Spirit Lifesteal, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Recharging Rush, Dispel Magic, Battle Vest, Ricochet, Sharpshooter, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Alchemical Fire, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Trophy Collector, Bullet Lifesteal",
+    "text": "Vindicta | Marksman | complexity 1 | health: 725 | move_speed: 7.9 | bullet_damage: 12.33 | bullet_speed: 25984.3 | rounds_per_sec: 4.33 | clip_size: 19 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_hornet",
       "hero_id": 3,
       "name": "Vindicta",
       "complexity": 1,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Vindicta build guide | Marksman | damage type: spirit | utility: heal | playstyle: marksman | flavor tags: Soaring, Sniper, One Shot Kill | good items: Armor Piercing Rounds, Duration Extender, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Extended Magazine, Superior Cooldown, Lucky Shot, Leech, Escalating Exposure, Mercurial Magnum, Extra Charge, Glass Cannon, Headshot Booster, Weakening Headshot , Extra Health, Spirit Lifesteal, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Recharging Rush, Dispel Magic, Battle Vest, Ricochet, Sharpshooter, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Alchemical Fire, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Trophy Collector, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_hornet",
+      "hero_id": 3,
+      "name": "Vindicta",
       "hero_type": "Marksman"
     }
   },
@@ -231,13 +261,23 @@
     }
   },
   {
-    "text": "Lady Geist | Mystic | complexity 2 | flavor tags: Self Damage, Fatale, Lifesteal | damage: spirit | utility: slow, heal | playstyle: mystic | health: 850 | move_speed: 6.3 | bullet_damage: 21.94 | bullet_speed: 32600 | rounds_per_sec: 2.12 | clip_size: 9 | can_zoom: False | scaling: health +51/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Crippling Headshot, Berserker, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Superior Cooldown, Leech, Enchanted Holsters, Extra Regen, Escalating Exposure, Frenzy, Fleetfoot, Healbane, Healing Tempo, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "text": "Lady Geist | Mystic | complexity 2 | health: 850 | move_speed: 6.3 | bullet_damage: 21.94 | bullet_speed: 32600 | rounds_per_sec: 2.12 | clip_size: 9 | can_zoom: False | scaling: health +51/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_ghost",
       "hero_id": 4,
       "name": "Lady Geist",
       "complexity": 2,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Lady Geist build guide | Mystic | damage type: spirit | utility: slow, heal | playstyle: mystic | flavor tags: Self Damage, Fatale, Lifesteal | good items: Echo Shard, Crippling Headshot, Berserker, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Superior Cooldown, Leech, Enchanted Holsters, Extra Regen, Escalating Exposure, Frenzy, Fleetfoot, Healbane, Healing Tempo, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Sprint Boots, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_ghost",
+      "hero_id": 4,
+      "name": "Lady Geist",
       "hero_type": "Mystic"
     }
   },
@@ -309,13 +349,23 @@
     }
   },
   {
-    "text": "Abrams | Brawler | complexity 1 | flavor tags: Brawler, Tank, Bull-Headed | damage: spirit | utility: heal, stun | playstyle: brawler | health: 770 | move_speed: 6.4 | bullet_damage: 3.6 | bullet_speed: 24000 | rounds_per_sec: 1.59 | clip_size: 9 | can_zoom: False | scaling: health +49/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Spirit Strike, Duration Extender, Arcane Surge, Crippling Headshot, Berserker, Boundless Spirit, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Point Blank, Close Quarters, Colossus, Counterspell, Crushing Fists, Leech, Plated Armor, Extra Regen, Escalating Exposure, Frenzy, Healing Tempo, Healing Booster, Extra Health, Hollow Point, Superior Duration, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Melee Lifesteal, Enchanter's Emblem, Surge of Power, Restorative Shot, Melee Charge, Monster Rounds, Cultlist Sacrifice, Phantom Strike, Battle Vest, Improved Spirit, Spellbreaker, Spirit Snatch, Sprint Boots, Transcendent Cooldown, Warp Stone",
+    "text": "Abrams | Brawler | complexity 1 | health: 770 | move_speed: 6.4 | bullet_damage: 3.6 | bullet_speed: 24000 | rounds_per_sec: 1.59 | clip_size: 9 | can_zoom: False | scaling: health +49/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_atlas",
       "hero_id": 6,
       "name": "Abrams",
       "complexity": 1,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Abrams build guide | Brawler | damage type: spirit | utility: heal, stun | playstyle: brawler | flavor tags: Brawler, Tank, Bull-Headed | good items: Echo Shard, Spirit Strike, Duration Extender, Arcane Surge, Crippling Headshot, Berserker, Boundless Spirit, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Point Blank, Close Quarters, Colossus, Counterspell, Crushing Fists, Leech, Plated Armor, Extra Regen, Escalating Exposure, Frenzy, Healing Tempo, Healing Booster, Extra Health, Hollow Point, Superior Duration, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Melee Lifesteal, Enchanter's Emblem, Surge of Power, Restorative Shot, Melee Charge, Monster Rounds, Cultlist Sacrifice, Phantom Strike, Battle Vest, Improved Spirit, Spellbreaker, Spirit Snatch, Sprint Boots, Transcendent Cooldown, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_atlas",
+      "hero_id": 6,
+      "name": "Abrams",
       "hero_type": "Brawler"
     }
   },
@@ -384,13 +434,23 @@
     }
   },
   {
-    "text": "Wraith | Marksman | complexity 1 | flavor tags: Isolator, Telekinetic, Duelist | damage: spirit | utility: slow, heal | playstyle: marksman | health: 700 | move_speed: 7.2 | bullet_damage: 5.64 | bullet_speed: 22500 | rounds_per_sec: 10.58 | clip_size: 52 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Lucky Shot, Leech, Debuff Reducer, Enchanted Holsters, Extra Regen, Mercurial Magnum, Extra Charge, Fleetfoot, Glass Cannon, Weakening Headshot , Extra Health, Spirit Lifesteal, Healing Rite, Extra Spirit, Inhibitor, Intensifying Magazine, Juggernaut, Mystic Burst, Surge of Power, Monster Rounds, Cultlist Sacrifice, Silencer, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Dispel Magic, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Bubble, Sprint Boots, Titanic Magazine, Toxic Bullets, Bullet Lifesteal",
+    "text": "Wraith | Marksman | complexity 1 | health: 700 | move_speed: 7.2 | bullet_damage: 5.64 | bullet_speed: 22500 | rounds_per_sec: 10.58 | clip_size: 52 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_wraith",
       "hero_id": 7,
       "name": "Wraith",
       "complexity": 1,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Wraith build guide | Marksman | damage type: spirit | utility: slow, heal | playstyle: marksman | flavor tags: Isolator, Telekinetic, Duelist | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Lucky Shot, Leech, Debuff Reducer, Enchanted Holsters, Extra Regen, Mercurial Magnum, Extra Charge, Fleetfoot, Glass Cannon, Weakening Headshot , Extra Health, Spirit Lifesteal, Healing Rite, Extra Spirit, Inhibitor, Intensifying Magazine, Juggernaut, Mystic Burst, Surge of Power, Monster Rounds, Cultlist Sacrifice, Silencer, Quicksilver Reload, Rapid Recharge, Rapid Rounds, Dispel Magic, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Bubble, Sprint Boots, Titanic Magazine, Toxic Bullets, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_wraith",
+      "hero_id": 7,
+      "name": "Wraith",
       "hero_type": "Marksman"
     }
   },
@@ -456,13 +516,23 @@
     }
   },
   {
-    "text": "McGinnis | Mystic | complexity 1 | damage: spirit | utility: slow, heal | playstyle: mystic | health: 750 | move_speed: 6.7 | bullet_damage: 6 | bullet_speed: 25590.6 | rounds_per_sec: 4.76 | clip_size: 66 | can_zoom: False | scaling: health +52/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Active Reload, Duration Extender, Arcane Surge, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Superior Cooldown, Lucky Shot, Leech, Heroic Aura, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Fleetfoot, Glass Cannon, Healbane, Healing Tempo, Healing Booster, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Rapid Recharge, Rapid Rounds, Recharging Rush, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Suppressor, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Bullet Lifesteal",
+    "text": "McGinnis | Mystic | complexity 1 | health: 750 | move_speed: 6.7 | bullet_damage: 6 | bullet_speed: 25590.6 | rounds_per_sec: 4.76 | clip_size: 66 | can_zoom: False | scaling: health +52/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_forge",
       "hero_id": 8,
       "name": "McGinnis",
       "complexity": 1,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "McGinnis build guide | Mystic | damage type: spirit | utility: slow, heal | playstyle: mystic | good items: Echo Shard, Active Reload, Duration Extender, Arcane Surge, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Superior Cooldown, Lucky Shot, Leech, Heroic Aura, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Fleetfoot, Glass Cannon, Healbane, Healing Tempo, Healing Booster, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Rapid Recharge, Rapid Rounds, Recharging Rush, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Suppressor, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_forge",
+      "hero_id": 8,
+      "name": "McGinnis",
       "hero_type": "Mystic"
     }
   },
@@ -529,13 +599,23 @@
     }
   },
   {
-    "text": "Paradox | Marksman | complexity 3 | flavor tags: Disruptor, Calculated, Tactician | damage: spirit, bullet | utility: slow | playstyle: marksman | health: 700 | move_speed: 6.7 | bullet_damage: 6.42 | bullet_speed: 20669.3 | rounds_per_sec: 3.4 | clip_size: 40 | can_zoom: False | scaling: health +45/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Fortitude, Slowing Hex, Superior Cooldown, Counterspell, Mystic Shot, Leech, Extra Regen, Escalating Exposure, Express Shot, Glass Cannon, Cursed Relic, Headhunter, Headshot Booster, Weakening Headshot , Healbane, Extra Health, Spirit Lifesteal, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Infuser, Juggernaut, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Battle Vest, Sharpshooter, Spellbreaker, Spirit Burn, Sprint Boots, Stamina Mastery, Alchemical Fire, Toxic Bullets, Transcendent Cooldown, Warp Stone, Stalker",
+    "text": "Paradox | Marksman | complexity 3 | health: 700 | move_speed: 6.7 | bullet_damage: 6.42 | bullet_speed: 20669.3 | rounds_per_sec: 3.4 | clip_size: 40 | can_zoom: False | scaling: health +45/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_chrono",
       "hero_id": 10,
       "name": "Paradox",
       "complexity": 3,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Paradox build guide | Marksman | damage type: spirit, bullet | utility: slow | playstyle: marksman | flavor tags: Disruptor, Calculated, Tactician | good items: Echo Shard, Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Fortitude, Slowing Hex, Superior Cooldown, Counterspell, Mystic Shot, Leech, Extra Regen, Escalating Exposure, Express Shot, Glass Cannon, Cursed Relic, Headhunter, Headshot Booster, Weakening Headshot , Healbane, Extra Health, Spirit Lifesteal, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Infuser, Juggernaut, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Battle Vest, Sharpshooter, Spellbreaker, Spirit Burn, Sprint Boots, Stamina Mastery, Alchemical Fire, Toxic Bullets, Transcendent Cooldown, Warp Stone, Stalker",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_chrono",
+      "hero_id": 10,
+      "name": "Paradox",
       "hero_type": "Marksman"
     }
   },
@@ -606,13 +686,23 @@
     }
   },
   {
-    "text": "Dynamo | Mystic | complexity 2 | flavor tags: Teamplay, Clutch, Initiator | damage: spirit | utility: heal | playstyle: mystic | health: 850 | move_speed: 6.7 | bullet_damage: 12.6 | bullet_speed: 12600 | rounds_per_sec: 3.81 | clip_size: 18 | can_zoom: False | scaling: health +59/lvl, spirit_power +1.1/lvl | good items: Refresher, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Superior Cooldown, Diviner's Kevlar, Extra Regen, Extra Charge, Headhunter, Headshot Booster, Healing Tempo, Healing Booster, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Recharging Rush, Rescue Beam, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector, Unstoppable, Warp Stone",
+    "text": "Dynamo | Mystic | complexity 2 | health: 850 | move_speed: 6.7 | bullet_damage: 12.6 | bullet_speed: 12600 | rounds_per_sec: 3.81 | clip_size: 18 | can_zoom: False | scaling: health +59/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_dynamo",
       "hero_id": 11,
       "name": "Dynamo",
       "complexity": 2,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Dynamo build guide | Mystic | damage type: spirit | utility: heal | playstyle: mystic | flavor tags: Teamplay, Clutch, Initiator | good items: Refresher, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Superior Cooldown, Diviner's Kevlar, Extra Regen, Extra Charge, Headhunter, Headshot Booster, Healing Tempo, Healing Booster, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Recharging Rush, Rescue Beam, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector, Unstoppable, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_dynamo",
+      "hero_id": 11,
+      "name": "Dynamo",
       "hero_type": "Mystic"
     }
   },
@@ -676,13 +766,23 @@
     }
   },
   {
-    "text": "Kelvin | Brawler | complexity 2 | flavor tags: Explorer, Ice Cold, Protector | damage: spirit | utility: slow, heal | playstyle: brawler | health: 850 | move_speed: 6.7 | bullet_damage: 18.6 | bullet_speed: 6300 | rounds_per_sec: 3.81 | clip_size: 14 | can_zoom: False | scaling: health +58/lvl, spirit_power +1.3/lvl | good items: Refresher, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Point Blank, Superior Cooldown, Leech, Divine Barrier, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Cursed Relic, Guardian Ward, Healbane, Healing Tempo, Healing Booster, Healing Nova, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Infuser, Juggernaut, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Reverb, Rapid Recharge, Rescue Beam, Radiant Regeneration, Improved Spirit, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector",
+    "text": "Kelvin | Brawler | complexity 2 | health: 850 | move_speed: 6.7 | bullet_damage: 18.6 | bullet_speed: 6300 | rounds_per_sec: 3.81 | clip_size: 14 | can_zoom: False | scaling: health +58/lvl, spirit_power +1.3/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_kelvin",
       "hero_id": 12,
       "name": "Kelvin",
       "complexity": 2,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Kelvin build guide | Brawler | damage type: spirit | utility: slow, heal | playstyle: brawler | flavor tags: Explorer, Ice Cold, Protector | good items: Refresher, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Point Blank, Superior Cooldown, Leech, Divine Barrier, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Cursed Relic, Guardian Ward, Healbane, Healing Tempo, Healing Booster, Healing Nova, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Infuser, Juggernaut, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Reverb, Rapid Recharge, Rescue Beam, Radiant Regeneration, Improved Spirit, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_kelvin",
+      "hero_id": 12,
+      "name": "Kelvin",
       "hero_type": "Brawler"
     }
   },
@@ -753,13 +853,23 @@
     }
   },
   {
-    "text": "Haze | Assassin | complexity 1 | flavor tags: Stealthy, Lethal, Assassin | damage: spirit | playstyle: assassin | health: 700 | move_speed: 8.2 | bullet_damage: 5.26 | bullet_speed: 30000 | rounds_per_sec: 9.52 | clip_size: 25 | can_zoom: False | scaling: health +33/lvl, spirit_power +0.5/lvl | good items: Active Reload, Armor Piercing Rounds, Crippling Headshot, Swift Striker, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Slowing Hex, Lucky Shot, Leech, Mercurial Magnum, Fleetfoot, Focus Lens, Fury Trance, Glass Cannon, Cursed Relic, Weakening Headshot , Extra Health, Healing Rite, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Surge of Power, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Siphon Bullets, Slowing Bullets, Spellbreaker, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Unstoppable, Bullet Lifesteal",
+    "text": "Haze | Assassin | complexity 1 | health: 700 | move_speed: 8.2 | bullet_damage: 5.26 | bullet_speed: 30000 | rounds_per_sec: 9.52 | clip_size: 25 | can_zoom: False | scaling: health +33/lvl, spirit_power +0.5/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_haze",
       "hero_id": 13,
       "name": "Haze",
       "complexity": 1,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Haze build guide | Assassin | damage type: spirit | playstyle: assassin | flavor tags: Stealthy, Lethal, Assassin | good items: Active Reload, Armor Piercing Rounds, Crippling Headshot, Swift Striker, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Slowing Hex, Lucky Shot, Leech, Mercurial Magnum, Fleetfoot, Focus Lens, Fury Trance, Glass Cannon, Cursed Relic, Weakening Headshot , Extra Health, Healing Rite, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Surge of Power, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Siphon Bullets, Slowing Bullets, Spellbreaker, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Unstoppable, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_haze",
+      "hero_id": 13,
+      "name": "Haze",
       "hero_type": "Assassin"
     }
   },
@@ -822,13 +932,23 @@
     }
   },
   {
-    "text": "Holliday | Marksman | complexity 3 | flavor tags: Explosive, Crackshot, Apprehender | damage: spirit | utility: slow | playstyle: marksman | health: 750 | move_speed: 8.2 | bullet_damage: 18.8 | bullet_speed: 25000 | rounds_per_sec: 2.12 | clip_size: 10 | can_zoom: False | scaling: health +41/lvl, spirit_power +1.1/lvl | good items: Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Fortitude, Slowing Hex, Superior Cooldown, Counterspell, Lucky Shot, Mercurial Magnum, Extra Charge, Glass Cannon, Cursed Relic, Headhunter, Headshot Booster, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Restorative Shot, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Recharge, Recharging Rush, Restorative Locket, Sharpshooter, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Vampiric Burst, Knockdown, Alchemical Fire, Transcendent Cooldown, Bullet Lifesteal",
+    "text": "Holliday | Marksman | complexity 3 | health: 750 | move_speed: 8.2 | bullet_damage: 18.8 | bullet_speed: 25000 | rounds_per_sec: 2.12 | clip_size: 10 | can_zoom: False | scaling: health +41/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_astro",
       "hero_id": 14,
       "name": "Holliday",
       "complexity": 3,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Holliday build guide | Marksman | damage type: spirit | utility: slow | playstyle: marksman | flavor tags: Explosive, Crackshot, Apprehender | good items: Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Fortitude, Slowing Hex, Superior Cooldown, Counterspell, Lucky Shot, Mercurial Magnum, Extra Charge, Glass Cannon, Cursed Relic, Headhunter, Headshot Booster, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Restorative Shot, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Recharge, Recharging Rush, Restorative Locket, Sharpshooter, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Vampiric Burst, Knockdown, Alchemical Fire, Transcendent Cooldown, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_astro",
+      "hero_id": 14,
+      "name": "Holliday",
       "hero_type": "Marksman"
     }
   },
@@ -898,13 +1018,23 @@
     }
   },
   {
-    "text": "Bebop | Brawler | complexity 2 | flavor tags: Bomb, Punch, Hook | damage: spirit | utility: slow | playstyle: brawler | health: 850 | move_speed: 6.45 | bullet_damage: 4.98 | bullet_speed: 20000 | rounds_per_sec: 11.9 | clip_size: 66 | can_zoom: False | scaling: health +52/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Witchmail, Spirit Strike, Arcane Surge, Boundless Spirit, Lifestrike, Enduring Speed, Superior Cooldown, Leech, Plated Armor, Extra Regen, Escalating Exposure, Cursed Relic, Healbane, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Melee Lifesteal, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Regeneration, Mystic Reverb, Battle Vest, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Stamina Mastery, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Veil Walker",
+    "text": "Bebop | Brawler | complexity 2 | health: 850 | move_speed: 6.45 | bullet_damage: 4.98 | bullet_speed: 20000 | rounds_per_sec: 11.9 | clip_size: 66 | can_zoom: False | scaling: health +52/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_bebop",
       "hero_id": 15,
       "name": "Bebop",
       "complexity": 2,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Bebop build guide | Brawler | damage type: spirit | utility: slow | playstyle: brawler | flavor tags: Bomb, Punch, Hook | good items: Echo Shard, Witchmail, Spirit Strike, Arcane Surge, Boundless Spirit, Lifestrike, Enduring Speed, Superior Cooldown, Leech, Plated Armor, Extra Regen, Escalating Exposure, Cursed Relic, Healbane, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Juggernaut, Melee Lifesteal, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Regeneration, Mystic Reverb, Battle Vest, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Stamina Mastery, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Veil Walker",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_bebop",
+      "hero_id": 15,
+      "name": "Bebop",
       "hero_type": "Brawler"
     }
   },
@@ -971,13 +1101,23 @@
     }
   },
   {
-    "text": "Calico | Assassin | complexity 2 | flavor tags: Burst Damage, Tricksy, Slippery | damage: spirit | utility: heal | playstyle: assassin | health: 700 | move_speed: 7.2 | bullet_damage: 1.84 | bullet_speed: 12500 | rounds_per_sec: 4.76 | clip_size: 12 | can_zoom: False | scaling: health +37/lvl, spirit_power +1.1/lvl | good items: Spirit Strike, Arctic Blast, Boundless Spirit, Lifestrike, Hunter's Aura, Enduring Speed, Fortitude, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Crushing Fists, Debuff Reducer, Scourge, Escalating Exposure, Focus Lens, Glass Cannon, Healbane, Extra Health, Healing Rite, Extra Spirit, Juggernaut, Melee Lifesteal, Mystic Burst, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Melee Charge, Dispel Magic, Ethereal Shift, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Transcendent Cooldown, Veil Walker, Reactive Barrier, Stalker",
+    "text": "Calico | Assassin | complexity 2 | health: 700 | move_speed: 7.2 | bullet_damage: 1.84 | bullet_speed: 12500 | rounds_per_sec: 4.76 | clip_size: 12 | can_zoom: False | scaling: health +37/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_nano",
       "hero_id": 16,
       "name": "Calico",
       "complexity": 2,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Calico build guide | Assassin | damage type: spirit | utility: heal | playstyle: assassin | flavor tags: Burst Damage, Tricksy, Slippery | good items: Spirit Strike, Arctic Blast, Boundless Spirit, Lifestrike, Hunter's Aura, Enduring Speed, Fortitude, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Crushing Fists, Debuff Reducer, Scourge, Escalating Exposure, Focus Lens, Glass Cannon, Healbane, Extra Health, Healing Rite, Extra Spirit, Juggernaut, Melee Lifesteal, Mystic Burst, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Melee Charge, Dispel Magic, Ethereal Shift, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Transcendent Cooldown, Veil Walker, Reactive Barrier, Stalker",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_nano",
+      "hero_id": 16,
+      "name": "Calico",
       "hero_type": "Assassin"
     }
   },
@@ -1046,13 +1186,23 @@
     }
   },
   {
-    "text": "Grey Talon | Marksman | complexity 2 | flavor tags: Area Denial, Precision, Hunter | damage: spirit | utility: slow, stun | playstyle: marksman | health: 750 | move_speed: 6.3 | bullet_damage: 23.51 | bullet_speed: 19500 | rounds_per_sec: 1.73 | clip_size: 17 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.1/lvl | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Burst Fire, Superior Cooldown, Mystic Shot, Lucky Shot, Leech, Escalating Exposure, Mercurial Magnum, Extra Charge, Glass Cannon, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Mystic Burst, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Rapid Rounds, Recharging Rush, Sharpshooter, Slowing Bullets, Improved Spirit, Spirit Burn, Stamina Mastery, Vampiric Burst, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Bullet Lifesteal",
+    "text": "Grey Talon | Marksman | complexity 2 | health: 750 | move_speed: 6.3 | bullet_damage: 23.51 | bullet_speed: 19500 | rounds_per_sec: 1.73 | clip_size: 17 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_orion",
       "hero_id": 17,
       "name": "Grey Talon",
       "complexity": 2,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Grey Talon build guide | Marksman | damage type: spirit | utility: slow, stun | playstyle: marksman | flavor tags: Area Denial, Precision, Hunter | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Burst Fire, Superior Cooldown, Mystic Shot, Lucky Shot, Leech, Escalating Exposure, Mercurial Magnum, Extra Charge, Glass Cannon, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Kinetic Dash, Long Range, Mystic Burst, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Rapid Rounds, Recharging Rush, Sharpshooter, Slowing Bullets, Improved Spirit, Spirit Burn, Stamina Mastery, Vampiric Burst, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_orion",
+      "hero_id": 17,
+      "name": "Grey Talon",
       "hero_type": "Marksman"
     }
   },
@@ -1120,13 +1270,23 @@
     }
   },
   {
-    "text": "Mo & Krill | Brawler | complexity 3 | damage: spirit | utility: slow, heal | playstyle: brawler | health: 900 | move_speed: 8 | bullet_damage: 2.82 | bullet_speed: 12600 | rounds_per_sec: 5.29 | clip_size: 20 | can_zoom: False | scaling: health +63/lvl, spirit_power +1.1/lvl | good items: Witchmail, Duration Extender, Arctic Blast, Boundless Spirit, Burst Fire, Enduring Speed, Cheat Death, Fortitude, Cold Front, Superior Cooldown, Leech, Plated Armor, Scourge, Diviner's Kevlar, Extra Regen, Escalating Exposure, Mercurial Magnum, Fleetfoot, Healbane, Healing Booster, Extra Health, Superior Duration, Bullet Resilience, Extra Spirit, Juggernaut, Magic Carpet, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Phantom Strike, Quicksilver Reload, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector, Veil Walker, Warp Stone",
+    "text": "Mo & Krill | Brawler | complexity 3 | health: 900 | move_speed: 8 | bullet_damage: 2.82 | bullet_speed: 12600 | rounds_per_sec: 5.29 | clip_size: 20 | can_zoom: False | scaling: health +63/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_krill",
       "hero_id": 18,
       "name": "Mo & Krill",
       "complexity": 3,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Mo & Krill build guide | Brawler | damage type: spirit | utility: slow, heal | playstyle: brawler | good items: Witchmail, Duration Extender, Arctic Blast, Boundless Spirit, Burst Fire, Enduring Speed, Cheat Death, Fortitude, Cold Front, Superior Cooldown, Leech, Plated Armor, Scourge, Diviner's Kevlar, Extra Regen, Escalating Exposure, Mercurial Magnum, Fleetfoot, Healbane, Healing Booster, Extra Health, Superior Duration, Bullet Resilience, Extra Spirit, Juggernaut, Magic Carpet, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Phantom Strike, Quicksilver Reload, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Trophy Collector, Veil Walker, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_krill",
+      "hero_id": 18,
+      "name": "Mo & Krill",
       "hero_type": "Brawler"
     }
   },
@@ -1196,13 +1356,23 @@
     }
   },
   {
-    "text": "Shiv | Brawler | complexity 3 | flavor tags: Rage, Repeat, Bleed | damage: spirit | utility: slow, heal | playstyle: brawler | health: 800 | move_speed: 6.5 | bullet_damage: 4.8 | bullet_speed: 24000 | rounds_per_sec: 1.81 | clip_size: 10 | can_zoom: False | scaling: health +45/lvl, spirit_power +1.1/lvl | good items: Witchmail, Arctic Blast, Berserker, Boundless Spirit, Enduring Speed, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Mystic Shot, Leech, Debuff Reducer, Plated Armor, Extra Regen, Escalating Exposure, Extra Charge, Healbane, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Infuser, Juggernaut, Kinetic Dash, Mystic Burst, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Metal Skin, Mystic Regeneration, Mystic Reverb, Phantom Strike, Rapid Recharge, Dispel Magic, Radiant Regeneration, Decay, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Reactive Barrier, Warp Stone",
+    "text": "Shiv | Brawler | complexity 3 | health: 800 | move_speed: 6.5 | bullet_damage: 4.8 | bullet_speed: 24000 | rounds_per_sec: 1.81 | clip_size: 10 | can_zoom: False | scaling: health +45/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_shiv",
       "hero_id": 19,
       "name": "Shiv",
       "complexity": 3,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Shiv build guide | Brawler | damage type: spirit | utility: slow, heal | playstyle: brawler | flavor tags: Rage, Repeat, Bleed | good items: Witchmail, Arctic Blast, Berserker, Boundless Spirit, Enduring Speed, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Mystic Shot, Leech, Debuff Reducer, Plated Armor, Extra Regen, Escalating Exposure, Extra Charge, Healbane, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Infuser, Juggernaut, Kinetic Dash, Mystic Burst, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Metal Skin, Mystic Regeneration, Mystic Reverb, Phantom Strike, Rapid Recharge, Dispel Magic, Radiant Regeneration, Decay, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Transcendent Cooldown, Reactive Barrier, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_shiv",
+      "hero_id": 19,
+      "name": "Shiv",
       "hero_type": "Brawler"
     }
   },
@@ -1272,13 +1442,23 @@
     }
   },
   {
-    "text": "Ivy | Marksman | complexity 3 | flavor tags: Disruptor, Team-up, Rock Solid | damage: spirit | utility: slow, heal, stun | playstyle: marksman | health: 725 | move_speed: 7.2 | bullet_damage: 4.45 | bullet_speed: 22500 | rounds_per_sec: 13.61 | clip_size: 33 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.2/lvl | good items: Echo Shard, Active Reload, Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Slowing Hex, Superior Cooldown, Lucky Shot, Leech, Heroic Aura, Enchanted Holsters, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Glass Cannon, Headhunter, Headshot Booster, Healbane, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, Superior Duration, Extra Spirit, Inhibitor, Juggernaut, Mystic Expansion, Mystic Slow, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Rapid Rounds, Battle Vest, Siphon Bullets, Improved Spirit, Spirit Burn, Sprint Boots, Vampiric Burst, Alchemical Fire, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal, Stalker",
+    "text": "Ivy | Marksman | complexity 3 | health: 725 | move_speed: 7.2 | bullet_damage: 4.45 | bullet_speed: 22500 | rounds_per_sec: 13.61 | clip_size: 33 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.2/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_tengu",
       "hero_id": 20,
       "name": "Ivy",
       "complexity": 3,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Ivy build guide | Marksman | damage type: spirit | utility: slow, heal, stun | playstyle: marksman | flavor tags: Disruptor, Team-up, Rock Solid | good items: Echo Shard, Active Reload, Vortex Web, Duration Extender, Crippling Headshot, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Slowing Hex, Superior Cooldown, Lucky Shot, Leech, Heroic Aura, Enchanted Holsters, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Glass Cannon, Headhunter, Headshot Booster, Healbane, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, Superior Duration, Extra Spirit, Inhibitor, Juggernaut, Mystic Expansion, Mystic Slow, Compress Cooldown, Mystic Vulnerability, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Rapid Rounds, Battle Vest, Siphon Bullets, Improved Spirit, Spirit Burn, Sprint Boots, Vampiric Burst, Alchemical Fire, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal, Stalker",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_tengu",
+      "hero_id": 20,
+      "name": "Ivy",
       "hero_type": "Marksman"
     }
   },
@@ -1346,13 +1526,23 @@
     }
   },
   {
-    "text": "Warden | Brawler | complexity 2 | flavor tags: One Man Army, Fearless, Initiator | damage: spirit | utility: slow | playstyle: brawler | health: 775 | move_speed: 6.3 | bullet_damage: 17.34 | bullet_speed: 11417.3 | rounds_per_sec: 3.81 | clip_size: 17 | can_zoom: False | scaling: health +58/lvl, spirit_power +1.1/lvl | good items: Active Reload, Armor Piercing Rounds, Duration Extender, Arcane Surge, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Extended Magazine, Point Blank, Close Quarters, Slowing Hex, Superior Cooldown, Lucky Shot, Leech, Enchanted Holsters, Extra Regen, Mercurial Magnum, Frenzy, Fleetfoot, Glass Cannon, Headhunter, Headshot Booster, Extra Health, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Bullet Resilience, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Surge of Power, Compress Cooldown, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Rounds, Battle Vest, Slowing Bullets, Improved Spirit, Spellbreaker, Sprint Boots, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal",
+    "text": "Warden | Brawler | complexity 2 | health: 775 | move_speed: 6.3 | bullet_damage: 17.34 | bullet_speed: 11417.3 | rounds_per_sec: 3.81 | clip_size: 17 | can_zoom: False | scaling: health +58/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_warden",
       "hero_id": 25,
       "name": "Warden",
       "complexity": 2,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Warden build guide | Brawler | damage type: spirit | utility: slow | playstyle: brawler | flavor tags: One Man Army, Fearless, Initiator | good items: Active Reload, Armor Piercing Rounds, Duration Extender, Arcane Surge, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Extended Magazine, Point Blank, Close Quarters, Slowing Hex, Superior Cooldown, Lucky Shot, Leech, Enchanted Holsters, Extra Regen, Mercurial Magnum, Frenzy, Fleetfoot, Glass Cannon, Headhunter, Headshot Booster, Extra Health, Healing Rite, High-Velocity Rounds, Hollow Point, Superior Duration, Bullet Resilience, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Mystic Slow, Surge of Power, Compress Cooldown, Monster Rounds, Cultlist Sacrifice, Quicksilver Reload, Rapid Rounds, Battle Vest, Slowing Bullets, Improved Spirit, Spellbreaker, Sprint Boots, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_warden",
+      "hero_id": 25,
+      "name": "Warden",
       "hero_type": "Brawler"
     }
   },
@@ -1423,13 +1613,23 @@
     }
   },
   {
-    "text": "Yamato | Assassin | complexity 3 | flavor tags: Acrobatics, Relentless, Pursuer | damage: spirit | utility: slow, heal | playstyle: assassin | health: 700 | move_speed: 8.2 | bullet_damage: 5.31 | bullet_speed: 10000 | rounds_per_sec: 2.38 | clip_size: 12 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl | good items: Refresher, Witchmail, Spirit Strike, Arctic Blast, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Colossus, Superior Cooldown, Counterspell, Mystic Shot, Leech, Plated Armor, Diviner's Kevlar, Extra Regen, Escalating Exposure, Healbane, Healing Booster, Spirit Lifesteal, Bullet Resilience, Extra Spirit, Infuser, Mystic Burst, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Mystic Regeneration, Mystic Reverb, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Transcendent Cooldown",
+    "text": "Yamato | Assassin | complexity 3 | health: 700 | move_speed: 8.2 | bullet_damage: 5.31 | bullet_speed: 10000 | rounds_per_sec: 2.38 | clip_size: 12 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_yamato",
       "hero_id": 27,
       "name": "Yamato",
       "complexity": 3,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Yamato build guide | Assassin | damage type: spirit | utility: slow, heal | playstyle: assassin | flavor tags: Acrobatics, Relentless, Pursuer | good items: Refresher, Witchmail, Spirit Strike, Arctic Blast, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Colossus, Superior Cooldown, Counterspell, Mystic Shot, Leech, Plated Armor, Diviner's Kevlar, Extra Regen, Escalating Exposure, Healbane, Healing Booster, Spirit Lifesteal, Bullet Resilience, Extra Spirit, Infuser, Mystic Burst, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Mystic Regeneration, Mystic Reverb, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Transcendent Cooldown",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_yamato",
+      "hero_id": 27,
+      "name": "Yamato",
       "hero_type": "Assassin"
     }
   },
@@ -1499,13 +1699,23 @@
     }
   },
   {
-    "text": "Lash | Assassin | complexity 3 | flavor tags: High Flying, Arrogant, Initiator | damage: spirit | utility: slow, heal | playstyle: assassin | health: 750 | move_speed: 7.2 | bullet_damage: 8.46 | bullet_speed: 25000 | rounds_per_sec: 3.81 | clip_size: 29 | can_zoom: False | scaling: health +50/lvl, spirit_power +1.1/lvl | good items: Refresher, Arctic Blast, Boundless Spirit, Ballistic Enchantment, Cold Front, Superior Cooldown, Mystic Shot, Mercurial Magnum, Extra Charge, Headhunter, Headshot Booster, Healbane, Healing Rite, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Reverb, Quicksilver Reload, Rapid Recharge, Majestic Leap, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Stamina Mastery, Transcendent Cooldown, Trophy Collector, Unstoppable, Warp Stone",
+    "text": "Lash | Assassin | complexity 3 | health: 750 | move_speed: 7.2 | bullet_damage: 8.46 | bullet_speed: 25000 | rounds_per_sec: 3.81 | clip_size: 29 | can_zoom: False | scaling: health +50/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_lash",
       "hero_id": 31,
       "name": "Lash",
       "complexity": 3,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Lash build guide | Assassin | damage type: spirit | utility: slow, heal | playstyle: assassin | flavor tags: High Flying, Arrogant, Initiator | good items: Refresher, Arctic Blast, Boundless Spirit, Ballistic Enchantment, Cold Front, Superior Cooldown, Mystic Shot, Mercurial Magnum, Extra Charge, Headhunter, Headshot Booster, Healbane, Healing Rite, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Reverb, Quicksilver Reload, Rapid Recharge, Majestic Leap, Improved Spirit, Spellbreaker, Spirit Burn, Sprint Boots, Stamina Mastery, Transcendent Cooldown, Trophy Collector, Unstoppable, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_lash",
+      "hero_id": 31,
+      "name": "Lash",
       "hero_type": "Assassin"
     }
   },
@@ -1569,13 +1779,23 @@
     }
   },
   {
-    "text": "Viscous | Mystic | complexity 2 | flavor tags: Disruptor, Gooey, Evasive | damage: spirit | utility: slow, heal, stun | playstyle: mystic | health: 750 | move_speed: 7.2 | bullet_damage: 10.34 | bullet_speed: 10000 | rounds_per_sec: 4.76 | clip_size: 20 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.3/lvl | good items: Echo Shard, Witchmail, Spirit Strike, Boundless Spirit, Lifestrike, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Point Blank, Superior Cooldown, Lucky Shot, Crushing Fists, Divine Barrier, Extra Regen, Express Shot, Extra Charge, Glass Cannon, Guardian Ward, Healing Booster, Healing Rite, High-Velocity Rounds, Hollow Point, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Melee Lifesteal, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Melee Charge, Monster Rounds, Cultlist Sacrifice, Phantom Strike, Rapid Recharge, Recharging Rush, Battle Vest, Rescue Beam, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Transcendent Cooldown, Bullet Lifesteal",
+    "text": "Viscous | Mystic | complexity 2 | health: 750 | move_speed: 7.2 | bullet_damage: 10.34 | bullet_speed: 10000 | rounds_per_sec: 4.76 | clip_size: 20 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.3/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_viscous",
       "hero_id": 35,
       "name": "Viscous",
       "complexity": 2,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Viscous build guide | Mystic | damage type: spirit | utility: slow, heal, stun | playstyle: mystic | flavor tags: Disruptor, Gooey, Evasive | good items: Echo Shard, Witchmail, Spirit Strike, Boundless Spirit, Lifestrike, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Point Blank, Superior Cooldown, Lucky Shot, Crushing Fists, Divine Barrier, Extra Regen, Express Shot, Extra Charge, Glass Cannon, Guardian Ward, Healing Booster, Healing Rite, High-Velocity Rounds, Hollow Point, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Melee Lifesteal, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Melee Charge, Monster Rounds, Cultlist Sacrifice, Phantom Strike, Rapid Recharge, Recharging Rush, Battle Vest, Rescue Beam, Improved Spirit, Spellbreaker, Spirit Burn, Spirit Snatch, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Transcendent Cooldown, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_viscous",
+      "hero_id": 35,
+      "name": "Viscous",
       "hero_type": "Mystic"
     }
   },
@@ -1644,13 +1864,23 @@
     }
   },
   {
-    "text": "Pocket | Assassin | complexity 2 | flavor tags: Frogs, Burst Damage, Trickster | damage: spirit | utility: slow | playstyle: assassin | health: 750 | move_speed: 7.2 | bullet_damage: 4.28 | bullet_speed: 22000 | rounds_per_sec: 1.9 | clip_size: 11 | can_zoom: False | scaling: health +36/lvl, spirit_power +1.1/lvl | good items: Duration Extender, Arctic Blast, Swift Striker, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Mystic Shot, Leech, Diviner's Kevlar, Escalating Exposure, Glass Cannon, Healbane, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Monster Rounds, Cultlist Sacrifice, Majestic Leap, Ethereal Shift, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Vampiric Burst, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "text": "Pocket | Assassin | complexity 2 | health: 750 | move_speed: 7.2 | bullet_damage: 4.28 | bullet_speed: 22000 | rounds_per_sec: 1.9 | clip_size: 11 | can_zoom: False | scaling: health +36/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_synth",
       "hero_id": 50,
       "name": "Pocket",
       "complexity": 2,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Pocket build guide | Assassin | damage type: spirit | utility: slow | playstyle: assassin | flavor tags: Frogs, Burst Damage, Trickster | good items: Duration Extender, Arctic Blast, Swift Striker, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Mystic Shot, Leech, Diviner's Kevlar, Escalating Exposure, Glass Cannon, Healbane, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Monster Rounds, Cultlist Sacrifice, Majestic Leap, Ethereal Shift, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Vampiric Burst, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_synth",
+      "hero_id": 50,
+      "name": "Pocket",
       "hero_type": "Assassin"
     }
   },
@@ -1718,13 +1948,23 @@
     }
   },
   {
-    "text": "Mirage | Assassin | complexity 2 | flavor tags: Bodyguard, Focused, Traveller | damage: spirit | utility: slow, heal | playstyle: assassin | health: 700 | move_speed: 7 | bullet_damage: 14.8 | bullet_speed: 32600 | rounds_per_sec: 2.72 | clip_size: 16 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Burst Fire, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Escalating Exposure, Mercurial Magnum, Glass Cannon, Headhunter, Headshot Booster, Spirit Lifesteal, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Enchanter's Emblem, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Monster Rounds, Cultlist Sacrifice, Silencer, Quicksilver Reload, Rapid Rounds, Dispel Magic, Battle Vest, Ricochet, Siphon Bullets, Improved Spirit, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal",
+    "text": "Mirage | Assassin | complexity 2 | health: 700 | move_speed: 7 | bullet_damage: 14.8 | bullet_speed: 32600 | rounds_per_sec: 2.72 | clip_size: 16 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_mirage",
       "hero_id": 52,
       "name": "Mirage",
       "complexity": 2,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Mirage build guide | Assassin | damage type: spirit | utility: slow, heal | playstyle: assassin | flavor tags: Bodyguard, Focused, Traveller | good items: Crippling Headshot, Swift Striker, Boundless Spirit, Burst Fire, Enduring Speed, Extended Magazine, Superior Cooldown, Leech, Escalating Exposure, Mercurial Magnum, Glass Cannon, Headhunter, Headshot Booster, Spirit Lifesteal, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Enchanter's Emblem, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Monster Rounds, Cultlist Sacrifice, Silencer, Quicksilver Reload, Rapid Rounds, Dispel Magic, Battle Vest, Ricochet, Siphon Bullets, Improved Spirit, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_mirage",
+      "hero_id": 52,
+      "name": "Mirage",
       "hero_type": "Assassin"
     }
   },
@@ -1788,13 +2028,23 @@
     }
   },
   {
-    "text": "Vyper | Assassin | complexity 1 | flavor tags: Rat-a-Tat, Slippery, Gunner | damage: spirit | utility: slow, heal | playstyle: assassin | health: 750 | move_speed: 6.9 | bullet_damage: 6.58 | bullet_speed: 16200 | rounds_per_sec: 14.29 | clip_size: 24 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl | good items: Active Reload, Armor Piercing Rounds, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Point Blank, Close Quarters, Lucky Shot, Leech, Extra Regen, Mercurial Magnum, Frenzy, Fleetfoot, Glass Cannon, Extra Health, Spirit Lifesteal, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Mystic Burst, Tankbuster, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Split Shot, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Bullet Lifesteal, Reactive Barrier",
+    "text": "Vyper | Assassin | complexity 1 | health: 750 | move_speed: 6.9 | bullet_damage: 6.58 | bullet_speed: 16200 | rounds_per_sec: 14.29 | clip_size: 24 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_viper",
       "hero_id": 58,
       "name": "Vyper",
       "complexity": 1,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Vyper build guide | Assassin | damage type: spirit | utility: slow, heal | playstyle: assassin | flavor tags: Rat-a-Tat, Slippery, Gunner | good items: Active Reload, Armor Piercing Rounds, Crippling Headshot, Swift Striker, Boundless Spirit, Bullet Resist Shredder, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Fortitude, Extended Magazine, Point Blank, Close Quarters, Lucky Shot, Leech, Extra Regen, Mercurial Magnum, Frenzy, Fleetfoot, Glass Cannon, Extra Health, Spirit Lifesteal, Healing Rite, Hollow Point, Extra Spirit, Extra Stamina, Intensifying Magazine, Juggernaut, Mystic Burst, Tankbuster, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Split Shot, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Bullet Lifesteal, Reactive Barrier",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_viper",
+      "hero_id": 58,
+      "name": "Vyper",
       "hero_type": "Assassin"
     }
   },
@@ -1861,13 +2111,23 @@
     }
   },
   {
-    "text": "Sinclair | Mystic | complexity 4 | flavor tags: Copycat, Trickster, Versatile | damage: spirit | playstyle: mystic | health: 700 | move_speed: 7.2 | bullet_damage: 17.76 | bullet_speed: 11811 | rounds_per_sec: 1.9 | clip_size: 16 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.3/lvl | good items: Echo Shard, Duration Extender, Arcane Surge, Boundless Spirit, Superior Cooldown, Leech, Diviner's Kevlar, Escalating Exposure, Extra Charge, Guardian Ward, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Juggernaut, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Majestic Leap, Improved Spirit, Spirit Burn, Sprint Boots, Knockdown, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Veil Walker, Warp Stone",
+    "text": "Sinclair | Mystic | complexity 4 | health: 700 | move_speed: 7.2 | bullet_damage: 17.76 | bullet_speed: 11811 | rounds_per_sec: 1.9 | clip_size: 16 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.3/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_magician",
       "hero_id": 60,
       "name": "Sinclair",
       "complexity": 4,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Sinclair build guide | Mystic | damage type: spirit | playstyle: mystic | flavor tags: Copycat, Trickster, Versatile | good items: Echo Shard, Duration Extender, Arcane Surge, Boundless Spirit, Superior Cooldown, Leech, Diviner's Kevlar, Escalating Exposure, Extra Charge, Guardian Ward, Spirit Lifesteal, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Juggernaut, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Majestic Leap, Improved Spirit, Spirit Burn, Sprint Boots, Knockdown, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Veil Walker, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_magician",
+      "hero_id": 60,
+      "name": "Sinclair",
       "hero_type": "Mystic"
     }
   },
@@ -1930,13 +2190,23 @@
     }
   },
   {
-    "text": "Mina | Marksman | complexity 3 | flavor tags: Nimble, Harasser, Vexing | damage: spirit | utility: heal | playstyle: marksman | health: 630 | move_speed: 6.5 | bullet_damage: 7.31 | bullet_speed: 30000 | rounds_per_sec: 3.97 | clip_size: 12 | can_zoom: False | scaling: health +28/lvl, spirit_power +1.1/lvl | good items: Arctic Blast, Swift Striker, Boundless Spirit, Fortitude, Extended Magazine, Cold Front, Superior Cooldown, Counterspell, Mystic Shot, Leech, Debuff Reducer, Escalating Exposure, Mercurial Magnum, Focus Lens, Healbane, Extra Health, Spirit Lifesteal, Healing Rite, Extra Spirit, Extra Stamina, Kinetic Dash, Mystic Burst, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Quicksilver Reload, Rapid Rounds, Dispel Magic, Radiant Regeneration, Ricochet, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Stamina Mastery, Titanic Magazine, Toxic Bullets, Transcendent Cooldown",
+    "text": "Mina | Marksman | complexity 3 | health: 630 | move_speed: 6.5 | bullet_damage: 7.31 | bullet_speed: 30000 | rounds_per_sec: 3.97 | clip_size: 12 | can_zoom: False | scaling: health +28/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_vampirebat",
       "hero_id": 63,
       "name": "Mina",
       "complexity": 3,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Mina build guide | Marksman | damage type: spirit | utility: heal | playstyle: marksman | flavor tags: Nimble, Harasser, Vexing | good items: Arctic Blast, Swift Striker, Boundless Spirit, Fortitude, Extended Magazine, Cold Front, Superior Cooldown, Counterspell, Mystic Shot, Leech, Debuff Reducer, Escalating Exposure, Mercurial Magnum, Focus Lens, Healbane, Extra Health, Spirit Lifesteal, Healing Rite, Extra Spirit, Extra Stamina, Kinetic Dash, Mystic Burst, Tankbuster, Surge of Power, Compress Cooldown, Mystic Vulnerability, Quicksilver Reload, Rapid Rounds, Dispel Magic, Radiant Regeneration, Ricochet, Improved Spirit, Spellbreaker, Spirit Rend, Spirit Burn, Stamina Mastery, Titanic Magazine, Toxic Bullets, Transcendent Cooldown",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_vampirebat",
+      "hero_id": 63,
+      "name": "Mina",
       "hero_type": "Marksman"
     }
   },
@@ -2001,13 +2271,23 @@
     }
   },
   {
-    "text": "Drifter | Assassin | complexity 3 | flavor tags: Cruel, Bloodthirsty, Stalker | damage: spirit | utility: heal | playstyle: assassin | health: 725 | move_speed: 6.9 | bullet_damage: 19.5 | bullet_speed: 20000 | rounds_per_sec: 2.27 | clip_size: 12 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl | good items: Spirit Strike, Crippling Headshot, Swift Striker, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Point Blank, Close Quarters, Counterspell, Lucky Shot, Crushing Fists, Leech, Frenzy, Fleetfoot, Glass Cannon, Extra Health, Hollow Point, Superior Duration, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Melee Lifesteal, Restorative Shot, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Siphon Bullets, Slowing Bullets, Spellbreaker, Spirit Snatch, Sprint Boots, Vampiric Burst, Toxic Bullets, Bullet Lifesteal, Stalker",
+    "text": "Drifter | Assassin | complexity 3 | health: 725 | move_speed: 6.9 | bullet_damage: 19.5 | bullet_speed: 20000 | rounds_per_sec: 2.27 | clip_size: 12 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_drifter",
       "hero_id": 64,
       "name": "Drifter",
       "complexity": 3,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Drifter build guide | Assassin | damage type: spirit | utility: heal | playstyle: assassin | flavor tags: Cruel, Bloodthirsty, Stalker | good items: Spirit Strike, Crippling Headshot, Swift Striker, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Burst Fire, Enduring Speed, Fortitude, Point Blank, Close Quarters, Counterspell, Lucky Shot, Crushing Fists, Leech, Frenzy, Fleetfoot, Glass Cannon, Extra Health, Hollow Point, Superior Duration, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Melee Lifesteal, Restorative Shot, Silencer, Quicksilver Reload, Rapid Rounds, Battle Vest, Siphon Bullets, Slowing Bullets, Spellbreaker, Spirit Snatch, Sprint Boots, Vampiric Burst, Toxic Bullets, Bullet Lifesteal, Stalker",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_drifter",
+      "hero_id": 64,
+      "name": "Drifter",
       "hero_type": "Assassin"
     }
   },
@@ -2071,13 +2351,23 @@
     }
   },
   {
-    "text": "Venator | Marksman | complexity 2 | flavor tags: Devout, Tactical, Arms Expert | damage: spirit, bullet | utility: heal, stun | playstyle: marksman | health: 750 | move_speed: 6.4 | bullet_damage: 8 | bullet_speed: 62500 | rounds_per_sec: 7.94 | clip_size: 33 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.1/lvl | good items: Active Reload, Crippling Headshot, Berserker, Swift Striker, Ballistic Enchantment, Burst Fire, Enduring Speed, Extended Magazine, Point Blank, Close Quarters, Superior Cooldown, Lucky Shot, Leech, Extra Regen, Extra Charge, Frenzy, Fleetfoot, Glass Cannon, Headshot Booster, Healing Rite, Hollow Point, Extra Stamina, Inhibitor, Intensifying Magazine, Juggernaut, Kinetic Dash, Compress Cooldown, Restorative Shot, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Silencer, Rapid Recharge, Rapid Rounds, Recharging Rush, Battle Vest, Escalating Resilience, Ricochet, Spellbreaker, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Weighted Shots",
+    "text": "Venator | Marksman | complexity 2 | health: 750 | move_speed: 6.4 | bullet_damage: 8 | bullet_speed: 62500 | rounds_per_sec: 7.94 | clip_size: 33 | can_zoom: False | scaling: health +38/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_priest",
       "hero_id": 65,
       "name": "Venator",
       "complexity": 2,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Venator build guide | Marksman | damage type: spirit, bullet | utility: heal, stun | playstyle: marksman | flavor tags: Devout, Tactical, Arms Expert | good items: Active Reload, Crippling Headshot, Berserker, Swift Striker, Ballistic Enchantment, Burst Fire, Enduring Speed, Extended Magazine, Point Blank, Close Quarters, Superior Cooldown, Lucky Shot, Leech, Extra Regen, Extra Charge, Frenzy, Fleetfoot, Glass Cannon, Headshot Booster, Healing Rite, Hollow Point, Extra Stamina, Inhibitor, Intensifying Magazine, Juggernaut, Kinetic Dash, Compress Cooldown, Restorative Shot, Monster Rounds, Cultlist Sacrifice, Opening Rounds, Silencer, Rapid Recharge, Rapid Rounds, Recharging Rush, Battle Vest, Escalating Resilience, Ricochet, Spellbreaker, Sprint Boots, Stamina Mastery, Vampiric Burst, Titanic Magazine, Toxic Bullets, Transcendent Cooldown, Bullet Lifesteal, Weighted Shots",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_priest",
+      "hero_id": 65,
+      "name": "Venator",
       "hero_type": "Marksman"
     }
   },
@@ -2149,13 +2439,23 @@
     }
   },
   {
-    "text": "Victor | Brawler | complexity 2 | flavor tags: Can't, You, Kill Me | damage: spirit | utility: slow, heal, stun | playstyle: brawler | health: 770 | move_speed: 6.3 | bullet_damage: 12 | bullet_speed: 8000 | rounds_per_sec: 5.05 | clip_size: 24 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl | good items: Refresher, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Superior Cooldown, Leech, Plated Armor, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Healbane, Healing Tempo, Healing Booster, Spirit Lifesteal, Bullet Resilience, Extra Spirit, Infuser, Juggernaut, Mystic Expansion, Compress Cooldown, Mystic Vulnerability, Metal Skin, Mystic Regeneration, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Radiant Regeneration, Ethereal Shift, Improved Spirit, Spellbreaker, Sprint Boots, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "text": "Victor | Brawler | complexity 2 | health: 770 | move_speed: 6.3 | bullet_damage: 12 | bullet_speed: 8000 | rounds_per_sec: 5.05 | clip_size: 24 | can_zoom: False | scaling: health +39/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_frank",
       "hero_id": 66,
       "name": "Victor",
       "complexity": 2,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Victor build guide | Brawler | damage type: spirit | utility: slow, heal, stun | playstyle: brawler | flavor tags: Can't, You, Kill Me | good items: Refresher, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Superior Cooldown, Leech, Plated Armor, Extra Regen, Escalating Exposure, Extra Charge, Fleetfoot, Healbane, Healing Tempo, Healing Booster, Spirit Lifesteal, Bullet Resilience, Extra Spirit, Infuser, Juggernaut, Mystic Expansion, Compress Cooldown, Mystic Vulnerability, Metal Skin, Mystic Regeneration, Mystic Reverb, Monster Rounds, Cultlist Sacrifice, Rapid Recharge, Radiant Regeneration, Ethereal Shift, Improved Spirit, Spellbreaker, Sprint Boots, Transcendent Cooldown, Bullet Lifesteal, Warp Stone",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_frank",
+      "hero_id": 66,
+      "name": "Victor",
       "hero_type": "Brawler"
     }
   },
@@ -2225,13 +2525,23 @@
     }
   },
   {
-    "text": "Paige | Mystic | complexity 1 | flavor tags: Booksmart, Protector, Helpful | damage: spirit | utility: slow, heal, stun | playstyle: mystic | health: 650 | move_speed: 6.9 | bullet_damage: 35 | bullet_speed: 1710 | rounds_per_sec: 2 | clip_size: 14 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Refresher, Vortex Web, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Slowing Hex, Superior Cooldown, Divine Barrier, Extra Regen, Escalating Exposure, Extra Charge, Cursed Relic, Disarming Hex, Guardian Ward, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, High-Velocity Rounds, Superior Duration, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Rapid Recharge, Rescue Beam, Improved Spirit, Spirit Bubble, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Alchemical Fire, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Rusted Barrel",
+    "text": "Paige | Mystic | complexity 1 | health: 650 | move_speed: 6.9 | bullet_damage: 35 | bullet_speed: 1710 | rounds_per_sec: 2 | clip_size: 14 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_bookworm",
       "hero_id": 67,
       "name": "Paige",
       "complexity": 1,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "Paige build guide | Mystic | damage type: spirit | utility: slow, heal, stun | playstyle: mystic | flavor tags: Booksmart, Protector, Helpful | good items: Echo Shard, Refresher, Vortex Web, Duration Extender, Arcane Surge, Boundless Spirit, Enduring Speed, Slowing Hex, Superior Cooldown, Divine Barrier, Extra Regen, Escalating Exposure, Extra Charge, Cursed Relic, Disarming Hex, Guardian Ward, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, High-Velocity Rounds, Superior Duration, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Rapid Recharge, Rescue Beam, Improved Spirit, Spirit Bubble, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Alchemical Fire, Transcendent Cooldown, Trophy Collector, Lightning Scroll, Rusted Barrel",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_bookworm",
+      "hero_id": 67,
+      "name": "Paige",
       "hero_type": "Mystic"
     }
   },
@@ -2304,13 +2614,23 @@
     }
   },
   {
-    "text": "The Doorman | Mystic | complexity 1 | flavor tags: Mind Games, Map Control, Disorienting | damage: spirit | utility: slow | playstyle: mystic | health: 725 | move_speed: 7.9 | bullet_damage: 29.26 | bullet_speed: 8000 | rounds_per_sec: 1.59 | clip_size: 8 | can_zoom: False | scaling: health +42/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Vortex Web, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Fortitude, Slowing Hex, Superior Cooldown, Lucky Shot, Divine Barrier, Escalating Exposure, Express Shot, Extra Charge, Glass Cannon, Cursed Relic, Guardian Ward, Headhunter, Headshot Booster, Extra Health, Healing Rite, High-Velocity Rounds, Hollow Point, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Opening Rounds, Rapid Recharge, Recharging Rush, Battle Vest, Radiant Regeneration, Sharpshooter, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Alchemical Fire, Transcendent Cooldown",
+    "text": "The Doorman | Mystic | complexity 1 | health: 725 | move_speed: 7.9 | bullet_damage: 29.26 | bullet_speed: 8000 | rounds_per_sec: 1.59 | clip_size: 8 | can_zoom: False | scaling: health +42/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_doorman",
       "hero_id": 69,
       "name": "The Doorman",
       "complexity": 1,
+      "hero_type": "Mystic"
+    }
+  },
+  {
+    "text": "The Doorman build guide | Mystic | damage type: spirit | utility: slow | playstyle: mystic | flavor tags: Mind Games, Map Control, Disorienting | good items: Echo Shard, Vortex Web, Boundless Spirit, Ballistic Enchantment, Enduring Speed, Fortitude, Slowing Hex, Superior Cooldown, Lucky Shot, Divine Barrier, Escalating Exposure, Express Shot, Extra Charge, Glass Cannon, Cursed Relic, Guardian Ward, Headhunter, Headshot Booster, Extra Health, Healing Rite, High-Velocity Rounds, Hollow Point, Extra Spirit, Extra Stamina, Juggernaut, Kinetic Dash, Long Range, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Surge of Power, Compress Cooldown, Opening Rounds, Rapid Recharge, Recharging Rush, Battle Vest, Radiant Regeneration, Sharpshooter, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Alchemical Fire, Transcendent Cooldown",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_doorman",
+      "hero_id": 69,
+      "name": "The Doorman",
       "hero_type": "Mystic"
     }
   },
@@ -2375,13 +2695,23 @@
     }
   },
   {
-    "text": "Billy | Brawler | complexity 3 | flavor tags: G.O.A.T., Chaotic, Punk | damage: spirit | utility: slow, heal | playstyle: brawler | health: 790 | move_speed: 7 | bullet_damage: 6.3 | bullet_speed: 20200 | rounds_per_sec: 11.76 | clip_size: 30 | can_zoom: False | scaling: health +43/lvl, spirit_power +1.1/lvl | good items: Spirit Strike, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Extended Magazine, Point Blank, Close Quarters, Colossus, Crushing Fists, Leech, Plated Armor, Heroic Aura, Extra Regen, Extra Charge, Frenzy, Fleetfoot, Healing Rite, Bullet Resilience, Intensifying Magazine, Juggernaut, Melee Lifesteal, Enchanter's Emblem, Melee Charge, Monster Rounds, Cultlist Sacrifice, Silencer, Rapid Recharge, Battle Vest, Escalating Resilience, Spellbreaker, Spirit Snatch, Sprint Boots, Vampiric Burst, Titanic Magazine, Bullet Lifesteal, Weighted Shots",
+    "text": "Billy | Brawler | complexity 3 | health: 790 | move_speed: 7 | bullet_damage: 6.3 | bullet_speed: 20200 | rounds_per_sec: 11.76 | clip_size: 30 | can_zoom: False | scaling: health +43/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_punkgoat",
       "hero_id": 72,
       "name": "Billy",
       "complexity": 3,
+      "hero_type": "Brawler"
+    }
+  },
+  {
+    "text": "Billy build guide | Brawler | damage type: spirit | utility: slow, heal | playstyle: brawler | flavor tags: G.O.A.T., Chaotic, Punk | good items: Spirit Strike, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Ballistic Enchantment, Enduring Speed, Extended Magazine, Point Blank, Close Quarters, Colossus, Crushing Fists, Leech, Plated Armor, Heroic Aura, Extra Regen, Extra Charge, Frenzy, Fleetfoot, Healing Rite, Bullet Resilience, Intensifying Magazine, Juggernaut, Melee Lifesteal, Enchanter's Emblem, Melee Charge, Monster Rounds, Cultlist Sacrifice, Silencer, Rapid Recharge, Battle Vest, Escalating Resilience, Spellbreaker, Spirit Snatch, Sprint Boots, Vampiric Burst, Titanic Magazine, Bullet Lifesteal, Weighted Shots",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_punkgoat",
+      "hero_id": 72,
+      "name": "Billy",
       "hero_type": "Brawler"
     }
   },
@@ -2451,13 +2781,23 @@
     }
   },
   {
-    "text": "Graves | Marksman | complexity 2 | flavor tags: Area Denial, Necromancer, Morbid | damage: spirit | utility: slow, heal | playstyle: marksman | health: 700 | move_speed: 7 | bullet_damage: 4 | bullet_speed: 25000 | rounds_per_sec: 9.8 | clip_size: 40 | can_zoom: False | scaling: health +33/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Refresher, Active Reload, Duration Extender, Arcane Surge, Boundless Spirit, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Superior Cooldown, Mystic Shot, Leech, Heroic Aura, Escalating Exposure, Mercurial Magnum, Extra Charge, Spirit Lifesteal, Superior Duration, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Enchanter's Emblem, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Silencer, Quicksilver Reload, Rapid Recharge, Recharging Rush, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Burn, Split Shot, Stamina Mastery, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal",
+    "text": "Graves | Marksman | complexity 2 | health: 700 | move_speed: 7 | bullet_damage: 4 | bullet_speed: 25000 | rounds_per_sec: 9.8 | clip_size: 40 | can_zoom: False | scaling: health +33/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_necro",
       "hero_id": 76,
       "name": "Graves",
       "complexity": 2,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Graves build guide | Marksman | damage type: spirit | utility: slow, heal | playstyle: marksman | flavor tags: Area Denial, Necromancer, Morbid | good items: Echo Shard, Refresher, Active Reload, Duration Extender, Arcane Surge, Boundless Spirit, Burst Fire, Capacitor, Enduring Speed, Tesla Bullets, Extended Magazine, Superior Cooldown, Mystic Shot, Leech, Heroic Aura, Escalating Exposure, Mercurial Magnum, Extra Charge, Spirit Lifesteal, Superior Duration, Extra Spirit, Extra Stamina, Inhibitor, Juggernaut, Enchanter's Emblem, Surge of Power, Compress Cooldown, Mystic Vulnerability, Restorative Shot, Silencer, Quicksilver Reload, Rapid Recharge, Recharging Rush, Escalating Resilience, Ricochet, Improved Spirit, Spellbreaker, Spirit Burn, Split Shot, Stamina Mastery, Toxic Bullets, Transcendent Cooldown, Lightning Scroll, Bullet Lifesteal",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_necro",
+      "hero_id": 76,
+      "name": "Graves",
       "hero_type": "Marksman"
     }
   },
@@ -2529,13 +2869,23 @@
     }
   },
   {
-    "text": "Apollo | Assassin | complexity 2 | flavor tags: Finesse, A Cut Above, Mobility | damage: spirit | utility: slow, heal, stun | playstyle: assassin | health: 740 | move_speed: 7.2 | bullet_damage: 17 | bullet_speed: 5000 | rounds_per_sec: 2.63 | clip_size: 15 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl | good items: Witchmail, Arctic Blast, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Leech, Extra Regen, Escalating Exposure, Healbane, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Infuser, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Mystic Reverb, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Transcendent Cooldown, Lightning Scroll",
+    "text": "Apollo | Assassin | complexity 2 | health: 740 | move_speed: 7.2 | bullet_damage: 17 | bullet_speed: 5000 | rounds_per_sec: 2.63 | clip_size: 15 | can_zoom: False | scaling: health +44/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_fencer",
       "hero_id": 77,
       "name": "Apollo",
       "complexity": 2,
+      "hero_type": "Assassin"
+    }
+  },
+  {
+    "text": "Apollo build guide | Assassin | damage type: spirit | utility: slow, heal, stun | playstyle: assassin | flavor tags: Finesse, A Cut Above, Mobility | good items: Witchmail, Arctic Blast, Boundless Spirit, Point Blank, Close Quarters, Cold Front, Superior Cooldown, Counterspell, Leech, Extra Regen, Escalating Exposure, Healbane, Healing Booster, Spirit Lifesteal, Healing Rite, Bullet Resilience, Extra Spirit, Extra Stamina, Infuser, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Mystic Reverb, Radiant Regeneration, Improved Spirit, Spellbreaker, Spirit Burn, Stamina Mastery, Transcendent Cooldown, Lightning Scroll",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_fencer",
+      "hero_id": 77,
+      "name": "Apollo",
       "hero_type": "Assassin"
     }
   },
@@ -2609,13 +2959,23 @@
     }
   },
   {
-    "text": "Rem | Unknown | complexity 3 | flavor tags: Tiny, zZzzZ, Helpful | damage: spirit | utility: slow, heal | health: 650 | move_speed: 7.2 | bullet_damage: 16 | bullet_speed: 6300 | rounds_per_sec: 3.85 | clip_size: 13 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl | good items: Echo Shard, Refresher, Duration Extender, Arctic Blast, Boundless Spirit, Enduring Speed, Cold Front, Superior Cooldown, Divine Barrier, Heroic Aura, Extra Regen, Extra Charge, Cursed Relic, Guardian Ward, Healbane, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Rapid Recharge, Rescue Beam, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Transcendent Cooldown, Trophy Collector, Lightning Scroll",
+    "text": "Rem | Unknown | complexity 3 | health: 650 | move_speed: 7.2 | bullet_damage: 16 | bullet_speed: 6300 | rounds_per_sec: 3.85 | clip_size: 13 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_familiar",
       "hero_id": 79,
       "name": "Rem",
       "complexity": 3,
+      "hero_type": "Unknown"
+    }
+  },
+  {
+    "text": "Rem build guide | Unknown | damage type: spirit | utility: slow, heal | flavor tags: Tiny, zZzzZ, Helpful | good items: Echo Shard, Refresher, Duration Extender, Arctic Blast, Boundless Spirit, Enduring Speed, Cold Front, Superior Cooldown, Divine Barrier, Heroic Aura, Extra Regen, Extra Charge, Cursed Relic, Guardian Ward, Healbane, Healing Tempo, Healing Booster, Healing Nova, Healing Rite, Superior Duration, Extra Spirit, Extra Stamina, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Reverb, Monster Rounds, Rapid Recharge, Rescue Beam, Improved Spirit, Spirit Burn, Sprint Boots, Stamina Mastery, Knockdown, Transcendent Cooldown, Trophy Collector, Lightning Scroll",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_familiar",
+      "hero_id": 79,
+      "name": "Rem",
       "hero_type": "Unknown"
     }
   },
@@ -2686,13 +3046,23 @@
     }
   },
   {
-    "text": "Silver | Marksman | complexity 1 | flavor tags: Hot Mess, Feral, Transformation | damage: spirit | utility: slow, heal | playstyle: marksman | health: 800 | move_speed: 6.7 | bullet_damage: 5.5 | bullet_speed: 32000 | rounds_per_sec: 1.11 | clip_size: 7 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl | good items: Duration Extender, Arctic Blast, Berserker, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Enduring Speed, Point Blank, Close Quarters, Colossus, Counterspell, Lucky Shot, Crushing Fists, Leech, Debuff Reducer, Plated Armor, Diviner's Kevlar, Extra Regen, Express Shot, Frenzy, Fleetfoot, Glass Cannon, Healing Tempo, Healing Booster, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Melee Lifesteal, Restorative Shot, Melee Charge, Monster Rounds, Phantom Strike, Silencer, Battle Vest, Slowing Bullets, Spellbreaker, Sprint Boots, Stamina Mastery, Vampiric Burst, Toxic Bullets, Lightning Scroll, Unstoppable, Bullet Lifesteal, Warp Stone, Weighted Shots",
+    "text": "Silver | Marksman | complexity 1 | health: 800 | move_speed: 6.7 | bullet_damage: 5.5 | bullet_speed: 32000 | rounds_per_sec: 1.11 | clip_size: 7 | can_zoom: False | scaling: health +29/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_werewolf",
       "hero_id": 80,
       "name": "Silver",
       "complexity": 1,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Silver build guide | Marksman | damage type: spirit | utility: slow, heal | playstyle: marksman | flavor tags: Hot Mess, Feral, Transformation | good items: Duration Extender, Arctic Blast, Berserker, Lifestrike, Hunter's Aura, Bullet Resist Shredder, Enduring Speed, Point Blank, Close Quarters, Colossus, Counterspell, Lucky Shot, Crushing Fists, Leech, Debuff Reducer, Plated Armor, Diviner's Kevlar, Extra Regen, Express Shot, Frenzy, Fleetfoot, Glass Cannon, Healing Tempo, Healing Booster, High-Velocity Rounds, Hollow Point, Superior Duration, Extra Stamina, Inhibitor, Juggernaut, Kinetic Dash, Melee Lifesteal, Restorative Shot, Melee Charge, Monster Rounds, Phantom Strike, Silencer, Battle Vest, Slowing Bullets, Spellbreaker, Sprint Boots, Stamina Mastery, Vampiric Burst, Toxic Bullets, Lightning Scroll, Unstoppable, Bullet Lifesteal, Warp Stone, Weighted Shots",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_werewolf",
+      "hero_id": 80,
+      "name": "Silver",
       "hero_type": "Marksman"
     }
   },
@@ -2764,13 +3134,23 @@
     }
   },
   {
-    "text": "Celeste | Marksman | complexity 2 | flavor tags: Dazzling, Performer, Disruptive | damage: spirit | utility: slow | playstyle: marksman | health: 750 | move_speed: 6.2 | bullet_damage: 18 | bullet_speed: 1968.5 | rounds_per_sec: 1.67 | clip_size: 8 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl | good items: Refresher, Witchmail, Arcane Surge, Arctic Blast, Boundless Spirit, Ballistic Enchantment, Cold Front, Superior Cooldown, Counterspell, Leech, Enchanted Holsters, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Healbane, Spirit Lifesteal, High-Velocity Rounds, Extra Spirit, Extra Stamina, Infuser, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Quicksilver Reload, Rapid Recharge, Radiant Regeneration, Improved Spirit, Spirit Burn, Spirit Snatch, Stamina Mastery, Transcendent Cooldown, Lightning Scroll",
+    "text": "Celeste | Marksman | complexity 2 | health: 750 | move_speed: 6.2 | bullet_damage: 18 | bullet_speed: 1968.5 | rounds_per_sec: 1.67 | clip_size: 8 | can_zoom: False | scaling: health +35/lvl, spirit_power +1.1/lvl",
     "metadata": {
       "type": "hero",
       "hero": "hero_unicorn",
       "hero_id": 81,
       "name": "Celeste",
       "complexity": 2,
+      "hero_type": "Marksman"
+    }
+  },
+  {
+    "text": "Celeste build guide | Marksman | damage type: spirit | utility: slow | playstyle: marksman | flavor tags: Dazzling, Performer, Disruptive | good items: Refresher, Witchmail, Arcane Surge, Arctic Blast, Boundless Spirit, Ballistic Enchantment, Cold Front, Superior Cooldown, Counterspell, Leech, Enchanted Holsters, Extra Regen, Escalating Exposure, Mercurial Magnum, Extra Charge, Healbane, Spirit Lifesteal, High-Velocity Rounds, Extra Spirit, Extra Stamina, Infuser, Kinetic Dash, Mystic Burst, Mystic Expansion, Enchanter's Emblem, Tankbuster, Mystic Slow, Surge of Power, Compress Cooldown, Mystic Vulnerability, Mystic Regeneration, Quicksilver Reload, Rapid Recharge, Radiant Regeneration, Improved Spirit, Spirit Burn, Spirit Snatch, Stamina Mastery, Transcendent Cooldown, Lightning Scroll",
+    "metadata": {
+      "type": "hero_build",
+      "hero": "hero_unicorn",
+      "hero_id": 81,
+      "name": "Celeste",
       "hero_type": "Marksman"
     }
   },

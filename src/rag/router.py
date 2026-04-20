@@ -6,8 +6,12 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-OLLAMA_URL = "http://localhost:11434"
-LLM_MODEL  = "qwen2.5:7b"
+import sys
+PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJ_ROOT not in sys.path:
+    sys.path.insert(0, PROJ_ROOT)
+
+from src.config import OLLAMA_URL, LLM_MODEL
 
 _INDEX_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "processed", "heroes_index.json"
@@ -76,7 +80,10 @@ Rules:
   tier list, who has most/least) → use_full_index: true
 - Specific hero abilities → collections: ["ability"],
   hero_filter: hero_id
-- Items/shop/build questions → collections: ["item"]
+- Build/item questions for a specific hero (e.g. "good items for X",
+  "what should X buy", "best build for X") → collections: ["hero", "ability", "item"],
+  hero_filter: hero_id, top_k: 6
+- General items/shop questions (no specific hero) → collections: ["item"]
 - Full hero overview → collections: ["hero", "ability"],
   hero_filter: hero_id, top_k: 6
 - General/mixed → collections: ["hero", "ability", "item"], top_k: 3

@@ -25,3 +25,11 @@ REPORT_TXT_PATH = PROCESSED_DATA_DIR / "report.txt"
 HEROES_OUT_DIR = PROCESSED_DATA_DIR / "heroes"
 HEROES_INDEX_PATH = PROCESSED_DATA_DIR / "heroes_index.json"
 CHUNKS_JSON_PATH = PROCESSED_DATA_DIR / "chunks.json"
+
+# Updater
+UPDATE_INTERVAL_HOURS = 6  # how often the scheduler checks for game updates (supports decimals, e.g. 0.5 = 30 min)
+
+# LLM & Embeddings
+OLLAMA_URL = "http://localhost:11434"
+LLM_MODEL = "deepseek-r1:7b-qwen-distill-q4_K_M"
+EMBEDDING_MODEL = "mxbai-embed-large"

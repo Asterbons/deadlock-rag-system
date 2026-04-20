@@ -3,10 +3,15 @@ import sys
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import Filter, FieldCondition, MatchValue
 
+import os
+PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJ_ROOT not in sys.path:
+    sys.path.insert(0, PROJ_ROOT)
+
+from src.config import OLLAMA_URL, EMBEDDING_MODEL as EMBED_MODEL
+
 # Config
 QDRANT_URL  = "http://localhost:6333"
-OLLAMA_URL  = "http://localhost:11434"
-EMBED_MODEL = "mxbai-embed-large"
 
 COLLECTIONS = {
     "hero":    "deadlock_heroes",
@@ -137,6 +142,8 @@ def format_context(results: list[dict]) -> str:
         
         if ctype == "hero":
             label = f"Hero: {meta.get('name', meta.get('hero'))}"
+        elif ctype == "hero_build":
+            label = f"Hero Build Guide: {meta.get('name', meta.get('hero'))}"
         elif ctype == "ability":
             label = f"Ability: {meta.get('name')} ({meta.get('hero')}, slot {meta.get('slot')})"
         elif ctype == "item":

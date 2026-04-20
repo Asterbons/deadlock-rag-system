@@ -55,12 +55,9 @@ def chunk_heroes(index_path, heroes_dir):
         weapon = h.get('weapon', {})
         scaling = h.get('scaling_per_level', {})
         
-        text_parts = [
+        # Stats chunk
+        stats_parts = [
             f"{h['name']} | {h.get('hero_type')} | complexity {h.get('complexity')}",
-            f"flavor tags: {format_list(tags.get('flavor', []))}" if tags.get('flavor') else "",
-            f"damage: {format_list(tags.get('damage_type', []))}" if tags.get('damage_type') else "",
-            f"utility: {format_list(tags.get('utility', []))}" if tags.get('utility') else "",
-            f"playstyle: {format_list(tags.get('playstyle', []))}" if tags.get('playstyle') else "",
             f"health: {round_floats(base_stats.get('health'))}",
             f"move_speed: {round_floats(base_stats.get('max_move_speed'))}",
             f"bullet_damage: {round_floats(weapon.get('bullet_damage'))}",
@@ -70,13 +67,8 @@ def chunk_heroes(index_path, heroes_dir):
             f"can_zoom: {weapon.get('can_zoom')}",
             f"scaling: health +{round_floats(scaling.get('health'))}/lvl, spirit_power +{round_floats(scaling.get('spirit_power'))}/lvl"
         ]
-        
-        if good_items_str:
-            text_parts.append(f"good items: {good_items_str}")
-            
-        hero_text = " | ".join([p for p in text_parts if p])
-        
-        metadata = {
+
+        stats_metadata = {
             "type": "hero",
             "hero": h.get("hero"),
             "hero_id": h.get("hero_id"),
@@ -84,11 +76,35 @@ def chunk_heroes(index_path, heroes_dir):
             "complexity": h.get("complexity"),
             "hero_type": h.get("hero_type")
         }
-        
+
         chunks.append({
-            "text": hero_text,
-            "metadata": clean_dict(metadata)
+            "text": " | ".join([p for p in stats_parts if p]),
+            "metadata": clean_dict(stats_metadata)
         })
+
+        # Build chunk — playstyle context + recommended items
+        if good_items_str:
+            build_parts = [
+                f"{h['name']} build guide | {h.get('hero_type')}",
+                f"damage type: {format_list(tags.get('damage_type', []))}" if tags.get('damage_type') else "",
+                f"utility: {format_list(tags.get('utility', []))}" if tags.get('utility') else "",
+                f"playstyle: {format_list(tags.get('playstyle', []))}" if tags.get('playstyle') else "",
+                f"flavor tags: {format_list(tags.get('flavor', []))}" if tags.get('flavor') else "",
+                f"good items: {good_items_str}",
+            ]
+
+            build_metadata = {
+                "type": "hero_build",
+                "hero": h.get("hero"),
+                "hero_id": h.get("hero_id"),
+                "name": h.get("name"),
+                "hero_type": h.get("hero_type")
+            }
+
+            chunks.append({
+                "text": " | ".join([p for p in build_parts if p]),
+                "metadata": clean_dict(build_metadata)
+            })
         
         # 2. Ability chunk
         details = hero_details.get(h.get('hero_id'))
