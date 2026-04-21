@@ -135,6 +135,16 @@ SCALE_CLASS_TO_EFFECT_TYPE = {
     "scale_function_tech_range":    "range",
 }
 
+# Known flat-damage properties that have no scale function
+KNOWN_DAMAGE_PROPS = {
+    "HeadShotBonusDamage":    "headshot_damage",
+    "ProcBonusMagicDamage":   "spirit_damage",
+    "DotHealthPercent":       "dot_damage_pct",
+    "BaseHealOnHeadshot":     "heal_on_headshot",
+    "HealPercentPerHeadshot": "heal_pct_on_headshot",
+    "BonusDamage":            "bonus_damage",
+}
+
 # Default properties that are inherited by all items with value=0 — skip these
 _INHERITED_ZERO_PROPS = frozenset({
     "AbilityDuration", "AbilityCastRange", "AbilityUnitTargetLimit",
@@ -151,10 +161,61 @@ _TEMPLATE_RE = re.compile(r'\{[sgf]:[^}]+\}')
 
 # ── Localization parser ─────────────────────────────────────────────────────
 
-def _strip_html(text: str) -> str:
-    """Remove HTML tags and template placeholders from localization text."""
+# Mapping from citadel_inline_attribute names to actual property names
+_INLINE_ATTR_TO_PROP = {
+    "BonusWeaponDamage":  "HeadShotBonusDamage",
+    "BonusSpiritDamage":  "ProcBonusMagicDamage",
+    "WeaponDamage":       "HeadShotBonusDamage",
+    "SpiritDamage":       "ProcBonusMagicDamage",
+    "Heal":               "BaseHealOnHeadshot",
+    "Slow":               "SlowPercent",
+    "Stun":               "StunDuration",
+    "BonusFireRate":      "BonusFireRate",
+    "BonusMoveSpeed":     "BonusMoveSpeed",
+    "SpiritDPS":          "DotHealthPercent",
+    "MeleeDamage":        "BonusDamage",
+}
+
+
+def _strip_html(text: str, props: dict = None) -> str:
+    """Remove HTML tags and resolve template placeholders from localization text."""
     text = _HTML_RE.sub("", text)
-    text = _TEMPLATE_RE.sub("", text)
+
+    # Resolve {s:PropertyName} and {g:citadel_inline_attribute:'Attr'} placeholders
+    if props:
+        def resolve_placeholder(match):
+            raw = match.group(1)
+
+            # Handle citadel_inline_attribute:'AttrName' format
+            attr_match = re.match(r"citadel_inline_attribute:'(\w+)'", raw)
+            if attr_match:
+                attr_name = attr_match.group(1)
+                prop_name = _INLINE_ATTR_TO_PROP.get(attr_name)
+                if prop_name is None:
+                    # Try the attr_name directly as a property name
+                    prop_name = attr_name
+            else:
+                # Simple {s:PropertyName} format
+                prop_name = raw
+
+            prop_data = props.get(prop_name, {})
+            if isinstance(prop_data, dict):
+                val = prop_data.get("m_strValue")
+                if val is not None:
+                    # Parse and clean the value
+                    numeric = _parse_numeric(val)
+                    if numeric is not None:
+                        return str(int(numeric) if isinstance(numeric, float)
+                                   and numeric.is_integer() else numeric)
+                    return str(val)
+            return ""  # remove unresolved placeholders
+
+        # Match {s:Name}, {g:Name}, {f:Name} patterns
+        text = re.sub(r'\{[sgf]:([^}]+)\}', resolve_placeholder, text)
+    else:
+        # Fallback: remove placeholders entirely (old behavior)
+        text = _TEMPLATE_RE.sub("", text)
+
     # Collapse multiple spaces
     text = re.sub(r'\s+', ' ', text).strip()
     return text
@@ -256,7 +317,11 @@ def parse_localization(mods_filepath: str | Path, names_filepath: str | Path = N
         # Description keys end with _desc
         if key.endswith("_desc"):
             base_id = key[:-5]  # Strip _desc suffix
-            descriptions[base_id] = _strip_html(value)
+            # Only strip HTML tags here; keep template placeholders
+            # so they can be resolved with actual prop values later
+            html_stripped = _HTML_RE.sub("", value)
+            html_stripped = re.sub(r'\s+', ' ', html_stripped).strip()
+            descriptions[base_id] = html_stripped
 
             # Associate last comment as display name for this item
             if last_comment_name and base_id not in display_names:
@@ -428,6 +493,32 @@ def _extract_proc(props: dict, activation: str) -> dict | None:
                     "stat": scale_stat,
                     "ratio": ratio,
                 } if scale_stat else None,
+                "description": desc,
+            })
+
+    # Pass 2: extract known flat damage properties (no scale function)
+    for prop_name, effect_type in KNOWN_DAMAGE_PROPS.items():
+        prop_data = props.get(prop_name)
+        if not isinstance(prop_data, dict):
+            continue
+        val = _parse_numeric(prop_data.get("m_strValue"))
+        if val is None or val == 0:
+            continue
+
+        desc = str(int(val) if isinstance(val, float)
+                   and val.is_integer() else val)
+
+        # Avoid duplicates from Pass 1
+        already_extracted = any(
+            e.get("property") == _normalize_property_name(prop_name)
+            for e in effects
+        )
+        if not already_extracted:
+            effects.append({
+                "type": effect_type,
+                "property": _normalize_property_name(prop_name),
+                "base_value": val,
+                "scales_with": None,
                 "description": desc,
             })
 
@@ -604,7 +695,8 @@ def extract_items(parsed_abilities: dict, localization: dict) -> list[dict]:
             # Fallback formatting: upgrade_clip_size -> Clip Size
             clean = item_id.replace("upgrade_", "").replace("weapon_", "").replace("armor_", "").replace("tech_", "")
             name = " ".join(word.capitalize() for word in clean.split("_"))
-        description = descriptions.get(item_id, "")
+        raw_desc = descriptions.get(item_id, "")
+        description = _strip_html(raw_desc, props) if raw_desc else ""
 
         # Build item record
         item: dict = {

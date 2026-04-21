@@ -199,8 +199,15 @@ def chunk_items(shop_path):
             
             text_parts.append(f"{item.get('name')} | tier {item.get('tier')} | {item.get('slot')}")
             
+            passive = item.get('passive')
+            if passive is not None:
+                text_parts.append("passive" if passive else "active")
+
             if item.get('description'):
                 text_parts.append(item.get('description'))
+            
+            if item.get('passive_description'):
+                text_parts.append(f"passive: {item['passive_description']}")
                 
             stats_clean = {}
             for k, v in item.get('stats', {}).items():
@@ -212,11 +219,30 @@ def chunk_items(shop_path):
                 text_parts.append(f"stats: {stats_str}")
                 
             proc = item.get('proc', {})
+            
+            # Proc basic info
+            if proc.get('trigger'):
+                text_parts.append(f"trigger: {proc['trigger']}")
+            
+            proc_chance = proc.get('proc_chance_pct')
+            if proc_chance and proc_chance < 100:
+                text_parts.append(f"proc_chance: {round_floats(proc_chance)}%")
+
+            # Proc effects
             effects = proc.get('effects', [])
             eff_desc = [e.get('description') for e in effects if e.get('description')]
             if eff_desc:
                 text_parts.append(f"effects: {format_list(eff_desc)}")
                 
+            # Proc parameters
+            for field in ['radius', 'duration_sec', 'move_slow_pct', 'conditions']:
+                val = proc.get(field)
+                if val:
+                    label = field.replace('_sec', 's').replace('_pct', '%').replace('_', ' ')
+                    # Use underscore for some labels to match user script expectations if needed
+                    if field == 'move_slow_pct': label = 'slow'
+                    text_parts.append(f"{label}: {round_floats(val)}")
+
             cooldown = proc.get('cooldown_sec')
             if cooldown is None:
                 cooldown = proc.get('item_cooldown_sec')
@@ -224,6 +250,11 @@ def chunk_items(shop_path):
                 cooldown = proc.get('proc_cooldown_sec')
             if cooldown is not None:
                 text_parts.append(f"proc cooldown: {round_floats(cooldown)}s")
+
+            # Components
+            components = item.get('component_items', [])
+            if components:
+                text_parts.append(f"components: {format_list(components)}")
                 
             synergies = item.get('synergies', {})
             scales_with = synergies.get('scales_with', [])

@@ -1,9 +1,16 @@
 import { useState, useRef } from 'react'
-import type { ChatMessage, SSEEvent } from '../types/api'
+import type { ChatMessage, SSEEvent, UsageData } from '../types/api'
 
 export function useChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [lastUsage, setLastUsage] = useState<UsageData | null>(null)
+  const [sessionUsage, setSessionUsage] = useState<UsageData>({
+    prompt_tokens: 0,
+    completion_tokens: 0,
+    total_tokens: 0,
+    cost_usd: 0
+  })
   const historyRef = useRef<{ role: 'user' | 'assistant'; content: string }[]>([])
 
   async function sendMessage(question: string) {
@@ -86,6 +93,15 @@ export function useChat() {
               { role: 'assistant', content: finalContent },
             ]
             setIsLoading(false)
+          } else if (event.type === 'usage') {
+            const usage = event as UsageData
+            setLastUsage(usage)
+            setSessionUsage(prev => ({
+              prompt_tokens: prev.prompt_tokens + usage.prompt_tokens,
+              completion_tokens: prev.completion_tokens + usage.completion_tokens,
+              total_tokens: prev.total_tokens + usage.total_tokens,
+              cost_usd: prev.cost_usd + usage.cost_usd
+            }))
           } else if (event.type === 'error') {
             const errContent = event.content
             setMessages(prev => {
@@ -117,8 +133,10 @@ export function useChat() {
   function clearHistory() {
     setMessages([])
     historyRef.current = []
+    setLastUsage(null)
+    setSessionUsage({ prompt_tokens: 0, completion_tokens: 0, total_tokens: 0, cost_usd: 0 })
     setIsLoading(false)
   }
 
-  return { messages, isLoading, sendMessage, clearHistory }
+  return { messages, isLoading, sendMessage, clearHistory, lastUsage, sessionUsage }
 }

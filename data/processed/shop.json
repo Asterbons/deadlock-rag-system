@@ -175,7 +175,7 @@
       "synergies": {
         "provides": [
           "ammo_clip_size_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -217,7 +217,7 @@
       "synergies": {
         "provides": [
           "bonus_bullet_speed_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -253,14 +253,23 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": "upgrade_headhunter",
-      "description": "Your next headshot against an enemy Hero deals .",
+      "description": "Your next headshot against an enemy Hero deals 45.",
       "stats": {
         "bonus_health": 30
       },
       "proc": {
         "trigger": "on_headshot",
         "item_cooldown_sec": 9,
-        "proc_chance_pct": 100
+        "proc_chance_pct": 100,
+        "effects": [
+          {
+            "type": "headshot_damage",
+            "property": "head_shot_bonus_damage",
+            "base_value": 45,
+            "scales_with": null,
+            "description": "45"
+          }
+        ]
       },
       "synergies": {
         "provides": [
@@ -308,7 +317,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": [
           "item_cooldown",
@@ -325,7 +334,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Your attacks have additional Weapon Damage against enemies above % health.",
+      "description": "Your attacks have additional Weapon Damage against enemies above 50% health.",
       "stats": {
         "spirit_power": 10,
         "attack_damage_percent_bonus": 45
@@ -333,7 +342,7 @@
       "synergies": {
         "provides": [
           "spirit_power",
-          "weapon_damage_pct",
+          "weapon_damage",
           "spirit_resist"
         ],
         "scales_with": []
@@ -356,7 +365,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "long_range_bonus_base_damage_percent",
           "bonus_weapon_damage_long_range_min_range",
           "reload_speed",
@@ -396,7 +405,7 @@
         "provides": [
           "movement_speed_slow_percent",
           "movement_ground_dash_reduction_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": [
           "build_up_rate"
@@ -506,7 +515,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "spirit_power"
         ],
         "scales_with": [
@@ -559,7 +568,7 @@
         "upgrade_improved_stamina"
       ],
       "upgrades_into": null,
-      "description": "When you Dash-Jump you gain Fire Rate and bonus Ammo until your next reload. Lasts up to s.",
+      "description": "When you Dash-Jump you gain Fire Rate and bonus Ammo until your next reload. Lasts up to 7s.",
       "stats": {
         "bonus_fire_rate": 25,
         "bonus_clip_size": 6,
@@ -596,7 +605,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "bullet_armor_damage_resist",
           "base_melee_damage_percent",
           "melee_travel_distance_percentage"
@@ -622,7 +631,7 @@
       "synergies": {
         "provides": [
           "ammo_clip_size_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -647,7 +656,7 @@
           "ammo_clip_size_percent",
           "bullet_armor_damage_resist_reduction",
           "sprint_speed_bonus",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -669,7 +678,7 @@
       "synergies": {
         "provides": [
           "ammo_clip_size_percent",
-          "weapon_damage_pct",
+          "weapon_damage",
           "melee_damage_reduction_percent",
           "spirit_resist"
         ],
@@ -755,7 +764,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Dealing at close range opens a wound and grants you . Wounded enemies take , have reduced , and are revealed through walls.",
+      "description": "Dealing at close range opens a wound and grants you 1.5. Wounded enemies take , have reduced , and are revealed through walls.",
       "stats": {
         "bonus_health": 50,
         "bullet_resist_reduction": -6,
@@ -806,7 +815,7 @@
       "synergies": {
         "provides": [
           "ammo_clip_size_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": [
           "item_cooldown"
@@ -823,7 +832,7 @@
         "upgrade_non_player_bonus"
       ],
       "upgrades_into": null,
-      "description": "Target an enemy NPC and consume it for % Bonus Souls and grants a powerful long lasting buff.",
+      "description": "Target an enemy NPC and consume it for 150% Bonus Souls and grants a powerful long lasting buff.",
       "stats": {
         "non_player_bonus_weapon_power": 30,
         "out_of_combat_health_regen": 2,
@@ -844,7 +853,7 @@
           "out_of_combat_health_regen",
           "bullet_armor_damage_resist_non_hero",
           "health_max",
-          "weapon_damage_pct",
+          "weapon_damage",
           "bonus_ability_charges",
           "ability_range",
           "radius"
@@ -908,7 +917,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "When you are above % health, deal additional Weapon Damage and your bullets reduce enemy Bullet Resist.",
+      "description": "When you are above 65% health, deal additional Weapon Damage and your bullets reduce enemy Bullet Resist.",
       "stats": {
         "attack_damage_percent": 35,
         "out_of_combat_health_regen": 4.5,
@@ -929,7 +938,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "out_of_combat_health_regen",
           "health_max",
           "bullet_armor_damage_resist_reduction"
@@ -970,7 +979,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "status_resistance",
           "spirit_resist",
           "bonus_bullet_speed_percent",
@@ -1069,7 +1078,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "long_range_bonus_base_damage_percent",
           "bonus_weapon_damage_long_range_min_range",
           "bonus_attack_range_percent",
@@ -1091,7 +1100,7 @@
         "upgrade_headshot_booster"
       ],
       "upgrades_into": null,
-      "description": "Your next headshot against an enemy Hero deals , you, and briefly grants .",
+      "description": "Your next headshot against an enemy Hero deals 75, you, and briefly grants 1.75.",
       "stats": {
         "attack_damage_percent": 5,
         "bonus_health": 50,
@@ -1108,12 +1117,26 @@
             "base_value": 3,
             "scales_with": null,
             "description": "3"
+          },
+          {
+            "type": "headshot_damage",
+            "property": "head_shot_bonus_damage",
+            "base_value": 75,
+            "scales_with": null,
+            "description": "75"
+          },
+          {
+            "type": "heal_pct_on_headshot",
+            "property": "heal_percent_per_headshot",
+            "base_value": 4,
+            "scales_with": null,
+            "description": "4"
           }
         ]
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "health_max",
           "movement_speed_max"
         ],
@@ -1285,7 +1308,7 @@
       "passive": false,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Throw a flask that explodes on contact, creating an area that does increasing Spirit Damage per second and reduces enemy Bullet Resist.% less effective vs non-heroes.",
+      "description": "Throw a flask that explodes on contact, creating an area that does increasing Spirit Damage per second and reduces enemy Bullet Resist.50% less effective vs non-heroes.",
       "stats": {
         "bullet_armor_reduction": -7,
         "spirit_power": 8
@@ -1339,7 +1362,7 @@
       "synergies": {
         "provides": [
           "bullet_armor_damage_resist_reduction",
-          "weapon_damage_pct",
+          "weapon_damage",
           "spirit_power",
           "sprint_speed_bonus"
         ],
@@ -1432,7 +1455,7 @@
       "synergies": {
         "provides": [
           "bullet_armor_damage_resist",
-          "weapon_damage_pct",
+          "weapon_damage",
           "health_max",
           "ammo_clip_size_percent"
         ],
@@ -1464,7 +1487,7 @@
       "synergies": {
         "provides": [
           "bonus_bullet_speed_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": [
           "item_cooldown",
@@ -1491,7 +1514,7 @@
         "provides": [
           "ability_range",
           "radius",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -1564,7 +1587,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Your bullets build up to a Silence. Victims are immune to the build up for s after silence expires.",
+      "description": "Your bullets build up to a Silence. Victims are immune to the build up for 10s after silence expires.",
       "stats": {
         "spirit_resist": 15,
         "spirit_damage_reduction": -25
@@ -1783,7 +1806,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Each hero kill grants permanent Fire Rate (up to a max of times). Death results in the loss of 1 stack.",
+      "description": "Each hero kill grants permanent Fire Rate (up to a max of 8 times). Death results in the loss of 1 stack.",
       "stats": {
         "attack_damage_percent": 80,
         "max_health_loss_percent": -15,
@@ -1804,7 +1827,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "health_max_percent",
           "fire_rate",
           "movement_speed_max",
@@ -1882,7 +1905,7 @@
       "synergies": {
         "provides": [
           "bonus_bullet_speed_percent",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -2026,7 +2049,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": "upgrade_boxing_glove",
-      "description": "Your next Melee attack heals you. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits.",
+      "description": "Your next Melee attack heals you. This heal is 30% effective vs non-heroes. Cooldown is 1.5x as long for Light Melee hits.",
       "stats": {
         "bonus_melee_damage_percent": 12
       },
@@ -2097,7 +2120,7 @@
       "synergies": {
         "provides": [
           "health_max",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": []
       }
@@ -2117,7 +2140,7 @@
       "synergies": {
         "provides": [
           "sprint_speed_bonus",
-          "weapon_damage_pct",
+          "weapon_damage",
           "health_regen_per_second",
           "out_of_combat_health_regen"
         ],
@@ -2354,7 +2377,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "While you are above % health, gain and .",
+      "description": "While you are above 65% health, gain and 7.",
       "stats": {
         "bullet_resist": 18,
         "out_of_combat_health_regen": 3,
@@ -2377,7 +2400,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "While you are above % health, gain bonus and Cooldown Reduction.",
+      "description": "While you are above 65% health, gain bonus and Cooldown Reduction.",
       "stats": {
         "spirit_power": 15,
         "spirit_resist": 15,
@@ -2632,7 +2655,7 @@
       "synergies": {
         "provides": [
           "spirit_resist",
-          "weapon_damage_pct",
+          "weapon_damage",
           "movement_speed_max"
         ],
         "scales_with": [
@@ -2649,7 +2672,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "When below % health, gain additional Spirit Resist.",
+      "description": "When below 50% health, gain additional Spirit Resist.",
       "stats": {
         "spirit_resist": 30
       },
@@ -2668,7 +2691,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "When below % health, gain additional Bullet Resist.",
+      "description": "When below 50% health, gain additional Bullet Resist.",
       "stats": {
         "bullet_resist": 30
       },
@@ -2854,7 +2877,7 @@
       "passive": false,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Launch yourself high into the air and grant yourself a Barrier. While in the air, you can use the active again to drop down faster.Cannot be used for s if attacked by enemy Hero.",
+      "description": "Launch yourself high into the air and grant yourself a Barrier. While in the air, you can use the active again to drop down faster.Cannot be used for 5s if attacked by enemy Hero.",
       "stats": {
         "air_control_percent": 100,
         "slow_percent": 40,
@@ -2961,7 +2984,7 @@
         "upgrade_lifestrike_gauntlets"
       ],
       "upgrades_into": null,
-      "description": "Your Melee Attack applies Movement Slow and heals you for a percentage of the Melee Damage dealt plus a fixed amount. This heal is % effective vs non-heroes. Cooldown is x as long for Light Melee hits.",
+      "description": "Your Melee Attack applies Movement Slow and heals you for a percentage of the Melee Damage dealt plus a fixed amount. This heal is 40% effective vs non-heroes. Cooldown is 1.5x as long for Light Melee hits.",
       "stats": {
         "slow_percent": 60,
         "bonus_melee_damage_percent": 16,
@@ -3065,7 +3088,7 @@
         "provides": [
           "health_max",
           "damage_percent",
-          "weapon_damage_pct",
+          "weapon_damage",
           "heal_amp_receive_percent",
           "heal_amp_regen_percent"
         ],
@@ -3101,7 +3124,7 @@
       },
       "synergies": {
         "provides": [
-          "weapon_damage_pct",
+          "weapon_damage",
           "bullet_armor_damage_resist"
         ],
         "scales_with": [
@@ -3134,7 +3157,7 @@
           "spirit_power",
           "spirit_lifesteal",
           "bullet_lifesteal",
-          "weapon_damage_pct",
+          "weapon_damage",
           "health_max"
         ],
         "scales_with": [
@@ -3182,7 +3205,7 @@
       "synergies": {
         "provides": [
           "spirit_power",
-          "weapon_damage_pct",
+          "weapon_damage",
           "movement_speed_slow_percent"
         ],
         "scales_with": [
@@ -3350,7 +3373,7 @@
         "upgrade_health"
       ],
       "upgrades_into": null,
-      "description": "Grow larger in size, gaining , , and . Nearby enemies suffer from and have reduced dash speed.",
+      "description": "Grow larger in size, gaining , , and . Nearby enemies suffer from 30 and have reduced dash speed.",
       "stats": {
         "bonus_health": 300,
         "bonus_base_health": 15,
@@ -3369,7 +3392,7 @@
         "provides": [
           "health_max",
           "base_health_percent",
-          "weapon_damage_pct",
+          "weapon_damage",
           "bullet_armor_damage_resist",
           "spirit_resist",
           "movement_speed_slow_percent",
@@ -3475,7 +3498,7 @@
         "provides": [
           "spirit_power",
           "spirit_resist",
-          "weapon_damage_pct",
+          "weapon_damage",
           "cooldown_reduction_percentage"
         ],
         "scales_with": [
@@ -3493,7 +3516,7 @@
         "upgrade_healing_booster"
       ],
       "upgrades_into": null,
-      "description": "Applying to yourself or an ally grants the target and .Does not apply on innate Regen or passive Bullet/Spirit Lifesteals.",
+      "description": "Applying to yourself or an ally grants the target 35 and 1.25.Does not apply on innate Regen or passive Bullet/Spirit Lifesteals.",
       "stats": {
         "bonus_fire_rate": 35,
         "bonus_move_speed": 1.25,
@@ -3966,7 +3989,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": "upgrade_magic_shock",
-      "description": "Charges up over time with , causing abilities dealing more than damage to deal additional damage.",
+      "description": "Charges up over time with , causing abilities dealing more than 80 damage to deal additional damage.",
       "proc": {
         "trigger": "passive",
         "item_cooldown_sec": 14
@@ -4017,7 +4040,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": "upgrade_spirit_snatch",
-      "description": "When you perform a Light or Heavy Melee attack against a hero, deal extra Spirit Damage with the attack and reduce the target's Spirit Resist.Cooldown is x longer for Light Melee hits.",
+      "description": "When you perform a Light or Heavy Melee attack against a hero, deal extra Spirit Damage with the attack and reduce the target's Spirit Resist.Cooldown is 2x longer for Light Melee hits.",
       "stats": {
         "spirit_resist": -6
       },
@@ -4255,7 +4278,7 @@
         "upgrade_improved_stamina"
       ],
       "upgrades_into": null,
-      "description": "When you Dash-Jump the next ability you use will have bonus Range, Duration, and Spirit Power. Lasts up to s.",
+      "description": "When you Dash-Jump the next ability you use will have bonus Range, Duration, and Spirit Power. Lasts up to 7s.",
       "stats": {
         "bonus_ability_duration_percent": 15,
         "spirit_power": 20,
@@ -4369,7 +4392,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": "upgrade_ethereal_bullets",
-      "description": "Your imbued ability charges up over time with , , and bonus bullets on use.",
+      "description": "Your imbued ability charges up over time with , 10, and bonus bullets on use.",
       "stats": {
         "bonus_fire_rate": 10
       },
@@ -4472,7 +4495,7 @@
         "upgrade_magic_burst"
       ],
       "upgrades_into": null,
-      "description": "Charges up over time with , causing abilities dealing more than damage to deal additional damage. Ignores Spirit Resistance.",
+      "description": "Charges up over time with , causing abilities dealing more than 165 damage to deal additional damage. Ignores Spirit Resistance.",
       "stats": {
         "bonus_health": 50
       },
@@ -4621,7 +4644,7 @@
       "passive": false,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Apply a Stun after s. Stun duration is increased against airborne targets.Increases the target's gravity for the duration of the stun.",
+      "description": "Apply a Stun after 2s. Stun duration is increased against airborne targets.Increases the target's gravity for the duration of the stun.",
       "stats": {
         "bonus_health": 75,
         "spirit_range_multiplier": 6,
@@ -4725,7 +4748,7 @@
         "upgrade_acolytes_glove"
       ],
       "upgrades_into": null,
-      "description": "When you perform a Light or Heavy Melee attack against a hero, the attack deals extra Spirit Damage and steals Spirit Resist and Spirit Power.Effects are reduced to % for Light Melee hits.",
+      "description": "When you perform a Light or Heavy Melee attack against a hero, the attack deals extra Spirit Damage and steals Spirit Resist and Spirit Power.Effects are reduced to 70% for Light Melee hits.",
       "stats": {
         "spirit_resist": -12,
         "spirit_armor": 12,
@@ -5255,7 +5278,7 @@
         "upgrade_quick_silver"
       ],
       "upgrades_into": null,
-      "description": "Your imbued ability charges up over time with , , and reloads bullets on use. Until your next reload, your bullets deal bonus Spirit Damage based on your Spirit Power.",
+      "description": "Your imbued ability charges up over time with , 22, and reloads bullets on use. Until your next reload, your bullets deal bonus Spirit Damage based on your Spirit Power.",
       "stats": {
         "spirit_power": 7,
         "bonus_fire_rate": 22,
@@ -5340,7 +5363,7 @@
       "passive": true,
       "upgrades_from": [],
       "upgrades_into": null,
-      "description": "Dealing significant Spirit Damage to an enemy within s causes an explosion dealing damage and a burn to nearby enemies. While burning, enemies take damage over time and receive reduced healing.Deals half-damage and has half-cooldown on non-heroes.",
+      "description": "Dealing significant Spirit Damage to an enemy within 5s causes an explosion dealing damage and a burn to nearby enemies. While burning, enemies take damage over time and receive reduced healing.Deals half-damage and has half-cooldown on non-heroes.",
       "stats": {
         "spirit_range_multiplier": 8,
         "spirit_radius_multiplier": 8,
@@ -5414,7 +5437,7 @@
         "upgrade_magic_slow"
       ],
       "upgrades_into": null,
-      "description": "Damage from your ultimate applies a and deals after a short delay.",
+      "description": "Damage from your ultimate applies a 0.75 and deals after a short delay.",
       "stats": {
         "slow_percent": 80,
         "bonus_health": 50,
@@ -5671,7 +5694,7 @@
           "spirit_power",
           "movement_speed_max",
           "health_max",
-          "weapon_damage_pct"
+          "weapon_damage"
         ],
         "scales_with": [
           "item_cooldown"

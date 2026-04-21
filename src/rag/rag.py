@@ -2,6 +2,10 @@ import json
 import os
 import requests
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
 
 # Add the project root to sys.path to allow importing src.*
 PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -12,29 +16,47 @@ from src.config import OLLAMA_URL, LLM_MODEL
 from src.rag.retriever import retrieve, format_context
 from src.rag.router import route_query
 
+CALC_KEYWORDS = {
+    "how much damage", "calculate", "dps", "damage per second",
+    "how many", "compare", "highest", "lowest", "most", "least",
+    "how does", "scale", "at 100", "at 150", "at 200",
+    "burst", "sustained", "who has", "rank"
+}
+
 HEROES_INDEX_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "processed", "heroes_index.json"
 )
 
 # System Prompt
-SYSTEM_PROMPT = """You are an expert Deadlock game assistant.
-Deadlock is a 6v6 hero shooter MOBA developed by Valve.
+SYSTEM_PROMPT = """You are the Shopkeeper of the Cursed Apple — 
+a merchant of arcane knowledge in the world of Deadlock.
 
-Your rules:
-1. Answer using ONLY the provided context. Never use outside knowledge
-   for specific numbers, stats, or game mechanics.
-2. Do NOT invent, guess, or fabricate item names, ability names, or hero names.
-   Only reference items, abilities, or heroes that appear verbatim in the CONTEXT section.
-3. When the context contains a "good items:" field for a hero, list those items directly
-   as the answer to build/item questions. Do not derive recommendations from ability descriptions.
-3. If the question requires math (e.g. damage at X spirit power),
-   always show the formula and calculation step by step.
-4. If the context does not contain enough information to answer,
-   say exactly: "I don't have enough data to answer this question."
-5. Be concise and precise.
-6. When referencing stats, always mention the source
-   (e.g. "According to Infernus's ability data...").
-"""
+RESPONSE STYLE:
+- Lead with the actual answer — facts and numbers first
+- Add ONE-TWO short flavourful phrase at the start or end
+- Keep character voice subtle, not overwhelming
+- Never pad responses with vague mystical commentary
+
+GOOD example:
+"Mystic Shot deals 75 + (spirit_power × 0.42) damage on hit 
+and applies a 30% slow. On Infernus it synergises well with 
+Afterburn — the slow keeps enemies in burn range longer. 
+A fine choice, friend."
+
+BAD example (too much flavour, not enough data):
+"Ah, dear seeker, the path of the arcane is fraught with peril...
+[3 sentences of nothing] ...weigh the benefits against the cost."
+
+KNOWLEDGE RULES:
+- Answer ONLY from provided context
+- Never invent stats not in context
+- No LaTeX — use plain text: damage = 125 + (spirit_power × 0.97)
+- Heroes are playable CHARACTERS, not abilities or mechanics
+- If context is insufficient:
+  "The archive holds no record of this, friend."
+- NEVER use LaTeX notation
+- NEVER reproduce raw internal IDs like hero_inferno or 
+  upgrade_mystic_reach — use proper names instead"""
 
 def build_prompt(question: str, context: str,
                  history: list[dict] | None = None) -> str:
@@ -55,28 +77,96 @@ def build_prompt(question: str, context: str,
     return "\n\n".join(parts) + "\n"
 
 
-def call_llm(prompt: str) -> str:
-    """POST to Ollama /api/generate and return the response text (blocking)."""
-    try:
-        response = requests.post(
-            f"{OLLAMA_URL}/api/generate",
-            json={
-                "model": LLM_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "options": {
-                    "temperature": 0.1,
-                    "top_p": 0.9
-                },
-                "think": False
-            },
-            timeout=60
+def get_llm(with_tools: bool = False):
+    provider = os.getenv("LLM_PROVIDER", "ollama")
+
+    if provider == "openai":
+        from langchain_openai import ChatOpenAI
+        llm = ChatOpenAI(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            api_key=os.getenv("OPENAI_API_KEY"),
+            temperature=0.1,
+            max_tokens=1000
         )
-        if response.status_code != 200:
-            raise RuntimeError(f"Ollama error {response.status_code}: {response.text}")
-        return response.json()["response"].strip()
-    except Exception as e:
-        raise RuntimeError(f"Failed to call LLM at {OLLAMA_URL}: {e}")
+    elif provider == "azure":
+        from langchain_openai import AzureChatOpenAI
+        llm = AzureChatOpenAI(
+            azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+            api_key=os.getenv("AZURE_OPENAI_KEY"),
+            api_version=os.getenv("AZURE_OPENAI_API_VERSION",
+                                   "2024-02-01"),
+            temperature=0.1,
+            max_tokens=1000
+        )
+    else:  # ollama fallback
+        from langchain_ollama import ChatOllama
+        llm = ChatOllama(
+            model=os.getenv("OLLAMA_MODEL", LLM_MODEL),
+            temperature=0.1,
+            num_predict=1000
+        )
+
+    if with_tools:
+        try:
+            from src.rag.tools import DEADLOCK_TOOLS
+            return llm.bind_tools(DEADLOCK_TOOLS)
+        except ImportError:
+            # Fallback if tools.py is not yet created or accessible
+            return llm
+    return llm
+
+
+def call_llm(prompt: str) -> str:
+    from langchain_core.messages import HumanMessage
+    llm = get_llm(with_tools=False)
+    response = llm.invoke([HumanMessage(content=prompt)])
+    return response.content.strip()
+
+
+def call_llm_with_tools(prompt: str, history: list[dict] | None = None) -> str:
+    from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
+    from src.rag.tools import DEADLOCK_TOOLS
+
+    history_messages = []
+    for msg in (history or [])[-6:]:
+        if msg["role"] == "user":
+            history_messages.append(HumanMessage(content=msg["content"]))
+        elif msg["role"] == "assistant":
+            history_messages.append(AIMessage(content=msg["content"]))
+
+    messages = history_messages + [HumanMessage(content=prompt)]
+
+    llm_with_tools = get_llm(with_tools=True)
+
+    print(f"[DEBUG rag] Starting tool-calling loop...", flush=True)
+    for _ in range(5):
+        response = llm_with_tools.invoke(messages)
+        messages.append(response)
+
+        if not response.tool_calls:
+            print("[DEBUG rag] No more tool calls. LLM provided final answer.", flush=True)
+            break
+
+        for tc in response.tool_calls:
+            print(f"[DEBUG rag] LLM triggered tool call: {tc['name']} with args: {tc['args']}", flush=True)
+            tool_fn = next(
+                (t for t in DEADLOCK_TOOLS if t.name == tc["name"]),
+                None
+            )
+            try:
+                result = tool_fn.invoke(tc["args"]) if tool_fn \
+                    else json.dumps({"error": f"Unknown tool: {tc['name']}"})
+            except Exception as e:
+                result = json.dumps({"error": str(e)})
+
+            print(f"[DEBUG rag] Tool {tc['name']} returned: {result}", flush=True)
+            messages.append(ToolMessage(
+                content=str(result),
+                tool_call_id=tc["id"]
+            ))
+
+    return response.content.strip()
 
 
 def call_llm_stream(prompt: str):
@@ -127,9 +217,15 @@ def ask(
     verbose: bool = False
 ) -> tuple[str, list[dict]]:
     """Main RAG pipeline. Returns (answer, sources)."""
-    route, context, results = _get_route_and_context(question, history, verbose)
+    route, context, results = get_route_and_context(question, history, verbose)
     prompt = build_prompt(question, context, history)
-    answer = call_llm(prompt)
+
+    needs_tools = any(kw in question.lower() for kw in CALC_KEYWORDS)
+    if needs_tools:
+        answer = call_llm_with_tools(prompt, history)
+    else:
+        answer = call_llm(prompt)
+        
     return answer, results
 
 
@@ -144,7 +240,7 @@ def ask_stream(
     print(f"[DEBUG rag] ask_stream started: {question!r}", flush=True)
 
     print(f"[DEBUG rag] step 1: routing + retrieval...", flush=True)
-    route, context, results = _get_route_and_context(question, history, verbose)
+    route, context, results = get_route_and_context(question, history, verbose)
     print(f"[DEBUG rag] step 1 done in {time.time()-_t0:.2f}s — {len(results)} results, route={route.get('collections')}", flush=True)
 
     yield "sources", results
@@ -159,7 +255,7 @@ def ask_stream(
     print(f"[DEBUG rag] step 3 done — total {time.time()-_t0:.2f}s", flush=True)
 
 
-def _get_route_and_context(question: str, history: list[dict] | None, verbose: bool):
+def get_route_and_context(question: str, history: list[dict] | None, verbose: bool):
     """Shared logic for routing and context preparation."""
     route = route_query(question)
 
@@ -173,13 +269,18 @@ def _get_route_and_context(question: str, history: list[dict] | None, verbose: b
         with open(HEROES_INDEX_PATH, encoding="utf-8") as f:
             all_heroes = json.load(f)
 
+        _diff_label = {1: "beginner", 2: "intermediate", 3: "advanced"}
         lines = []
         for h in all_heroes:
             w  = h.get("weapon", {})
             s  = h.get("base_stats", {})
             sc = h.get("scaling_per_level", {})
+            complexity = h.get("complexity")
+            diff = f"{complexity}/3 ({_diff_label.get(complexity, 'unknown')})"
             lines.append(
                 f"{h['name']} | {h['hero_type']} | "
+                f"difficulty: {diff} | "
+                f"tags: {', '.join(h.get('tags', {}).get('playstyle', []))} | "
                 f"health: {s.get('health')} | "
                 f"bullet_dmg: {w.get('bullet_damage')} | "
                 f"rps: {w.get('rounds_per_sec')} | "

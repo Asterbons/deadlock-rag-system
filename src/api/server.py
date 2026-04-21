@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+from langchain_community.callbacks import get_openai_callback
 import glob
 import asyncio
 import requests
@@ -217,50 +218,75 @@ def get_item(item_id: str):
     raise HTTPException(status_code=404, detail=f"Item '{item_id}' not found")
 
 
+async def stream_ask(question: str, history: list):
+    from langchain_core.messages import HumanMessage
+    from src.rag.rag import get_llm, build_prompt, CALC_KEYWORDS, get_route_and_context
+
+    route, context, results = get_route_and_context(question, history, verbose=True)
+    prompt = build_prompt(question, context, history)
+
+    needs_tools = any(
+        kw in question.lower() for kw in CALC_KEYWORDS
+    )
+
+    usage_data = {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0
+    }
+
+    if needs_tools:
+        from src.rag.rag import call_llm_with_tools
+        with get_openai_callback() as cb:
+            answer = call_llm_with_tools(prompt, history)
+            usage_data = {
+                "prompt_tokens": cb.prompt_tokens,
+                "completion_tokens": cb.completion_tokens,
+                "total_tokens": cb.total_tokens,
+                "cost_usd": round(cb.total_cost, 6)
+            }
+        yield f"data: {json.dumps({'type': 'token', 'content': answer})}\n\n"
+    else:
+        # stream tokens via LangChain
+        llm = get_llm(with_tools=False)
+        full_response = ""
+        with get_openai_callback() as cb:
+            async for chunk in llm.astream(prompt):
+                if chunk.content:
+                    full_response += chunk.content
+                    yield f"data: {json.dumps({'type': 'token', 'content': chunk.content})}\n\n"
+            
+            usage_data = {
+                "prompt_tokens": cb.prompt_tokens,
+                "completion_tokens": cb.completion_tokens,
+                "total_tokens": cb.total_tokens,
+                "cost_usd": round(cb.total_cost, 6)
+            }
+
+    # sources
+    sources = [
+        {
+            "type": r["type"],
+            "name": r["metadata"].get("name") or
+                    r["metadata"].get("hero") or
+                    r["metadata"].get("id", ""),
+            "score": round(r["score"], 4)
+        }
+        for r in results
+    ]
+    yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
+
+    # yield usage BEFORE done
+    yield f"data: {json.dumps({'type': 'usage', **usage_data})}\n\n"
+
+    yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+
 @app.post("/api/ask")
 async def ask_rag(request: AskRequest):
-    import time
+    return StreamingResponse(stream_ask(request.question, request.history), media_type="text/event-stream")
 
-    def event_stream():
-        _t0 = time.time()
-        print(f"[DEBUG server] /api/ask event_stream started: {request.question!r}", flush=True)
-        try:
-            for msg_type, content in ask_stream(request.question, request.history):
-                if msg_type == "token":
-                    yield f"data: {json.dumps({'type': 'token', 'content': content})}\n\n"
-
-                elif msg_type == "sources":
-                    print(f"[DEBUG server] sending sources ({len(content)} results) at {time.time()-_t0:.2f}s", flush=True)
-                    sources_data = []
-                    for r in content:
-                        meta  = r["metadata"]
-                        ctype = r["type"]
-                        if ctype == "hero":
-                            label = meta.get("name", meta.get("hero", "Unknown"))
-                        elif ctype == "ability":
-                            hero_name    = meta.get("hero_name", meta.get("hero", ""))
-                            ability_name = meta.get("name", "Unknown Ability")
-                            label = f"{ability_name} ({hero_name})"
-                        elif ctype == "item":
-                            label = meta.get("name", meta.get("id", "Unknown"))
-                        else:
-                            label = meta.get("name", "Unknown")
-                        sources_data.append({
-                            "score":    round(r["score"], 4),
-                            "type":     ctype,
-                            "label":    label,
-                            "metadata": meta,
-                        })
-                    yield f"data: {json.dumps({'type': 'sources', 'sources': sources_data})}\n\n"
-
-            print(f"[DEBUG server] event_stream done at {time.time()-_t0:.2f}s, sending 'done'", flush=True)
-            yield 'data: {"type": "done"}\n\n'
-
-        except Exception as e:
-            print(f"[DEBUG server] event_stream error at {time.time()-_t0:.2f}s: {e}", flush=True)
-            yield f"data: {json.dumps({'type': 'error', 'content': str(e)})}\n\n"
-
-    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 # ── Static assets ─────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Message } from './Message'
 import { WheelMark } from './WheelMark'
-import type { ChatMessage } from '../types/api'
+import type { ChatMessage, UsageData } from '../types/api'
 
 const SUGGESTIONS = [
   'What is the base health of Infernus?',
@@ -15,6 +15,8 @@ interface Props {
   isLoading: boolean
   sendMessage: (q: string) => void
   clearHistory: () => void
+  lastUsage: UsageData | null
+  sessionUsage: UsageData
 }
 
 function EmptyState({ onPick }: { onPick: (q: string) => void }) {
@@ -46,7 +48,7 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   )
 }
 
-export function ChatWindow({ messages, isLoading, sendMessage, clearHistory }: Props) {
+export function ChatWindow({ messages, isLoading, sendMessage, clearHistory, lastUsage, sessionUsage }: Props) {
   const [input, setInput] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -124,6 +126,30 @@ export function ChatWindow({ messages, isLoading, sendMessage, clearHistory }: P
           Enter to send · Shift+Enter for newline
         </div>
       </div>
+
+      {lastUsage && (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '6px 20px',
+          fontSize: '10px',
+          color: 'var(--fg-3)',
+          borderTop: '1px solid var(--border-1)',
+          background: 'var(--bg-app)',
+          fontFamily: 'var(--font-mono)',
+          letterSpacing: '0.02em',
+          opacity: 0.8
+        }}>
+          <span>
+            LAST: {lastUsage.prompt_tokens.toLocaleString()} IN + {lastUsage.completion_tokens.toLocaleString()} OUT = {lastUsage.total_tokens.toLocaleString()} TOKENS
+            {lastUsage.cost_usd > 0 && ` ($${lastUsage.cost_usd < 0.01 ? (lastUsage.cost_usd * 100).toFixed(3) + '¢' : lastUsage.cost_usd.toFixed(4)})`}
+          </span>
+          <span>
+            SESSION: {sessionUsage.total_tokens.toLocaleString()} TOKENS
+            {sessionUsage.cost_usd > 0 && ` ($${sessionUsage.cost_usd.toFixed(4)})`}
+          </span>
+        </div>
+      )}
     </div>
   )
 }

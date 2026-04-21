@@ -31,13 +31,15 @@ function parseRoute(hash: string) {
 }
 
 function ConsultPage() {
-  const { messages, isLoading, sendMessage, clearHistory } = useChat()
+  const { messages, isLoading, sendMessage, clearHistory, lastUsage, sessionUsage } = useChat()
   return (
     <ChatWindow
       messages={messages}
       isLoading={isLoading}
       sendMessage={sendMessage}
       clearHistory={clearHistory}
+      lastUsage={lastUsage}
+      sessionUsage={sessionUsage}
     />
   )
 }

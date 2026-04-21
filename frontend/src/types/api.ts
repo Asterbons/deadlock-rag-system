@@ -77,8 +77,16 @@ export interface HealthStatus {
   qdrant: boolean
 }
 
+export interface UsageData {
+  prompt_tokens: number
+  completion_tokens: number
+  total_tokens: number
+  cost_usd: number
+}
+
 export type SSEEvent =
   | { type: 'token'; content: string }
   | { type: 'sources'; sources: Source[] }
+  | { type: 'usage' } & UsageData
   | { type: 'done' }
   | { type: 'error'; content: string }
