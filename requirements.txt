@@ -1,0 +1,11 @@
+qdrant-client
+fastapi
+uvicorn
+requests
+apscheduler
+langchain-core
+langchain-community
+langchain-ollama
+langchain-openai
+openai
+python-dotenv
