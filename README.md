@@ -7,7 +7,9 @@ A data pipeline and RAG (Retrieval-Augmented Generation) system for Valve's *Dea
 No `requirements.txt` — install dependencies manually:
 
 ```bash
-pip install qdrant-client fastapi uvicorn requests apscheduler
+pip install qdrant-client fastapi uvicorn requests apscheduler \
+    langchain-core langchain-community langchain-ollama langchain-openai \
+    python-dotenv
 ```
 
 **External services required at runtime:**
@@ -20,8 +22,30 @@ pip install qdrant-client fastapi uvicorn requests apscheduler
 
 Ollama models needed:
 ```bash
-ollama pull mxbai-embed-large   # embeddings
-ollama pull qwen2.5:7b          # LLM
+ollama pull mxbai-embed-large                       # embeddings
+ollama pull deepseek-r1:7b-qwen-distill-q4_K_M     # LLM (default)
+```
+
+### LLM provider
+
+The system defaults to Ollama. To switch providers, create a `.env` file in the project root:
+
+```ini
+# Ollama (default — no key required)
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=deepseek-r1:7b-qwen-distill-q4_K_M
+
+# OpenAI
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4o-mini
+
+# Azure OpenAI
+LLM_PROVIDER=azure
+AZURE_OPENAI_KEY=...
+AZURE_OPENAI_ENDPOINT=https://<resource>.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT=<deployment-name>
+AZURE_OPENAI_API_VERSION=2024-02-01
 ```
 
 ## Pipeline
@@ -67,9 +91,13 @@ UPDATE_INTERVAL_HOURS = 6  # supports decimals: 0.5 = 30 min, 24 = daily
 ### Runtime
 
 ```bash
-# Start the API + web UI
+# Start the API + web UI (server-rendered pages)
 python src/api/server.py
 # → http://localhost:8000
+
+# Or start the React frontend (dev mode)
+cd frontend && npm install && npm run dev
+# → http://localhost:5173
 
 # Or use the interactive CLI
 python src/rag/rag.py
@@ -107,8 +135,9 @@ Qdrant collections:
         ↓  Query time
 src/rag/router.py    → classifies question, picks collections
 src/rag/retriever.py → embeds query, searches Qdrant, returns top chunks
-src/rag/rag.py       → builds prompt, calls LLM (streaming)
-src/api/server.py    → FastAPI, SSE streaming to web UI
+src/rag/tools.py     → tool-callable functions for exact calculations
+src/rag/rag.py       → builds prompt, calls LLM (streaming), invokes tools when needed
+src/api/server.py    → FastAPI, SSE streaming to web UI, token usage reporting
 ```
 
 **Why each piece exists:**
@@ -121,7 +150,8 @@ src/api/server.py    → FastAPI, SSE streaming to web UI
 | Qdrant | Stores vectors + full text payloads; enables cosine similarity search |
 | Router | Classifies the query to pick the right collections and apply hero filters |
 | Retriever | Finds the top-k most semantically relevant chunks for a query |
-| LLM | Reads retrieved chunks as context, generates a grounded answer |
+| Tools | Four callable functions invoked by the LLM for exact calculations: ability damage scaling, hero DPS, hero stat ranking, and item lookup |
+| LLM | Reads retrieved chunks as context, generates a grounded answer; invokes tools for calculation-heavy queries |
 
 ## Project Structure
 
@@ -150,6 +180,7 @@ dlrag/
 │   │   ├── indexer.py                # Loads chunks into Qdrant
 │   │   ├── retriever.py              # Embeds query + searches Qdrant
 │   │   ├── router.py                 # Query classification
+│   │   ├── tools.py                  # Tool-callable functions for exact calculations
 │   │   └── rag.py                    # Full RAG pipeline + streaming
 │   ├── api/
 │   │   └── server.py                 # FastAPI server + page routes + REST API
@@ -179,6 +210,29 @@ dlrag/
 | `GET /api/items` | All items; optional `?slot=weapon` and `?tier=2` filters |
 | `GET /api/items/{item_id}` | Single item by ID |
 | `POST /api/ask` | Streaming SSE RAG query (request body: `{question, history}`) |
+
+## Tool calling
+
+For calculation-heavy questions the LLM automatically calls one or more of four tools rather than guessing numbers from context:
+
+| Tool | Triggered when asking about |
+|---|---|
+| `calculate_ability_damage` | Ability damage at a given spirit power (e.g. "How much damage at 150 spirit?") |
+| `calculate_hero_dps` | Burst / sustained DPS of a hero's weapon |
+| `compare_hero_stat` | Which hero has the highest/lowest value for any stat (health, bullet_damage, etc.) |
+| `get_item_info` | Full stats and effects of a specific shop item |
+
+The RAG pipeline detects keywords such as *calculate*, *dps*, *how much damage*, *who has the highest*, *compare*, *scale* in the question and routes to `call_llm_with_tools` instead of the plain streaming path.
+
+## Token usage monitoring
+
+The React chat UI displays per-query and cumulative session token counts at the bottom of the chat panel:
+
+```
+LAST: 1 234 IN + 87 OUT = 1 321 TOKENS ($0.0002)   SESSION: 4 102 TOKENS ($0.0007)
+```
+
+Usage data is emitted by the server as a `type: usage` SSE event after each response and is only shown when a cost-bearing provider (OpenAI / Azure) is active; counts will be zero for Ollama.
 
 ## Key concepts
 
