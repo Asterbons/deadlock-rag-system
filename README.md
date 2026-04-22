@@ -4,12 +4,8 @@ A data pipeline and RAG (Retrieval-Augmented Generation) system for Valve's *Dea
 
 ## Setup
 
-No `requirements.txt` — install dependencies manually:
-
 ```bash
-pip install qdrant-client fastapi uvicorn requests apscheduler \
-    langchain-core langchain-community langchain-ollama langchain-openai \
-    python-dotenv
+pip install -r requirements.txt
 ```
 
 **External services required at runtime:**
