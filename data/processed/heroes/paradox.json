@@ -6,16 +6,16 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Disruptor",
       "Calculated",
+      "Disruptor",
       "Tactician"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "spirit",
-      "bullet"
+      "bullet",
+      "spirit"
     ],
     "utility": [
       "slow"

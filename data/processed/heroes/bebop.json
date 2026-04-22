@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Bomb",
       "Punch",
-      "Hook"
+      "Hook",
+      "Bomb"
     ],
     "playstyle": [
       "brawler"

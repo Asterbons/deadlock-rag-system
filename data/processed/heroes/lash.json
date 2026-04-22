@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
+      "Initiator",
       "High Flying",
-      "Arrogant",
-      "Initiator"
+      "Arrogant"
     ],
     "playstyle": [
       "assassin"
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "heal"
+      "heal",
+      "slow"
     ]
   },
   "base_stats": {

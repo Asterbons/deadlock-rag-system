@@ -6,9 +6,9 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Rat-a-Tat",
       "Slippery",
-      "Gunner"
+      "Gunner",
+      "Rat-a-Tat"
     ],
     "playstyle": [
       "assassin"

@@ -6,9 +6,9 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "Disruptor",
+      "Rock Solid",
       "Team-up",
-      "Rock Solid"
+      "Disruptor"
     ],
     "playstyle": [
       "marksman"
@@ -17,9 +17,9 @@
       "spirit"
     ],
     "utility": [
+      "stun",
       "slow",
-      "heal",
-      "stun"
+      "heal"
     ]
   },
   "base_stats": {

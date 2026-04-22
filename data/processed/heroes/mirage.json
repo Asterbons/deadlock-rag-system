@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Bodyguard",
       "Focused",
+      "Bodyguard",
       "Traveller"
     ],
     "playstyle": [
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "heal"
+      "heal",
+      "slow"
     ]
   },
   "base_stats": {

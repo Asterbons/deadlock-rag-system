@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Can't",
       "You",
+      "Can't",
       "Kill Me"
     ],
     "playstyle": [
@@ -17,9 +17,9 @@
       "spirit"
     ],
     "utility": [
-      "slow",
+      "stun",
       "heal",
-      "stun"
+      "slow"
     ]
   },
   "base_stats": {

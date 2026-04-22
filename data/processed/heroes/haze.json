@@ -6,9 +6,9 @@
   "complexity": 1,
   "tags": {
     "flavor": [
-      "Stealthy",
       "Lethal",
-      "Assassin"
+      "Assassin",
+      "Stealthy"
     ],
     "playstyle": [
       "assassin"

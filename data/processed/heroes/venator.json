@@ -6,20 +6,20 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Devout",
       "Tactical",
-      "Arms Expert"
+      "Arms Expert",
+      "Devout"
     ],
     "playstyle": [
       "marksman"
     ],
     "damage_type": [
-      "spirit",
-      "bullet"
+      "bullet",
+      "spirit"
     ],
     "utility": [
-      "heal",
-      "stun"
+      "stun",
+      "heal"
     ]
   },
   "base_stats": {

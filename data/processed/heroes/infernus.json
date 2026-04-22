@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Explosive",
-      "Arsonist",
-      "Burn Rubber"
+      "Burn Rubber",
+      "Arsonist"
     ],
     "playstyle": [
       "marksman"
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "stun"
+      "stun",
+      "slow"
     ]
   },
   "base_stats": {

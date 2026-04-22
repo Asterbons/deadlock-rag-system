@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Disruptor",
       "Gooey",
-      "Evasive"
+      "Evasive",
+      "Disruptor"
     ],
     "playstyle": [
       "mystic"
@@ -17,9 +17,9 @@
       "spirit"
     ],
     "utility": [
+      "stun",
       "slow",
-      "heal",
-      "stun"
+      "heal"
     ]
   },
   "base_stats": {

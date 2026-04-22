@@ -6,9 +6,9 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Area Denial",
+      "Morbid",
       "Necromancer",
-      "Morbid"
+      "Area Denial"
     ],
     "playstyle": [
       "marksman"
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "heal"
+      "heal",
+      "slow"
     ]
   },
   "base_stats": {

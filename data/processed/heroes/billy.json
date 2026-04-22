@@ -6,8 +6,8 @@
   "complexity": 3,
   "tags": {
     "flavor": [
-      "G.O.A.T.",
       "Chaotic",
+      "G.O.A.T.",
       "Punk"
     ],
     "playstyle": [
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "heal"
+      "heal",
+      "slow"
     ]
   },
   "base_stats": {

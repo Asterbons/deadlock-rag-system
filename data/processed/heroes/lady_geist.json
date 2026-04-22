@@ -7,8 +7,8 @@
   "tags": {
     "flavor": [
       "Self Damage",
-      "Fatale",
-      "Lifesteal"
+      "Lifesteal",
+      "Fatale"
     ],
     "playstyle": [
       "mystic"
@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "slow",
-      "heal"
+      "heal",
+      "slow"
     ]
   },
   "base_stats": {

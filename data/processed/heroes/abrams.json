@@ -17,8 +17,8 @@
       "spirit"
     ],
     "utility": [
-      "heal",
-      "stun"
+      "stun",
+      "heal"
     ]
   },
   "base_stats": {

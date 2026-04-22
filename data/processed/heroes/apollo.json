@@ -6,8 +6,8 @@
   "complexity": 2,
   "tags": {
     "flavor": [
-      "Finesse",
       "A Cut Above",
+      "Finesse",
       "Mobility"
     ],
     "playstyle": [
@@ -17,9 +17,9 @@
       "spirit"
     ],
     "utility": [
+      "stun",
       "slow",
-      "heal",
-      "stun"
+      "heal"
     ]
   },
   "base_stats": {
