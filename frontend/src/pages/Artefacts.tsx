@@ -8,6 +8,7 @@ interface Item {
   cost?: number
   description: string
   stats?: Record<string, string | number>
+  image?: string
 }
 
 const SLOT_STYLES: Record<string, { label: string; fg: string; bg: string; bd: string; accent: string }> = {
@@ -44,6 +45,9 @@ function ArtefactCard({ item }: { item: Item }) {
       onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border-1)'; e.currentTarget.style.boxShadow = 'none' }}
     >
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
+        {item.image && (
+          <img src={item.image} alt={item.name} style={{ width: 40, height: 40, borderRadius: 'var(--r-1)', objectFit: 'cover', border: `1px solid var(--border-2)` }} />
+        )}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--dl-bone)', lineHeight: 1.2 }}>
             {item.name}

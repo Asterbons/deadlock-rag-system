@@ -7,12 +7,14 @@ interface HeroIndex {
   hero_type: string
   complexity: number
   base_health?: number
+  image?: string
 }
 
 const TYPE_COLORS: Record<string, { fg: string; bg: string; bd: string; accent: string }> = {
   Marksman: { fg: 'var(--dl-amber-300)',  bg: 'rgba(214,147,33,0.16)',  bd: 'var(--dl-amber-700)',  accent: 'var(--dl-amber-500)' },
   Brawler:  { fg: 'var(--dl-blood-300)',  bg: 'rgba(163,49,40,0.16)',   bd: 'var(--dl-blood-700)',  accent: 'var(--dl-blood-500)' },
   Mystic:   { fg: 'var(--dl-spirit-300)', bg: 'rgba(138,75,209,0.16)',  bd: 'var(--dl-spirit-700)', accent: 'var(--dl-spirit-500)' },
+  Assassin: { fg: 'var(--dl-teal-300)',   bg: 'rgba(55,160,150,0.16)',   bd: 'var(--dl-teal-700)',   accent: 'var(--dl-teal-500)' },
 }
 
 function getTypeColors(type: string) {
@@ -59,6 +61,9 @@ function HeroCard({ hero }: { hero: HeroIndex }) {
         overflow: 'hidden',
       }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+        {hero.image && (
+          <img src={hero.image} alt={hero.name} style={{ width: 48, height: 48, borderRadius: 'var(--r-1)', objectFit: 'cover', border: `1px solid var(--border-1)` }} />
+        )}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--dl-bone)', lineHeight: 1.15 }}>
             {hero.name}
@@ -94,7 +99,7 @@ function HeroCard({ hero }: { hero: HeroIndex }) {
   )
 }
 
-const TYPE_LABELS: Record<string, string> = { All: 'All Combatants', Marksman: 'Marksmen', Brawler: 'Brawlers', Mystic: 'Mystics' }
+const TYPE_LABELS: Record<string, string> = { All: 'All Combatants', Marksman: 'Marksmen', Brawler: 'Brawlers', Mystic: 'Mystics', Assassin: 'Assassins' }
 
 export function Combatants() {
   const [heroes, setHeroes] = useState<HeroIndex[]>([])

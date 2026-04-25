@@ -65,24 +65,11 @@ def _serve(filename: str) -> FileResponse:
 # ── Page routes ──────────────────────────────────────────────────────────────
 
 @app.get("/")
-def serve_landing():
-    return _serve("landing.html")
+def serve_index():
+    return _serve("index.html")
 
-@app.get("/chat")
-def serve_chat():
-    return _serve("chat.html")
-
-@app.get("/heroes")
-def serve_heroes_page():
-    return _serve("heroes.html")
-
-@app.get("/heroes/{hero_id}")
-def serve_hero_detail(hero_id: str):
-    return _serve("hero_detail.html")
-
-@app.get("/items")
-def serve_items_page():
-    return _serve("items.html")
+# All other page routes are handled by the React SPA via hash routing.
+# The legacy .html routes are removed to prevent 404 errors.
 
 
 # ── API endpoints ─────────────────────────────────────────────────────────────
@@ -111,6 +98,8 @@ def get_stats():
     heroes_count = 0
     abilities_count = 0
     items_count = 0
+    lore_count = 0
+    guides_count = 0
     last_updated = None
 
     index_path = os.path.join(DATA_DIR, "heroes_index.json")
@@ -126,6 +115,10 @@ def get_stats():
                 abilities_count += 1
             elif t == "item":
                 items_count += 1
+            elif t == "wiki_lore":
+                lore_count += 1
+            elif t == "wiki_guide":
+                guides_count += 1
 
     # Fallback: count items from shop.json if chunks gave 0
     if items_count == 0:
@@ -145,6 +138,8 @@ def get_stats():
         "heroes": heroes_count,
         "abilities": abilities_count,
         "items": items_count,
+        "lore": lore_count,
+        "guides": guides_count,
         "last_updated": last_updated,
         "llm_model": LLM_MODEL,
         "embedding_model": EMBEDDING_MODEL,
@@ -225,6 +220,22 @@ async def stream_ask(question: str, history: list):
     route, context, results = get_route_and_context(question, history, verbose=True)
     prompt = build_prompt(question, context, history)
 
+    # Emit sources immediately so they appear before the LLM answer starts streaming
+    sources = [
+        {
+            "type": r["type"],
+            "label": (r["metadata"].get("name") or
+                      r["metadata"].get("hero_name") or
+                      r["metadata"].get("title") or
+                      r["metadata"].get("hero") or
+                      r["metadata"].get("id", "")),
+            "score": round(r["score"], 4),
+            "metadata": r["metadata"]
+        }
+        for r in results
+    ]
+    yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
+
     needs_tools = any(
         kw in question.lower() for kw in CALC_KEYWORDS
     )
@@ -256,7 +267,7 @@ async def stream_ask(question: str, history: list):
                 if chunk.content:
                     full_response += chunk.content
                     yield f"data: {json.dumps({'type': 'token', 'content': chunk.content})}\n\n"
-            
+
             usage_data = {
                 "prompt_tokens": cb.prompt_tokens,
                 "completion_tokens": cb.completion_tokens,
@@ -264,22 +275,7 @@ async def stream_ask(question: str, history: list):
                 "cost_usd": round(cb.total_cost, 6)
             }
 
-    # sources
-    sources = [
-        {
-            "type": r["type"],
-            "name": r["metadata"].get("name") or
-                    r["metadata"].get("hero") or
-                    r["metadata"].get("id", ""),
-            "score": round(r["score"], 4)
-        }
-        for r in results
-    ]
-    yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
-
-    # yield usage BEFORE done
     yield f"data: {json.dumps({'type': 'usage', **usage_data})}\n\n"
-
     yield f"data: {json.dumps({'type': 'done'})}\n\n"
 
 

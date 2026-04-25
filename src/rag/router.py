@@ -67,6 +67,8 @@ Available collections:
 - "hero": hero base stats, weapon stats, scaling per level
 - "ability": hero abilities, damage formulas, effects, upgrades
 - "item": shop items, procs, synergies, upgrade chains
+- "lore": game world story, hero backstories, lore details
+- "guide": game mechanics (laning, parrying, souls), hero playstyle strategy, hero descriptions
 
 Hero IDs available (use exact spelling for hero_filter):
 {hero_ids}
@@ -80,13 +82,15 @@ Rules:
   "what should X buy", "best build for X") -> collections: ["hero", "ability", "item"],
   hero_filter: hero_id, top_k: 6
 - General items/shop questions (no specific hero) -> collections: ["item"]
-- Full hero overview -> collections: ["hero", "ability"],
+- Lore/story questions (about the world, hero background) -> collections: ["lore"]
+- Mechanics/how-to/strategy questions (e.g. "how to parry", "laning guide", "hero strategy") -> collections: ["guide"]
+- Full hero overview -> collections: ["hero", "ability", "guide"],
   hero_filter: hero_id, top_k: 6
-- General/mixed -> collections: ["hero", "ability", "item"], top_k: 3
+- General/mixed -> collections: ["hero", "ability", "item", "lore", "guide"], top_k: 3
 
 Return ONLY valid JSON:
 {{
-  "collections": ["hero"|"ability"|"item"],
+  "collections": ["hero"|"ability"|"item"|"lore"|"guide"],
   "use_full_index": false,
   "hero_filter": "hero_inferno" or null,
   "top_k": 3,
@@ -164,6 +168,17 @@ _ITEM_KW = [
     "gold", "purchase", "recommend", "worth",
     "should i get",
 ]
+_LORE_KW = [
+    "lore", "story", "backstory", "history", "background",
+    "who is", "where from", "born", "created", "origin",
+    "execution", "past", "night", "happened", "lore",
+]
+_GUIDE_KW = [
+    "guide", "how to", "strategy", "playstyle", "mechanic",
+    "laning", "parry", "soul", "jungl", "creep", "boss",
+    "objective", "tip", "trick", "learn", "how do i",
+    "description", "overview",
+]
 
 
 def _has_keyword(q: str, keywords: list[str]) -> bool:
@@ -205,14 +220,24 @@ def keyword_route(question: str) -> dict:
     # 3. FULL HERO INFO (hero + overview keywords)
     if hero_id is not None and _has_keyword(q, _OVERVIEW_KW):
         return {
-            "collections": ["hero", "ability"],
+            "collections": ["hero", "ability", "guide", "lore"],
             "use_full_index": False,
             "hero_filter": hero_id,
-            "top_k": 7,
+            "top_k": 8,
             "confidence": "high",
         }
 
-    # 4. HERO STATS (hero + stats keywords)
+    # 4. HERO LORE/STORY (hero + lore keywords)
+    if hero_id is not None and _has_keyword(q, _LORE_KW):
+        return {
+            "collections": ["lore"],
+            "use_full_index": False,
+            "hero_filter": hero_id,
+            "top_k": 5,
+            "confidence": "high",
+        }
+
+    # 5. HERO STATS (hero + stats keywords)
     if hero_id is not None and _has_keyword(q, _STATS_KW):
         return {
             "collections": ["hero"],
@@ -242,11 +267,31 @@ def keyword_route(question: str) -> dict:
             "confidence": "high",
         }
 
-    # 7. DEFAULT (nothing matched)
+    # 7. LORE
+    if _has_keyword(q, _LORE_KW):
+        return {
+            "collections": ["lore"],
+            "use_full_index": False,
+            "hero_filter": hero_id,
+            "top_k": 3,
+            "confidence": "high",
+        }
+
+    # 8. GUIDES
+    if _has_keyword(q, _GUIDE_KW):
+        return {
+            "collections": ["guide"],
+            "use_full_index": False,
+            "hero_filter": hero_id,
+            "top_k": 3,
+            "confidence": "high",
+        }
+
+    # 9. DEFAULT (nothing matched)
     return {
-        "collections": ["hero", "ability", "item"],
+        "collections": ["hero", "ability", "item", "lore", "guide"],
         "use_full_index": False,
-        "hero_filter": None,
+        "hero_filter": hero_id,
         "top_k": 3,
         "confidence": "low",  # uncertain -- send to GPT
     }

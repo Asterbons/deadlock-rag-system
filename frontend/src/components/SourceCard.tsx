@@ -12,6 +12,7 @@ interface Props {
 
 export function SourceCard({ source }: Props) {
   const c = typeStyles[source.type] ?? typeStyles.hero
+  const imageUrl = typeof source.metadata?.image === 'string' ? source.metadata.image : undefined
   return (
     <div style={{
       display: 'flex', alignItems: 'center', gap: 10,
@@ -23,6 +24,13 @@ export function SourceCard({ source }: Props) {
         padding: '2px 7px', borderRadius: 'var(--r-1)',
         fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
       }}>{source.type}</span>
+      {imageUrl && (
+        <img 
+          src={imageUrl} 
+          alt={source.label} 
+          style={{ width: 24, height: 24, objectFit: 'contain', borderRadius: 4 }} 
+        />
+      )}
       <span style={{ flex: 1, color: 'var(--fg-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
         {source.label}
       </span>

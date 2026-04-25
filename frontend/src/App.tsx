@@ -7,6 +7,7 @@ import { Landing } from './pages/Landing'
 import { Combatants } from './pages/Combatants'
 import { Artefacts } from './pages/Artefacts'
 import { HeroDetail } from './pages/HeroDetail'
+import { AttributesTable } from './pages/AttributesTable'
 
 function useHashRoute() {
   const [hash, setHash] = useState(window.location.hash || '#/')
@@ -27,6 +28,7 @@ function parseRoute(hash: string) {
   if (parts[0] === 'heroes' && parts[1]) return { name: 'hero_detail' as const, id: parts[1] }
   if (parts[0] === 'heroes') return { name: 'combatants' as const }
   if (parts[0] === 'items') return { name: 'artefacts' as const }
+  if (parts[0] === 'attributes') return { name: 'attributes' as const }
   return { name: 'landing' as const }
 }
 
@@ -55,6 +57,7 @@ export default function App() {
     case 'combatants':  screen = <Combatants />; break
     case 'hero_detail': screen = <HeroDetail heroId={route.id} />; break
     case 'artefacts':   screen = <Artefacts />; break
+    case 'attributes':  screen = <AttributesTable />; break
     default:            screen = <Landing />
   }
 

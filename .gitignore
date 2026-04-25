@@ -54,3 +54,6 @@ frontend/*.local
 
 .env
 scratch/
+
+agents.md
+plan.md

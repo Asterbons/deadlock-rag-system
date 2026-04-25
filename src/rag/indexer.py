@@ -24,6 +24,8 @@ COLLECTIONS = {
     "hero":    "deadlock_heroes",
     "ability": "deadlock_abilities",
     "item":    "deadlock_items",
+    "lore":    "deadlock_lore",
+    "guide":   "deadlock_guides",
 }
 
 def check_services():
@@ -61,7 +63,8 @@ def get_embedding(text: str) -> list[float]:
         response.raise_for_status()
         return response.json()["embedding"]
     except Exception as e:
-        print(f"Warning: Failed to get embedding for text: {safe_text[:50]}... Error: {e}")
+        safe_snippet = safe_text[:50].encode('cp1251', errors='replace').decode('cp1251')
+        print(f"Warning: Failed to get embedding for text: {safe_snippet}... Error: {e}")
         return None
 
 _QDRANT_STORAGE = os.path.join(os.path.dirname(__file__), "..", "..", "qdrant_storage", "collections")
@@ -101,7 +104,9 @@ def index_chunks(client: QdrantClient, chunks: list):
         "hero": [],
         "hero_build": [],
         "ability": [],
-        "item": []
+        "item": [],
+        "wiki_lore": [],
+        "wiki_guide": []
     }
 
     for chunk in chunks:
@@ -109,7 +114,7 @@ def index_chunks(client: QdrantClient, chunks: list):
         if ctype in groups:
             groups[ctype].append(chunk)
 
-    counts = {"hero": 0, "ability": 0, "item": 0}
+    counts = {"hero": 0, "ability": 0, "item": 0, "wiki_lore": 0, "wiki_guide": 0}
 
     # hero_build chunks go into the same heroes collection
     COLLECTION_MAP = {
@@ -117,15 +122,20 @@ def index_chunks(client: QdrantClient, chunks: list):
         "hero_build": "deadlock_heroes",
         "ability":    "deadlock_abilities",
         "item":       "deadlock_items",
+        "wiki_lore":  "deadlock_lore",
+        "wiki_guide": "deadlock_guides",
     }
     COUNT_KEY = {
         "hero":       "hero",
         "hero_build": "hero",
         "ability":    "ability",
         "item":       "item",
+        "wiki_lore":  "wiki_lore",
+        "wiki_guide": "wiki_guide",
     }
 
     for ctype, group in groups.items():
+        if not group: continue
         collection_name = COLLECTION_MAP[ctype]
         print(f"Indexing {ctype}s into {collection_name}...")
 
@@ -147,8 +157,15 @@ def index_chunks(client: QdrantClient, chunks: list):
                     key = f"hero_build_{metadata['hero']}"
                 elif ctype == "ability":
                     key = f"ability_{metadata['hero']}_{metadata['slot']}"
-                else: # item
-                    key = f"item_{metadata['id']}"
+                elif ctype == "item":
+                    item_id = metadata.get('id') or metadata.get('item_id')
+                    key = f"item_{item_id}"
+                elif ctype == "wiki_lore":
+                    key = f"wiki_lore_{metadata.get('hero_name', metadata.get('title'))}"
+                elif ctype == "wiki_guide":
+                    key = f"wiki_guide_{metadata.get('hero_name', metadata.get('title'))}_{metadata.get('category')}"
+                else:
+                    key = hashlib.md5(chunk["text"].encode()).hexdigest()
 
                 # Generate a stable 64-bit integer ID from the key string
                 point_id = int(hashlib.md5(key.encode()).hexdigest()[:12], 16)
@@ -220,6 +237,8 @@ def main():
     print(f"Heroes:    {counts['hero']}")
     print(f"Abilities: {counts['ability']}")
     print(f"Items:     {counts['item']}")
+    print(f"Wiki Lore: {counts['wiki_lore']}")
+    print(f"Wiki Guides: {counts['wiki_guide']}")
     print(f"Total:     {sum(counts.values())} chunks indexed")
 
 if __name__ == "__main__":

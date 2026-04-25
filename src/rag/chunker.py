@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import HEROES_INDEX_PATH, HEROES_OUT_DIR, SHOP_JSON_PATH, CHUNKS_JSON_PATH
+from config import HEROES_INDEX_PATH, HEROES_OUT_DIR, SHOP_JSON_PATH, CHUNKS_JSON_PATH, WIKI_DATA_PATH
 
 def round_floats(val):
     if isinstance(val, float):
@@ -76,6 +76,8 @@ def chunk_heroes(index_path, heroes_dir):
             "complexity": h.get("complexity"),
             "hero_type": h.get("hero_type")
         }
+        if "image" in h:
+            stats_metadata["image"] = h["image"]
 
         chunks.append({
             "text": " | ".join([p for p in stats_parts if p]),
@@ -100,6 +102,8 @@ def chunk_heroes(index_path, heroes_dir):
                 "name": h.get("name"),
                 "hero_type": h.get("hero_type")
             }
+            if "image" in h:
+                build_metadata["image"] = h["image"]
 
             chunks.append({
                 "text": " | ".join([p for p in build_parts if p]),
@@ -162,6 +166,10 @@ def chunk_heroes(index_path, heroes_dir):
                     "slot": ability.get("slot"),
                     "cast_type": ability.get("cast_type")
                 }
+                # Ability-specific image first, then fall back to the hero portrait
+                image = ability.get("image") or h.get("image")
+                if image:
+                    ab_metadata["image"] = image
                 
                 matching_ab_index = next((x for x in h.get('abilities', []) if x.get('slot') == ability.get('slot')), None)
                 if matching_ab_index and matching_ab_index.get('effect_types'):
@@ -287,11 +295,13 @@ def chunk_items(shop_path):
                 
             metadata = {
                 "type": "item",
-                "id": item.get("id"),
-                "name": item.get("name"),
-                "slot": item.get("slot"),
-                "tier": item.get("tier")
+                "item_id": item.get('id'),
+                "name": item.get('name'),
+                "tier": item.get('tier'),
+                "slot": item.get('slot')
             }
+            if "image" in item:
+                metadata["image"] = item["image"]
             
             chunks.append({
                 "text": item_text,
@@ -300,9 +310,88 @@ def chunk_items(shop_path):
             
     return chunks
 
+def chunk_wiki(wiki_path):
+    if not os.path.exists(wiki_path):
+        return []
+        
+    with open(wiki_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        
+    # Load heroes index for name -> id mapping
+    with open(HEROES_INDEX_PATH, 'r', encoding='utf-8') as f:
+        heroes_index = json.load(f)
+    name_to_id = {h['name']: h['hero'] for h in heroes_index}
+        
+    chunks = []
+    
+    # 1. Hero Wiki Data
+    for hero_name, hero_data in data.get("heroes", {}).items():
+        hero_id = name_to_id.get(hero_name)
+        
+        # Hero Description (First Guide)
+        if hero_data.get("description"):
+            chunks.append({
+                "text": f"{hero_name} Overview: {hero_data['description']}",
+                "metadata": {
+                    "type": "wiki_guide",
+                    "hero": hero_id,
+                    "hero_name": hero_name,
+                    "category": "hero_description"
+                }
+            })
+            
+        # Hero Lore
+        if hero_data.get("lore"):
+            chunks.append({
+                "text": f"{hero_name} Lore / Backstory:\n{hero_data['lore']}",
+                "metadata": {
+                    "type": "wiki_lore",
+                    "hero": hero_id,
+                    "hero_name": hero_name,
+                    "category": "hero_lore"
+                }
+            })
+            
+        # Hero Strategy
+        if hero_data.get("strategy"):
+            chunks.append({
+                "text": f"{hero_name} Strategy / Playstyle:\n{hero_data['strategy']}",
+                "metadata": {
+                    "type": "wiki_guide",
+                    "hero": hero_id,
+                    "hero_name": hero_name,
+                    "category": "hero_strategy"
+                }
+            })
+            
+    # 2. General Lore
+    for lore_page in data.get("lore", []):
+        chunks.append({
+            "text": f"Lore: {lore_page['title']}\n{lore_page['content']}",
+            "metadata": {
+                "type": "wiki_lore",
+                "title": lore_page['title'],
+                "category": "general_lore"
+            }
+        })
+        
+    # 3. General Guides/Mechanics
+    for guide_page in data.get("guides", []):
+        chunks.append({
+            "text": f"Mechanics/Guide: {guide_page['title']}\n{guide_page['content']}",
+            "metadata": {
+                "type": "wiki_guide",
+                "title": guide_page['title'],
+                "category": "general_mechanics"
+            }
+        })
+        
+    return chunks
+
 def build_all_chunks():
     chunks = chunk_heroes(HEROES_INDEX_PATH, HEROES_OUT_DIR)
     chunks += chunk_items(SHOP_JSON_PATH)
+    chunks += chunk_wiki(WIKI_DATA_PATH)
     return chunks
 
 if __name__ == "__main__":

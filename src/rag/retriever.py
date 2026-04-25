@@ -17,6 +17,8 @@ COLLECTIONS = {
     "hero":    "deadlock_heroes",
     "ability": "deadlock_abilities",
     "item":    "deadlock_items",
+    "lore":    "deadlock_lore",
+    "guide":   "deadlock_guides",
 }
 
 # How many results to return per collection by default
@@ -148,6 +150,10 @@ def format_context(results: list[dict]) -> str:
             label = f"Ability: {meta.get('name')} ({meta.get('hero')}, slot {meta.get('slot')})"
         elif ctype == "item":
             label = f"Item: {meta.get('name')}"
+        elif ctype == "wiki_lore":
+            label = f"Lore: {meta.get('hero_name', meta.get('title'))}"
+        elif ctype == "wiki_guide":
+            label = f"Guide: {meta.get('hero_name', meta.get('title'))}"
         else:
             label = f"{ctype.capitalize()}: {meta.get('name', 'Unknown')}"
             

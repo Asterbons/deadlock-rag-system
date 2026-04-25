@@ -373,7 +373,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/d2/Infernus.png"
   },
   {
     "hero": "hero_gigawatt",
@@ -750,7 +751,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/fe/Seven.png"
   },
   {
     "hero": "hero_hornet",
@@ -1182,7 +1184,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/f3/Vindicta.png"
   },
   {
     "hero": "hero_ghost",
@@ -1568,7 +1571,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/a9/Lady_Geist.png"
   },
   {
     "hero": "hero_atlas",
@@ -1952,7 +1956,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e0/Abrams.png"
   },
   {
     "hero": "hero_wraith",
@@ -2346,7 +2351,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7c/Wraith.png"
   },
   {
     "hero": "hero_forge",
@@ -2780,7 +2786,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/da/McGinnis.png"
   },
   {
     "hero": "hero_chrono",
@@ -3223,7 +3230,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/b0/Paradox.png"
   },
   {
     "hero": "hero_dynamo",
@@ -3569,7 +3577,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/0/05/Dynamo.png"
   },
   {
     "hero": "hero_kelvin",
@@ -3952,7 +3961,8 @@
         "id": "upgrade_trophy_collector",
         "name": "Trophy Collector"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/22/Kelvin.png"
   },
   {
     "hero": "hero_haze",
@@ -4323,7 +4333,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e8/Haze.png"
   },
   {
     "hero": "hero_astro",
@@ -4734,7 +4745,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7a/Holliday.png"
   },
   {
     "hero": "hero_bebop",
@@ -5119,7 +5131,8 @@
         "id": "upgrade_veil_walker",
         "name": "Veil Walker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/46/Bebop.png"
   },
   {
     "hero": "hero_nano",
@@ -5485,7 +5498,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7b/Calico.png"
   },
   {
     "hero": "hero_orion",
@@ -5843,7 +5857,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/8/8b/Grey_Talon.png"
   },
   {
     "hero": "hero_krill",
@@ -6203,7 +6218,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e5/Mo_%26_Krill.png"
   },
   {
     "hero": "hero_shiv",
@@ -6600,7 +6616,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/b6/Shiv.png"
   },
   {
     "hero": "hero_tengu",
@@ -7023,7 +7040,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/3/3f/Ivy.png"
   },
   {
     "hero": "hero_warden",
@@ -7450,7 +7468,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/a5/Warden.png"
   },
   {
     "hero": "hero_yamato",
@@ -7798,7 +7817,8 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/64/Yamato.png"
   },
   {
     "hero": "hero_lash",
@@ -8134,7 +8154,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/bb/Lash.png"
   },
   {
     "hero": "hero_viscous",
@@ -8557,7 +8578,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e9/Viscous.png"
   },
   {
     "hero": "hero_synth",
@@ -8908,7 +8930,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/ee/Pocket.png"
   },
   {
     "hero": "hero_mirage",
@@ -9281,7 +9304,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/fb/Mirage.png"
   },
   {
     "hero": "hero_viper",
@@ -9676,7 +9700,8 @@
         "id": "upgrade_vex_barrier",
         "name": "Reactive Barrier"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/2f/Vyper.png"
   },
   {
     "hero": "hero_magician",
@@ -10013,7 +10038,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/5/54/Sinclair.png"
   },
   {
     "hero": "hero_vampirebat",
@@ -10396,7 +10422,8 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/6b/Mina.png"
   },
   {
     "hero": "hero_drifter",
@@ -10776,7 +10803,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/8/89/Drifter.png"
   },
   {
     "hero": "hero_priest",
@@ -11182,7 +11210,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/db/Venator.png"
   },
   {
     "hero": "hero_frank",
@@ -11529,7 +11558,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/9/90/Victor.png"
   },
   {
     "hero": "hero_bookworm",
@@ -11947,7 +11977,8 @@
         "id": "upgrade_withering_whip",
         "name": "Rusted Barrel"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/2f/Paige.png"
   },
   {
     "hero": "hero_doorman",
@@ -12311,7 +12342,8 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/ae/The_Doorman.png"
   },
   {
     "hero": "hero_punkgoat",
@@ -12706,7 +12738,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/9/95/Billy.png"
   },
   {
     "hero": "hero_necro",
@@ -13152,7 +13185,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/66/Graves.png"
   },
   {
     "hero": "hero_fencer",
@@ -13559,7 +13593,8 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/1/14/Apollo.png"
   },
   {
     "hero": "hero_familiar",
@@ -13942,7 +13977,8 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/4b/Rem.png"
   },
   {
     "hero": "hero_werewolf",
@@ -14380,7 +14416,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/0/0b/Silver.png"
   },
   {
     "hero": "hero_unicorn",
@@ -14741,6 +14778,7 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/49/Celeste.png"
   }
 ]

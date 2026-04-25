@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { WheelMark } from '../components/WheelMark'
 
-interface Stats { heroes: number; abilities: number; items: number; last_updated: string }
+interface Stats { heroes: number; abilities: number; items: number; lore: number; guides: number; last_updated: string }
 
 function StatBlock({ num, label }: { num: string | number; label: string }) {
   return (
@@ -26,7 +26,7 @@ function Step({ num, title, desc }: { num: number; title: string; desc: string }
 const TECH_STACK = ['Python', 'FastAPI', 'Qdrant', 'Ollama', 'mxbai-embed-large', 'qwen2.5:7b', 'Valve KV3', 'APScheduler']
 
 export function Landing() {
-  const [stats, setStats] = useState<Stats>({ heroes: 38, abilities: 152, items: 171, last_updated: '—' })
+  const [stats, setStats] = useState<Stats>({ heroes: 38, abilities: 152, items: 171, lore: 84, guides: 83, last_updated: '—' })
 
   useEffect(() => {
     fetch('/api/stats')
@@ -80,9 +80,13 @@ export function Landing() {
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '24px 8px' }}>
           <StatBlock num={stats.heroes} label="Combatants Catalogued" />
           <div style={{ width: 1, height: 40, background: 'var(--border-1)' }} />
-          <StatBlock num={stats.abilities} label="Arcane Abilities Indexed" />
+          <StatBlock num={stats.abilities} label="Arcane Abilities" />
           <div style={{ width: 1, height: 40, background: 'var(--border-1)' }} />
           <StatBlock num={stats.items} label="Artefacts of Power" />
+          <div style={{ width: 1, height: 40, background: 'var(--border-1)' }} />
+          <StatBlock num={stats.lore} label="Lore Entries" />
+          <div style={{ width: 1, height: 40, background: 'var(--border-1)' }} />
+          <StatBlock num={stats.guides} label="Combat Guides" />
           {stats.last_updated !== '—' && (
             <>
               <div style={{ width: 1, height: 40, background: 'var(--border-1)' }} />

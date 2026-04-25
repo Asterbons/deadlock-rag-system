@@ -43,6 +43,7 @@ export interface HeroAbility {
   targeting: string
   stats: Record<string, number | string>
   effect_types?: string[]
+  image?: string
 }
 
 export interface Hero {
@@ -55,6 +56,7 @@ export interface Hero {
   base_stats: HeroBaseStats
   scaling_per_level: HeroScalingPerLevel
   abilities: HeroAbility[]
+  image?: string
 }
 
 export interface Source {

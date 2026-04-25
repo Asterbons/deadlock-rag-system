@@ -27,6 +27,7 @@ const NAV_LINKS = [
   { href: '#/', label: 'The Archive' },
   { href: '#/chat', label: 'Consult' },
   { href: '#/heroes', label: 'Combatants' },
+  { href: '#/attributes', label: 'Attributes' },
   { href: '#/items', label: 'Artefacts' },
 ]
 

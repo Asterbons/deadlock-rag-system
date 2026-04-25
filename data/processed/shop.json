@@ -178,7 +178,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/8a/Extended_Magazine.png"
     },
     {
       "id": "upgrade_non_player_bonus",
@@ -200,7 +201,8 @@
           "bullet_armor_damage_resist_non_hero"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f8/Monster_Rounds.png"
     },
     {
       "id": "upgrade_high_velocity_mag",
@@ -220,7 +222,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/0e/High-Velocity_Rounds.png"
     },
     {
       "id": "upgrade_close_range",
@@ -243,7 +246,8 @@
           "melee_damage_reduction_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/43/Close_Quarters.png"
     },
     {
       "id": "upgrade_headshot_booster",
@@ -278,7 +282,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/ac/Headshot_Booster.png"
     },
     {
       "id": "upgrade_rapid_rounds",
@@ -296,7 +301,8 @@
           "fire_rate"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/6e/Rapid_Rounds.png"
     },
     {
       "id": "upgrade_medic_bullets",
@@ -324,7 +330,8 @@
           "ability_range",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4c/Restorative_Shot.png"
     },
     {
       "id": "upgrade_pristine_emblem",
@@ -346,7 +353,8 @@
           "spirit_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/8d/Opening_Rounds.png"
     },
     {
       "id": "upgrade_long_range",
@@ -373,7 +381,8 @@
           "bonus_attack_range_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/0a/Long_Range.png"
     },
     {
       "id": "upgrade_slowing_bullets",
@@ -410,7 +419,8 @@
         "scales_with": [
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/db/Slowing_Bullets.png"
     },
     {
       "id": "upgrade_spirit_defense_shredders",
@@ -445,7 +455,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/96/Spirit_Shredder_Bullets.png"
     },
     {
       "id": "upgrade_headshot_booster2",
@@ -522,7 +533,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/5a/Mystic_Shot.png"
     },
     {
       "id": "upgrade_fleetfoot_boots",
@@ -556,7 +568,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/cf/Fleetfoot.png"
     },
     {
       "id": "upgrade_kinetic_sash",
@@ -583,7 +596,8 @@
           "stamina_regen_per_second_percentage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/3e/Kinetic_Dash.png"
     },
     {
       "id": "upgrade_melee_charge",
@@ -613,7 +627,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/ea/Melee_Charge.png"
     },
     {
       "id": "upgrade_intensifying_clip",
@@ -634,7 +649,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/65/Intensifying_Magazine.png"
     },
     {
       "id": "upgrade_blitz_bullets",
@@ -659,7 +675,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/e4/Swift_Striker.png"
     },
     {
       "id": "upgrade_titan_round",
@@ -683,7 +700,8 @@
           "spirit_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d8/Titanic_Magazine.png"
     },
     {
       "id": "upgrade_split_shot",
@@ -722,7 +740,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/04/Split_Shot.png"
     },
     {
       "id": "upgrade_active_reload",
@@ -754,7 +773,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b4/Active_Reload.png"
     },
     {
       "id": "upgrade_weapon_backstabber",
@@ -793,7 +813,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4b/Stalker.png"
     },
     {
       "id": "upgrade_rechargingbullets",
@@ -820,7 +841,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/17/Recharging_Rush.png"
     },
     {
       "id": "upgrade_non_player_bonus_sacrifice",
@@ -862,7 +884,8 @@
           "item_cooldown",
           "level_up_boons"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/eb/Cultist_Sacrifice.png"
     },
     {
       "id": "upgrade_chain_lightning",
@@ -907,7 +930,8 @@
           "spirit_power",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/56/Tesla_Bullets.png"
     },
     {
       "id": "upgrade_hollow_point_rounds",
@@ -944,7 +968,8 @@
           "bullet_armor_damage_resist_reduction"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/30/Hollow_Point.png"
     },
     {
       "id": "upgrade_weighted_shots",
@@ -991,7 +1016,8 @@
         "scales_with": [
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/88/Weighted_Shots.png"
     },
     {
       "id": "upgrade_dps_aura",
@@ -1023,7 +1049,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/60/Heroic_Aura.png"
     },
     {
       "id": "upgrade_berserker",
@@ -1055,7 +1082,8 @@
           "bullet_armor_damage_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/a8/Berserker.png"
     },
     {
       "id": "upgrade_sharpshooter",
@@ -1088,7 +1116,8 @@
           "sprint_speed_bonus"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/25/Sharpshooter.png"
     },
     {
       "id": "upgrade_headhunter",
@@ -1145,7 +1174,8 @@
           "level_up_boons",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/06/Headhunter.png"
     },
     {
       "id": "upgrade_spellslinger_headshots",
@@ -1186,7 +1216,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/42/Spirit_Rend.png"
     },
     {
       "id": "upgrade_close_quarter_combat",
@@ -1227,7 +1258,8 @@
           "health_max"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/79/Point_Blank.png"
     },
     {
       "id": "upgrade_toxic_bullets",
@@ -1273,7 +1305,8 @@
           "spirit_power",
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f0/Toxic_Bullets.png"
     },
     {
       "id": "upgrade_bullet_armor_reduction_aura",
@@ -1298,7 +1331,8 @@
         "scales_with": [
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/08/Hunter%27s_Aura.png"
     },
     {
       "id": "upgrade_thermal_detonator",
@@ -1371,7 +1405,8 @@
           "spirit_power",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/fc/Alchemical_Fire.png"
     },
     {
       "id": "upgrade_blood_tribute",
@@ -1400,7 +1435,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/af/Blood_Tribute.png"
     },
     {
       "id": "upgrade_burst_fire",
@@ -1433,7 +1469,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b0/Burst_Fire.png"
     },
     {
       "id": "upgrade_reinforcing_casings",
@@ -1460,7 +1497,8 @@
           "ammo_clip_size_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/57/Escalating_Resilience.png"
     },
     {
       "id": "upgrade_express_shot",
@@ -1493,7 +1531,8 @@
           "item_cooldown",
           "level_up_boons"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/e6/Express_Shot.png"
     },
     {
       "id": "upgrade_bulletshredimbue",
@@ -1517,7 +1556,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d4/Ballistic_Enchantment.png"
     },
     {
       "id": "upgrade_capacitor",
@@ -1577,7 +1617,8 @@
           "spirit_power",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b5/Capacitor.png"
     },
     {
       "id": "upgrade_proc_silence",
@@ -1619,7 +1660,8 @@
         "scales_with": [
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/43/Silencer.png"
     },
     {
       "id": "upgrade_fervor",
@@ -1644,7 +1686,8 @@
           "fire_rate"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f1/Frenzy.png"
     },
     {
       "id": "upgrade_banshee_slugs",
@@ -1684,7 +1727,8 @@
           "heal_amp_regen_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/6c/Crippling_Headshot.png"
     },
     {
       "id": "upgrade_critshot",
@@ -1705,7 +1749,8 @@
         "scales_with": [
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/06/Lucky_Shot.png"
     },
     {
       "id": "upgrade_ricochet",
@@ -1726,7 +1771,8 @@
         "scales_with": [
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/87/Ricochet.png"
     },
     {
       "id": "upgrade_spirit_overflow",
@@ -1754,7 +1800,8 @@
           "heal_amp",
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/46/Spiritual_Overflow.png"
     },
     {
       "id": "upgrade_cloaking_device_active",
@@ -1796,7 +1843,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4e/Shadow_Weave.png"
     },
     {
       "id": "upgrade_glass_cannon",
@@ -1836,7 +1884,8 @@
         "scales_with": [
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/6e/Glass_Cannon.png"
     },
     {
       "id": "upgrade_crushing_fists",
@@ -1885,7 +1934,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/ca/Crushing_Fists.png"
     },
     {
       "id": "upgrade_aprounds",
@@ -1908,7 +1958,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/10/Armor_Piercing_Rounds.png"
     },
     {
       "id": "upgrade_enchanted_holsters",
@@ -1943,7 +1994,8 @@
           "reload_speed"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/a8/Spellslinger.png"
     },
     {
       "id": "upgrade_infinite_rounds",
@@ -1964,7 +2016,8 @@
           "fire_rate"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/1f/Infinite_Rounds.png"
     },
     {
       "id": "upgrade_eldritch_shot",
@@ -2008,7 +2061,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/01/Haunting_Shot.png"
     },
     {
       "id": "upgrade_runed_gauntlets",
@@ -2037,7 +2091,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/40/Runed_Gauntlets.png"
     }
   ],
   "vitality": [
@@ -2065,7 +2120,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/24/Melee_Lifesteal.png"
     },
     {
       "id": "upgrade_melee_rebuttal",
@@ -2104,7 +2160,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4c/Rebuttal.png"
     },
     {
       "id": "upgrade_health",
@@ -2123,7 +2180,8 @@
           "weapon_damage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/69/Extra_Health.png"
     },
     {
       "id": "upgrade_sprint_booster",
@@ -2145,7 +2203,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/da/Sprint_Boots.png"
     },
     {
       "id": "upgrade_improved_stamina",
@@ -2165,7 +2224,8 @@
           "stamina_regen_per_second_percentage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/28/Extra_Stamina.png"
     },
     {
       "id": "upgrade_health_stimpak",
@@ -2192,7 +2252,8 @@
           "spirit_power",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/72/Healing_Rite.png"
     },
     {
       "id": "upgrade_endurance",
@@ -2213,7 +2274,8 @@
           "ammo_clip_size_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/60/Extra_Regen.png"
     },
     {
       "id": "upgrade_vampire",
@@ -2235,7 +2297,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/57/Bullet_Lifesteal_%28item%29.png"
     },
     {
       "id": "upgrade_debuff_reducer",
@@ -2254,7 +2317,8 @@
           "status_resistance"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c3/Debuff_Reducer.png"
     },
     {
       "id": "upgrade_healing_booster",
@@ -2282,7 +2346,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b0/Healing_Booster.png"
     },
     {
       "id": "upgrade_cardio_calibrator",
@@ -2307,7 +2372,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/cd/Enduring_Speed.png"
     },
     {
       "id": "upgrade_weapon_shielding",
@@ -2337,7 +2403,8 @@
           "item_cooldown",
           "level_up_boons"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f4/Weapon_Shielding.png"
     },
     {
       "id": "upgrade_spirit_bubble",
@@ -2367,7 +2434,8 @@
           "item_cooldown",
           "level_up_boons"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4a/Spirit_Shielding.png"
     },
     {
       "id": "upgrade_regenerating_bullet_shield",
@@ -2390,7 +2458,8 @@
           "fire_rate"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/7d/Battle_Vest.png"
     },
     {
       "id": "upgrade_magic_shield",
@@ -2415,7 +2484,8 @@
           "cooldown_reduction_percentage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/03/Enchanter%27s_Emblem.png"
     },
     {
       "id": "upgrade_return_fire",
@@ -2440,7 +2510,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/7c/Return_Fire.png"
     },
     {
       "id": "upgrade_health_stealing_magic",
@@ -2464,7 +2535,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d9/Spirit_Lifesteal_%28item%29.png"
     },
     {
       "id": "upgrade_healbane",
@@ -2489,7 +2561,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/62/Healbane.png"
     },
     {
       "id": "upgrade_restorative_locket",
@@ -2517,7 +2590,8 @@
           "level_up_boons",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/07/Restorative_Locket.png"
     },
     {
       "id": "upgrade_guardian_ward",
@@ -2557,7 +2631,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/60/Guardian_Ward.png"
     },
     {
       "id": "upgrade_vex_barrier",
@@ -2585,7 +2660,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f2/Reactive_Barrier.png"
     },
     {
       "id": "upgrade_counterspell",
@@ -2625,7 +2701,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/51/Counterspell.png"
     },
     {
       "id": "upgrade_reduce_debuff_duration",
@@ -2662,7 +2739,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/da/Dispel_Magic.png"
     },
     {
       "id": "upgrade_spirit_purge",
@@ -2681,7 +2759,8 @@
           "spirit_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/7f/Spirit_Resilience.png"
     },
     {
       "id": "upgrade_improved_bullet_armor",
@@ -2700,7 +2779,8 @@
           "bullet_armor_damage_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4d/Bullet_Resilience.png"
     },
     {
       "id": "upgrade_metal_skin",
@@ -2730,7 +2810,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/fa/Metal_Skin.png"
     },
     {
       "id": "upgrade_chonky",
@@ -2753,7 +2834,8 @@
           "health_max"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c6/Fortitude.png"
     },
     {
       "id": "upgrade_trophy_collector",
@@ -2776,7 +2858,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b0/Trophy_Collector.png"
     },
     {
       "id": "upgrade_superior_stamina",
@@ -2800,7 +2883,8 @@
           "air_move_distance_increase_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/eb/Stamina_Mastery.png"
     },
     {
       "id": "upgrade_rescue_beam",
@@ -2833,7 +2917,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c2/Rescue_Beam.png"
     },
     {
       "id": "upgrade_warp_stone",
@@ -2867,7 +2952,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4f/Warp_Stone.png"
     },
     {
       "id": "upgrade_rocket_booster",
@@ -2907,7 +2993,8 @@
           "ability_range",
           "level_up_boons"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d7/Majestic_Leap.png"
     },
     {
       "id": "upgrade_health_nova",
@@ -2941,7 +3028,8 @@
           "heal_amp",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/ae/Healing_Nova.png"
     },
     {
       "id": "upgrade_fury_trance",
@@ -2972,7 +3060,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/15/Fury_Trance.png"
     },
     {
       "id": "upgrade_boxing_glove",
@@ -3014,7 +3103,8 @@
           "level_up_boons",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/6a/Lifestrike.png"
     },
     {
       "id": "upgrade_veil_walker",
@@ -3054,7 +3144,8 @@
           "level_up_boons",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/69/Veil_Walker.png"
     },
     {
       "id": "upgrade_inhibitor",
@@ -3095,7 +3186,8 @@
         "scales_with": [
           "build_up_rate"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/99/Inhibitor.png"
     },
     {
       "id": "upgrade_siphon_bullets",
@@ -3131,7 +3223,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/2c/Siphon_Bullets.png"
     },
     {
       "id": "upgrade_damage_recycler",
@@ -3163,7 +3256,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/32/Leech.png"
     },
     {
       "id": "upgrade_phantom_strike",
@@ -3212,7 +3306,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/e6/Phantom_Strike.png"
     },
     {
       "id": "upgrade_cheat_death",
@@ -3254,7 +3349,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/f7/Cheat_Death.png"
     },
     {
       "id": "upgrade_infuser",
@@ -3289,7 +3385,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c3/Infuser.png"
     },
     {
       "id": "upgrade_divine_barrier",
@@ -3331,7 +3428,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/74/Divine_Barrier.png"
     },
     {
       "id": "upgrade_unstoppable",
@@ -3361,7 +3459,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/eb/Unstoppable.png"
     },
     {
       "id": "upgrade_colossus",
@@ -3403,7 +3502,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/bb/Colossus.png"
     },
     {
       "id": "upgrade_surging_power",
@@ -3435,7 +3535,8 @@
           "item_cooldown",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/dc/Vampiric_Burst.png"
     },
     {
       "id": "upgrade_diviners_kevlar",
@@ -3474,7 +3575,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/0a/Diviner%27s_Kevlar.png"
     },
     {
       "id": "upgrade_absorbing_armor",
@@ -3504,7 +3606,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/09/Witchmail.png"
     },
     {
       "id": "upgrade_healbuff",
@@ -3552,7 +3655,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/70/Healing_Tempo.png"
     },
     {
       "id": "upgrade_deflecting_armor",
@@ -3577,7 +3681,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4c/Plated_Armor.png"
     },
     {
       "id": "upgrade_spellbreaker",
@@ -3606,7 +3711,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/27/Spellbreaker.png"
     },
     {
       "id": "upgrade_juggernaut",
@@ -3646,7 +3752,8 @@
           "movement_speed_max"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/07/Juggernaut.png"
     },
     {
       "id": "upgrade_icarus_wings",
@@ -3669,7 +3776,8 @@
           "air_control_accel_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c3/Seraphim_Wings.png"
     },
     {
       "id": "upgrade_nullification_aura",
@@ -3708,7 +3816,8 @@
           "ability_range",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/8b/Nullification_Burst.png"
     },
     {
       "id": "upgrade_celestial_guidance",
@@ -3745,7 +3854,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/af/Celestial_Blessing.png"
     },
     {
       "id": "upgrade_eternal_gift",
@@ -3770,7 +3880,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/45/Eternal_Gift.png"
     },
     {
       "id": "upgrade_cloak_of_opportunity",
@@ -3813,7 +3924,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/6b/Cloak_of_Opportunity.png"
     },
     {
       "id": "upgrade_electric_slippers",
@@ -3841,7 +3953,8 @@
           "ability_range",
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/13/Electric_Slippers.png"
     },
     {
       "id": "upgrade_shadow_strike",
@@ -3884,7 +3997,8 @@
         "scales_with": [
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/46/Shadow_Strike.png"
     }
   ],
   "spirit": [
@@ -3905,7 +4019,8 @@
           "health_regen_per_second"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/94/Extra_Spirit.png"
     },
     {
       "id": "upgrade_mystic_regeneration",
@@ -3938,7 +4053,8 @@
         "scales_with": [
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/17/Mystic_Regeneration.png"
     },
     {
       "id": "upgrade_magic_reach",
@@ -3959,7 +4075,8 @@
           "radius"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/df/Mystic_Expansion.png"
     },
     {
       "id": "upgrade_extra_charge",
@@ -3979,7 +4096,8 @@
           "spirit_power"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4a/Extra_Charge.png"
     },
     {
       "id": "upgrade_magic_burst",
@@ -3999,7 +4117,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/95/Mystic_Burst.png"
     },
     {
       "id": "upgrade_withering_whip",
@@ -4030,7 +4149,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/54/Rusted_Barrel.png"
     },
     {
       "id": "upgrade_acolytes_glove",
@@ -4068,7 +4188,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/7c/Spirit_Strike.png"
     },
     {
       "id": "upgrade_goose_egg",
@@ -4094,7 +4215,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/a8/Golden_Goose_Egg.png"
     },
     {
       "id": "upgrade_soaring_spirit",
@@ -4121,7 +4243,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c9/Improved_Spirit.png"
     },
     {
       "id": "upgrade_bullet_resist_shredder",
@@ -4144,7 +4267,8 @@
           "bullet_armor_damage_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/7/7d/Bullet_Resist_Shredder.png"
     },
     {
       "id": "upgrade_magic_vulnerability",
@@ -4164,7 +4288,8 @@
           "spirit_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c7/Mystic_Vulnerability.png"
     },
     {
       "id": "upgrade_magic_slow",
@@ -4189,7 +4314,8 @@
           "health_max"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/65/Mystic_Slow.png"
     },
     {
       "id": "upgrade_magic_tempo",
@@ -4208,7 +4334,8 @@
           "cooldown_reduction_percentage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d4/Compress_Cooldown.png"
     },
     {
       "id": "upgrade_containment",
@@ -4237,7 +4364,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/18/Slowing_Hex.png"
     },
     {
       "id": "upgrade_spirit_sap",
@@ -4266,7 +4394,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/03/Spirit_Sap.png"
     },
     {
       "id": "upgrade_arcane_surge",
@@ -4299,7 +4428,8 @@
           "stamina_regen_per_second_percentage"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/bb/Arcane_Surge.png"
     },
     {
       "id": "upgrade_cold_front",
@@ -4340,7 +4470,8 @@
           "ability_range",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4d/Cold_Front.png"
     },
     {
       "id": "upgrade_arcane_extension",
@@ -4359,7 +4490,8 @@
           "ability_duration"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/fb/Duration_Extender.png"
     },
     {
       "id": "upgrade_suppressor",
@@ -4382,7 +4514,8 @@
           "health_max"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/21/Suppressor.png"
     },
     {
       "id": "upgrade_quick_silver",
@@ -4420,7 +4553,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/3b/Quicksilver_Reload.png"
     },
     {
       "id": "upgrade_targeted_silence",
@@ -4458,7 +4592,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/88/Silence_Wave.png"
     },
     {
       "id": "upgrade_spirit_range",
@@ -4483,7 +4618,8 @@
           "spirit_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/4e/Greater_Expansion.png"
     },
     {
       "id": "upgrade_magic_shock",
@@ -4510,7 +4646,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d8/Tankbuster.png"
     },
     {
       "id": "upgrade_rapid_recharge",
@@ -4536,7 +4673,8 @@
           "spirit_power"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/a9/Rapid_Recharge.png"
     },
     {
       "id": "upgrade_cooldown_reduction",
@@ -4559,7 +4697,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/93/Superior_Cooldown.png"
     },
     {
       "id": "upgrade_greater_withering_whip",
@@ -4590,7 +4729,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/2d/Disarming_Hex.png"
     },
     {
       "id": "upgrade_rupture",
@@ -4634,7 +4774,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/93/Decay.png"
     },
     {
       "id": "upgrade_target_stun",
@@ -4672,7 +4813,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/36/Knockdown.png"
     },
     {
       "id": "upgrade_spirit_damage_pulse",
@@ -4713,7 +4855,8 @@
           "spirit_power",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/4/42/Torment_Pulse.png"
     },
     {
       "id": "upgrade_imbued_duration_extender",
@@ -4736,7 +4879,8 @@
           "bullet_armor_damage_resist"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c7/Superior_Duration.png"
     },
     {
       "id": "upgrade_spirit_snatch",
@@ -4786,7 +4930,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/83/Spirit_Snatch.png"
     },
     {
       "id": "upgrade_resonant_healing",
@@ -4827,7 +4972,8 @@
           "heal_amp",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/c/c7/Radiant_Regeneration.png"
     },
     {
       "id": "upgrade_magic_storm",
@@ -4871,7 +5017,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d4/Surge_of_Power.png"
     },
     {
       "id": "upgrade_mystic_reverb",
@@ -4902,7 +5049,8 @@
           "ability_range",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/0/07/Mystic_Reverb.png"
     },
     {
       "id": "upgrade_escalating_exposure",
@@ -4926,7 +5074,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/21/Escalating_Exposure.png"
     },
     {
       "id": "upgrade_transcendent_cooldown",
@@ -4951,7 +5100,8 @@
           "out_of_combat_health_regen"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/bd/Transcendent_Cooldown.png"
     },
     {
       "id": "upgrade_focus_lens",
@@ -4991,7 +5141,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/3c/Focus_Lens.png"
     },
     {
       "id": "upgrade_discord",
@@ -5022,7 +5173,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/58/Scourge.png"
     },
     {
       "id": "upgrade_aoe_root",
@@ -5057,7 +5209,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/8/85/Vortex_Web.png"
     },
     {
       "id": "upgrade_ability_refresher",
@@ -5084,7 +5237,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/53/Refresher.png"
     },
     {
       "id": "upgrade_ability_power_shard",
@@ -5116,7 +5270,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/ab/Echo_Shard.png"
     },
     {
       "id": "upgrade_arctic_blast",
@@ -5173,7 +5328,8 @@
           "ability_range",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/30/Arctic_Blast.png"
     },
     {
       "id": "upgrade_self_bubble",
@@ -5213,7 +5369,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/3/3c/Ethereal_Shift.png"
     },
     {
       "id": "upgrade_glitch",
@@ -5241,7 +5398,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/6/61/Cursed_Relic.png"
     },
     {
       "id": "upgrade_boundless_spirit",
@@ -5266,7 +5424,8 @@
           "spirit_power_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/97/Boundless_Spirit.png"
     },
     {
       "id": "upgrade_ethereal_bullets",
@@ -5320,7 +5479,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/a/af/Mercurial_Magnum.png"
     },
     {
       "id": "upgrade_magic_carpet",
@@ -5353,7 +5513,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/2/25/Magic_Carpet.png"
     },
     {
       "id": "upgrade_spirit_burn",
@@ -5425,7 +5586,8 @@
           "item_cooldown",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/ef/Spirit_Burn.png"
     },
     {
       "id": "upgrade_ultimate_burst",
@@ -5465,7 +5627,8 @@
           "movement_ground_dash_reduction_percent"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/b/b8/Lightning_Scroll.png"
     },
     {
       "id": "upgrade_omnicharge_pendant",
@@ -5490,7 +5653,8 @@
           "spirit_power"
         ],
         "scales_with": []
-      }
+      },
+      "image": "https://deadlock.wiki/images/1/18/Omnicharge_Signet.png"
     },
     {
       "id": "upgrade_shrink_ray",
@@ -5516,7 +5680,8 @@
           "item_cooldown",
           "ability_duration"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/e/e9/Shrink_Ray.png"
     },
     {
       "id": "upgrade_mystical_piano",
@@ -5558,7 +5723,8 @@
           "item_cooldown",
           "ability_range"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/9/9f/Mystical_Piano.png"
     },
     {
       "id": "upgrade_patrons_blessing",
@@ -5600,7 +5766,8 @@
           "ability_range",
           "heal_amp"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/5e/Mystic_Conduit.png"
     },
     {
       "id": "upgrade_prism_blast",
@@ -5649,7 +5816,8 @@
           "ability_range",
           "spirit_power"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/d/d2/Prism_Blast.png"
     },
     {
       "id": "upgrade_unstable_concoction",
@@ -5699,7 +5867,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/f/fe/Unstable_Concoction.png"
     },
     {
       "id": "upgrade_shivas_bracelet",
@@ -5735,7 +5904,8 @@
         "scales_with": [
           "item_cooldown"
         ]
-      }
+      },
+      "image": "https://deadlock.wiki/images/5/5a/Frostbite_Charm.png"
     }
   ]
 }

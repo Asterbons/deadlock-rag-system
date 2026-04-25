@@ -18,10 +18,15 @@ function AbilityCard({ ability }: { ability: HeroAbility }) {
   return (
     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-3)', padding: '16px 18px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
-        <div>
-          <div style={{ fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: 4 }}>Ability {ability.slot}</div>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--dl-bone)' }}>
-            {ability.name}
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          {ability.image && (
+            <img src={ability.image} alt={ability.name} style={{ width: 40, height: 40, borderRadius: 'var(--r-1)', objectFit: 'cover', border: '1px solid var(--border-2)' }} />
+          )}
+          <div>
+            <div style={{ fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: 4 }}>Ability {ability.slot}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--dl-bone)' }}>
+              {ability.name}
+            </div>
           </div>
         </div>
         <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
@@ -52,7 +57,9 @@ export function HeroDetail({ heroId }: Props) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHero(null)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setError(false)
     fetch(`/api/heroes/${heroId}`)
       .then(r => { if (!r.ok) throw new Error('Not found'); return r.json() })
@@ -97,12 +104,16 @@ export function HeroDetail({ heroId }: Props) {
         >← All Combatants</a>
 
         {/* Header */}
-        <div style={{ marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid var(--border-1)' }}>
-          <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: tc.fg, fontWeight: 700, marginBottom: 8 }}>{hero.hero_type}</div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 48, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--dl-bone)', lineHeight: 1, margin: '0 0 12px' }}>
-            {hero.name}
-          </h1>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid var(--border-1)', display: 'flex', gap: 24, alignItems: 'center' }}>
+          {hero.image && (
+            <img src={hero.image} alt={hero.name} style={{ width: 100, height: 100, borderRadius: 'var(--r-2)', objectFit: 'cover', border: `2px solid ${tc.accent}` }} />
+          )}
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: tc.fg, fontWeight: 700, marginBottom: 8 }}>{hero.hero_type}</div>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 48, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--dl-bone)', lineHeight: 1, margin: '0 0 12px' }}>
+              {hero.name}
+            </h1>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {hero.tags.flavor?.map(t => (
               <span key={t} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-1)', color: 'var(--fg-2)', fontSize: 10, padding: '4px 10px', borderRadius: 'var(--r-pill)', fontWeight: 600 }}>{t}</span>
             ))}
@@ -110,8 +121,9 @@ export function HeroDetail({ heroId }: Props) {
               <span key={t} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-1)', color: 'var(--fg-2)', fontSize: 10, padding: '4px 10px', borderRadius: 'var(--r-pill)', fontWeight: 600 }}>{t}</span>
             ))}
           </div>
-          <div className="dl-hairline" style={{ width: 120, marginTop: 20 }} />
         </div>
+        <div className="dl-hairline" style={{ width: 120, marginTop: 20, marginBottom: 32 }} />
+      </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 32 }}>
           {/* Stats */}

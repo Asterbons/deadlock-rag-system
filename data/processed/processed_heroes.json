@@ -109,7 +109,8 @@
               "radius": "3.5m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/fd/Siphon_Life.png"
       },
       {
         "id": "citadel_ability_bull_charge",
@@ -193,7 +194,8 @@
               "weapon_damage_duration": 6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c6/Shoulder_Charge.png"
       },
       {
         "id": "citadel_ability_passive_beefy",
@@ -248,7 +250,8 @@
               "debuff_resist": 20
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/55/Infernal_Resilience.png"
       },
       {
         "id": "citadel_ability_bull_leap",
@@ -327,7 +330,8 @@
               "impact_radius": "6m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a1/Seismic_Impact.png"
       }
     ],
     "weapon": {
@@ -548,7 +552,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e0/Abrams.png"
   },
   "hero_fencer": {
     "hero": "hero_fencer",
@@ -691,7 +696,8 @@
               "reset_air_limit": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/61/Disengaging_Sigil.png"
       },
       {
         "id": "ability_fencer_riposte",
@@ -809,7 +815,8 @@
               "stun_duration": 1.2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/de/Riposte.png"
       },
       {
         "id": "ability_fencer_lunge",
@@ -930,7 +937,8 @@
               "attacking_lunge_distance": "3.0m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/44/Flawless_Advance.png"
       },
       {
         "id": "ability_fencer_ultimate",
@@ -1063,7 +1071,8 @@
               "bonus_damage": 40
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bd/Itani_Lo_Sahn.png"
       }
     ],
     "weapon": {
@@ -1240,7 +1249,8 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/1/14/Apollo.png"
   },
   "hero_bebop": {
     "hero": "hero_bebop",
@@ -1374,7 +1384,8 @@
               "missing_hp_heal": 17
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/30/Exploding_Uppercut.png"
       },
       {
         "id": "citadel_ability_sticky_bomb",
@@ -1460,7 +1471,8 @@
               "move_speed_duration": 5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/74/Sticky_Bomb.png"
       },
       {
         "id": "citadel_ability_hook",
@@ -1520,7 +1532,8 @@
               "cooldown": -11.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a8/Grapple_Arm.png"
       },
       {
         "id": "citadel_ability_bebop_laser_beam",
@@ -1604,7 +1617,8 @@
               "beam_lifesteal_non_hero_percent": 20
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bd/Hyper_Beam.png"
       }
     ],
     "weapon": {
@@ -1805,7 +1819,8 @@
         "id": "upgrade_veil_walker",
         "name": "Veil Walker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/46/Bebop.png"
   },
   "hero_punkgoat": {
     "hero": "hero_punkgoat",
@@ -1942,7 +1957,8 @@
               "charge_delay": -2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/99/Bashdown.png"
       },
       {
         "id": "ability_punkgoat_goatflip",
@@ -2023,7 +2039,8 @@
               "deal_max_health_damage_pct_scale_bonus": 0.017
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5a/Rising_Ram.png"
       },
       {
         "id": "ability_punkgoat_blasted",
@@ -2115,7 +2132,8 @@
               "max_health_melee_scale_bonus": 0.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/38/Blasted.png"
       },
       {
         "id": "ability_punkgoat_tether",
@@ -2213,7 +2231,8 @@
               "cast_range": "5m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/18/Chain_Gang.png"
       }
     ],
     "weapon": {
@@ -2398,7 +2417,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/9/95/Billy.png"
   },
   "hero_nano": {
     "hero": "hero_nano",
@@ -2516,7 +2536,8 @@
               "bomb_count": 3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/cb/Gloom_Bombs.png"
       },
       {
         "id": "ability_nano_dash",
@@ -2597,7 +2618,8 @@
               "impact_damage": 60
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/fe/Leaping_Slash.png"
       },
       {
         "id": "ability_nano_catform",
@@ -2666,7 +2688,8 @@
               "damage_amp_build_duration": 10
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/df/Ava.png"
       },
       {
         "id": "ability_nano_shadow_pulse",
@@ -2737,7 +2760,8 @@
               "heal_amount": 350
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/1c/Return_to_Shadows.png"
       }
     ],
     "weapon": {
@@ -2930,7 +2954,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7b/Calico.png"
   },
   "hero_unicorn": {
     "hero": "hero_unicorn",
@@ -3065,7 +3090,8 @@
               "damage_scale_bonus": 0.2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/2c/Light_Eater.png"
       },
       {
         "id": "ability_unicorn_prismaticguard",
@@ -3146,7 +3172,8 @@
               "cooldown": -18
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/68/Dazzling_Trick.png"
       },
       {
         "id": "ability_unicorn_luminousstrike",
@@ -3220,7 +3247,8 @@
               "fire_rate_per_stack": 6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/86/Radiant_Daggers.png"
       },
       {
         "id": "ability_unicorn_dazzlingorb",
@@ -3302,7 +3330,8 @@
               "cooldown": -35
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/42/Shining_Wonder.png"
       }
     ],
     "weapon": {
@@ -3495,7 +3524,8 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/49/Celeste.png"
   },
   "hero_drifter": {
     "hero": "hero_drifter",
@@ -3611,7 +3641,8 @@
               "debuff_duration": 2.3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/b8/Rend.png"
       },
       {
         "id": "drifter_shadow_mark",
@@ -3677,7 +3708,8 @@
               "healing_reduction": -40
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/61/Stalker%27s_Mark.png"
       },
       {
         "id": "ability_drifter_hunger",
@@ -3760,7 +3792,8 @@
               "amplified_damage": 10
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/e3/Bloodscent.png"
       },
       {
         "id": "drifter_darkness",
@@ -3819,7 +3852,8 @@
               "max_targets": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/7b/Eternal_Night.png"
       }
     ],
     "weapon": {
@@ -4012,7 +4046,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/8/89/Drifter.png"
   },
   "hero_dynamo": {
     "hero": "hero_dynamo",
@@ -4142,7 +4177,8 @@
               "pulse_range": "16m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/27/Kinetic_Pulse.png"
       },
       {
         "id": "citadel_ability_void_sphere",
@@ -4188,7 +4224,8 @@
               "dispel_debuffs": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/ce/Quantum_Entanglement.png"
       },
       {
         "id": "citadel_ability_nikuman",
@@ -4250,7 +4287,8 @@
               "max_health_restored": 2.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/dd/Rejuvenating_Aurora.png"
       },
       {
         "id": "citadel_ability_self_vacuum",
@@ -4316,7 +4354,8 @@
               "max_health_as_damage": 5.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d0/Singularity.png"
       }
     ],
     "weapon": {
@@ -4505,7 +4544,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/0/05/Dynamo.png"
   },
   "hero_necro": {
     "hero": "hero_necro",
@@ -4645,7 +4685,8 @@
               "skulls_apply_passive": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/0/04/Jar_of_Dead.png"
       },
       {
         "id": "ability_necro_zombiewall",
@@ -4745,7 +4786,8 @@
               "cooldown": -12
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bc/Grasping_Hands.png"
       },
       {
         "id": "ability_necro_fear",
@@ -4816,7 +4858,8 @@
               "bonus_tether_upgrade": 2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/55/Essence_Theft.png"
       },
       {
         "id": "ability_necro_gravestone",
@@ -4980,7 +5023,8 @@
               "current_health_as_damage": 5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c1/Borrowed_Decree.png"
       }
     ],
     "weapon": {
@@ -5189,7 +5233,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/66/Graves.png"
   },
   "hero_orion": {
     "hero": "hero_orion",
@@ -5300,7 +5345,8 @@
               "damage_scale_bonus": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/7e/Charged_Shot.png"
       },
       {
         "id": "ability_power_jump",
@@ -5371,7 +5417,8 @@
               "bullet_evasion": 30
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/1e/Rain_of_Arrows.png"
       },
       {
         "id": "ability_immobilize_trap",
@@ -5453,7 +5500,8 @@
               "radius": "1.5m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/10/Spirit_Snare.png"
       },
       {
         "id": "ability_guided_arrow",
@@ -5528,7 +5576,8 @@
               "low_health_threshold": 22
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/e7/Guided_Owl.png"
       }
     ],
     "weapon": {
@@ -5717,7 +5766,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/8/8b/Grey_Talon.png"
   },
   "hero_haze": {
     "hero": "hero_haze",
@@ -5846,7 +5896,8 @@
               "debuff_duration": 2.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/14/Sleep_Dagger.png"
       },
       {
         "id": "ability_smoke_bomb",
@@ -5904,7 +5955,8 @@
               "dispel_on_use": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/eb/Smoke_Bomb.png"
       },
       {
         "id": "ability_stacking_damage",
@@ -5967,7 +6019,8 @@
               "weapon_damage": 0.14
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/63/Fixation.png"
       },
       {
         "id": "ability_bullet_flurry",
@@ -6027,7 +6080,8 @@
               "targets_hit_per_shot": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/7d/Bullet_Dance.png"
       }
     ],
     "weapon": {
@@ -6236,7 +6290,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e8/Haze.png"
   },
   "hero_astro": {
     "hero": "hero_astro",
@@ -6363,7 +6418,8 @@
               "toss_speed": 140
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/4e/Powder_Keg.png"
       },
       {
         "id": "ability_bounce_pad",
@@ -6440,7 +6496,8 @@
               "stomp_damage_scale_bonus": 0.32178
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/e9/Bounce_Pad.png"
       },
       {
         "id": "ability_crackshot",
@@ -6519,7 +6576,8 @@
               "cooldown_per_headshot_npc": -2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/b9/Crackshot.png"
       },
       {
         "id": "ability_gravity_lasso",
@@ -6595,7 +6653,8 @@
               "cooldown": -30
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/73/Spirit_Lasso.png"
       }
     ],
     "weapon": {
@@ -6816,7 +6875,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7a/Holliday.png"
   },
   "hero_inferno": {
     "hero": "hero_inferno",
@@ -6968,7 +7028,8 @@
               "healing_reduction": -33
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/4e/Napalm.png"
       },
       {
         "id": "ability_flame_dash",
@@ -7050,7 +7111,8 @@
               "charge_delay": 14
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/22/Flame_Dash.png"
       },
       {
         "id": "ability_afterburn",
@@ -7129,7 +7191,8 @@
               "burn_duration": 3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/64/Afterburn.png"
       },
       {
         "id": "ability_fire_bomb",
@@ -7202,7 +7265,8 @@
               "radius": "10m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a7/Concussive_Combustion.png"
       }
     ],
     "weapon": {
@@ -7399,7 +7463,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/d2/Infernus.png"
   },
   "hero_tengu": {
     "hero": "hero_tengu",
@@ -7520,7 +7585,8 @@
               "ntangle_duration": 1.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/46/Entangling_Thorns.png"
       },
       {
         "id": "citadel_ability_tangotether",
@@ -7591,7 +7657,8 @@
               "cooldown": -37
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/ac/Kudzu_Connection.png"
       },
       {
         "id": "citadel_ability_tengu_stone_form",
@@ -7677,7 +7744,8 @@
               "damage_scale_bonus": 2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/f8/Stone_Form.png"
       },
       {
         "id": "citadel_ability_tengu_airlift",
@@ -7756,7 +7824,8 @@
               "barrier_scale_bonus": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c4/Air_Drop.png"
       }
     ],
     "weapon": {
@@ -8009,7 +8078,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/3/3f/Ivy.png"
   },
   "hero_kelvin": {
     "hero": "hero_kelvin",
@@ -8154,7 +8224,8 @@
               "damage_scale_bonus": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5d/Frost_Grenade.png"
       },
       {
         "id": "ability_icepath",
@@ -8225,7 +8296,8 @@
               "bonus_spirit_pct": 35
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/dc/Ice_Path.png"
       },
       {
         "id": "ability_icebeam",
@@ -8350,7 +8422,8 @@
               "cooldown": -13
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/f1/Arctic_Beam.png"
       },
       {
         "id": "ability_ice_dome",
@@ -8420,7 +8493,8 @@
               "purge_on_cast": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/ea/Frozen_Shelter.png"
       }
     ],
     "weapon": {
@@ -8621,7 +8695,8 @@
         "id": "upgrade_trophy_collector",
         "name": "Trophy Collector"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/22/Kelvin.png"
   },
   "hero_ghost": {
     "hero": "hero_ghost",
@@ -8741,7 +8816,8 @@
               "toxic_mess_duration": 6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/0/0e/Essence_Bomb.png"
       },
       {
         "id": "ability_life_drain",
@@ -8819,7 +8895,8 @@
               "damage_per_second_scale_bonus": 0.3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/26/Life_Drain.png"
       },
       {
         "id": "ability_blood_shards",
@@ -8924,7 +9001,8 @@
               "damage_amplification": 7
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d4/Malice.png"
       },
       {
         "id": "ability_health_swap",
@@ -9000,7 +9078,8 @@
               "spirit_power": 60
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9e/Soul_Exchange.png"
       }
     ],
     "weapon": {
@@ -9217,7 +9296,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/a9/Lady_Geist.png"
   },
   "hero_lash": {
     "hero": "hero_lash",
@@ -9355,7 +9435,8 @@
               "stomp_damage_per_meter_secondary_scale_bonus": 0.008137
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/94/Ground_Strike.png"
       },
       {
         "id": "citadel_ability_lash",
@@ -9409,7 +9490,8 @@
               "air_control": 60
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c7/Grapple.png"
       },
       {
         "id": "ability_lash_flog",
@@ -9495,7 +9577,8 @@
               "heal_vs_nonheroes": 6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d4/Flog.png"
       },
       {
         "id": "citadel_ability_lash_ultimate",
@@ -9585,7 +9668,8 @@
               "cast_range": "10m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/80/Death_Slam.png"
       }
     ],
     "weapon": {
@@ -9750,7 +9834,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/bb/Lash.png"
   },
   "hero_forge": {
     "hero": "hero_forge",
@@ -9901,7 +9986,8 @@
               "lifetime": 12
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/4c/Mini_Turret.png"
       },
       {
         "id": "citadel_ability_mobile_resupply",
@@ -9969,7 +10055,8 @@
               "duration": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5d/Medicinal_Specter.png"
       },
       {
         "id": "citadel_ability_fissure_wall",
@@ -10055,7 +10142,8 @@
               "move_speed": 30
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/e9/Spectral_Wall.png"
       },
       {
         "id": "citadel_ability_rocket_barrage",
@@ -10129,7 +10217,8 @@
               "explosion_radius": "2m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/cc/Heavy_Barrage.png"
       }
     ],
     "weapon": {
@@ -10382,7 +10471,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/da/McGinnis.png"
   },
   "hero_vampirebat": {
     "hero": "hero_vampirebat",
@@ -10517,7 +10607,8 @@
               "rake_heal_per_kill_scale_bonus": 1.2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bd/Rake.png"
       },
       {
         "id": "ability_vampirebat_batblink",
@@ -10569,7 +10660,8 @@
               "max_recasts": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d2/Sanguine_Retreat.png"
       },
       {
         "id": "ability_vampirebat_lovebites",
@@ -10650,7 +10742,8 @@
               "buff_duration": 5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a9/Love_Bites.png"
       },
       {
         "id": "ability_vampirebat_batswarm",
@@ -10749,7 +10842,8 @@
               "current_health": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d8/Nox_Nostra.png"
       }
     ],
     "weapon": {
@@ -10938,7 +11032,8 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/6b/Mina.png"
   },
   "hero_mirage": {
     "hero": "hero_mirage",
@@ -11054,7 +11149,8 @@
               "health_steal_scale_bonus": 1.2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/85/Fire_Scarabs.png"
       },
       {
         "id": "mirage_tornado",
@@ -11147,7 +11243,8 @@
               "damage_scale_bonus": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/55/Dust_Devil.png"
       },
       {
         "id": "mirage_sand_phantom",
@@ -11218,7 +11315,8 @@
               "max_stacks": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bd/Djinn%27s_Mark.png"
       },
       {
         "id": "mirage_teleport",
@@ -11268,7 +11366,8 @@
               "cooldown": -80
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/da/Traveler.png"
       }
     ],
     "weapon": {
@@ -11473,7 +11572,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/fb/Mirage.png"
   },
   "hero_krill": {
     "hero": "hero_krill",
@@ -11605,7 +11705,8 @@
               "debuff_duration": 16
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/ee/Scorn.png"
       },
       {
         "id": "ability_burrow",
@@ -11697,7 +11798,8 @@
               "move_speed": "4m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/21/Burrow.png"
       },
       {
         "id": "ability_throw_sand",
@@ -11755,7 +11857,8 @@
               "duration": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/72/Sand_Blast.png"
       },
       {
         "id": "ability_ult_combo",
@@ -11819,7 +11922,8 @@
               "cooldown": -60
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/1a/Combo.png"
       }
     ],
     "weapon": {
@@ -12020,7 +12124,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e5/Mo_%26_Krill.png"
   },
   "hero_bookworm": {
     "hero": "hero_bookworm",
@@ -12161,7 +12266,8 @@
               "charges": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5b/Bookwyrm.png"
       },
       {
         "id": "ability_bookworm_knightbarrier",
@@ -12242,7 +12348,8 @@
               "bonus_targets_barrier_percentage": 75
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/ce/Plot_Armor.png"
       },
       {
         "id": "ability_bookworm_aoemagic",
@@ -12333,7 +12440,8 @@
               "radius": "1m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c6/Captivating_Read.png"
       },
       {
         "id": "ability_bookworm_knightcharge",
@@ -12464,7 +12572,8 @@
               "max_amp": 50
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/fc/Rallying_Charge.png"
       }
     ],
     "weapon": {
@@ -12677,7 +12786,8 @@
         "id": "upgrade_withering_whip",
         "name": "Rusted Barrel"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/2f/Paige.png"
   },
   "hero_chrono": {
     "hero": "hero_chrono",
@@ -12826,7 +12936,8 @@
               "duration": 1.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/70/Pulse_Grenade.png"
       },
       {
         "id": "citadel_ability_chrono_time_wall",
@@ -12898,7 +13009,8 @@
               "charge_delay": 4
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/8b/Time_Wall.png"
       },
       {
         "id": "citadel_ability_chrono_kinetic_carbine",
@@ -12992,7 +13104,8 @@
               "max_damage_scale_bonus": 50
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/0/07/Kinetic_Carbine.png"
       },
       {
         "id": "citadel_ability_chrono_swap",
@@ -13060,7 +13173,8 @@
               "max_health_damage": 10
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/0/06/Paradoxical_Swap.png"
       }
     ],
     "weapon": {
@@ -13321,7 +13435,8 @@
         "id": "upgrade_weapon_backstabber",
         "name": "Stalker"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/b0/Paradox.png"
   },
   "hero_synth": {
     "hero": "hero_synth",
@@ -13462,7 +13577,8 @@
               "radius": "3m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/2c/Barrage.png"
       },
       {
         "id": "synth_plasma_flux",
@@ -13523,7 +13639,8 @@
               "cooldown": -14
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/d5/Flying_Cloak.png"
       },
       {
         "id": "synth_pulse",
@@ -13586,7 +13703,8 @@
               "radius": "4m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/ce/Enchanter%27s_Satchel.png"
       },
       {
         "id": "synth_affliction",
@@ -13660,7 +13778,8 @@
               "disable_healing": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/35/Affliction.png"
       }
     ],
     "weapon": {
@@ -13849,7 +13968,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/ee/Pocket.png"
   },
   "hero_familiar": {
     "hero": "hero_familiar",
@@ -13988,7 +14108,8 @@
               "charges": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9f/Pillow_Toss.png"
       },
       {
         "id": "ability_familiar_attach",
@@ -14069,7 +14190,8 @@
               "buff_duration": 10
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/2e/Tag_Along.png"
       },
       {
         "id": "ability_familiar_helpinghands",
@@ -14167,7 +14289,8 @@
               "infest_damage_taken_percent": 20
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9a/Lil_Helpers.png"
       },
       {
         "id": "ability_familiar_ability01",
@@ -14261,7 +14384,8 @@
               "cooldown": -65
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/91/Naptime.png"
       }
     ],
     "weapon": {
@@ -14458,7 +14582,8 @@
         "id": "upgrade_ultimate_burst",
         "name": "Lightning Scroll"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/4/4b/Rem.png"
   },
   "hero_gigawatt": {
     "hero": "hero_gigawatt",
@@ -14571,7 +14696,8 @@
               "radius": "1.5m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/41/Lightning_Ball.png"
       },
       {
         "id": "citadel_ability_static_charge",
@@ -14649,7 +14775,8 @@
               "damage": 160
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a8/Static_Charge.png"
       },
       {
         "id": "ability_power_surge",
@@ -14725,7 +14852,8 @@
               "duration": 12
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/f1/Power_Surge.png"
       },
       {
         "id": "citadel_ability_storm_cloud",
@@ -14810,7 +14938,8 @@
               "flight_speed": "3m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/38/Storm_Cloud.png"
       }
     ],
     "weapon": {
@@ -15023,7 +15152,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/fe/Seven.png"
   },
   "hero_shiv": {
     "hero": "hero_shiv",
@@ -15152,7 +15282,8 @@
               "bleed_dps_per_knife_scale_bonus": 0.1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/7c/Serrated_Knives.png"
       },
       {
         "id": "citadel_ability_shiv_dash",
@@ -15252,7 +15383,8 @@
               "max_cooldown_reduction": 8
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/7/76/Slice_and_Dice.png"
       },
       {
         "id": "citadel_ability_shiv_defer_damage",
@@ -15317,7 +15449,8 @@
               "deferred_damage_cleared": 45
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/ff/Bloodletting.png"
       },
       {
         "id": "citadel_ability_shiv_killing_blow",
@@ -15401,7 +15534,8 @@
               "enemy_health_threshold": 5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/6e/Killing_Blow.png"
       }
     ],
     "weapon": {
@@ -15622,7 +15756,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/b/b6/Shiv.png"
   },
   "hero_werewolf": {
     "hero": "hero_werewolf",
@@ -15766,7 +15901,8 @@
               "bonus_current_health_as_damage": 8
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/2b/Slam_Fire.png"
       },
       {
         "id": "ability_werewolf_kickflip",
@@ -15841,7 +15977,8 @@
               "bonus_damage": 80
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/45/Boot_Kick.png"
       },
       {
         "id": "ability_werewolf_netshot",
@@ -15921,7 +16058,8 @@
               "cooldown": -5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/bd/Entangling_Bola.png"
       },
       {
         "id": "ability_werewolf_transformation",
@@ -16041,7 +16179,8 @@
               "kill_duration_bonus": 15
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/cd/Lycan_Curse.png"
       }
     ],
     "weapon": {
@@ -16270,7 +16409,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/0/0b/Silver.png"
   },
   "hero_magician": {
     "hero": "hero_magician",
@@ -16411,7 +16551,8 @@
               "max_damage": 126
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/58/Vexing_Bolt.png"
       },
       {
         "id": "ability_magician_cloneturret",
@@ -16475,7 +16616,8 @@
               "damage": 12.599999
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5c/Spectral_Assistant.png"
       },
       {
         "id": "ability_magician_animalhexarea",
@@ -16544,7 +16686,8 @@
               "damage_amp": 7
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/af/Rabbit_Hex.png"
       },
       {
         "id": "ability_magician_copyult",
@@ -16584,7 +16727,8 @@
             "description": "Upgrade the Copy ONCE AGAIN!",
             "changes": {}
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a9/Audience_Participation.png"
       }
     ],
     "weapon": {
@@ -16765,7 +16909,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/5/54/Sinclair.png"
   },
   "hero_doorman": {
     "hero": "hero_doorman",
@@ -16892,7 +17037,8 @@
               "nable_aura": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/0/05/Call_Bell.png"
       },
       {
         "id": "ability_doorman_doorway",
@@ -16940,7 +17086,8 @@
               "doorway_distance_scale_bonus": 0.25
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/51/Doorway.png"
       },
       {
         "id": "ability_doorman_luggage_cart",
@@ -16995,7 +17142,8 @@
               "stun_duration": 1.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/17/Luggage_Cart.png"
       },
       {
         "id": "ability_doorman_hotel",
@@ -17079,7 +17227,8 @@
               "late_checkout_cooldown": 13
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/e/ea/Hotel_Guest.png"
       }
     ],
     "weapon": {
@@ -17296,7 +17445,8 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/ae/The_Doorman.png"
   },
   "hero_priest": {
     "hero": "hero_priest",
@@ -17448,7 +17598,8 @@
               "charge_delay": 3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/85/Consecrating_Grenade.png"
       },
       {
         "id": "ability_priest_knockback",
@@ -17538,7 +17689,8 @@
               "buff_duration": 5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/d/da/Gutshot.png"
       },
       {
         "id": "ability_priest_beartrap",
@@ -17615,7 +17767,8 @@
               "damage_taken": 25
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/27/Hex-Lined_Snap_Trap.png"
       },
       {
         "id": "ability_priest_weaponswap",
@@ -17696,7 +17849,8 @@
               "all_stakes_blessed": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9f/Ira_Domini.png"
       }
     ],
     "weapon": {
@@ -17917,7 +18071,8 @@
         "id": "upgrade_weighted_shots",
         "name": "Weighted Shots"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/d/db/Venator.png"
   },
   "hero_frank": {
     "hero": "hero_frank",
@@ -18039,7 +18194,8 @@
               "damage_scale_bonus": 0.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/81/Pain_Battery.png"
       },
       {
         "id": "ability_frank_selfzap",
@@ -18096,7 +18252,8 @@
               "remove_debuffs": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a4/Jumpstart.png"
       },
       {
         "id": "ability_frank_painaura",
@@ -18176,7 +18333,8 @@
               "damage_taken": 15
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/66/Aura_of_Suffering.png"
       },
       {
         "id": "ability_frank_revive",
@@ -18275,7 +18433,8 @@
               "cooldown": -50
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/8f/Shocking_Reanimation.png"
       }
     ],
     "weapon": {
@@ -18452,7 +18611,8 @@
         "id": "upgrade_warp_stone",
         "name": "Warp Stone"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/9/90/Victor.png"
   },
   "hero_hornet": {
     "hero": "hero_hornet",
@@ -18581,7 +18741,8 @@
               "capture_radius": "2m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/65/Stake.png"
       },
       {
         "id": "citadel_ability_hornet_leap",
@@ -18656,7 +18817,8 @@
               "refresh_on_kill": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/1e/Flight.png"
       },
       {
         "id": "citadel_ability_hornet_sting",
@@ -18752,7 +18914,8 @@
               "debuff_duration": 2
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/f/f5/Crow_Familiar.png"
       },
       {
         "id": "citadel_ability_hornet_snipe",
@@ -18858,7 +19021,8 @@
               "weapon_damage_per_kill": 4
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/34/Assassinate.png"
       }
     ],
     "weapon": {
@@ -19111,7 +19275,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/f/f3/Vindicta.png"
   },
   "hero_viscous": {
     "hero": "hero_viscous",
@@ -19236,7 +19401,8 @@
               "damage_scale_bonus": 1.1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/67/Splatter.png"
       },
       {
         "id": "viscous_restorative_goo",
@@ -19307,7 +19473,8 @@
               "purge_debuffs": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9a/The_Cube.png"
       },
       {
         "id": "viscous_telepunch",
@@ -19416,7 +19583,8 @@
               "damage": -30
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/4f/Puddle_Punch.png"
       },
       {
         "id": "viscous_goo_bowling_ball",
@@ -19512,7 +19680,8 @@
               "stun_duration": 0.3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c7/Goo_Ball.png"
       }
     ],
     "weapon": {
@@ -19745,7 +19914,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/e/e9/Viscous.png"
   },
   "hero_viper": {
     "hero": "hero_viper",
@@ -19893,7 +20063,8 @@
               "cooldown_refund": 55
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/8c/Screwjab_Dagger.png"
       },
       {
         "id": "ability_viper_venom",
@@ -19978,7 +20149,8 @@
               "build_up_per_shot": 4.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/84/Lethal_Venom.png"
       },
       {
         "id": "ability_viper_snakedash",
@@ -20028,7 +20200,8 @@
               "barrier_scale_bonus": 0.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/50/Slither.png"
       },
       {
         "id": "ability_viper_petrifybola",
@@ -20133,7 +20306,8 @@
               "petrify_duration": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/9/9f/Petrifying_Bola.png"
       }
     ],
     "weapon": {
@@ -20366,7 +20540,8 @@
         "id": "upgrade_vex_barrier",
         "name": "Reactive Barrier"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/2/2f/Vyper.png"
   },
   "hero_warden": {
     "hero": "hero_warden",
@@ -20517,7 +20692,8 @@
               "radius": "2m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/5/5c/Alchemical_Flask.png"
       },
       {
         "id": "ability_warden_high_alert",
@@ -20581,7 +20757,8 @@
               "barrier_scale_bonus": 2.5
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/88/Willpower.png"
       },
       {
         "id": "ability_warden_lock_down",
@@ -20655,7 +20832,8 @@
               "silence_debuff": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/8/87/Binding_Word.png"
       },
       {
         "id": "ability_warden_riot_protocol",
@@ -20732,7 +20910,8 @@
               "unstoppable_cast_delay": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/4/41/Last_Stand.png"
       }
     ],
     "weapon": {
@@ -20997,7 +21176,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/a/a5/Warden.png"
   },
   "hero_wraith": {
     "hero": "hero_wraith",
@@ -21169,7 +21349,8 @@
               "movement_slow": -20
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/c/c3/Card_Trick.png"
       },
       {
         "id": "citadel_ability_projectmind",
@@ -21217,7 +21398,8 @@
               "cooldown": -28
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/b/b3/Project_Mind.png"
       },
       {
         "id": "citadel_ability_wraith_rapidfire",
@@ -21278,7 +21460,8 @@
               "unlimited_ammo": 1
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/2/29/Full_Auto.png"
       },
       {
         "id": "citadel_ability_psychic_lift",
@@ -21354,7 +21537,8 @@
               "cast_range": "6m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/6f/Telekinesis.png"
       }
     ],
     "weapon": {
@@ -21575,7 +21759,8 @@
         "id": "upgrade_vampire",
         "name": "Bullet Lifesteal"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/7/7c/Wraith.png"
   },
   "hero_yamato": {
     "hero": "hero_yamato",
@@ -21711,7 +21896,8 @@
               "slash_length": "8m"
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/a/a7/Power_Slash.png"
       },
       {
         "id": "citadel_ability_flying_strike",
@@ -21779,7 +21965,8 @@
               "charge_delay": 3
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/1/1b/Flying_Slash.png"
       },
       {
         "id": "citadel_ability_healing_slash",
@@ -21863,7 +22050,8 @@
               "damage_scale_bonus": 0.6
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/6/69/Crimson_Slash.png"
       },
       {
         "id": "citadel_ability_infinity_slash",
@@ -21939,7 +22127,8 @@
               "spirit_resist": 30
             }
           }
-        ]
+        ],
+        "image": "https://deadlock.wiki/images/3/3f/Shadow_Transformation.png"
       }
     ],
     "weapon": {
@@ -22124,6 +22313,7 @@
         "id": "upgrade_transcendent_cooldown",
         "name": "Transcendent Cooldown"
       }
-    ]
+    ],
+    "image": "https://deadlock.wiki/images/6/64/Yamato.png"
   }
 }

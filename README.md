@@ -58,10 +58,13 @@ python src/heroes_abilities_extractor/hero_profile_extractor.py
 # 2. Extract shop/item data
 python src/shop_extractor/pipeline.py
 
-# 3. Chunk extracted JSON into RAG-ready pieces
+# 3. Scrape hero/item icons from Wiki (New!)
+python src/wiki_scraper/image_scraper.py
+
+# 4. Chunk extracted JSON into RAG-ready pieces
 python src/rag/chunker.py
 
-# 4. Embed chunks and load into Qdrant (requires Ollama + Qdrant running)
+# 5. Embed chunks and load into Qdrant (requires Ollama + Qdrant running)
 python src/rag/indexer.py
 ```
 
@@ -87,9 +90,9 @@ UPDATE_INTERVAL_HOURS = 6  # supports decimals: 0.5 = 30 min, 24 = daily
 ### Runtime
 
 ```bash
-# Start the API + web UI (server-rendered pages)
+# Start the API + web UI (React SPA)
 python src/api/server.py
-# → http://localhost:8000
+# → http://localhost:8000 (uses hash routing, e.g. /#/chat)
 
 # Or start the React frontend (dev mode)
 cd frontend && npm install && npm run dev
@@ -122,12 +125,14 @@ data/processed/processed_heroes.json   (38 heroes + 152 abilities)
 data/processed/shop.json               (171 items)
 data/processed/heroes_index.json       (cross-hero summary)
         ↓  Chunking  (src/rag/chunker.py)
-data/processed/chunks.json             (399 semantic chunks)
+data/processed/chunks.json             (566 semantic chunks)
         ↓  Indexing  (src/rag/indexer.py → mxbai-embed-large via Ollama)
 Qdrant collections:
   deadlock_heroes     (76 points: 38 stats + 38 build guides)
   deadlock_abilities  (152 points)
   deadlock_items      (171 points)
+  deadlock_lore       (84 points: 38 hero backstory + 46 general lore)
+  deadlock_guides     (83 points: 38 hero strategy + 45 general mechanics)
         ↓  Query time
 src/rag/router.py    → classifies question, picks collections
 src/rag/retriever.py → embeds query, searches Qdrant, returns top chunks
@@ -156,7 +161,7 @@ dlrag/
 ├── data/
 │   ├── raw/                          # Valve .vdata + localization .txt files
 │   └── processed/
-│       ├── chunks.json               # 399 RAG-ready chunks
+│       ├── chunks.json               # 566 RAG-ready chunks
 │       ├── heroes_index.json         # Summary of all 38 heroes
 │       ├── processed_heroes.json     # Unified hero + ability data
 │       ├── shop.json                 # All items
@@ -166,8 +171,14 @@ dlrag/
 │   │   ├── kv3_parser.py             # Custom KV3 recursive-descent parser
 │   │   ├── hero_extractor.py         # Hero stat extraction with hero_base inheritance
 │   │   ├── ability_enricher.py       # Ability enrichment + semantic tags
+│   │   ├── ability_extractor.py      # Hero ability extraction + effect parsing
+│   │   ├── classifiers.py            # Hero flavor / damage / utility tag inference
+│   │   ├── localization.py           # Localization token parsing + ability name resolution
 │   │   ├── pipeline.py               # Hero/ability extraction entrypoint
-│   │   └── hero_profile_extractor.py # Per-hero profile files
+│   │   ├── profile_builder.py        # Hero profile assembly + heroes_index entries
+│   │   ├── weapon_extractor.py       # Primary weapon stat extraction
+│   │   ├── utils.py                  # Shared normalization and description cleanup helpers
+│   │   └── hero_profile_extractor.py # Per-hero profile orchestration entrypoint
 │   ├── shop_extractor/
 │   │   ├── shop_builder.py           # Item extraction + stat normalization
 │   │   └── pipeline.py               # Shop extraction entrypoint
@@ -206,6 +217,15 @@ dlrag/
 | `GET /api/items` | All items; optional `?slot=weapon` and `?tier=2` filters |
 | `GET /api/items/{item_id}` | Single item by ID |
 | `POST /api/ask` | Streaming SSE RAG query (request body: `{question, history}`) |
+
+## Extraction Notes
+
+`src/heroes_abilities_extractor/hero_profile_extractor.py` still produces the same outputs:
+
+- `data/processed/heroes/*.json`
+- `data/processed/heroes_index.json`
+
+It mainly coordinates KV3 loading, localization parsing, valid shop item loading, and per-hero filtering, then delegates the actual profile assembly to the helper modules listed above.
 
 ## Tool calling
 
