@@ -19,7 +19,7 @@ if PROJ_ROOT not in sys.path:
 
 from src.rag.retriever import retrieve, format_context
 from src.rag.rag import ask_stream, build_prompt
-from src.config import OLLAMA_URL, LLM_MODEL, EMBEDDING_MODEL
+from src.config import OLLAMA_URL, LLM_MODEL, EMBEDDING_MODEL, QDRANT_URL
 
 app = FastAPI(title="Deadlock RAG Backend")
 
@@ -37,7 +37,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-QDRANT_URL = "http://localhost:6333"
 DATA_DIR = os.path.join(PROJ_ROOT, "data", "processed")
 WEB_DIR = os.path.join(PROJ_ROOT, "src", "web")
 

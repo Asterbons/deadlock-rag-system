@@ -12,21 +12,15 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
-from src.config import OLLAMA_URL, EMBEDDING_MODEL as EMBED_MODEL
-
-# Configuration
-QDRANT_URL      = "http://localhost:6333"
-VECTOR_SIZE     = 1024
-CHUNKS_PATH     = "data/processed/chunks.json"
-BATCH_SIZE      = 50
-
-COLLECTIONS = {
-    "hero":    "deadlock_heroes",
-    "ability": "deadlock_abilities",
-    "item":    "deadlock_items",
-    "lore":    "deadlock_lore",
-    "guide":   "deadlock_guides",
-}
+from src.config import (
+    OLLAMA_URL,
+    EMBEDDING_MODEL as EMBED_MODEL,
+    QDRANT_URL,
+    VECTOR_SIZE,
+    BATCH_SIZE,
+    COLLECTIONS,
+    CHUNKS_JSON_PATH,
+)
 
 def check_services():
     """Check both Ollama and Qdrant are reachable before starting."""
@@ -218,12 +212,12 @@ def run_test_query(client: QdrantClient):
 def main():
     check_services()
     
-    print(f"Loading chunks from {CHUNKS_PATH}...")
+    print(f"Loading chunks from {CHUNKS_JSON_PATH}...")
     try:
-        with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
+        with open(CHUNKS_JSON_PATH, "r", encoding="utf-8") as f:
             chunks = json.load(f)
     except FileNotFoundError:
-        print(f"Error: {CHUNKS_PATH} not found.")
+        print(f"Error: {CHUNKS_JSON_PATH} not found.")
         sys.exit(1)
 
     client = QdrantClient(url=QDRANT_URL)

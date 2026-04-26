@@ -8,21 +8,13 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
-from src.config import OLLAMA_URL, EMBEDDING_MODEL as EMBED_MODEL
-
-# Config
-QDRANT_URL  = "http://localhost:6333"
-
-COLLECTIONS = {
-    "hero":    "deadlock_heroes",
-    "ability": "deadlock_abilities",
-    "item":    "deadlock_items",
-    "lore":    "deadlock_lore",
-    "guide":   "deadlock_guides",
-}
-
-# How many results to return per collection by default
-DEFAULT_TOP_K = 3
+from src.config import (
+    OLLAMA_URL,
+    EMBEDDING_MODEL as EMBED_MODEL,
+    QDRANT_URL,
+    DEFAULT_TOP_K,
+    COLLECTIONS,
+)
 
 client = QdrantClient(url=QDRANT_URL)
 

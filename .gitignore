@@ -57,3 +57,10 @@ scratch/
 
 agents.md
 plan.md
+
+# Generated artifacts (rebuilt by patch_monitor + pipeline + npm run build)
+data/raw/
+data/processed/
+data/.last_commit_sha
+src/web/
+

@@ -34,6 +34,25 @@ UPDATE_INTERVAL_HOURS = 6  # how often the scheduler checks for game updates (su
 WIKI_BASE_URL = "https://deadlock.wiki"
 WIKI_API_URL = f"{WIKI_BASE_URL}/api.php"
 
+# Qdrant
+QDRANT_URL = "http://localhost:6333"
+VECTOR_SIZE = 1024
+
+# Indexing
+BATCH_SIZE = 50
+
+# Retrieval
+DEFAULT_TOP_K = 3
+
+# Collections
+COLLECTIONS = {
+    "hero":    "deadlock_heroes",
+    "ability": "deadlock_abilities",
+    "item":    "deadlock_items",
+    "lore":    "deadlock_lore",
+    "guide":   "deadlock_guides",
+}
+
 # LLM & Embeddings
 OLLAMA_URL = "http://localhost:11434"
 LLM_MODEL = "deepseek-r1:7b-qwen-distill-q4_K_M"

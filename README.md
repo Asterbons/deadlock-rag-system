@@ -48,36 +48,50 @@ AZURE_OPENAI_API_VERSION=2024-02-01
 
 The system runs in two phases: **once** to build the knowledge base, and **on every query** at runtime.
 
-### Build phase (run once, or when game data updates)
+> **Note:** `data/` is not included in the repository. Raw game files are downloaded automatically by the patch monitor on first run. Run the bootstrap step below before starting the server for the first time.
+
+### Bootstrap (fresh clone)
 
 ```bash
-# 1. Extract hero + ability data
-python src/heroes_abilities_extractor/pipeline.py
-python src/heroes_abilities_extractor/hero_profile_extractor.py
+# Download the latest .vdata and localization files from SteamTracking/GameTracking-Deadlock,
+# then run the full build pipeline automatically.
+python -m src.updater.patch_monitor
+```
 
-# 2. Extract shop/item data
+This is a one-shot command. It detects that no previous version is known, downloads all watched game files to `data/raw/`, and runs steps 1–6 of the build pipeline. Requires Ollama and Qdrant to be running (for step 6).
+
+### Build pipeline (steps run by patch_monitor automatically)
+
+```bash
+# 1. Extract hero + ability data → data/processed/heroes/*.json, heroes_index.json
+python src/heroes_abilities_extractor/pipeline.py
+
+# 2. Extract shop/item data → data/processed/shop.json
 python src/shop_extractor/pipeline.py
 
-# 3. Scrape hero/item icons from Wiki (New!)
-python src/wiki_scraper/image_scraper.py
+# 3. Scrape hero lore, guides, and wiki text → data/processed/wiki_data.json
+python -m src.wiki_scraper.pipeline
 
-# 4. Chunk extracted JSON into RAG-ready pieces
+# 4. Scrape hero/ability/item icons → injects image URLs into processed JSONs
+python -m src.wiki_scraper.image_scraper
+
+# 5. Chunk extracted JSON into RAG-ready pieces → data/processed/chunks.json
 python src/rag/chunker.py
 
-# 5. Embed chunks and load into Qdrant (requires Ollama + Qdrant running)
+# 6. Embed chunks and load into Qdrant (requires Ollama + Qdrant running)
 python src/rag/indexer.py
 ```
 
 ### Keeping data up to date
 
-The updater fetches the latest `.vdata` and localization files from [SteamTracking/GameTracking-Deadlock](https://github.com/SteamTracking/GameTracking-Deadlock) and re-runs the full pipeline if relevant files changed.
+The updater polls [SteamTracking/GameTracking-Deadlock](https://github.com/SteamTracking/GameTracking-Deadlock) for new commits. When relevant `.vdata` or localization files change, it re-downloads them and re-runs all six pipeline steps.
 
 **One-shot check** (run manually when needed):
 ```bash
 python -m src.updater.patch_monitor
 ```
 
-**Auto-scheduler** (checks on a repeating interval):
+**Auto-scheduler** (checks on a repeating interval, runs in the background):
 ```bash
 python -m src.updater.scheduler
 ```
@@ -90,12 +104,15 @@ UPDATE_INTERVAL_HOURS = 6  # supports decimals: 0.5 = 30 min, 24 = daily
 ### Runtime
 
 ```bash
+# Build the React frontend (required once before starting the server)
+cd frontend && npm install && npm run build && cd ..
+
 # Start the API + web UI (React SPA)
 python src/api/server.py
 # → http://localhost:8000 (uses hash routing, e.g. /#/chat)
 
-# Or start the React frontend (dev mode)
-cd frontend && npm install && npm run dev
+# Or run the React frontend in dev mode (with hot reload, proxies /api to :8000)
+cd frontend && npm run dev
 # → http://localhost:5173
 
 # Or use the interactive CLI
@@ -108,22 +125,30 @@ Open `http://localhost:8000` after starting the server.
 
 | Page | URL | Description |
 |---|---|---|
-| Landing | `/` | Stats overview, nav, tech stack |
-| Chat | `/chat` | Streaming AI chat with source citations |
-| Heroes | `/heroes` | Browsable hero grid with type filter + search |
-| Hero detail | `/heroes/{hero_id}` | Full stats, abilities, weapon, recommended items |
-| Items | `/items` | Item browser with slot tabs, tier filter, and search |
+| Landing | `#/` | Occult archive landing page with live stats, navigation, and tech stack |
+| Consult | `#/chat` | Streaming AI chat with source citations and session usage |
+| Combatants | `#/heroes` | Hero grid with type filters and name search |
+| Hero detail | `#/heroes/{hero_id}` | Hero dossier with base stats, scaling, tags, and abilities |
+| Attributes | `#/attributes` | Sortable cross-hero attributes table |
+| Artefacts | `#/items` | Item browser with slot filters, tier filters, and name search |
 
 Pages link to each other and include "Ask AI" shortcuts that pre-fill the chat with a relevant question.
 
 ## How it works
 
 ```
+SteamTracking/GameTracking-Deadlock (GitHub)
+        ↓  patch_monitor.py (download on first run / when patch detected)
 data/raw/*.vdata + localization .txt
-        ↓  Extraction
+        ↓  Extraction  (src/heroes_abilities_extractor/pipeline.py
+        ↓               src/shop_extractor/pipeline.py)
 data/processed/processed_heroes.json   (38 heroes + 152 abilities)
 data/processed/shop.json               (171 items)
 data/processed/heroes_index.json       (cross-hero summary)
+        ↓  Wiki scraping  (src/wiki_scraper/pipeline.py)
+data/processed/wiki_data.json          (hero lore + guides)
+        ↓  Image scraping  (src/wiki_scraper/image_scraper.py)
+data/processed/wiki_images.json        (icon URLs injected into hero/item JSONs)
         ↓  Chunking  (src/rag/chunker.py)
 data/processed/chunks.json             (566 semantic chunks)
         ↓  Indexing  (src/rag/indexer.py → mxbai-embed-large via Ollama)
@@ -158,13 +183,15 @@ src/api/server.py    → FastAPI, SSE streaming to web UI, token usage reporting
 
 ```
 dlrag/
-├── data/
-│   ├── raw/                          # Valve .vdata + localization .txt files
+├── data/                             # Not committed — generated at runtime
+│   ├── raw/                          # Downloaded by patch_monitor (Valve .vdata + localization)
 │   └── processed/
-│       ├── chunks.json               # 566 RAG-ready chunks
+│       ├── chunks.json               # 566 RAG-ready chunks (chunker output)
 │       ├── heroes_index.json         # Summary of all 38 heroes
 │       ├── processed_heroes.json     # Unified hero + ability data
 │       ├── shop.json                 # All items
+│       ├── wiki_data.json            # Hero lore + guides (wiki scraper output)
+│       ├── wiki_images.json          # Icon URL index (image scraper output)
 │       └── heroes/                   # Per-hero JSON files (38 files)
 ├── src/
 │   ├── heroes_abilities_extractor/
@@ -184,6 +211,7 @@ dlrag/
 │   │   └── pipeline.py               # Shop extraction entrypoint
 │   ├── rag/
 │   │   ├── chunker.py                # Produces chunks.json
+│   │   ├── clear_db.py               # Drops all Qdrant collections
 │   │   ├── indexer.py                # Loads chunks into Qdrant
 │   │   ├── retriever.py              # Embeds query + searches Qdrant
 │   │   ├── router.py                 # Query classification
@@ -191,20 +219,38 @@ dlrag/
 │   │   └── rag.py                    # Full RAG pipeline + streaming
 │   ├── api/
 │   │   └── server.py                 # FastAPI server + page routes + REST API
-│   ├── web/
-│   │   ├── landing.html              # Home page with live stats
-│   │   ├── chat.html                 # Streaming chat UI
-│   │   ├── heroes.html               # Hero browser (filter + search)
-│   │   ├── hero_detail.html          # Per-hero detail page
-│   │   └── items.html                # Item browser (slot + tier + search)
+│   ├── web/                          # React build output — not committed (run npm run build)
 │   ├── updater/
 │   │   ├── patch_monitor.py          # GitHub polling + file download
 │   │   ├── update_pipeline.py        # Runs full extraction → index pipeline
 │   │   └── scheduler.py              # APScheduler-based auto-update loop
-│   ├── config.py                     # Centralized file paths + update interval
+│   ├── config.py                     # Centralized paths, Qdrant settings, model config, update interval
 │   └── mapping_handler.py            # MODIFIER_VALUE_* → clean stat names
 └── tests/
+│   ├── conftest.py                    # Shared pytest fixtures and path setup
+│   ├── test_chunker.py                # Hero/ability chunking validation
+│   ├── test_kv3_parser.py             # 36 tests for the KV3 recursive-descent parser
+│   ├── test_localization.py           # Ability name resolution and localization parsing
+│   ├── test_retriever.py              # Live Qdrant retrieval sanity checks
+│   ├── test_router.py                 # Query routing logic
+│   ├── test_shop_builder.py           # Item extraction, proc/synergy/upgrades, shop JSON
+│   ├── test_tools.py                  # Structured hero stat ranking + comparison tools
+│   └── test_utils.py                  # camel_to_snake, normalize, strip_html, clean_description
 ```
+
+## Testing
+
+Run the full suite:
+```bash
+python -m pytest tests/
+```
+
+Run a single test file:
+```bash
+python -m pytest tests/test_kv3_parser.py -v
+```
+
+The test suite runs offline (no Ollama or Qdrant required) except for `test_retriever.py`, which performs live vector searches against a running Qdrant instance.
 
 ## API Endpoints
 

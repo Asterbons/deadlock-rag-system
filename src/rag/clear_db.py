@@ -7,7 +7,7 @@ if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
 from qdrant_client import QdrantClient
-from src.rag.indexer import COLLECTIONS, QDRANT_URL
+from src.config import COLLECTIONS, QDRANT_URL
 
 def clear_database():
     client = QdrantClient(url=QDRANT_URL)
