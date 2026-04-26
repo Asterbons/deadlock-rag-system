@@ -31,16 +31,16 @@ The system defaults to Ollama. To switch providers, create a `.env` file in the 
 LLM_PROVIDER=ollama
 OLLAMA_MODEL=deepseek-r1:7b-qwen-distill-q4_K_M
 
-# OpenAI
+# OpenAI (uses gpt-4o-mini)
 LLM_PROVIDER=openai
 OPENAI_API_KEY=sk-...
 OPENAI_MODEL=gpt-4o-mini
 
-# Azure OpenAI
+# Azure OpenAI (uses gpt-5.4-nano deployment — note: deployment names differ from OpenAI model names)
 LLM_PROVIDER=azure
-AZURE_OPENAI_KEY=...
+AZURE_OPENAI_API_KEY=...
 AZURE_OPENAI_ENDPOINT=https://<resource>.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT=<deployment-name>
+AZURE_OPENAI_DEPLOYMENT=gpt-5.4-nano
 AZURE_OPENAI_API_VERSION=2024-02-01
 ```
 

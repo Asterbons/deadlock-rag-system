@@ -19,7 +19,15 @@ if PROJ_ROOT not in sys.path:
 
 from src.rag.retriever import retrieve, format_context
 from src.rag.rag import ask_stream, build_prompt
-from src.config import OLLAMA_URL, LLM_MODEL, EMBEDDING_MODEL, QDRANT_URL
+from src.config import (
+    LLM_PROVIDER,
+    OLLAMA_URL,
+    OLLAMA_MODEL,
+    OPENAI_MODEL,
+    AZURE_OPENAI_DEPLOYMENT,
+    EMBEDDING_MODEL,
+    QDRANT_URL,
+)
 
 app = FastAPI(title="Deadlock RAG Backend")
 
@@ -73,15 +81,21 @@ def serve_index():
 
 # ── API endpoints ─────────────────────────────────────────────────────────────
 
+def _llm_health() -> bool:
+    """Check if the configured LLM provider is reachable."""
+    if LLM_PROVIDER == "ollama":
+        try:
+            r = requests.get(f"{OLLAMA_URL}/api/tags", timeout=1)
+            return r.status_code == 200
+        except Exception:
+            return False
+    # OpenAI / Azure — we can't do a cheap ping without an API call,
+    # so we treat them as healthy by default.
+    return True
+
+
 @app.get("/api/health")
 def health_check():
-    ollama_ok = False
-    try:
-        r = requests.get(f"{OLLAMA_URL}/api/tags", timeout=1)
-        ollama_ok = r.status_code == 200
-    except Exception:
-        pass
-
     qdrant_ok = False
     try:
         r = requests.get(f"{QDRANT_URL}/healthz", timeout=1)
@@ -89,7 +103,7 @@ def health_check():
     except Exception:
         pass
 
-    return {"status": "ok", "ollama": ollama_ok, "qdrant": qdrant_ok}
+    return {"status": "ok", "llm": _llm_health(), "qdrant": qdrant_ok}
 
 
 @app.get("/api/stats")
@@ -133,6 +147,9 @@ def get_stats():
         ts = os.path.getmtime(sha_path)
         last_updated = datetime.fromtimestamp(ts).strftime("%Y-%m-%d")
 
+    _llm_model = OLLAMA_MODEL if LLM_PROVIDER == "ollama" else (
+        OPENAI_MODEL if LLM_PROVIDER == "openai" else AZURE_OPENAI_DEPLOYMENT
+    )
     return {
         "heroes": heroes_count,
         "abilities": abilities_count,
@@ -140,7 +157,8 @@ def get_stats():
         "lore": lore_count,
         "guides": guides_count,
         "last_updated": last_updated,
-        "llm_model": LLM_MODEL,
+        "llm_provider": LLM_PROVIDER,
+        "llm_model": _llm_model,
         "embedding_model": EMBEDDING_MODEL,
     }
 
@@ -262,7 +280,7 @@ async def stream_ask(question: str, history: list):
         llm = get_llm(with_tools=False)
         full_response = ""
         with get_openai_callback() as cb:
-            async for chunk in llm.astream(prompt):
+            async for chunk in llm.astream([HumanMessage(content=prompt)]):
                 if chunk.content:
                     full_response += chunk.content
                     yield f"data: {json.dumps({'type': 'token', 'content': chunk.content})}\n\n"

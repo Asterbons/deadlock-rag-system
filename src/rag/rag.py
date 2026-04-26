@@ -12,7 +12,17 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
-from src.config import OLLAMA_URL, LLM_MODEL
+from src.config import (
+    LLM_PROVIDER,
+    OLLAMA_URL,
+    OLLAMA_MODEL,
+    OPENAI_MODEL,
+    OPENAI_API_KEY,
+    AZURE_OPENAI_DEPLOYMENT,
+    AZURE_OPENAI_ENDPOINT,
+    AZURE_OPENAI_API_KEY,
+    AZURE_OPENAI_API_VERSION,
+)
 from src.rag.retriever import retrieve, format_context
 from src.rag.router import route_query
 
@@ -78,31 +88,30 @@ def build_prompt(question: str, context: str,
 
 
 def get_llm(with_tools: bool = False):
-    provider = os.getenv("LLM_PROVIDER", "ollama")
+    provider = LLM_PROVIDER
 
     if provider == "openai":
         from langchain_openai import ChatOpenAI
         llm = ChatOpenAI(
-            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-            api_key=os.getenv("OPENAI_API_KEY"),
+            model=OPENAI_MODEL,
+            api_key=OPENAI_API_KEY,
             temperature=0.1,
             max_tokens=1000
         )
     elif provider == "azure":
         from langchain_openai import AzureChatOpenAI
         llm = AzureChatOpenAI(
-            azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            api_key=os.getenv("AZURE_OPENAI_KEY"),
-            api_version=os.getenv("AZURE_OPENAI_API_VERSION",
-                                   "2024-02-01"),
+            azure_deployment=AZURE_OPENAI_DEPLOYMENT,
+            azure_endpoint=AZURE_OPENAI_ENDPOINT,
+            api_key=AZURE_OPENAI_API_KEY,
+            api_version=AZURE_OPENAI_API_VERSION,
             temperature=0.1,
             max_tokens=1000
         )
     else:  # ollama fallback
         from langchain_ollama import ChatOllama
         llm = ChatOllama(
-            model=os.getenv("OLLAMA_MODEL", LLM_MODEL),
+            model=OLLAMA_MODEL,
             temperature=0.1,
             num_predict=1000
         )
@@ -170,45 +179,24 @@ def call_llm_with_tools(prompt: str, history: list[dict] | None = None) -> str:
 
 
 def call_llm_stream(prompt: str):
-    """POST to Ollama /api/generate and yield tokens as they arrive."""
+    """Yield tokens from the configured LLM provider via LangChain streaming."""
     import time
-    try:
-        _t0 = time.time()
-        print(f"[DEBUG rag] calling LLM stream ({LLM_MODEL}, prompt_len={len(prompt)})...", flush=True)
-        response = requests.post(
-            f"{OLLAMA_URL}/api/generate",
-            json={
-                "model": LLM_MODEL,
-                "prompt": prompt,
-                "stream": True,
-                "options": {
-                    "temperature": 0.1,
-                    "top_p": 0.9
-                },
-                "think": False
-            },
-            stream=True,
-            timeout=(10, 120)  # (connect_timeout, read_timeout) — was 60 (connect only)
-        )
-        if response.status_code != 200:
-            raise RuntimeError(f"Ollama error {response.status_code}: {response.text}")
+    from langchain_core.messages import HumanMessage
 
-        token_count = 0
-        first_token_time = None
-        for line in response.iter_lines():
-            if line:
-                chunk = json.loads(line)
-                if "response" in chunk:
-                    if first_token_time is None:
-                        first_token_time = time.time()
-                        print(f"[DEBUG rag] first token arrived in {first_token_time-_t0:.2f}s", flush=True)
-                    token_count += 1
-                    yield chunk["response"]
-                if chunk.get("done"):
-                    print(f"[DEBUG rag] LLM stream done: {token_count} tokens in {time.time()-_t0:.2f}s", flush=True)
-                    break
-    except Exception as e:
-        raise RuntimeError(f"Failed to call LLM at {OLLAMA_URL}: {e}")
+    _t0 = time.time()
+    llm = get_llm(with_tools=False)
+    print(f"[DEBUG rag] calling LLM stream ({LLM_PROVIDER}, prompt_len={len(prompt)})...", flush=True)
+
+    token_count = 0
+    first_token_time = None
+    for chunk in llm.stream([HumanMessage(content=prompt)]):
+        if first_token_time is None:
+            first_token_time = time.time()
+            print(f"[DEBUG rag] first token arrived in {first_token_time-_t0:.2f}s", flush=True)
+        token_count += 1
+        yield chunk.content
+
+    print(f"[DEBUG rag] LLM stream done: {token_count} tokens in {time.time()-_t0:.2f}s", flush=True)
 
 
 def ask(

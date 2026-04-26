@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 # Base Directories
 SRC_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SRC_DIR.parent
@@ -53,7 +53,22 @@ COLLECTIONS = {
     "guide":   "deadlock_guides",
 }
 
-# LLM & Embeddings
-OLLAMA_URL = "http://localhost:11434"
-LLM_MODEL = "deepseek-r1:7b-qwen-distill-q4_K_M"
-EMBEDDING_MODEL = "mxbai-embed-large"
+# Provider selection: "ollama" | "openai" | "azure"
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")
+
+# Ollama
+OLLAMA_URL   = os.getenv("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "deepseek-r1:7b-qwen-distill-q4_K_M")
+
+# OpenAI
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_MODEL   = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+
+# Azure OpenAI
+AZURE_OPENAI_API_KEY    = os.getenv("AZURE_OPENAI_API_KEY", "")
+AZURE_OPENAI_ENDPOINT   = os.getenv("AZURE_OPENAI_ENDPOINT", "")
+AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT", "")
+AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-01")
+
+# Embeddings 
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "mxbai-embed-large")
