@@ -134,6 +134,14 @@ Open `http://localhost:8000` after starting the server.
 
 Pages link to each other and include "Ask AI" shortcuts that pre-fill the chat with a relevant question.
 
+### Chat UI preview
+
+Below are example screenshots of the RAG chat interface in action:
+
+![Deadlock RAG chat interface - example 1](pics/chat.png)
+
+![Deadlock RAG chat interface - example 2](pics/chat2.png)
+
 ## How it works
 
 ```

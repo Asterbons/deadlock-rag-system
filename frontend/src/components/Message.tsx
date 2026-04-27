@@ -68,7 +68,7 @@ export function Message({ message }: Props) {
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 16, gap: 12 }}>
       <div style={{ flexShrink: 0, marginTop: 4, opacity: 0.8 }}>
-        <WheelMark size={22} color="var(--dl-gold-500)" />
+        <WheelMark size={22} />
       </div>
       <div style={{ maxWidth: '82%' }}>
         <div style={{ fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--dl-gold-500)', fontWeight: 700, marginBottom: 6 }}>

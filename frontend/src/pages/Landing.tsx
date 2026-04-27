@@ -43,7 +43,7 @@ export function Landing() {
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 820, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 20 }}>
             <div className="dl-hairline" style={{ width: 60 }} />
-            <WheelMark size={38} color="var(--dl-gold-500)" />
+            <WheelMark size={38} />
             <div className="dl-hairline" style={{ width: 60 }} />
           </div>
           <div style={{ fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'var(--dl-gold-500)', fontWeight: 700, marginBottom: 18 }}>

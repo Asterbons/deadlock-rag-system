@@ -22,7 +22,7 @@ interface Props {
 function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 22, padding: '40px 20px', textAlign: 'center' }}>
-      <WheelMark size={64} color="var(--dl-gold-500)" />
+      <WheelMark size={64} />
       <div>
         <div style={{ fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--dl-gold-500)', fontWeight: 700, marginBottom: 12 }}>The Archive Stirs</div>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--dl-bone)', fontWeight: 700, lineHeight: 1.1 }}>

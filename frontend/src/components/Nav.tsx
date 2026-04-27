@@ -45,7 +45,7 @@ export function Nav({ current, ollama, qdrant, loading }: NavProps) {
       flexShrink: 0, gap: 28, position: 'relative', zIndex: 10,
     }}>
       <a href="#/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-        <WheelMark size={22} color="var(--dl-gold-500)" />
+        <WheelMark size={22} />
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, letterSpacing: '0.18em', color: 'var(--dl-bone)', fontSize: 15 }}>
           THE <span style={{ color: 'var(--dl-gold-500)' }}>ORACLE</span>
         </div>
