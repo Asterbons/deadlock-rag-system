@@ -16,7 +16,27 @@ from src.config import (
     COLLECTIONS,
 )
 
-client = QdrantClient(url=QDRANT_URL)
+_client: QdrantClient | None = None
+
+
+def _qdrant_startup_hint() -> str:
+    return "You forgot to launch Docker with Qdrant."
+
+
+def _ensure_qdrant_running() -> None:
+    try:
+        response = requests.get(f"{QDRANT_URL}/healthz", timeout=2)
+        response.raise_for_status()
+    except Exception as exc:
+        raise RuntimeError(_qdrant_startup_hint()) from exc
+
+
+def get_qdrant_client() -> QdrantClient:
+    global _client
+    if _client is None:
+        _ensure_qdrant_running()
+        _client = QdrantClient(url=QDRANT_URL, check_compatibility=False)
+    return _client
 
 def check_services():
     """Check both Ollama and Qdrant are reachable before starting."""
@@ -33,7 +53,7 @@ def check_services():
         response = requests.get(f"{QDRANT_URL}/healthz", timeout=5)
         response.raise_for_status()
     except Exception:
-        print(f"Error: Qdrant is not running at {QDRANT_URL}. Start it with: 'docker run -d -p 6333:6333 qdrant/qdrant'")
+        print(_qdrant_startup_hint())
         sys.exit(1)
 
 def get_embedding(text: str) -> list[float]:
@@ -97,7 +117,7 @@ def retrieve(
     filters: dict = None
 ) -> list[dict]:
     """Main retrieval function."""
-    
+    client = get_qdrant_client()
     query_vector = get_embedding(query)
     
     # collections validation: must be keys from COLLECTIONS ('hero', 'ability', 'item')

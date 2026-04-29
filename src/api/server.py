@@ -94,6 +94,20 @@ def _llm_health() -> bool:
     return True
 
 
+def _qdrant_debug_hint() -> str:
+    return "You forgot to launch Docker with Qdrant."
+
+
+@app.on_event("startup")
+def startup_checks():
+    try:
+        r = requests.get(f"{QDRANT_URL}/healthz", timeout=1)
+        if r.status_code != 200:
+            print(_qdrant_debug_hint(), flush=True)
+    except Exception:
+        print(_qdrant_debug_hint(), flush=True)
+
+
 @app.get("/api/health")
 def health_check():
     qdrant_ok = False

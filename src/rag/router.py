@@ -129,6 +129,64 @@ def _call_router_llm(question: str) -> dict:
     return result
 
 
+# ── Stat name → heroes_index key mapping ────────────────────────────────────
+
+# Maps question keywords → exact key in base_stats / weapon / scaling_per_level
+_STAT_NAME_MAP: dict[str, str] = {
+    # health
+    "base health": "health",
+    "max health": "health",
+    " hp ": "health",
+    "most hp": "health",
+    "highest hp": "health",
+    "lowest hp": "health",
+    "health": "health",
+    # movement
+    "movement speed": "max_move_speed",
+    "move speed": "max_move_speed",
+    "movespeed": "max_move_speed",
+    "fastest hero": "max_move_speed",
+    "slowest hero": "max_move_speed",
+    "sprint speed": "sprint_speed",
+    "crouch speed": "crouch_speed",
+    "acceleration": "move_acceleration",
+    "dash distance": "ground_dash_distance_in_meters",
+    # melee
+    "heavy melee": "heavy_melee_damage",
+    "light melee": "light_melee_damage",
+    "melee damage": "light_melee_damage",
+    # stamina
+    "stamina regen": "stamina_regen_per_second",
+    "stamina": "stamina",
+    # weapon
+    "bullet damage": "bullet_damage",
+    "bullet speed": "bullet_speed",
+    "fire rate": "rounds_per_sec",
+    "rounds per second": "rounds_per_sec",
+    "clip size": "clip_size",
+    "ammo": "clip_size",
+    "reload time": "reload_time",
+    "reload": "reload_time",
+    # scaling
+    "spirit scaling": "spirit_power",
+    "spirit per level": "spirit_power",
+    "spirit power": "spirit_power",
+    "health scaling": "health",      # resolved against scaling_per_level
+    "hp per level": "health",
+    "bullet scaling": "base_bullet_damage_from_level",
+    "damage scaling": "base_bullet_damage_from_level",
+}
+
+
+def detect_stat_name(question: str) -> str | None:
+    """Return the stat key that best matches the question, or None."""
+    q = question.lower()
+    for kw in sorted(_STAT_NAME_MAP.keys(), key=len, reverse=True):
+        if kw in q:
+            return _STAT_NAME_MAP[kw]
+    return None
+
+
 # ── Hero detection ───────────────────────────────────────────────────────────
 
 def detect_hero(question: str) -> str | None:
@@ -137,6 +195,20 @@ def detect_hero(question: str) -> str | None:
     for alias, hero_id in HERO_ALIASES.items():
         if alias in q:
             return hero_id
+    return None
+
+
+def detect_two_heroes(question: str) -> tuple[str, str] | None:
+    """Return (hero_id_a, hero_id_b) if exactly two distinct heroes are mentioned."""
+    q = question.lower()
+    found: list[str] = []
+    # iterate longest aliases first to prefer specific names over fragments
+    for alias in sorted(HERO_ALIASES.keys(), key=len, reverse=True):
+        hero_id = HERO_ALIASES[alias]
+        if alias in q and hero_id not in found:
+            found.append(hero_id)
+        if len(found) == 2:
+            return found[0], found[1]
     return None
 
 
@@ -186,6 +258,10 @@ def _has_keyword(q: str, keywords: list[str]) -> bool:
     return any(kw in q for kw in keywords)
 
 
+_TWO_HERO_KW = ["vs", "versus", "compare", "difference", "better", "stronger",
+                "faster", "more", "less", "who wins", "between"]
+
+
 def keyword_route(question: str) -> dict:
     """
     Fast deterministic routing based on keyword matching.
@@ -197,11 +273,36 @@ def keyword_route(question: str) -> dict:
     q = question.lower()
     hero_id = detect_hero(question)
 
-    # 1. RANKING (no hero, comparison of all)
+    # 0. TWO-HERO COMPARISON (deterministic: skip full-index, call tool directly)
+    two = detect_two_heroes(question)
+    if two and _has_keyword(q, _TWO_HERO_KW):
+        return {
+            "collections": [],
+            "use_full_index": False,
+            "comparison_type": "two_heroes",
+            "comparison_heroes": list(two),
+            "hero_filter": None,
+            "top_k": 0,
+            "confidence": "high",
+        }
+
+    # 1. RANKING — try deterministic stat tool first, fall back to full index
     if hero_id is None and _has_keyword(q, _RANKING_KW):
+        stat = detect_stat_name(question)
+        if stat:
+            return {
+                "collections": [],
+                "use_full_index": False,
+                "comparison_type": "rank_stat",
+                "comparison_stat": stat,
+                "hero_filter": None,
+                "top_k": 0,
+                "confidence": "high",
+            }
         return {
             "collections": ["hero", "ability", "item"],
             "use_full_index": True,
+            "comparison_type": None,
             "hero_filter": None,
             "top_k": 38,
             "confidence": "high",

@@ -177,9 +177,57 @@ def get_item_info(item_name: str) -> str:
         "upgrades_into": item.get("upgrades_into")
     })
 
+@tool
+def compare_two_heroes(hero_a: str, hero_b: str) -> str:
+    """Compare all base stats, weapon stats, and scaling between two heroes.
+    Use when asked to compare, versus, or contrast two specific heroes by name or hero_id."""
+
+    index = json.load(open("data/processed/heroes_index.json", encoding="utf-8"))
+
+    def find(name_or_id: str) -> dict | None:
+        key = name_or_id.lower().strip()
+        for h in index:
+            if (h["name"].lower() == key
+                    or h["hero"] == key
+                    or h["hero"].replace("hero_", "") == key):
+                return h
+        return None
+
+    a = find(hero_a)
+    b = find(hero_b)
+
+    if not a:
+        return json.dumps({"error": f"Hero '{hero_a}' not found"})
+    if not b:
+        return json.dumps({"error": f"Hero '{hero_b}' not found"})
+
+    def diff_section(key_a: dict, key_b: dict) -> dict:
+        all_keys = sorted(set(key_a.keys()) | set(key_b.keys()))
+        out = {}
+        for k in all_keys:
+            va, vb = key_a.get(k), key_b.get(k)
+            if not isinstance(va, (int, float)) and not isinstance(vb, (int, float)):
+                continue
+            entry: dict = {a["name"]: va, b["name"]: vb}
+            if isinstance(va, (int, float)) and isinstance(vb, (int, float)):
+                entry["advantage"] = a["name"] if va > vb else (b["name"] if vb > va else "tie")
+            out[k] = entry
+        return out
+
+    return json.dumps({
+        "comparison": f"{a['name']} vs {b['name']}",
+        "hero_type": {a["name"]: a["hero_type"], b["name"]: b["hero_type"]},
+        "complexity": {a["name"]: a.get("complexity"), b["name"]: b.get("complexity")},
+        "base_stats": diff_section(a.get("base_stats", {}), b.get("base_stats", {})),
+        "scaling_per_level": diff_section(a.get("scaling_per_level", {}), b.get("scaling_per_level", {})),
+        "weapon": diff_section(a.get("weapon", {}), b.get("weapon", {})),
+    }, indent=2)
+
+
 DEADLOCK_TOOLS = [
     calculate_ability_damage,
     calculate_hero_dps,
     compare_hero_stat,
+    compare_two_heroes,
     get_item_info,
 ]

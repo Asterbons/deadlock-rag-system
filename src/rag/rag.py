@@ -243,6 +243,13 @@ def ask_stream(
     print(f"[DEBUG rag] step 3 done — total {time.time()-_t0:.2f}s", flush=True)
 
 
+def _hero_id_to_name(hero_id: str, all_heroes: list[dict]) -> str:
+    for h in all_heroes:
+        if h["hero"] == hero_id:
+            return h["name"]
+    return hero_id.replace("hero_", "").capitalize()
+
+
 def get_route_and_context(question: str, history: list[dict] | None, verbose: bool):
     """Shared logic for routing and context preparation."""
     route = route_query(question)
@@ -250,8 +257,32 @@ def get_route_and_context(question: str, history: list[dict] | None, verbose: bo
     if verbose:
         print(f"Route: use_full_index={route['use_full_index']}, "
               f"collections={route['collections']}, "
-              f"top_k={route['top_k']}, hero_filter={route['hero_filter']} "
+              f"top_k={route['top_k']}, hero_filter={route.get('hero_filter')} "
               f"— {route.get('reasoning', '')}")
+
+    # ── Deterministic comparison: two heroes ────────────────────────────────
+    if route.get("comparison_type") == "two_heroes":
+        from src.rag.tools import compare_two_heroes
+        with open(HEROES_INDEX_PATH, encoding="utf-8") as f:
+            all_heroes = json.load(f)
+        h_ids = route.get("comparison_heroes", [])
+        name_a = _hero_id_to_name(h_ids[0], all_heroes) if len(h_ids) > 0 else ""
+        name_b = _hero_id_to_name(h_ids[1], all_heroes) if len(h_ids) > 1 else ""
+        result = compare_two_heroes.invoke({"hero_a": name_a, "hero_b": name_b})
+        context = f"STRUCTURED HERO COMPARISON DATA:\n{result}"
+        if verbose:
+            print(f"  [comparison_tool] compare_two_heroes({name_a}, {name_b})")
+        return route, context, []
+
+    # ── Deterministic comparison: rank all heroes by stat ───────────────────
+    if route.get("comparison_type") == "rank_stat":
+        from src.rag.tools import compare_hero_stat
+        stat = route.get("comparison_stat", "")
+        result = compare_hero_stat.invoke({"stat_name": stat})
+        context = f"STRUCTURED HERO RANKING DATA (sorted by {stat}):\n{result}"
+        if verbose:
+            print(f"  [comparison_tool] compare_hero_stat({stat})")
+        return route, context, []
 
     if route.get("use_full_index"):
         with open(HEROES_INDEX_PATH, encoding="utf-8") as f:
