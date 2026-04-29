@@ -22,6 +22,8 @@ from src.config import (
     AZURE_OPENAI_ENDPOINT,
     AZURE_OPENAI_API_KEY,
     AZURE_OPENAI_API_VERSION,
+    HISTORY_WINDOW,
+    TOOL_LOOP_MAX,
 )
 from src.rag.retriever import retrieve, format_context
 from src.rag.router import route_query
@@ -75,7 +77,7 @@ def build_prompt(question: str, context: str,
 
     if history:
         lines = []
-        for msg in history[-6:]:
+        for msg in history[-HISTORY_WINDOW:]:
             role = "User" if msg["role"] == "user" else "Assistant"
             lines.append(f"{role}: {msg['content']}")
         parts.append("CONVERSATION HISTORY:\n" + "\n".join(lines))
@@ -138,7 +140,7 @@ def call_llm_with_tools(prompt: str, history: list[dict] | None = None) -> str:
     from src.rag.tools import DEADLOCK_TOOLS
 
     history_messages = []
-    for msg in (history or [])[-6:]:
+    for msg in (history or [])[-HISTORY_WINDOW:]:
         if msg["role"] == "user":
             history_messages.append(HumanMessage(content=msg["content"]))
         elif msg["role"] == "assistant":
@@ -149,7 +151,7 @@ def call_llm_with_tools(prompt: str, history: list[dict] | None = None) -> str:
     llm_with_tools = get_llm(with_tools=True)
 
     print(f"[DEBUG rag] Starting tool-calling loop...", flush=True)
-    for _ in range(5):
+    for _ in range(TOOL_LOOP_MAX):
         response = llm_with_tools.invoke(messages)
         messages.append(response)
 
@@ -382,7 +384,7 @@ def main():
 
         history.append({"role": "user",      "content": question})
         history.append({"role": "assistant", "content": answer})
-        history = history[-6:]
+        history = history[-HISTORY_WINDOW:]
 
 
 if __name__ == "__main__":

@@ -41,8 +41,16 @@ VECTOR_SIZE = 1024
 # Indexing
 BATCH_SIZE = 50
 
+# Embeddings
+EMBEDDING_TRUNCATE_CHARS = 1000  # Ollama embeddings endpoint errors on very long inputs.
+
 # Retrieval
 DEFAULT_TOP_K = 3
+FULL_INDEX_TOP_K = 38  # top_k for whole-roster ranking queries (one chunk per hero)
+
+# RAG generation
+HISTORY_WINDOW = 6     # number of recent (user/assistant) messages kept in prompt context
+TOOL_LOOP_MAX = 5      # max iterations of LLM ↔ tool-call loop before giving up
 
 # Collections
 COLLECTIONS = {

@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import shutil
 import sys
@@ -18,22 +19,18 @@ from src.config import (
     COLLECTIONS,
     CHUNKS_JSON_PATH,
 )
-from src.rag.embeddings import get_embedding, check_services as _check_services
+from src.rag.embeddings import get_embedding, check_services
 
-
-def check_services():
-    print("Checking services...")
-    _check_services()
-    print("Services are healthy.")
+logger = logging.getLogger(__name__)
 
 _QDRANT_STORAGE = os.path.join(os.path.dirname(__file__), "..", "..", "qdrant_storage", "collections")
 
 def setup_collections(client: QdrantClient):
     """Ensure all three collections exist and are ready."""
-    print("Setting up collections...")
+    logger.info("Setting up collections...")
     for collection_name in COLLECTIONS.values():
         if client.collection_exists(collection_name):
-            print(f"Collection '{collection_name}' already exists.")
+            logger.info("Collection '%s' already exists.", collection_name)
             continue
 
         try:
@@ -41,21 +38,21 @@ def setup_collections(client: QdrantClient):
                 collection_name=collection_name,
                 vectors_config=VectorParams(size=VECTOR_SIZE, distance=Distance.COSINE),
             )
-            print(f"Collection '{collection_name}' created.")
+            logger.info("Collection '%s' created.", collection_name)
         except UnexpectedResponse as e:
             # Orphaned storage dir from a previous interrupted run — wipe and retry
             if b"Collection data already exists" in e.content:
                 orphan_dir = os.path.join(_QDRANT_STORAGE, collection_name)
-                print(f"Orphaned storage found for '{collection_name}', removing {orphan_dir} and retrying...")
+                logger.warning("Orphaned storage found for '%s', removing %s and retrying...", collection_name, orphan_dir)
                 shutil.rmtree(orphan_dir, ignore_errors=True)
                 client.create_collection(
                     collection_name=collection_name,
                     vectors_config=VectorParams(size=VECTOR_SIZE, distance=Distance.COSINE),
                 )
-                print(f"Collection '{collection_name}' created after cleanup.")
+                logger.info("Collection '%s' created after cleanup.", collection_name)
             else:
                 raise
-    print("Collections setup complete.")
+    logger.info("Collections setup complete.")
 
 def index_chunks(client: QdrantClient, chunks: list):
     """Split chunks by type into groups and index them in batches."""
@@ -96,7 +93,7 @@ def index_chunks(client: QdrantClient, chunks: list):
     for ctype, group in groups.items():
         if not group: continue
         collection_name = COLLECTION_MAP[ctype]
-        print(f"Indexing {ctype}s into {collection_name}...")
+        logger.info("Indexing %ss into %s...", ctype, collection_name)
 
         for i in range(0, len(group), BATCH_SIZE):
             batch = group[i : i + BATCH_SIZE]
@@ -140,13 +137,13 @@ def index_chunks(client: QdrantClient, chunks: list):
                 client.upsert(collection_name=collection_name, points=points)
 
             counts[COUNT_KEY[ctype]] += len(points)
-            print(f"{ctype}: {counts[COUNT_KEY[ctype]]}/{len(group)} indexed...")
+            logger.info("%s: %d/%d indexed...", ctype, counts[COUNT_KEY[ctype]], len(group))
 
     return counts
 
 def run_test_query(client: QdrantClient):
     """Run a smoke test search after indexing."""
-    print("\nRunning smoke test query...")
+    logger.info("Running smoke test query...")
     query = "hero with fire damage over time"
     embedding = get_embedding(query)
 
@@ -156,43 +153,44 @@ def run_test_query(client: QdrantClient):
         limit=3
     ).points
 
-    print(f"Results for '{query}':")
+    logger.info("Results for '%s':", query)
     max_score = 0
     for res in results:
         name = res.payload.get("name", "Unknown")
         text = res.payload.get("text", "")[:100]
-        print(f" - [{res.score:.4f}] {name}: {text}...")
+        logger.info(" - [%.4f] %s: %s...", res.score, name, text)
         if res.score > max_score:
             max_score = res.score
 
     assert max_score > 0.5, f"Smoke test failed: Best result score {max_score:.4f} is <= 0.5"
-    print("Smoke test passed!")
+    logger.info("Smoke test passed!")
 
 def main():
     check_services()
-    
-    print(f"Loading chunks from {CHUNKS_JSON_PATH}...")
+
+    logger.info("Loading chunks from %s...", CHUNKS_JSON_PATH)
     try:
         with open(CHUNKS_JSON_PATH, "r", encoding="utf-8") as f:
             chunks = json.load(f)
     except FileNotFoundError:
-        print(f"Error: {CHUNKS_JSON_PATH} not found.")
+        logger.error("%s not found.", CHUNKS_JSON_PATH)
         sys.exit(1)
 
     client = QdrantClient(url=QDRANT_URL)
     setup_collections(client)
-    
+
     counts = index_chunks(client, chunks)
-    
+
     run_test_query(client)
-    
-    print("\nIndexing complete!")
-    print(f"Heroes:    {counts['hero']}")
-    print(f"Abilities: {counts['ability']}")
-    print(f"Items:     {counts['item']}")
-    print(f"Wiki Lore: {counts['wiki_lore']}")
-    print(f"Wiki Guides: {counts['wiki_guide']}")
-    print(f"Total:     {sum(counts.values())} chunks indexed")
+
+    logger.info("Indexing complete!")
+    logger.info("Heroes:      %d", counts['hero'])
+    logger.info("Abilities:   %d", counts['ability'])
+    logger.info("Items:       %d", counts['item'])
+    logger.info("Wiki Lore:   %d", counts['wiki_lore'])
+    logger.info("Wiki Guides: %d", counts['wiki_guide'])
+    logger.info("Total:       %d chunks indexed", sum(counts.values()))
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     main()

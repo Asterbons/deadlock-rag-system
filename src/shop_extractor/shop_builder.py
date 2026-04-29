@@ -19,6 +19,7 @@ import logging
 from pathlib import Path
 
 from mapping_handler import MAPPING
+from utils import strip_html
 
 logger = logging.getLogger(__name__)
 
@@ -153,73 +154,12 @@ _INHERITED_ZERO_PROPS = frozenset({
     "AbilityResourceCost",
 })
 
-# HTML tag pattern for stripping
+# HTML tag pattern — used by parse_localization to strip tags while keeping
+# template placeholders intact for later resolution.
 _HTML_RE = re.compile(r'<[^>]+>')
-# Template placeholder pattern
-_TEMPLATE_RE = re.compile(r'\{[sgf]:[^}]+\}')
 
 
 # ── Localization parser ─────────────────────────────────────────────────────
-
-# Mapping from citadel_inline_attribute names to actual property names
-_INLINE_ATTR_TO_PROP = {
-    "BonusWeaponDamage":  "HeadShotBonusDamage",
-    "BonusSpiritDamage":  "ProcBonusMagicDamage",
-    "WeaponDamage":       "HeadShotBonusDamage",
-    "SpiritDamage":       "ProcBonusMagicDamage",
-    "Heal":               "BaseHealOnHeadshot",
-    "Slow":               "SlowPercent",
-    "Stun":               "StunDuration",
-    "BonusFireRate":      "BonusFireRate",
-    "BonusMoveSpeed":     "BonusMoveSpeed",
-    "SpiritDPS":          "DotHealthPercent",
-    "MeleeDamage":        "BonusDamage",
-}
-
-
-def _strip_html(text: str, props: dict = None) -> str:
-    """Remove HTML tags and resolve template placeholders from localization text."""
-    text = _HTML_RE.sub("", text)
-
-    # Resolve {s:PropertyName} and {g:citadel_inline_attribute:'Attr'} placeholders
-    if props:
-        def resolve_placeholder(match):
-            raw = match.group(1)
-
-            # Handle citadel_inline_attribute:'AttrName' format
-            attr_match = re.match(r"citadel_inline_attribute:'(\w+)'", raw)
-            if attr_match:
-                attr_name = attr_match.group(1)
-                prop_name = _INLINE_ATTR_TO_PROP.get(attr_name)
-                if prop_name is None:
-                    # Try the attr_name directly as a property name
-                    prop_name = attr_name
-            else:
-                # Simple {s:PropertyName} format
-                prop_name = raw
-
-            prop_data = props.get(prop_name, {})
-            if isinstance(prop_data, dict):
-                val = prop_data.get("m_strValue")
-                if val is not None:
-                    # Parse and clean the value
-                    numeric = _parse_numeric(val)
-                    if numeric is not None:
-                        return str(int(numeric) if isinstance(numeric, float)
-                                   and numeric.is_integer() else numeric)
-                    return str(val)
-            return ""  # remove unresolved placeholders
-
-        # Match {s:Name}, {g:Name}, {f:Name} patterns
-        text = re.sub(r'\{[sgf]:([^}]+)\}', resolve_placeholder, text)
-    else:
-        # Fallback: remove placeholders entirely (old behavior)
-        text = _TEMPLATE_RE.sub("", text)
-
-    # Collapse multiple spaces
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
-
 
 def parse_localization(mods_filepath: str | Path, names_filepath: str | Path = None) -> dict:
     """Parse localization files and return display_names + descriptions.
@@ -696,7 +636,7 @@ def extract_items(parsed_abilities: dict, localization: dict) -> list[dict]:
             clean = item_id.replace("upgrade_", "").replace("weapon_", "").replace("armor_", "").replace("tech_", "")
             name = " ".join(word.capitalize() for word in clean.split("_"))
         raw_desc = descriptions.get(item_id, "")
-        description = _strip_html(raw_desc, props) if raw_desc else ""
+        description = strip_html(raw_desc, props) if raw_desc else ""
 
         # Build item record
         item: dict = {

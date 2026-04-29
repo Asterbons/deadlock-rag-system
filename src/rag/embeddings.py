@@ -8,10 +8,7 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
-from src.config import OLLAMA_URL, EMBEDDING_MODEL, QDRANT_URL
-
-# Ollama embeddings endpoint errors on very long inputs.
-EMBEDDING_TRUNCATE_CHARS = 1000
+from src.config import OLLAMA_URL, EMBEDDING_MODEL, QDRANT_URL, EMBEDDING_TRUNCATE_CHARS
 
 
 def check_services() -> None:

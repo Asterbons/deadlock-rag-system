@@ -1,6 +1,26 @@
 import re
 from mapping_handler import MAPPING
 
+# Mapping from citadel_inline_attribute names to actual property names (item descriptions)
+_INLINE_ATTR_TO_PROP = {
+    "BonusWeaponDamage":  "HeadShotBonusDamage",
+    "BonusSpiritDamage":  "ProcBonusMagicDamage",
+    "WeaponDamage":       "HeadShotBonusDamage",
+    "SpiritDamage":       "ProcBonusMagicDamage",
+    "Heal":               "BaseHealOnHeadshot",
+    "Slow":               "SlowPercent",
+    "Stun":               "StunDuration",
+    "BonusFireRate":      "BonusFireRate",
+    "BonusMoveSpeed":     "BonusMoveSpeed",
+    "SpiritDPS":          "DotHealthPercent",
+    "MeleeDamage":        "BonusDamage",
+}
+
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+_G_PLACEHOLDER_RE = re.compile(r'\{g:[^}]+\}')
+_PLACEHOLDER_RE = re.compile(r'\{[sgf]:([^}]+)\}')
+
+
 def camel_to_snake(name: str) -> str:
     s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', name)
     s = re.sub(r'([a-z\d])([A-Z])', r'\1_\2', s)
@@ -18,14 +38,58 @@ def normalize(v):
     except (ValueError, TypeError):
         return v_str
 
-def strip_html(text: str) -> str:
-    """Strip HTML tags only — used for short labels that have no inline attrs."""
+
+def _parse_html_numeric(val):
+    """Parse a value as a number, stripping a trailing unit suffix."""
+    if isinstance(val, (int, float)):
+        return val
+    s = str(val).strip().rstrip("m%s")
+    try:
+        f = float(s)
+        i = int(f)
+        return i if f == i else round(f, 6)
+    except (ValueError, OverflowError):
+        return None
+
+
+def strip_html(text: str, props: dict = None) -> str:
+    """Strip HTML tags and template placeholders from localization text.
+
+    With ``props``, resolves ``{s:Name}`` / ``{g:citadel_inline_attribute:'X'}`` /
+    ``{f:Name}`` placeholders by reading ``m_strValue`` from the property dict,
+    and collapses whitespace. Without props (legacy mode for short labels),
+    drops ``{g:...}`` placeholders only and preserves internal whitespace.
+    """
     if not text:
         return ""
-    clean = re.sub(r'<[^>]+>', '', text)
-    clean = re.sub(r'\{g:[^}]+\}', '', clean)
-    clean = clean.replace('<br>', '\n').replace('</br>', '')
-    return clean.strip()
+
+    clean = _HTML_TAG_RE.sub('', text)
+
+    if props is None:
+        clean = _G_PLACEHOLDER_RE.sub('', clean)
+        return clean.strip()
+
+    def _resolve(m):
+        raw = m.group(1)
+        attr_match = re.match(r"citadel_inline_attribute:'(\w+)'", raw)
+        if attr_match:
+            attr_name = attr_match.group(1)
+            prop_name = _INLINE_ATTR_TO_PROP.get(attr_name, attr_name)
+        else:
+            prop_name = raw
+
+        prop_data = props.get(prop_name)
+        if isinstance(prop_data, dict):
+            val = prop_data.get("m_strValue")
+            if val is not None:
+                numeric = _parse_html_numeric(val)
+                if numeric is not None:
+                    return str(int(numeric) if isinstance(numeric, float) and numeric.is_integer() else numeric)
+                return str(val)
+        return ""
+
+    clean = _PLACEHOLDER_RE.sub(_resolve, clean)
+    return re.sub(r'\s+', ' ', clean).strip()
 
 def clean_description(text: str, inline_attrs: dict) -> str:
     """Full description cleaning pipeline.

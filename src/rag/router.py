@@ -9,6 +9,8 @@ PROJ_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
+from src.config import FULL_INDEX_TOP_K
+
 _INDEX_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "processed", "heroes_index.json"
 )
@@ -304,7 +306,7 @@ def keyword_route(question: str) -> dict:
             "use_full_index": True,
             "comparison_type": None,
             "hero_filter": None,
-            "top_k": 38,
+            "top_k": FULL_INDEX_TOP_K,
             "confidence": "high",
         }
 
@@ -443,7 +445,7 @@ def route_query(question: str) -> dict:
         assert isinstance(result.get("collections"), list)
         assert isinstance(result.get("top_k"), int)
         assert isinstance(result.get("use_full_index"), bool)
-        result["top_k"] = max(1, min(38, result["top_k"]))
+        result["top_k"] = max(1, min(FULL_INDEX_TOP_K, result["top_k"]))
 
         if os.getenv("DEBUG_ROUTER"):
             print(f"[router] GPT route: {result}")
