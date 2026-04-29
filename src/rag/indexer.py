@@ -1,7 +1,6 @@
 import json
 import os
 import shutil
-import requests
 import sys
 from qdrant_client import QdrantClient
 from qdrant_client.http.exceptions import UnexpectedResponse
@@ -13,53 +12,19 @@ if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
 from src.config import (
-    OLLAMA_URL,
-    EMBEDDING_MODEL as EMBED_MODEL,
     QDRANT_URL,
     VECTOR_SIZE,
     BATCH_SIZE,
     COLLECTIONS,
     CHUNKS_JSON_PATH,
 )
+from src.rag.embeddings import get_embedding, check_services as _check_services
+
 
 def check_services():
-    """Check both Ollama and Qdrant are reachable before starting."""
     print("Checking services...")
-    
-    # Ollama check
-    try:
-        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
-        response.raise_for_status()
-    except Exception:
-        print(f"Error: Ollama is not running. Start it with: ollama serve")
-        sys.exit(1)
-
-    # Qdrant check
-    try:
-        response = requests.get(f"{QDRANT_URL}/healthz", timeout=5)
-        response.raise_for_status()
-    except Exception:
-        print(f"Error: Qdrant is not running. Start it with:\n      docker run -d -p 6333:6333 qdrant/qdrant")
-        sys.exit(1)
-    
+    _check_services()
     print("Services are healthy.")
-
-def get_embedding(text: str) -> list[float]:
-    """POST to Ollama /api/embeddings for text embedding."""
-    # Truncate text to 1000 characters to avoid Ollama 500 errors on long descriptions
-    safe_text = text[:1000] if len(text) > 1000 else text
-    try:
-        response = requests.post(
-            f"{OLLAMA_URL}/api/embeddings",
-            json={"model": EMBED_MODEL, "prompt": safe_text},
-            timeout=30
-        )
-        response.raise_for_status()
-        return response.json()["embedding"]
-    except Exception as e:
-        safe_snippet = safe_text[:50].encode('cp1251', errors='replace').decode('cp1251')
-        print(f"Warning: Failed to get embedding for text: {safe_snippet}... Error: {e}")
-        return None
 
 _QDRANT_STORAGE = os.path.join(os.path.dirname(__file__), "..", "..", "qdrant_storage", "collections")
 
@@ -139,8 +104,6 @@ def index_chunks(client: QdrantClient, chunks: list):
 
             for chunk in batch:
                 embedding = get_embedding(chunk["text"])
-                if embedding is None:
-                    continue
 
                 # ID Generation logic (Deterministic using MD5)
                 import hashlib
@@ -186,10 +149,6 @@ def run_test_query(client: QdrantClient):
     print("\nRunning smoke test query...")
     query = "hero with fire damage over time"
     embedding = get_embedding(query)
-    
-    if not embedding:
-        print("Smoke test failed: Could not get query embedding.")
-        return
 
     results = client.query_points(
         collection_name=COLLECTIONS["hero"],

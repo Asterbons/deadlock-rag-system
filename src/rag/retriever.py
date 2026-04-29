@@ -9,12 +9,11 @@ if PROJ_ROOT not in sys.path:
     sys.path.insert(0, PROJ_ROOT)
 
 from src.config import (
-    OLLAMA_URL,
-    EMBEDDING_MODEL as EMBED_MODEL,
     QDRANT_URL,
     DEFAULT_TOP_K,
     COLLECTIONS,
 )
+from src.rag.embeddings import get_embedding, check_services
 
 _client: QdrantClient | None = None
 
@@ -37,43 +36,6 @@ def get_qdrant_client() -> QdrantClient:
         _ensure_qdrant_running()
         _client = QdrantClient(url=QDRANT_URL, check_compatibility=False)
     return _client
-
-def check_services():
-    """Check both Ollama and Qdrant are reachable before starting."""
-    # Ollama check
-    try:
-        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
-        response.raise_for_status()
-    except Exception:
-        print(f"Error: Ollama is not running at {OLLAMA_URL}. Start it with: 'ollama serve'")
-        sys.exit(1)
-
-    # Qdrant check
-    try:
-        response = requests.get(f"{QDRANT_URL}/healthz", timeout=5)
-        response.raise_for_status()
-    except Exception:
-        print(_qdrant_startup_hint())
-        sys.exit(1)
-
-def get_embedding(text: str) -> list[float]:
-    """POST to Ollama /api/embeddings for text embedding."""
-    import time
-    # Truncate to 1000 chars before sending (same limit as indexer)
-    safe_text = text[:1000] if len(text) > 1000 else text
-    try:
-        _t0 = time.time()
-        print(f"[DEBUG retriever] embedding query (len={len(safe_text)})...", flush=True)
-        response = requests.post(
-            f"{OLLAMA_URL}/api/embeddings",
-            json={"model": EMBED_MODEL, "prompt": safe_text},
-            timeout=30
-        )
-        response.raise_for_status()
-        print(f"[DEBUG retriever] embedding done in {time.time()-_t0:.2f}s", flush=True)
-        return response.json()["embedding"]
-    except Exception as e:
-        raise RuntimeError(f"Failed to get embedding for query: {e}")
 
 def search_collection(
     client: QdrantClient,

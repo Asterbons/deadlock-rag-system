@@ -220,6 +220,7 @@ dlrag/
 │   ├── rag/
 │   │   ├── chunker.py                # Produces chunks.json
 │   │   ├── clear_db.py               # Drops all Qdrant collections
+│   │   ├── embeddings.py             # Shared get_embedding + service health checks
 │   │   ├── indexer.py                # Loads chunks into Qdrant
 │   │   ├── retriever.py              # Embeds query + searches Qdrant
 │   │   ├── router.py                 # Query classification

@@ -28,9 +28,10 @@ def run_full_pipeline() -> bool:
 
     for step_name, cmd in PIPELINE_STEPS:
         print(f"\n→ {step_name}...")
-        result = subprocess.run(cmd, cwd=PROJECT_ROOT)
-        if result.returncode != 0:
-            print(f"  FAILED: {step_name} exited with code {result.returncode}")
+        try:
+            subprocess.run(cmd, cwd=PROJECT_ROOT, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"  FAILED: {step_name} exited with code {e.returncode}")
             print("  Pipeline aborted.")
             return False
         print(f"  Done: {step_name}")

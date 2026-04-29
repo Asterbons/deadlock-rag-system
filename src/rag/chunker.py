@@ -1,10 +1,13 @@
 import json
+import logging
 import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import HEROES_INDEX_PATH, HEROES_OUT_DIR, SHOP_JSON_PATH, CHUNKS_JSON_PATH, WIKI_DATA_PATH
+
+logger = logging.getLogger(__name__)
 
 def round_floats(val):
     if isinstance(val, float):
@@ -42,8 +45,8 @@ def chunk_heroes(index_path, heroes_dir):
             with open(os.path.join(heroes_dir, fname), 'r', encoding='utf-8') as f:
                 d = json.load(f)
                 hero_details[d['hero_id']] = d
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError, KeyError) as e:
+            logger.warning("Skipping hero detail file %s: %s", fname, e)
             
     for h in heroes_index:
         # 1. Hero chunk
