@@ -36,7 +36,8 @@ def test_route_query_uses_keyword_fallback_when_openai_is_unavailable(monkeypatc
 
 # ── detect_two_heroes ────────────────────────────────────────────────────────
 
-def test_detect_two_heroes_finds_pair_via_and():
+def test_detect_two_heroes_finds_pair_via_and(monkeypatch):
+    monkeypatch.setattr(router, "HERO_ALIASES", {"infernus": "hero_inferno", "seven": "hero_gigawatt"})
     result = router.detect_two_heroes("compare infernus and seven")
     assert result is not None
     assert set(result) == {"hero_inferno", "hero_gigawatt"}
@@ -68,7 +69,8 @@ def test_detect_stat_name_returns_none_for_non_stat_question():
 
 # ── keyword_route deterministic comparison paths ─────────────────────────────
 
-def test_keyword_route_two_hero_comparison_uses_tool_path():
+def test_keyword_route_two_hero_comparison_uses_tool_path(monkeypatch):
+    monkeypatch.setattr(router, "HERO_ALIASES", {"infernus": "hero_inferno", "seven": "hero_gigawatt"})
     route = router.keyword_route("compare infernus vs seven")
 
     assert route["comparison_type"] == "two_heroes"
