@@ -30,13 +30,15 @@ def clean_dict(d):
 def format_list(lst):
     return ", ".join(str(x) for x in lst)
 
-def chunk_heroes(index_path, heroes_dir):
-    with open(index_path, 'r', encoding='utf-8') as f:
-        heroes_index = json.load(f)
-        
-    chunks = []
-    
-    # Pre-load abilities from heroes_dir
+_ABILITY_SKIP_STATS = {
+    "ability_unit_target_limit",
+    "ability_cooldown_between_charge",
+    "channel_move_speed",
+}
+
+
+def _load_hero_details(heroes_dir):
+    """Load every hero detail file in `heroes_dir`, indexed by hero_id."""
     hero_details = {}
     for fname in os.listdir(heroes_dir):
         if not fname.endswith('.json'):
@@ -47,146 +49,176 @@ def chunk_heroes(index_path, heroes_dir):
                 hero_details[d['hero_id']] = d
         except (json.JSONDecodeError, OSError, KeyError) as e:
             logger.warning("Skipping hero detail file %s: %s", fname, e)
-            
-    for h in heroes_index:
-        # 1. Hero chunk
-        good_items_list = [item['name'] for item in h.get('good_items', [])]
-        good_items_str = ", ".join(good_items_list)
-        
-        tags = h.get('tags', {})
-        base_stats = h.get('base_stats', {})
-        weapon = h.get('weapon', {})
-        scaling = h.get('scaling_per_level', {})
-        
-        # Stats chunk
-        stats_parts = [
-            f"{h['name']} | {h.get('hero_type')} | complexity {h.get('complexity')}",
-            f"health: {round_floats(base_stats.get('health'))}",
-            f"move_speed: {round_floats(base_stats.get('max_move_speed'))}",
-            f"bullet_damage: {round_floats(weapon.get('bullet_damage'))}",
-            f"bullet_speed: {round_floats(weapon.get('bullet_speed'))}",
-            f"rounds_per_sec: {round_floats(weapon.get('rounds_per_sec'))}",
-            f"clip_size: {round_floats(weapon.get('clip_size'))}",
-            f"can_zoom: {weapon.get('can_zoom')}",
-            f"scaling: health +{round_floats(scaling.get('health'))}/lvl, spirit_power +{round_floats(scaling.get('spirit_power'))}/lvl"
-        ]
+    return hero_details
 
-        stats_metadata = {
-            "type": "hero",
+
+def _build_stats_chunk(h):
+    """Build the per-hero stats chunk (always emitted)."""
+    base_stats = h.get('base_stats', {})
+    weapon = h.get('weapon', {})
+    scaling = h.get('scaling_per_level', {})
+
+    stats_parts = [
+        f"{h['name']} | {h.get('hero_type')} | complexity {h.get('complexity')}",
+        f"health: {round_floats(base_stats.get('health'))}",
+        f"move_speed: {round_floats(base_stats.get('max_move_speed'))}",
+        f"bullet_damage: {round_floats(weapon.get('bullet_damage'))}",
+        f"bullet_speed: {round_floats(weapon.get('bullet_speed'))}",
+        f"rounds_per_sec: {round_floats(weapon.get('rounds_per_sec'))}",
+        f"clip_size: {round_floats(weapon.get('clip_size'))}",
+        f"can_zoom: {weapon.get('can_zoom')}",
+        f"scaling: health +{round_floats(scaling.get('health'))}/lvl, spirit_power +{round_floats(scaling.get('spirit_power'))}/lvl",
+    ]
+
+    metadata = {
+        "type": "hero",
+        "hero": h.get("hero"),
+        "hero_id": h.get("hero_id"),
+        "name": h.get("name"),
+        "complexity": h.get("complexity"),
+        "hero_type": h.get("hero_type"),
+    }
+    if "image" in h:
+        metadata["image"] = h["image"]
+
+    return {
+        "text": " | ".join([p for p in stats_parts if p]),
+        "metadata": clean_dict(metadata),
+    }
+
+
+def _build_build_chunk(h):
+    """Build the playstyle/recommended-items chunk. Returns None when no good_items are configured."""
+    good_items_list = [item['name'] for item in h.get('good_items', [])]
+    good_items_str = ", ".join(good_items_list)
+    if not good_items_str:
+        return None
+
+    tags = h.get('tags', {})
+    build_parts = [
+        f"{h['name']} build guide | {h.get('hero_type')}",
+        f"damage type: {format_list(tags.get('damage_type', []))}" if tags.get('damage_type') else "",
+        f"utility: {format_list(tags.get('utility', []))}" if tags.get('utility') else "",
+        f"playstyle: {format_list(tags.get('playstyle', []))}" if tags.get('playstyle') else "",
+        f"flavor tags: {format_list(tags.get('flavor', []))}" if tags.get('flavor') else "",
+        f"good items: {good_items_str}",
+    ]
+
+    metadata = {
+        "type": "hero_build",
+        "hero": h.get("hero"),
+        "hero_id": h.get("hero_id"),
+        "name": h.get("name"),
+        "hero_type": h.get("hero_type"),
+    }
+    if "image" in h:
+        metadata["image"] = h["image"]
+
+    return {
+        "text": " | ".join([p for p in build_parts if p]),
+        "metadata": clean_dict(metadata),
+    }
+
+
+def _format_ability_effects(effects):
+    """Render an ability's effects list to display strings."""
+    out = []
+    for e in effects:
+        etype = e.get('type', '')
+        formula = e.get('formula')
+        base_value = e.get('base_value', 0)
+        unit = e.get('unit', '')
+        # Skip zero-value effects with no formula (belt-and-suspenders)
+        if not formula and base_value == 0:
+            continue
+        if formula:
+            out.append(f"{etype}: {formula}")
+        else:
+            value_str = f"{round_floats(base_value)}{unit}" if unit == '%' else f"{round_floats(base_value)} {unit}"
+            out.append(f"{etype}: {value_str.strip()}")
+    return out
+
+
+def _build_ability_chunks(h, details):
+    """Build per-ability chunks for one hero. Returns [] when details is None or has no abilities."""
+    if not details:
+        return []
+
+    chunks = []
+    for ability in details.get('abilities', []):
+        ab_parts = [
+            f"{h['name']} | {ability.get('name')} | slot {ability.get('slot')} | {ability.get('cast_type')} | {ability.get('targeting')}"
+        ]
+        if ability.get('description'):
+            ab_parts.append(ability.get('description'))
+
+        stats_clean = {}
+        for k, v in ability.get('stats', {}).items():
+            if k in _ABILITY_SKIP_STATS:
+                continue
+            if v is None or v == [] or v == {}:
+                continue
+            stats_clean[k] = round_floats(v)
+        if stats_clean:
+            stats_str = json.dumps(stats_clean).replace('"', "'")
+            ab_parts.append(f"stats: {stats_str}")
+
+        effects = ability.get('effects', [])
+        effect_strings = _format_ability_effects(effects)
+        if effect_strings:
+            ab_parts.append(f"effects: {', '.join(effect_strings)}")
+
+        upgrades = ability.get('upgrades', [])
+        upg_desc = [u.get('description') for u in upgrades if u.get('description')]
+        if upg_desc:
+            ab_parts.append(f"upgrades: {format_list(upg_desc)}")
+
+        ab_metadata = {
+            "type": "ability",
             "hero": h.get("hero"),
             "hero_id": h.get("hero_id"),
-            "name": h.get("name"),
-            "complexity": h.get("complexity"),
-            "hero_type": h.get("hero_type")
+            "hero_name": h.get("name"),
+            "ability_id": ability.get("id"),
+            "slot": ability.get("slot"),
+            "cast_type": ability.get("cast_type"),
         }
-        if "image" in h:
-            stats_metadata["image"] = h["image"]
+        # Ability-specific image first, then fall back to the hero portrait
+        image = ability.get("image") or h.get("image")
+        if image:
+            ab_metadata["image"] = image
+
+        matching_ab_index = next((x for x in h.get('abilities', []) if x.get('slot') == ability.get('slot')), None)
+        if matching_ab_index and matching_ab_index.get('effect_types'):
+            ab_metadata['effect_types'] = matching_ab_index['effect_types']
+        else:
+            eff_types = list(set([e.get('type') for e in effects if e.get('type')]))
+            if eff_types:
+                ab_metadata['effect_types'] = eff_types
 
         chunks.append({
-            "text": " | ".join([p for p in stats_parts if p]),
-            "metadata": clean_dict(stats_metadata)
+            "text": " | ".join(ab_parts),
+            "metadata": clean_dict(ab_metadata),
         })
 
-        # Build chunk — playstyle context + recommended items
-        if good_items_str:
-            build_parts = [
-                f"{h['name']} build guide | {h.get('hero_type')}",
-                f"damage type: {format_list(tags.get('damage_type', []))}" if tags.get('damage_type') else "",
-                f"utility: {format_list(tags.get('utility', []))}" if tags.get('utility') else "",
-                f"playstyle: {format_list(tags.get('playstyle', []))}" if tags.get('playstyle') else "",
-                f"flavor tags: {format_list(tags.get('flavor', []))}" if tags.get('flavor') else "",
-                f"good items: {good_items_str}",
-            ]
+    return chunks
 
-            build_metadata = {
-                "type": "hero_build",
-                "hero": h.get("hero"),
-                "hero_id": h.get("hero_id"),
-                "name": h.get("name"),
-                "hero_type": h.get("hero_type")
-            }
-            if "image" in h:
-                build_metadata["image"] = h["image"]
 
-            chunks.append({
-                "text": " | ".join([p for p in build_parts if p]),
-                "metadata": clean_dict(build_metadata)
-            })
-        
-        # 2. Ability chunk
-        details = hero_details.get(h.get('hero_id'))
-        if details:
-            for ability in details.get('abilities', []):
-                ab_parts = [
-                    f"{h['name']} | {ability.get('name')} | slot {ability.get('slot')} | {ability.get('cast_type')} | {ability.get('targeting')}"
-                ]
-                if ability.get('description'):
-                    ab_parts.append(ability.get('description'))
-                    
-                skip_stats = {"ability_unit_target_limit", "ability_cooldown_between_charge", "channel_move_speed"}
-                stats_clean = {}
-                for k, v in ability.get('stats', {}).items():
-                    if k in skip_stats:
-                        continue
-                    if v is None or v == [] or v == {}:
-                        continue
-                    stats_clean[k] = round_floats(v)
-                if stats_clean:
-                    stats_str = json.dumps(stats_clean).replace('"', "'")
-                    ab_parts.append(f"stats: {stats_str}")
-                    
-                effects = ability.get('effects', [])
-                effect_strings = []
-                for e in effects:
-                    etype = e.get('type', '')
-                    formula = e.get('formula')
-                    base_value = e.get('base_value', 0)
-                    unit = e.get('unit', '')
-                    # Skip zero-value effects with no formula (belt-and-suspenders)
-                    if not formula and base_value == 0:
-                        continue
-                    if formula:
-                        effect_strings.append(f"{etype}: {formula}")
-                    else:
-                        value_str = f"{round_floats(base_value)}{unit}" if unit == '%' else f"{round_floats(base_value)} {unit}"
-                        effect_strings.append(f"{etype}: {value_str.strip()}")
-                if effect_strings:
-                    ab_parts.append(f"effects: {', '.join(effect_strings)}")
-                    
-                upgrades = ability.get('upgrades', [])
-                upg_desc = [u.get('description') for u in upgrades if u.get('description')]
-                if upg_desc:
-                    ab_parts.append(f"upgrades: {format_list(upg_desc)}")
-                    
-                ab_text = " | ".join(ab_parts)
-                
-                ab_metadata = {
-                    "type": "ability",
-                    "hero": h.get("hero"),
-                    "hero_id": h.get("hero_id"),
-                    "hero_name": h.get("name"),
-                    "ability_id": ability.get("id"),
-                    "slot": ability.get("slot"),
-                    "cast_type": ability.get("cast_type")
-                }
-                # Ability-specific image first, then fall back to the hero portrait
-                image = ability.get("image") or h.get("image")
-                if image:
-                    ab_metadata["image"] = image
-                
-                matching_ab_index = next((x for x in h.get('abilities', []) if x.get('slot') == ability.get('slot')), None)
-                if matching_ab_index and matching_ab_index.get('effect_types'):
-                    ab_metadata['effect_types'] = matching_ab_index['effect_types']
-                else:
-                    eff_types = list(set([e.get('type') for e in effects if e.get('type')]))
-                    if eff_types:
-                        ab_metadata['effect_types'] = eff_types
-                
-                chunks.append({
-                    "text": ab_text,
-                    "metadata": clean_dict(ab_metadata)
-                })
-                
+def chunk_heroes(index_path, heroes_dir):
+    with open(index_path, 'r', encoding='utf-8') as f:
+        heroes_index = json.load(f)
+
+    hero_details = _load_hero_details(heroes_dir)
+
+    chunks = []
+    for h in heroes_index:
+        chunks.append(_build_stats_chunk(h))
+
+        build_chunk = _build_build_chunk(h)
+        if build_chunk is not None:
+            chunks.append(build_chunk)
+
+        chunks.extend(_build_ability_chunks(h, hero_details.get(h.get('hero_id'))))
+
     return chunks
 
 def chunk_items(shop_path):

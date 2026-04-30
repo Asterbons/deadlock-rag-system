@@ -15,41 +15,13 @@ _INDEX_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "processed", "heroes_index.json"
 )
 
-# ── Module-load: build hero_ids string and HERO_ID_MAP ──────────────────────
+# ── Hero index cache (refreshed when heroes_index.json mtime changes) ───────
+#
+# Reading the index lazily through get_hero_aliases() / get_hero_ids_string()
+# means the data stays in sync after the updater pipeline re-indexes new heroes
+# without requiring a process restart.
 
-hero_ids_string = ""
-HERO_ID_MAP: dict[str, str] = {}
-HERO_ALIASES: dict[str, str] = {}
-
-try:
-    with open(_INDEX_PATH, "r", encoding="utf-8") as f:
-        _heroes = json.load(f)
-
-    _parts = []
-    for hero in _heroes:
-        hero_id = hero["hero"]        # e.g. "hero_inferno"
-        name    = hero.get("name", "") # e.g. "Infernus"
-
-        _parts.append(f"{hero_id} ({name})")
-
-        # HERO_ID_MAP: name.lower() → hero_id
-        HERO_ID_MAP[name.lower()] = hero_id
-
-        # HERO_ALIASES: for detect_hero() fallback
-        HERO_ALIASES[name.lower()] = hero_id
-        stripped = hero_id.replace("hero_", "")
-        HERO_ALIASES[stripped] = hero_id
-        for word in name.lower().split():
-            if len(word) >= 4:
-                HERO_ALIASES[word] = hero_id
-
-    hero_ids_string = ", ".join(_parts)
-
-except FileNotFoundError:
-    pass  # index not yet generated
-
-# Manual overrides
-HERO_ALIASES.update({
+_MANUAL_OVERRIDES = {
     "seven":    "hero_gigawatt",
     "abrams":   "hero_atlas",
     "vindicta": "hero_hornet",
@@ -58,7 +30,62 @@ HERO_ALIASES.update({
     "geist":    "hero_ghost",
     "mo":       "hero_krill",
     "krill":    "hero_krill",
-})
+}
+
+_cache_mtime: float | None = None
+_cached_aliases: dict[str, str] = dict(_MANUAL_OVERRIDES)
+_cached_ids_string: str = ""
+
+
+def _build_from_index(heroes: list[dict]) -> tuple[dict[str, str], str]:
+    aliases: dict[str, str] = {}
+    parts: list[str] = []
+    for hero in heroes:
+        hero_id = hero["hero"]
+        name = hero.get("name", "")
+        parts.append(f"{hero_id} ({name})")
+        aliases[name.lower()] = hero_id
+        stripped = hero_id.replace("hero_", "")
+        aliases[stripped] = hero_id
+        for word in name.lower().split():
+            if len(word) >= 4:
+                aliases[word] = hero_id
+    aliases.update(_MANUAL_OVERRIDES)
+    return aliases, ", ".join(parts)
+
+
+def _refresh_hero_index_cache() -> None:
+    """Reload the alias map and ids string when heroes_index.json has changed on disk."""
+    global _cache_mtime, _cached_aliases, _cached_ids_string
+
+    try:
+        mtime = os.path.getmtime(_INDEX_PATH)
+    except OSError:
+        # Index not yet generated — keep manual overrides only.
+        return
+
+    if _cache_mtime == mtime:
+        return
+
+    try:
+        with open(_INDEX_PATH, "r", encoding="utf-8") as f:
+            heroes = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        logger.warning("Failed to read %s: %s", _INDEX_PATH, e)
+        return
+
+    _cached_aliases, _cached_ids_string = _build_from_index(heroes)
+    _cache_mtime = mtime
+
+
+def get_hero_aliases() -> dict[str, str]:
+    _refresh_hero_index_cache()
+    return _cached_aliases
+
+
+def get_hero_ids_string() -> str:
+    _refresh_hero_index_cache()
+    return _cached_ids_string
 
 # ── Prompt for GPT-4o-mini fallback ──────────────────────────────────────────
 
@@ -111,7 +138,7 @@ def _call_router_llm(question: str) -> dict:
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     prompt = ROUTER_PROMPT.format(
-        hero_ids=hero_ids_string,
+        hero_ids=get_hero_ids_string(),
         question=question,
     )
 
@@ -194,7 +221,7 @@ def detect_stat_name(question: str) -> str | None:
 def detect_hero(question: str) -> str | None:
     """Return the first hero_id whose alias appears in question, or None."""
     q = question.lower()
-    for alias, hero_id in HERO_ALIASES.items():
+    for alias, hero_id in get_hero_aliases().items():
         if alias in q:
             return hero_id
     return None
@@ -203,10 +230,11 @@ def detect_hero(question: str) -> str | None:
 def detect_two_heroes(question: str) -> tuple[str, str] | None:
     """Return (hero_id_a, hero_id_b) if exactly two distinct heroes are mentioned."""
     q = question.lower()
+    aliases = get_hero_aliases()
     found: list[str] = []
     # iterate longest aliases first to prefer specific names over fragments
-    for alias in sorted(HERO_ALIASES.keys(), key=len, reverse=True):
-        hero_id = HERO_ALIASES[alias]
+    for alias in sorted(aliases.keys(), key=len, reverse=True):
+        hero_id = aliases[alias]
         if alias in q and hero_id not in found:
             found.append(hero_id)
         if len(found) == 2:

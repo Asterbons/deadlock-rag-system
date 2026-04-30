@@ -237,6 +237,7 @@ dlrag/
 │   └── mapping_handler.py            # MODIFIER_VALUE_* → clean stat names
 └── tests/
 │   ├── conftest.py                    # Shared pytest fixtures and path setup
+│   ├── test_api.py                    # FastAPI endpoint tests (health, heroes, items)
 │   ├── test_chunker.py                # Hero/ability chunking validation
 │   ├── test_kv3_parser.py             # 36 tests for the KV3 recursive-descent parser
 │   ├── test_localization.py           # Ability name resolution and localization parsing
