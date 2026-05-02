@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useChat } from './hooks/useChat'
-import { useHealth } from './hooks/useHealth'
 import { Nav } from './components/Nav'
 import { ChatWindow } from './components/ChatWindow'
 import { Landing } from './pages/Landing'
@@ -33,22 +32,27 @@ function parseRoute(hash: string) {
 }
 
 function ConsultPage() {
-  const { messages, isLoading, sendMessage, clearHistory, lastUsage, sessionUsage } = useChat()
+  const { messages, isLoading, sendMessage, lastUsage, sessionUsage } = useChat()
   return (
-    <ChatWindow
-      messages={messages}
-      isLoading={isLoading}
-      sendMessage={sendMessage}
-      clearHistory={clearHistory}
-      lastUsage={lastUsage}
-      sessionUsage={sessionUsage}
-    />
+    <div className="chat-shell">
+      <aside className="chat-side" aria-hidden="true" />
+      <div className="chat-center">
+        <ChatWindow
+          messages={messages}
+          isLoading={isLoading}
+          sendMessage={sendMessage}
+          lastUsage={lastUsage}
+          sessionUsage={sessionUsage}
+        />
+      </div>
+      <aside className="chat-side" aria-hidden="true" />
+    </div>
   )
 }
 
 export default function App() {
   const hash = useHashRoute()
-  const { ollama, qdrant, loading } = useHealth()
+  // health indicators removed from header
   const route = parseRoute(hash)
 
   let screen: React.ReactNode
@@ -63,8 +67,8 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Nav current={hash} ollama={ollama} qdrant={qdrant} loading={loading} />
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bg-app)' }}>
+      <Nav current={hash} />
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'transparent' }}>
         {screen}
       </main>
     </div>

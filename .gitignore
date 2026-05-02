@@ -63,6 +63,7 @@ data/raw/
 data/processed/
 data/.last_commit_sha
 src/web/
+data/meta/
 
 Deploy_notes.md
 FIX_PLAN.md

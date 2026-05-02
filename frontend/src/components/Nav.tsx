@@ -1,34 +1,15 @@
 import { WheelMark } from './WheelMark'
 
-interface StatusDotProps {
-  ok: boolean
-  label: string
-}
-
-function StatusDot({ ok, label }: StatusDotProps) {
-  const color = ok ? 'var(--dl-health-500)' : 'var(--dl-blood-500)'
-  const fg = ok ? 'var(--dl-health-300)' : 'var(--dl-blood-300)'
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: fg }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: color, boxShadow: `0 0 8px ${color}`, flexShrink: 0 }} />
-      {label}
-    </div>
-  )
-}
-
 interface NavProps {
   current: string
-  ollama: boolean
-  qdrant: boolean
-  loading: boolean
 }
 
 const NAV_LINKS = [
   { href: '#/', label: 'The Archive' },
-  { href: '#/chat', label: 'Consult' },
-  { href: '#/heroes', label: 'Combatants' },
+  { href: '#/chat', label: 'Ask' },
+  { href: '#/heroes', label: 'Heroes' },
   { href: '#/attributes', label: 'Attributes' },
-  { href: '#/items', label: 'Artefacts' },
+  { href: '#/items', label: 'Items' },
 ]
 
 function isActive(href: string, current: string): boolean {
@@ -37,7 +18,7 @@ function isActive(href: string, current: string): boolean {
   return path === href || path.startsWith(href + '/')
 }
 
-export function Nav({ current, ollama, qdrant, loading }: NavProps) {
+export function Nav({ current }: NavProps) {
   return (
     <header style={{
       background: 'var(--bg-surface)', borderBottom: '1px solid var(--border-1)',
@@ -67,16 +48,7 @@ export function Nav({ current, ollama, qdrant, loading }: NavProps) {
         })}
       </nav>
 
-      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 }}>
-        {loading ? (
-          <span style={{ color: 'var(--fg-3)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase' }}>Checking services…</span>
-        ) : (
-          <>
-            <StatusDot ok={ollama} label="Engine" />
-            <StatusDot ok={qdrant} label="Index" />
-          </>
-        )}
-      </div>
+      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 }} />
     </header>
   )
 }

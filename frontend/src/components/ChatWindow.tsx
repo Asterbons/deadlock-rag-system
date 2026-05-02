@@ -14,7 +14,6 @@ interface Props {
   messages: ChatMessage[]
   isLoading: boolean
   sendMessage: (q: string) => void
-  clearHistory: () => void
   lastUsage: UsageData | null
   sessionUsage: UsageData
 }
@@ -48,17 +47,26 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   )
 }
 
-export function ChatWindow({ messages, isLoading, sendMessage, clearHistory, lastUsage, sessionUsage }: Props) {
+export function ChatWindow({ messages, isLoading, sendMessage, lastUsage, sessionUsage }: Props) {
   const [input, setInput] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const isStreaming = messages.some(m => m.isStreaming)
   const disabled = isStreaming || isLoading
-  const canSend = input.trim() && !disabled
+  const canSend = input.trim().length > 0 && !disabled
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  useEffect(() => {
+    const el = inputRef.current
+    if (!el) return
+
+    el.style.height = 'auto'
+    el.style.height = `${Math.min(el.scrollHeight, 200)}px`
+    el.style.overflowY = el.scrollHeight > 200 ? 'auto' : 'hidden'
+  }, [input])
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -76,8 +84,8 @@ export function ChatWindow({ messages, isLoading, sendMessage, clearHistory, las
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden', maxWidth: 900, width: '100%', margin: '0 auto', borderLeft: '1px solid var(--border-2)', borderRight: '1px solid var(--border-2)' }}>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 24px', minHeight: 0 }}>
+    <div className="chat-pattern" style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden', width: '100%' }}>
+      <div className="chat-messages">
         {messages.length === 0
           ? <EmptyState onPick={q => { sendMessage(q) }} />
           : messages.map((msg, i) => <Message key={i} message={msg} />)
@@ -85,71 +93,42 @@ export function ChatWindow({ messages, isLoading, sendMessage, clearHistory, las
         <div ref={bottomRef} />
       </div>
 
-      <div style={{ borderTop: '1px solid var(--border-1)', padding: '14px 20px 18px', background: 'var(--bg-surface)' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={disabled}
-            rows={1}
-            placeholder="Speak your query into the rift…"
-            style={{
-              flex: 1, background: 'var(--bg-input)', color: 'var(--fg-1)',
-              border: '1px solid var(--border-1)', borderRadius: 'var(--r-2)',
-              padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none',
-              lineHeight: 1.5, maxHeight: 120, fontFamily: 'var(--font-body)',
-              opacity: disabled ? 0.6 : 1, transition: 'border-color 120ms, box-shadow 120ms',
-            }}
-            onInput={e => { const el = e.currentTarget; el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 120) + 'px' }}
-            onFocus={e => { e.currentTarget.style.borderColor = 'var(--dl-gold-500)'; e.currentTarget.style.boxShadow = 'var(--glow-gold)' }}
-            onBlur={e => { e.currentTarget.style.borderColor = 'var(--border-1)'; e.currentTarget.style.boxShadow = 'none' }}
-          />
-          <button type="submit" disabled={!canSend} style={{
-            background: canSend ? 'var(--action)' : 'var(--bg-card)',
-            color: canSend ? 'var(--dl-bone)' : 'var(--fg-3)',
-            border: `1px solid ${canSend ? 'var(--dl-teal-300)' : 'var(--border-1)'}`,
-            borderRadius: 'var(--r-2)', padding: '12px 20px',
-            fontSize: 11, fontWeight: 700, cursor: canSend ? 'pointer' : 'not-allowed',
-            letterSpacing: '0.18em', textTransform: 'uppercase', transition: 'all 120ms',
-            boxShadow: canSend ? 'var(--glow-teal)' : 'none', whiteSpace: 'nowrap',
-          }}>Consult</button>
-          <button type="button" onClick={clearHistory} disabled={disabled} style={{
-            background: 'transparent', color: 'var(--fg-3)',
-            border: '1px solid var(--border-1)', borderRadius: 'var(--r-2)',
-            padding: '12px 14px', fontSize: 11, cursor: disabled ? 'not-allowed' : 'pointer',
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-          }}>Clear</button>
+      <div className="chat-composer">
+        <form onSubmit={handleSubmit} className="chat-input-card">
+          <div className="chat-input-field">
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={disabled}
+              rows={1}
+              placeholder="Ask a question or type a command..."
+              className="chat-input-textarea"
+            />
+          </div>
+          <button type="submit" disabled={!canSend} className="chat-send-button" aria-label="Send message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+          </button>
         </form>
-        <div style={{ marginTop: 8, fontSize: 10, color: 'var(--fg-4)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          Enter to send · Shift+Enter for newline
+        <div className="chat-usage">
+          {lastUsage && (
+            <>
+              <span>
+                LAST: {lastUsage.prompt_tokens.toLocaleString()} IN + {lastUsage.completion_tokens.toLocaleString()} OUT = {lastUsage.total_tokens.toLocaleString()} TOKENS
+                {lastUsage.cost_usd > 0 && ` ($${lastUsage.cost_usd < 0.01 ? (lastUsage.cost_usd * 100).toFixed(3) + '¢' : lastUsage.cost_usd.toFixed(4)})`}
+              </span>
+              <span>
+                SESSION: {sessionUsage.total_tokens.toLocaleString()} TOKENS
+                {sessionUsage.cost_usd > 0 && ` ($${sessionUsage.cost_usd.toFixed(4)})`}
+              </span>
+            </>
+          )}
         </div>
       </div>
-
-      {lastUsage && (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          padding: '6px 20px',
-          fontSize: '10px',
-          color: 'var(--fg-3)',
-          borderTop: '1px solid var(--border-1)',
-          background: 'var(--bg-app)',
-          fontFamily: 'var(--font-mono)',
-          letterSpacing: '0.02em',
-          opacity: 0.8
-        }}>
-          <span>
-            LAST: {lastUsage.prompt_tokens.toLocaleString()} IN + {lastUsage.completion_tokens.toLocaleString()} OUT = {lastUsage.total_tokens.toLocaleString()} TOKENS
-            {lastUsage.cost_usd > 0 && ` ($${lastUsage.cost_usd < 0.01 ? (lastUsage.cost_usd * 100).toFixed(3) + '¢' : lastUsage.cost_usd.toFixed(4)})`}
-          </span>
-          <span>
-            SESSION: {sessionUsage.total_tokens.toLocaleString()} TOKENS
-            {sessionUsage.cost_usd > 0 && ` ($${sessionUsage.cost_usd.toFixed(4)})`}
-          </span>
-        </div>
-      )}
     </div>
   )
 }
