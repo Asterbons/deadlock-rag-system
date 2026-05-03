@@ -70,7 +70,14 @@ def index_chunks(client: QdrantClient, chunks: list):
         if ctype in groups:
             groups[ctype].append(chunk)
 
-    counts = {"hero": 0, "ability": 0, "item": 0, "wiki_lore": 0, "wiki_guide": 0}
+    counts = {
+        "hero": 0,
+        "hero_build": 0,
+        "ability": 0,
+        "item": 0,
+        "wiki_lore": 0,
+        "wiki_guide": 0,
+    }
 
     # hero_build chunks go into the same heroes collection
     COLLECTION_MAP = {
@@ -83,7 +90,7 @@ def index_chunks(client: QdrantClient, chunks: list):
     }
     COUNT_KEY = {
         "hero":       "hero",
-        "hero_build": "hero",
+        "hero_build": "hero_build",
         "ability":    "ability",
         "item":       "item",
         "wiki_lore":  "wiki_lore",
@@ -100,8 +107,6 @@ def index_chunks(client: QdrantClient, chunks: list):
             points = []
 
             for chunk in batch:
-                embedding = get_embedding(chunk["text"])
-
                 # ID Generation logic (Deterministic using MD5)
                 import hashlib
                 metadata = chunk["metadata"]
@@ -120,6 +125,11 @@ def index_chunks(client: QdrantClient, chunks: list):
                     key = f"wiki_guide_{metadata.get('hero_name', metadata.get('title'))}_{metadata.get('category')}"
                 else:
                     key = hashlib.md5(chunk["text"].encode()).hexdigest()
+
+                try:
+                    embedding = get_embedding(chunk["text"])
+                except RuntimeError as e:
+                    raise RuntimeError(f"Failed embedding chunk {ctype}:{key}") from e
 
                 # Generate a stable 64-bit integer ID from the key string
                 point_id = int(hashlib.md5(key.encode()).hexdigest()[:12], 16)
@@ -177,19 +187,23 @@ def main():
         sys.exit(1)
 
     client = QdrantClient(url=QDRANT_URL)
-    setup_collections(client)
+    try:
+        setup_collections(client)
 
-    counts = index_chunks(client, chunks)
+        counts = index_chunks(client, chunks)
 
-    run_test_query(client)
+        run_test_query(client)
 
-    logger.info("Indexing complete!")
-    logger.info("Heroes:      %d", counts['hero'])
-    logger.info("Abilities:   %d", counts['ability'])
-    logger.info("Items:       %d", counts['item'])
-    logger.info("Wiki Lore:   %d", counts['wiki_lore'])
-    logger.info("Wiki Guides: %d", counts['wiki_guide'])
-    logger.info("Total:       %d chunks indexed", sum(counts.values()))
+        logger.info("Indexing complete!")
+        logger.info("Heroes:      %d", counts['hero'])
+        logger.info("Hero Builds: %d", counts['hero_build'])
+        logger.info("Abilities:   %d", counts['ability'])
+        logger.info("Items:       %d", counts['item'])
+        logger.info("Wiki Lore:   %d", counts['wiki_lore'])
+        logger.info("Wiki Guides: %d", counts['wiki_guide'])
+        logger.info("Total:       %d chunks indexed", sum(counts.values()))
+    finally:
+        client.close()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")

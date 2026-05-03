@@ -10,3 +10,5 @@ langchain-ollama
 langchain-openai
 openai
 python-dotenv
+psycopg2-binary
+tqdm

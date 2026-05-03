@@ -29,6 +29,9 @@ ENV/
 # Qdrant
 qdrant_storage/
 
+# Postgres
+postgres_data/
+
 # Project Specific Exclusions
 all_labels.txt
 mappings_output.txt
@@ -67,3 +70,4 @@ data/meta/
 
 Deploy_notes.md
 FIX_PLAN.md
+metaplan.md
