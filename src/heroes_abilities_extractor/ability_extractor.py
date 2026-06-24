@@ -1,7 +1,7 @@
 import logging
 from mapping_handler import MAPPING
 from utils import normalize, clean_description, get_stat_name
-from localization import resolve_ability_name
+from utils.localization import resolve_ability_name
 
 logger = logging.getLogger(__name__)
 

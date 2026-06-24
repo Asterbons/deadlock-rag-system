@@ -7,14 +7,14 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from kv3_parser import parse_kv3_file
+from utils.kv3_parser import parse_kv3_file
 from config import (
     SHOP_JSON_PATH, HEROES_VDATA_PATH, ABILITIES_VDATA_PATH,
     HERO_NAMES_LOC_PATH, HEROES_LOC_PATH, ATTRIBUTES_LOC_PATH, MODS_LOC_PATH,
     HEROES_OUT_DIR, HEROES_INDEX_PATH
 )
 
-from localization import parse_localization
+from utils.localization import parse_localization
 from profile_builder import extract_hero_profile, create_index_entry
 
 logger = logging.getLogger(__name__)

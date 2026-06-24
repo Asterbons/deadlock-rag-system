@@ -187,6 +187,47 @@ src/api/server.py    → FastAPI, SSE streaming to web UI, token usage reporting
 | Tools | Four callable functions invoked by the LLM for exact calculations: ability damage scaling, hero DPS, hero stat ranking, and item lookup |
 | LLM | Reads retrieved chunks as context, generates a grounded answer; invokes tools for calculation-heavy queries |
 
+## Match analytics, knowledge graph & evals
+
+Three subsystems extend the project beyond the core RAG API. **They are standalone** — none is imported by the live query path (`src/rag/*`, `src/api/server.py`) yet — and each has its own optional service.
+
+### Match analytics — PostgreSQL (`src/meta/`)
+
+Ingests ranked match data from [deadlock-api.com](https://api.deadlock-api.com) into Postgres for patch-aware hero/item statistics.
+
+- **Schema** (`schema.sql`): `patches`, `matches`, `players`, `item_purchases`, plus pre-computed `hero_meta` / `item_meta` tables (win rate, pick rate, averages), indexed by `patch_date`.
+- **Fetcher** (`fetcher.py`): paginated downloader for high-badge matches (`min_average_badge=80`) since the latest balance patch, with retry/backoff on 429/5xx and **resumable** ingestion (continues from the lowest `match_id` already stored).
+- **Loader** (`loader.py`): bulk upserts via `execute_values` + `ON CONFLICT DO NOTHING`.
+
+```bash
+docker compose up -d postgres         # or run your own Postgres
+python -m src.meta.migrate            # apply schema (also auto-applied by the container)
+python -m src.meta.fetcher            # download + load matches
+python scripts/verify_meta.py         # sanity-check the loaded tables
+```
+
+### Knowledge graph — Neo4j (`graph/`, Phase 1)
+
+Schema and curated relationship data for mechanical counters/synergies. The graph *builder* is Phase 2 and not yet implemented; Phase 1 ships the schema plus hand-curated data.
+
+- `graph_schema.py`: nodes (`Hero`/`Ability`/`Item`/`Stat`/`Mechanic`), relationships (`HAS_ABILITY`, `SCALES_WITH`, `GRANTS`, `HAS_MECHANIC`, `UPGRADES_TO`, `COUNTERS`), constraints and indexes.
+- `counter_items.json`: curated item → hero/mechanic/item counter relationships.
+
+```bash
+docker compose up -d neo4j            # requires NEO4J_PASSWORD in .env
+python scripts/verify_neo4j.py        # apply schema + validate counter_items.json
+```
+
+### Evaluation harness (`evals/`, `scripts/run_eval.py`)
+
+Offline golden-set evaluation (live RAG execution + RAGAS scoring are planned). Cases are typed (`lore` / `mechanics` / `strategy` / `numeric`) with reference answers, tags, and numeric tolerances; the golden set is schema-validated in CI via `tests/test_eval_schema.py`.
+
+```bash
+python scripts/run_eval.py --validate   # schema + duplicate-id checks
+python scripts/run_eval.py --stats      # coverage by type / tag
+python scripts/run_eval.py --list       # list all cases
+```
+
 ## Project Structure
 
 ```
@@ -203,17 +244,18 @@ dlrag/
 │       └── heroes/                   # Per-hero JSON files (38 files)
 ├── src/
 │   ├── heroes_abilities_extractor/
-│   │   ├── kv3_parser.py             # Custom KV3 recursive-descent parser
 │   │   ├── hero_extractor.py         # Hero stat extraction with hero_base inheritance
 │   │   ├── ability_enricher.py       # Ability enrichment + semantic tags
 │   │   ├── ability_extractor.py      # Hero ability extraction + effect parsing
-│   │   ├── classifiers.py            # Hero flavor / damage / utility tag inference
-│   │   ├── localization.py           # Localization token parsing + ability name resolution
 │   │   ├── pipeline.py               # Hero/ability extraction entrypoint
 │   │   ├── profile_builder.py        # Hero profile assembly + heroes_index entries
 │   │   ├── weapon_extractor.py       # Primary weapon stat extraction
-│   │   ├── utils.py                  # Shared normalization and description cleanup helpers
-│   │   └── hero_profile_extractor.py # Per-hero profile orchestration entrypoint
+│   │   ├── hero_profile_extractor.py # Per-hero profile orchestration entrypoint
+│   │   └── utils/                    # Shared helpers package
+│   │       ├── __init__.py           # Normalization, strip_html / clean_description, stat-name resolution
+│   │       ├── kv3_parser.py         # Custom KV3 recursive-descent parser
+│   │       ├── localization.py       # Localization token parsing + ability name resolution
+│   │       └── classifiers.py        # Hero flavor / damage / utility tag inference
 │   ├── shop_extractor/
 │   │   ├── shop_builder.py           # Item extraction + stat normalization
 │   │   └── pipeline.py               # Shop extraction entrypoint
@@ -233,9 +275,15 @@ dlrag/
 │   │   ├── patch_monitor.py          # GitHub polling + file download
 │   │   ├── update_pipeline.py        # Runs full extraction → index pipeline
 │   │   └── scheduler.py              # APScheduler-based auto-update loop
-│   ├── config.py                     # Centralized paths, Qdrant settings, model config, update interval
+│   ├── meta/                         # Match analytics (PostgreSQL) — standalone
+│   │   ├── schema.sql                # patches / matches / players / item_purchases / *_meta
+│   │   ├── db.py                     # Connection + ensure_patch
+│   │   ├── migrate.py                # Apply schema.sql
+│   │   ├── loader.py                 # Bulk upsert matches via execute_values
+│   │   └── fetcher.py                # Resumable deadlock-api.com match downloader
+│   ├── config.py                     # Centralized paths, Qdrant/Postgres settings, model/provider config, update interval
 │   └── mapping_handler.py            # MODIFIER_VALUE_* → clean stat names
-└── tests/
+├── tests/
 │   ├── conftest.py                    # Shared pytest fixtures and path setup
 │   ├── test_api.py                    # FastAPI endpoint tests (health, heroes, items)
 │   ├── test_chunker.py                # Hero/ability chunking validation
@@ -245,7 +293,21 @@ dlrag/
 │   ├── test_router.py                 # Query routing logic
 │   ├── test_shop_builder.py           # Item extraction, proc/synergy/upgrades, shop JSON
 │   ├── test_tools.py                  # Structured hero stat ranking + comparison tools
-│   └── test_utils.py                  # camel_to_snake, normalize, strip_html, clean_description
+│   ├── test_utils.py                  # camel_to_snake, normalize, strip_html, clean_description
+│   ├── test_eval_schema.py            # Golden-set JSONL schema validation
+│   └── test_eval_asserts.py           # Numeric eval assertion helpers
+├── graph/                            # Knowledge graph (Neo4j) — Phase 1, standalone
+│   ├── graph_schema.py               # Nodes / relationships / constraints / indexes
+│   ├── connection.py                 # Neo4j driver factory (env credentials)
+│   └── counter_items.json            # Curated item → hero/mechanic/item counters
+├── evals/                            # Offline evaluation set
+│   └── golden_set.jsonl              # Typed golden questions + reference answers
+└── scripts/                          # Standalone utilities
+    ├── run_eval.py                   # Offline eval: validate / stats / list
+    ├── eval_asserts.py               # Numeric grading helpers
+    ├── verify_meta.py                # Sanity-check Postgres match tables
+    ├── verify_neo4j.py               # Apply Neo4j schema + validate counters
+    └── explore_deadlock_api.py       # One-off deadlock-api.com discovery script
 ```
 
 ## Testing

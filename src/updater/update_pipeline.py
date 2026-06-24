@@ -27,7 +27,7 @@ def run_full_pipeline() -> bool:
     print(f"{'='*50}")
 
     for step_name, cmd in PIPELINE_STEPS:
-        print(f"\n→ {step_name}...")
+        print(f"\n* {step_name}...")
         try:
             subprocess.run(cmd, cwd=PROJECT_ROOT, check=True)
         except subprocess.CalledProcessError as e:

@@ -12,3 +12,5 @@ openai
 python-dotenv
 psycopg2-binary
 tqdm
+neo4j>=5.0.0
+langchain-neo4j>=0.1.0

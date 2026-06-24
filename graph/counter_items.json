@@ -1,0 +1,644 @@
+{
+  "_design_rationale": "Counter relationships are authored manually by a domain expert with 800+ hours in Deadlock. Automatic derivation from .vdata fields (e.g. cast_time > 0) was considered and rejected: Deadlock's mechanics have too many exceptions that only in-game experience can capture. A field like cast_time may technically exist on an ability but not create a real counterspell window, or vice versa. Manual curation is slower but produces correct relationships.",
+  "items": [
+    {
+      "name": "Rebuttal",
+      "shop_category": "vitality",
+      "tier": 1,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "melee_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "On successful parry reflects a portion of incoming melee damage back to the attacker."
+        }
+      ]
+    },
+    {
+      "name": "Healbane",
+      "shop_category": "vitality",
+      "tier": 2,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces healing received by the target — primary counter to lifesteal and self-heal builds."
+        }
+      ]
+    },
+    {
+      "name": "Debuff Reducer",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "debuff_duration",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces duration of all debuffs applied to the holder — counters CC-heavy heroes and debuff stacking."
+        }
+      ]
+    },
+    {
+      "name": "Enchanters Emblem",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_damage",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Grants spirit damage reduction — secondary counter to spirit-heavy compositions."
+        }
+      ]
+    },
+    {
+      "name": "Enduring Speed",
+      "shop_category": "vitality",
+      "tier": 2,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "slow",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Restores movement speed immediately when slowed — primary counter to slow effects."
+        }
+      ]
+    },
+    {
+      "name": "Reactive Barrier",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "burst_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Activates a shield on taking large burst damage — counters one-shot or high-burst windows."
+        }
+      ]
+    },
+    {
+      "name": "Healing Booster",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": []
+    },
+    {
+      "name": "Return Fire",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reflects a portion of incoming bullet damage — counters sustained bullet DPS heroes."
+        }
+      ]
+    },
+    {
+      "name": "Spirit Shielding",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Absorbs incoming spirit damage — effective against spirit-heavy burst."
+        }
+      ]
+    },
+    {
+      "name": "Weapon Shielding",
+      "shop_category": "vitality",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Absorbs incoming bullet damage — effective against sustained bullet DPS."
+        }
+      ]
+    },
+    {
+      "name": "Bullet Resilience",
+      "shop_category": "vitality",
+      "tier": 3,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces bullet damage taken — general counter to bullet-heavy compositions."
+        }
+      ]
+    },
+    {
+      "name": "Spirit Resilience",
+      "shop_category": "vitality",
+      "tier": 3,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces spirit damage taken — general counter to spirit-heavy compositions."
+        }
+      ]
+    },
+    {
+      "name": "Counterspell",
+      "shop_category": "vitality",
+      "tier": 3,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "cast_time",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Counters abilities with a visible cast animation. Target heroes are derived at query time by traversing which heroes have cast_time abilities — this item targets the mechanic, not specific heroes."
+        }
+      ]
+    },
+    {
+      "name": "Dispel Magic",
+      "shop_category": "vitality",
+      "tier": 3,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "debuff_duration",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Instantly removes all debuffs on use — hard counter to debuff-reliant heroes."
+        }
+      ]
+    },
+    {
+      "name": "Metal Skin",
+      "shop_category": "vitality",
+      "tier": 3,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_burst",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Activatable bullet immunity that counters burst-damage windows from heroes who deal damage in rapid concentrated volleys."
+        }
+      ]
+    },
+    {
+      "name": "Indomitable",
+      "shop_category": "vitality",
+      "tier": 3,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "cc",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Grants CC immunity for a duration — hard counter to stun/root/knockdown chains."
+        }
+      ]
+    },
+    {
+      "name": "Inhibitor",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Applies a strong heal reduction aura — team-wide counter to lifesteal and sustain builds."
+        }
+      ]
+    },
+    {
+      "name": "Juggernaut",
+      "shop_category": "vitality",
+      "tier": 4,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "high_fire_rate",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Juggernaut's passive armor and melee slow are most effective against high fire-rate heroes who deal damage in rapid small increments."
+        },
+        {
+          "target_type": "mechanic",
+          "target_name": "slow",
+          "weight": 0.3,
+          "weight_label": "secondary",
+          "notes": "Enduring Speed is the primary slow counter; Juggernaut's slow resist is a bonus secondary benefit."
+        }
+      ]
+    },
+    {
+      "name": "Phantom Strike",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "kiting",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Teleports to target enemy — counters mobile heroes who rely on distance to kite."
+        }
+      ]
+    },
+    {
+      "name": "Plated Armor",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Heavy bullet armor — counters sustained bullet DPS at high tier."
+        }
+      ]
+    },
+    {
+      "name": "Siphon Bullets",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Steals bullet armor from target on hit — effective against armor-stacking enemies."
+        }
+      ]
+    },
+    {
+      "name": "Spellbreaker",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "High spirit damage resistance — top-tier counter to spirit-heavy compositions."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Spirit Shielding",
+          "weight": 0.3,
+          "weight_label": "secondary",
+          "notes": "Overlaps with Spirit Shielding role but at higher tier with stronger values."
+        }
+      ]
+    },
+    {
+      "name": "Unstoppable",
+      "shop_category": "vitality",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "cc",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Grants full CC immunity on activation — hard counter to chains of stuns, roots, and knockdowns."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Indomitable",
+          "weight": 0.3,
+          "weight_label": "secondary",
+          "notes": "Upgraded version of CC immunity — replaces Indomitable role at higher tier."
+        }
+      ]
+    },
+    {
+      "name": "Toxic Bullets",
+      "shop_category": "gun",
+      "tier": 3,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Applies heal-cut on hit — enables sustained healing suppression at range."
+        }
+      ]
+    },
+    {
+      "name": "Spirit Shredder",
+      "shop_category": "gun",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_resist",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces target's spirit resist on hit — counters spirit resistance stacking."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Spirit Resilience",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Directly counters the spirit resist from Spirit Resilience."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Spellbreaker",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Partially counters high spirit resist from Spellbreaker."
+        }
+      ]
+    },
+    {
+      "name": "Spirit Rend",
+      "shop_category": "gun",
+      "tier": 3,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces spirit healing and spirit power — counters spirit-scaling lifesteal abilities."
+        }
+      ]
+    },
+    {
+      "name": "Armor Piercing Rounds",
+      "shop_category": "gun",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_resist",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces target's bullet resist on hit — counters bullet resistance stacking."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Bullet Resilience",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Directly counters the bullet resist from Bullet Resilience."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Plated Armor",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Directly counters the bullet armor from Plated Armor."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Weapon Shielding",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Reduces effectiveness of Weapon Shielding's bullet absorption."
+        }
+      ]
+    },
+    {
+      "name": "Crippling Headshots",
+      "shop_category": "gun",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Headshots apply heal reduction — counters lifesteal and sustain on headshot-viable heroes."
+        },
+        {
+          "target_type": "mechanic",
+          "target_name": "kiting",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Headshots apply a slow — helps close gap against mobile heroes."
+        }
+      ]
+    },
+    {
+      "name": "Silencer",
+      "shop_category": "gun",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "ability_use",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Prevents target from using abilities — hard counter to ability-dependent heroes."
+        }
+      ]
+    },
+    {
+      "name": "Rusted Barrel",
+      "shop_category": "spirit",
+      "tier": 1,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_resist",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Reduces target's bullet armor — early game counter to bullet resistance."
+        }
+      ]
+    },
+    {
+      "name": "Slowing Hex",
+      "shop_category": "spirit",
+      "tier": 2,
+      "notes": "CC utility item — counters added after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "kiting",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Applies a strong slow — counters mobile heroes who rely on movement to stay safe."
+        }
+      ]
+    },
+    {
+      "name": "Suppressor",
+      "shop_category": "spirit",
+      "tier": 2,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "ability_use",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Reduces ability cast speed — soft counter to ability-reliant heroes, weaker than Silencer."
+        }
+      ]
+    },
+    {
+      "name": "Decay",
+      "shop_category": "spirit",
+      "tier": 3,
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "AoE spirit nuke that applies healing reduction — effective against grouped enemies with lifesteal."
+        }
+      ]
+    },
+    {
+      "name": "Disarming Hex",
+      "shop_category": "spirit",
+      "tier": 3,
+      "notes": "CC utility item — counters added after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "bullet_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Disarms the target removing bullet damage entirely for the duration — hard counter to bullet DPS heroes."
+        }
+      ]
+    },
+    {
+      "name": "Knockdown",
+      "shop_category": "spirit",
+      "tier": 3,
+      "notes": "CC utility item — counters added after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "mobility",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Interrupts and knocks down target — counters mobile or dashing heroes."
+        }
+      ]
+    },
+    {
+      "name": "Silence Wave",
+      "shop_category": "spirit",
+      "tier": 3,
+      "notes": "CC utility item — counters added after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "ability_use",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "AoE silence — counters ability-dependent heroes in grouped fights."
+        }
+      ]
+    },
+    {
+      "name": "Cursed Relic",
+      "shop_category": "spirit",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "healing",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Applies strong heal reduction on spirit hit — counters sustain builds at high tier."
+        }
+      ]
+    },
+    {
+      "name": "Ethereal Shift",
+      "shop_category": "spirit",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "burst_damage",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Makes holder untargetable briefly — counters burst windows and targeted ultimates."
+        }
+      ]
+    },
+    {
+      "name": "Focus Lens",
+      "shop_category": "spirit",
+      "tier": 4,
+      "notes": "TODO — fill after game session",
+      "counters": [
+        {
+          "target_type": "mechanic",
+          "target_name": "spirit_resist",
+          "weight": 1.0,
+          "weight_label": "primary",
+          "notes": "Increases spirit damage penetration — counters high spirit resistance builds."
+        },
+        {
+          "target_type": "item",
+          "target_name": "Spirit Resilience",
+          "weight": 0.5,
+          "weight_label": "secondary",
+          "notes": "Partially counters Spirit Resilience's spirit resist."
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 from utils import normalize, get_stat_name
-from classifiers import extract_hero_tags, infer_damage_type, infer_utility
+from utils.classifiers import extract_hero_tags, infer_damage_type, infer_utility
 from ability_extractor import extract_abilities
 from weapon_extractor import extract_weapon
 

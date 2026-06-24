@@ -1,5 +1,5 @@
 import pytest
-from src.heroes_abilities_extractor.localization import (
+from src.heroes_abilities_extractor.utils.localization import (
     resolve_ability_name,
     parse_localization,
 )

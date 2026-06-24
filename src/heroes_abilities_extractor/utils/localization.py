@@ -3,7 +3,7 @@ import re
 import logging
 import sys
 from pathlib import Path
-from utils import strip_html, camel_to_snake
+from . import strip_html, camel_to_snake
 
 logger = logging.getLogger(__name__)
 

@@ -9,36 +9,38 @@ from src.meta.migrate import run_migrations
 
 logger = logging.getLogger(__name__)
 
-LATEST_PATCH_DATE = "2026-03-11"
-LATEST_PATCH_NAME = "03-06-2026 Update"
+LATEST_PATCH_DATE = "2026-05-02"
+LATEST_PATCH_NAME = "02-05-2026 Update"
 
 
-def load_matches_from_file(filepath: str):
-    run_migrations()
+def load_matches_batch(
+    matches: list, conn, patch_date: str = LATEST_PATCH_DATE
+) -> tuple[int, int]:
+    """Insert a batch of match objects into PostgreSQL.
 
-    with open(filepath, encoding="utf-8") as f:
-        matches = json.load(f)
-
-    conn = get_conn()
-    ensure_patch(conn, LATEST_PATCH_DATE, LATEST_PATCH_NAME, is_balance=True)
-
+    Caller owns the connection: this function does NOT run migrations,
+    commit, or close. Returns (loaded, skipped) where loaded counts
+    inserted matches (excluding ON CONFLICT collisions on the DB side
+    which still count as "loaded" from the API's perspective) and
+    skipped counts client-side rejections (not_scored / empty / no
+    winning team).
+    """
     match_rows: list = []
     player_rows: list = []
     item_rows: list = []
-    skipped_unscored = 0
-    skipped_empty = 0
+    skipped = 0
 
-    for m in tqdm(matches, desc="Processing matches"):
+    for m in matches:
         if m.get("not_scored"):
-            skipped_unscored += 1
+            skipped += 1
             continue
         if not m.get("players"):
-            skipped_empty += 1
+            skipped += 1
             continue
 
         winning_team = m.get("winning_team") or ""
         if not winning_team:
-            skipped_unscored += 1
+            skipped += 1
             continue
 
         match_mode = m.get("match_mode", "Normal")
@@ -52,7 +54,7 @@ def load_matches_from_file(filepath: str):
             winning_team,
             m.get("average_badge_team0", 0),
             m.get("average_badge_team1", 0),
-            LATEST_PATCH_DATE,
+            patch_date,
         ))
 
         for p in m.get("players", []):
@@ -69,7 +71,7 @@ def load_matches_from_file(filepath: str):
                 p.get("net_worth", 0),
                 p.get("player_level", 0),
                 match_mode,
-                LATEST_PATCH_DATE,
+                patch_date,
             ))
 
             for item in p.get("items", []):
@@ -83,7 +85,7 @@ def load_matches_from_file(filepath: str):
                     (item.get("sold_time_s") or 0) > 0,
                     won,
                     match_mode,
-                    LATEST_PATCH_DATE,
+                    patch_date,
                 ))
 
     with conn.cursor() as cur:
@@ -129,18 +131,32 @@ def load_matches_from_file(filepath: str):
             page_size=1000,
         )
 
-    conn.commit()
-    conn.close()
-
-    logger.info(
-        "Loaded: %d matches, %d players, %d item purchases "
-        "(skipped %d unscored, %d empty)",
+    logger.debug(
+        "batch: %d matches, %d players, %d items (skipped %d)",
         len(match_rows),
         len(player_rows),
         len(item_rows),
-        skipped_unscored,
-        skipped_empty,
+        skipped,
     )
+    return len(match_rows), skipped
+
+
+def load_matches_from_file(filepath: str):
+    run_migrations()
+
+    with open(filepath, encoding="utf-8") as f:
+        matches = json.load(f)
+
+    conn = get_conn()
+    try:
+        ensure_patch(conn, LATEST_PATCH_DATE, LATEST_PATCH_NAME, is_balance=True)
+        loaded, skipped = load_matches_batch(
+            tqdm(matches, desc="Processing matches"), conn, LATEST_PATCH_DATE
+        )
+        conn.commit()
+        logger.info("Loaded: %d matches (skipped %d)", loaded, skipped)
+    finally:
+        conn.close()
 
 
 if __name__ == "__main__":

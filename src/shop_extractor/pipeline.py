@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "heroes_abilities_extractor"))
 
-from kv3_parser import parse_kv3_file
+from utils.kv3_parser import parse_kv3_file
 from hero_extractor import extract_shop_data
 from shop_builder import parse_localization, extract_items, build_shop_json
 

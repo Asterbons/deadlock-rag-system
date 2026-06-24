@@ -1,5 +1,5 @@
 import pytest
-from src.heroes_abilities_extractor.kv3_parser import parse_kv3, _normalise
+from src.heroes_abilities_extractor.utils.kv3_parser import parse_kv3, _normalise
 
 
 class TestNormalise:

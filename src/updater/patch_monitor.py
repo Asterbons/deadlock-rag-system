@@ -102,7 +102,7 @@ def check_and_update() -> bool:
             logger.info("No updates. Current: %s", latest_sha[:8])
             return False
 
-        logger.info("New commit detected: %s → %s", known_sha[:8], latest_sha[:8])
+        logger.info("New commit detected: %s => %s", known_sha[:8], latest_sha[:8])
         changed = get_changed_files(known_sha, latest_sha)
         relevant = [f for f in changed if f in WATCHED_FILES.values()]
         logger.info("Changed watched files: %s", relevant)
